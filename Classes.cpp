@@ -1,9 +1,16 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "Classes.h"
 
 #define Tab '\t'
 #define Nline '\n'
 
+
+/// ********************************************************************************
+/// <summary>
+/// Classes
+/// </summary>
+/// <created>ʆϒʅ,18.09.2018</created>
+/// ********************************************************************************
 
 class Rectangle {
   int width, height; // private members (can just be referred to from within other members of the same class)
@@ -93,10 +100,10 @@ public:
 };
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Classes I
 /// </summary>
-/// <created>Mehrdad,18.09.2018</created>
-/// <changed>Mehrdad,25.09.2018</changed>
+/// <created>ʆϒʅ,18.09.2018</created>
+/// <changed>ʆϒʅ,25.09.2018</changed>
 /// ********************************************************************************
 void ClassesI () {
   // the classes used in this section are defined above it.
@@ -342,10 +349,10 @@ int Dummy2::n = 0; // a static data member of a class need to be initialized som
 
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Classes II
 /// </summary>
-/// <created>Mehrdad,25.09.2018</created>
-/// <changed>Mehrdad,27.09.2018</changed>
+/// <created>ʆϒʅ,25.09.2018</created>
+/// <changed>ʆϒʅ,27.09.2018</changed>
 /// ********************************************************************************
 void ClassesII () {
   // the classes used in this section are defined above it.

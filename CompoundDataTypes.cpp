@@ -1,9 +1,16 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CompoundDataTypes.h"
 
 #define Tab '\t'
 #define Nline '\n'
 
+
+/// ********************************************************************************
+/// <summary>
+/// Compound data types
+/// </summary>
+/// <created>ʆϒʅ,30/05/2018</created>
+/// ********************************************************************************
 
 void print_simple_array (int arg[], int length) {
   for (int n = 0; n < length; n++) {
@@ -22,10 +29,10 @@ void print_bidimensional_array (int arg[][5], int width, int height) {
 }
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Arrays in C++
 /// </summary>
-/// <created>Mehrdad,30/05/2018</created>
-/// <changed>Mehrdad,11/06/2018</changed>
+/// <created>ʆϒʅ,30/05/2018</created>
+/// <changed>ʆϒʅ,11/06/2018</changed>
 /// ********************************************************************************
 void Arrays () {
   // the functions used in this section are defined above it.
@@ -206,10 +213,10 @@ void print_simple_array_of_characters (char arg[], int length) {
 }
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Character sequences
 /// </summary>
-/// <created>Mehrdad,11.06.2018</created>
-/// <changed>Mehrdad,25.06.2018</changed>
+/// <created>ʆϒʅ,11.06.2018</created>
+/// <changed>ʆϒʅ,25.06.2018</changed>
 /// ********************************************************************************
 void CharacterSequences () {
   // the functions used in this section are defined above it.
@@ -335,10 +342,10 @@ int operation_PointerToFunction (int x, int y, int (*FuncToCall) (int, int)) {
 }
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Pointers
 /// </summary>
-/// <created>Mehrdad,25.06.2018</created>
-/// <changed>Mehrdad,05.09.2018</changed>
+/// <created>ʆϒʅ,25.06.2018</created>
+/// <changed>ʆϒʅ,05.09.2018</changed>
 /// ********************************************************************************
 void Pointers () {
   // the functions used in this section are defined above it.
@@ -701,10 +708,10 @@ void Pointers () {
 
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Dynamic memory
 /// </summary>
-/// <created>Mehrdad,06.09.2018</created>
-/// <changed>Mehrdad,08.09.2018</changed>
+/// <created>ʆϒʅ,06.09.2018</created>
+/// <changed>ʆϒʅ,08.09.2018</changed>
 /// ********************************************************************************
 void DynamicMemory () {
   try {
@@ -830,10 +837,10 @@ void printMovie (movies_t movie) {
 }
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Data structures
 /// </summary>
-/// <created>Mehrdad,08.09.2018</created>
-/// <changed>Mehrdad,11.09.2018</changed>
+/// <created>ʆϒʅ,08.09.2018</created>
+/// <changed>ʆϒʅ,11.09.2018</changed>
 /// ********************************************************************************
 void DataStructures () {
   // the functions and structures used in this section are defined above it.
@@ -966,10 +973,10 @@ void DataStructures () {
 
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Other data types
 /// </summary>
-/// <created>Mehrdad,11.09.2018</created>
-/// <changed>Mehrdad,18.09.2018</changed>
+/// <created>ʆϒʅ,11.09.2018</created>
+/// <changed>ʆϒʅ,18.09.2018</changed>
 /// ********************************************************************************
 void OtherDataTypes () {
   try {

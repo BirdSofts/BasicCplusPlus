@@ -1,17 +1,23 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "ProgramStructure.h"
 
 
 #define Tab '\t'
 #define Nline '\n'
 
+/// ********************************************************************************
+/// <summary>
+/// Program structures
+/// </summary>
+/// <created>ʆϒʅ,09/05/2018</created>
+/// ********************************************************************************
 
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Control structures in C++
 /// </summary>
-/// <created>Mehrdad,09/05/2018</created>
-/// <changed>Mehrdad,15/05/2018</changed>
+/// <created>ʆϒʅ,09/05/2018</created>
+/// <changed>ʆϒʅ,15/05/2018</changed>
 /// ********************************************************************************
 void ControlStructures () {
   try {
@@ -300,10 +306,10 @@ long factorial (long a) {
 }
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Functions in C++
 /// </summary>
-/// <created>Mehrdad,15/05/2018</created>
-/// <changed>Mehrdad,24/05/2018</changed>
+/// <created>ʆϒʅ,15/05/2018</created>
+/// <changed>ʆϒʅ,24/05/2018</changed>
 /// ********************************************************************************
 void Functions () {
   // the body code of functions used in this section are defined above it
@@ -526,10 +532,10 @@ T fixed_multiply (T val) {
 }
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Overloads and templates in C++
 /// </summary>
-/// <created>Mehrdad,24/05/2018</created>
-/// <changed>Mehrdad,26/05/2018</changed>
+/// <created>ʆϒʅ,24/05/2018</created>
+/// <changed>ʆϒʅ,26/05/2018</changed>
 /// ********************************************************************************
 void OverloadsAndTemplates () {
   // the body code of functions used in this section are defined above it
@@ -663,10 +669,10 @@ namespace second {
 int aGlobalVariable; // has static storage, is automatic initialized
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Name visibility
 /// </summary>
-/// <created>Mehrdad,26/05/2018</created>
-/// <changed>Mehrdad,30/05/2018</changed>
+/// <created>ʆϒʅ,26/05/2018</created>
+/// <changed>ʆϒʅ,30/05/2018</changed>
 /// ********************************************************************************
 void NameVisibility () {
   // the functions, namespaces and variables used in this section are defined above it.

@@ -1,20 +1,26 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "IntroductionAndBasics.h"
 
+/// ********************************************************************************
+/// <summary>
+/// Introduction and basics
+/// </summary>
+/// <created>ʆϒʅ,11/04/2018</created>
+/// ********************************************************************************
 
 /// ********************************************************************************
 /// <summary>
 /// Hello World in C++ code
 /// </summary>
-/// <created>Mehrdad,11/04/2018</created>
-/// <changed>Mehrdad,10/05/2018</changed>
+/// <created>ʆϒʅ,11/04/2018</created>
+/// <changed>ʆϒʅ,10/05/2018</changed>
 /// ********************************************************************************
 void HelloWorld () {
   try {
     std::cout << '\n'; for (int L = 0; L < 110; L++) std::cout << '#';
 
     // #######################################
-    //~~~  structure of a program:
+    //~~~ structure of a program:
     std::cout << "\n~~~~~ Structure of a Program:\n";
     std::cout << "Programming needs patience and practical practice.\n";
     // line comment
@@ -27,7 +33,6 @@ void HelloWorld () {
   catch (const std::exception&) {
 
   }
-
   /// <summary></summary>
 }
 
@@ -36,8 +41,8 @@ void HelloWorld () {
 /// <summary>
 /// Variables in C++
 /// </summary>
-/// <created>Mehrdad,11/04/2018</created>
-/// <changed>Mehrdad,10/05/2018</changed>
+/// <created>ʆϒʅ,11/04/2018</created>
+/// <changed>ʆϒʅ,10/05/2018</changed>
 /// ********************************************************************************
 void VariablesAndTypes () {
   try {
@@ -178,8 +183,8 @@ void VariablesAndTypes () {
 /// <summary>
 /// Constants in C++
 /// </summary>
-/// <created>Mehrdad,11/04/2018</created>
-/// <changed>Mehrdad,10/05/2018</changed>
+/// <created>ʆϒʅ,11/04/2018</created>
+/// <changed>ʆϒʅ,10/05/2018</changed>
 /// ********************************************************************************
 void Constants () {
   try {
@@ -322,8 +327,8 @@ paRTed"  " And "		  "wriTTen In TreeLine" };
 /// <summary>
 /// Operators in C++
 /// </summary>
-/// <created>Mehrdad,21/04/2018</created>
-/// <changed>Mehrdad,10/05/2018</changed>
+/// <created>ʆϒʅ,21/04/2018</created>
+/// <changed>ʆϒʅ,10/05/2018</changed>
 /// ********************************************************************************
 void Operators () {
   try {
@@ -518,10 +523,10 @@ void Operators () {
 
 /// ********************************************************************************
 /// <summary>
-/// 
+/// Basic input and output in C++
 /// </summary>
-/// <created>Mehrdad,04/05/2018</created>
-/// <changed>Mehrdad,10/05/2018</changed>
+/// <created>ʆϒʅ,04/05/2018</created>
+/// <changed>ʆϒʅ,10/05/2018</changed>
 /// ********************************************************************************
 void BasicInputOutput () {
   try {

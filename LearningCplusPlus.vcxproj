@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Classes.h" />
     <ClInclude Include="CompoundDataTypes.h" />
+    <ClInclude Include="ConsoleAdjustments.h" />
     <ClInclude Include="IntroductionAndBasics.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProgramStructure.h" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="Classes.cpp" />
     <ClCompile Include="CompoundDataTypes.cpp" />
+    <ClCompile Include="ConsoleAdjustments.cpp" />
     <ClCompile Include="IntroductionAndBasics.cpp" />
     <ClCompile Include="LearningCplusPlus.cpp" />
     <ClCompile Include="pch.cpp">

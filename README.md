@@ -1,20 +1,15 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+LearningCplusPlus project originally aimed to serve as a personal private reference for coding in C++ language.
+As reference mostly CplusPlus website (http://www.cplusplus.com/ ) has been used, also additionally some other websites which their addresses are in the source code.
+The project is just learning materials, which tries very hard to bring learning instruction, the source code itself and the compilation results all together in code environment in easy language which results in experiencing more joy while learning to code.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+If you are a real beginner, just use Visual Studio and try learning the code environment in beginner level first, before starting the C++ language itself.
+If you have experience then you probably know what you are doing.
 
 # Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+The project has been built and tested in Visual Studio environment. If you want to do it in other coding environment, then you are going to be on your own.
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+I appreciate any contribution to the project.
+Additionally the project is copyrighted. Most of the code is from the online references and the addition to them can just be used as teaching materials.

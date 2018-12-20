@@ -18,19 +18,19 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes.h">
+    <ClInclude Include="_1_Introduction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CompoundDataTypes.h">
+    <ClInclude Include="_3_ProgramStructure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IntroductionAndBasics.h">
+    <ClInclude Include="_4_CompoundDataTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ProgramStructure.h">
+    <ClInclude Include="_5_Classes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleAdjustments.h">
+    <ClInclude Include="_2_BasicsOfCplusPlus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,19 +41,19 @@
     <ClCompile Include="LearningCplusPlus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes.cpp">
+    <ClCompile Include="_1_Introduction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CompoundDataTypes.cpp">
+    <ClCompile Include="_3_ProgramStructure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IntroductionAndBasics.cpp">
+    <ClCompile Include="_4_CompoundDataTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProgramStructure.cpp">
+    <ClCompile Include="_5_Classes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleAdjustments.cpp">
+    <ClCompile Include="_2_BasicsOfCplusPlus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

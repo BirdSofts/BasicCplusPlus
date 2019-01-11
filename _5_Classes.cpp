@@ -376,6 +376,22 @@ public:
     Dummy2 () { n++; };
 };
 int Dummy2::n = 0; // a static data member of a class need to be initialized somewhere outside it.
+class MyClass2
+{
+public:
+    int x;
+    MyClass2 ( int val ) :x ( val ) {}
+    int get1 () { return x; }
+    int get2 () const { return x; } // const keyword must follows the function prototype
+    const int& get3 () const { return x; }; // const member function returning a const&
+    const int& get4 () { return x; }; // member function returning a const&
+    int& overloadedGet () { return x; };
+    const int& overloadedGet () const { return x; };
+};
+void print ( const MyClass2& arg )
+{
+    std::cout << "Taking the object as constant reference and thus read-only access as result:" << Tab << arg.get2 () << Nline << Nline;
+}
 
 
 // ********************************************************************************
@@ -453,7 +469,7 @@ void ClassesII ()
         // -------------------------------------------------------------------------------------------------------------
         // | @a         | + - * & ! ~ ++ --                             | A::operator@()         | operator@(A)        |
         // -------------------------------------------------------------------------------------------------------------
-        // | a@	    | ++ --                                         | A::operator@(int)      | operator@(A, int)   |
+        // | a@	        | ++ --                                         | A::operator@(int)      | operator@(A, int)   |
         // -------------------------------------------------------------------------------------------------------------
         // | a@b        | + - * / % ^ & | < > == != <= >= << >> && || , | A::operator@(B)        | operator@(A, B)     |
         // -------------------------------------------------------------------------------------------------------------
@@ -530,9 +546,46 @@ void ClassesII ()
 
         // #######################################
         //--- constant member functions:
-        // 
+        // defining an object of a class with qualification as constant means that the access to its data member from outside is read-only as if all its data member were constant, while the constructor is still called and has modification-right on these data member.
+        // properties of:
+        // no modification right on non-static data members or call right on non-constant member function
+        // in essence, the state of an object shan't be modified by a constant member.
+        // the limitation of accessing to only constant member functions
+        // non-constant objects can access both constant and non-constant member functions alike.
+
         std::cout << nline << "----- Constant member functions:" << nline;
-        std::cout << "." << nline << nline;
+        std::cout << "Defining an object of a class with qualification as constant introduces the restricted read-only access to its own data member." << nline << nline;
+        // constructor on constant object
+        const MyClass2 aConstantObject ( 10 );
+        int temp { 0 };
+        //aConstantObject.x = 20; // not valid: unmodifiable value
+        temp = aConstantObject.x;
+        std::cout << "Qualified read only access to data member of an object:" << tab << temp << nline;
+        //temp = aConstantObject.get1 (); // not valid: member function itself needs to be specified as constant member (see get2)
+        temp = aConstantObject.get2 ();
+        std::cout << "A callable member function of a constant object and its return value:" << tab << temp << nline << nline;
+
+        // note: const keyword can be used to qualify the type returned by a member function.
+        // this is different and independent and has its own place in the function prototype
+        temp = aConstantObject.get3 ();
+        std::cout << "A callable member function of a constant object and its constant return value:" << tab << temp << nline << nline;
+        //temp = aConstantObject.get4 (); // not valid: member function itself needs to be specified as constant member
+
+        // note: the consideration should be there that the use of constant objects are perfectly common, thus the effort of declaring all members that don't modify the object as constant worth it.
+        // most functions with classes as parameters take them as constant reference, therefore they can only access their constant member.
+        MyClass2 aObject ( 20 );
+        print ( aObject );
+
+        // note: overloads of member functions on their constant state is possible: i.e., two member functions with identical signatures of a class, one may be in constant state and other not.
+        // therefore a call from a constant object goes to the constant overload and the non-constant object call the other version.
+        MyClass2 OverloadsInUse1 ( 10 );
+        const MyClass2 OverloadsInUse2 ( 20 );
+        OverloadsInUse1.overloadedGet () = 15; // ok: overloadedGet() returns int&
+        temp = OverloadsInUse1.overloadedGet ();
+        std::cout << "First overload with modification right, thus setting and getting:" << tab << temp << nline;
+        //OverloadsInUse2.overloadedGet () = 25; // not valid: overloadedGet() returns const int&
+        temp = OverloadsInUse2.overloadedGet ();
+        std::cout << "Second overload without modification right, thus getting:" << tab << temp << nline << nline;
 
 
 

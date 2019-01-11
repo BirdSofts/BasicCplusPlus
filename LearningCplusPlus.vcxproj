@@ -91,11 +91,19 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\DLLs\ConsoleAdjustments;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\DLLs\ConsoleAdjustments\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ConsoleAdjustments.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.dll" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xdc" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xml" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -106,11 +114,19 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\DLLs\ConsoleAdjustments;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\DLLs\ConsoleAdjustments\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ConsoleAdjustments.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.dll" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xdc" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xml" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -123,13 +139,21 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\DLLs\ConsoleAdjustments;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\DLLs\ConsoleAdjustments\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ConsoleAdjustments.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.dll" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xdc" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xml" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -142,15 +166,24 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\DLLs\ConsoleAdjustments;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\DLLs\ConsoleAdjustments\$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ConsoleAdjustments.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.dll" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xdc" "$(OutDir)"
+xcopy /y /d "..\DLLs\ConsoleAdjustments\$(IntDir)ConsoleAdjustments.xml" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="_5_Classes.h" />
     <ClInclude Include="_4_CompoundDataTypes.h" />
     <ClInclude Include="_1_Introduction.h" />
@@ -171,6 +204,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="_3_ProgramStructure.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LearningCplusPlus.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

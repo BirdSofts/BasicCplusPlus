@@ -3,7 +3,7 @@
 /// _1_Introduction.h
 /// </summary>
 /// <created>ʆϒʅ,20.12.2018</created>
-/// <changed>ʆϒʅ,20.12.2018</changed>
+/// <changed>ʆϒʅ,12.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -13,7 +13,7 @@
 #define _1_INTRODUCTION_H
 
 
-void Compilers ();
+void CplusPlusLanguage ();
 
 
 #endif // !_1_INTRODUCTION_H

@@ -20,7 +20,7 @@ void HelloWorld ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
 
         // #######################################
         //~~~ structure of a program:
@@ -51,7 +51,7 @@ void VariablesAndTypes ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
 
         // #######################################
         //~~~ variables and types: variables are portions of memory that have types and are defined to store values.
@@ -195,7 +195,7 @@ void Constants ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
 
         // #######################################
         //~~~ literals are the most obvious kind of constants. they can be integer, floating-point, characters, strings, boolean, pointers and user-defined.
@@ -341,7 +341,7 @@ void Operators ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
         int x { 0 }, y { 2 }, z { 4 };
@@ -544,7 +544,7 @@ void BasicInputOutput ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 

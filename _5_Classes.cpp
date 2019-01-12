@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,20.12.2018</changed>
+/// <changed>ʆϒʅ,12.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -127,7 +127,7 @@ void ClassesI ()
     // the classes used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -392,6 +392,30 @@ void print ( const MyClass2& arg )
 {
     std::cout << "Taking the object as constant reference and thus read-only access as result:" << Tab << arg.get2 () << Nline << Nline;
 }
+template <class T> // template parameter
+class aPair // serves to store two elements of any valid type
+{
+    T values [2];
+public:
+    aPair ( T first, T second ) // the constructor is defined inline within the class definition
+    {
+        values [0] = first;
+        values [1] = second;
+    }
+    std::string get ()
+    {
+        return Tab + std::to_string ( values [0] ) + Tab + std::to_string ( values [1] ) + Nline;
+    }
+    T getMax ();
+};
+template <class T> // member function is defined outside the definition of the class template
+T aPair<T>::getMax () // the T between angel brackets is a requirement. 
+                      // it specifies the source of the function's template parameter which is the class template parameter.
+{
+    T retVal;
+    retVal = values [0] > values [1] ? values [0] : values [1];
+    return retVal;
+}
 
 
 // ********************************************************************************
@@ -399,14 +423,14 @@ void print ( const MyClass2& arg )
 /// Classes II
 /// </summary>
 /// <created>ʆϒʅ,25.09.2018</created>
-/// <changed>ʆϒʅ,15.12.2018</changed>
+/// <changed>ʆϒʅ,12.01.2019</changed>
 // ********************************************************************************
 void ClassesII ()
 {
     // the classes used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -586,6 +610,27 @@ void ClassesII ()
         //OverloadsInUse2.overloadedGet () = 25; // not valid: overloadedGet() returns const int&
         temp = OverloadsInUse2.overloadedGet ();
         std::cout << "Second overload without modification right, thus getting:" << tab << temp << nline << nline;
+
+        // #######################################
+        //--- class templates:
+        // the same as function templates, class templates allow the classes to have members that use template parameters as type.
+        // if the member function is defined outside the definition of the class template, it shall be preceded with the template <...> prefix.
+        std::cout << nline << "----- Class templates:" << nline;
+        std::cout << "To introduce classes that are able to have members that use template parameters as type." << nline << nline;
+        aPair<int> twoInteger ( 100, 75 ); // an object of the class to store two int values
+        aPair<double> twoDouble ( 3.3, 2.2 ); // an object of the class to store two double values
+        std::cout << "The results of maximum evaluation in the class template 'aPair':" << nline;
+        std::cout << "Two integers are:" << twoInteger.get ();
+        std::cout << "The max in this pair is:" << tab << twoInteger.getMax () << nline;
+        std::cout << "Two doubles are:" << twoDouble.get ();
+        std::cout << "The max in this pair is:" << tab << twoDouble.getMax () << nline;
+
+        // #######################################
+        //--- template specialization:
+        // to define a different implementation for a template when a specific type is passed as argument
+        // 
+        std::cout << nline << "----- Template specialization:" << nline;
+        std::cout << "Different implementation of a template when a specific type is passed." << nline << nline;
 
 
 

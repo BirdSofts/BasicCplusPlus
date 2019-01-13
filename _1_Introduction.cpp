@@ -3,34 +3,27 @@
 /// _1_Introduction.cpp
 /// </summary>
 /// <created>ʆϒʅ,20.12.2018</created>
-/// <changed>ʆϒʅ,20.12.2018</changed>
+/// <changed>ʆϒʅ,14.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
 
 
-// ********************************************************************************
-/// <summary>
-/// C++ Language
-/// </summary>
-/// <created>ʆϒʅ,20.12.2018</created>
-/// <changed>ʆϒʅ,20.12.2018</changed>
-// ********************************************************************************
-void CplusPlusLanguage ()
+void _1_1_Introduction ()
 {
     try
     {
         std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
 
-        // #######################################
-        //~~~ C++ language:
+        //! ####################################################################
+        //! ~~~~~ C++ language:
         // 
         std::cout << "\n~~~~~ C++ Language:\n";
         std::cout << "Over the years the evolution of the C++ language was constant.\n";
         std::cout << "Therefore having a compiler with the ability to support the most recent feature is self-explanatory.\n";
 
-        // #######################################
-        //--- C++ compilers:
+        //! ####################################################################
+        //! ----- C++ compilers:
         // 
         std::cout << "\n----- C++ Compilers:\n";
         std::cout << "The compiler job is to rewrite the code in higher level language into machine language.\n";
@@ -39,16 +32,16 @@ void CplusPlusLanguage ()
         std::cout << "Since C++ designed to be a compiled language, its code generally get translated into machine language, which results to a highly efficient program.\n";
         std::cout << "For this purpose, a set of tools, known as development toolchain, are needed, whose core are a compiler and its linker.\n";
 
-        // #######################################
-        //--- console programs:
+        //! ####################################################################
+        //! ----- console programs:
         // 
         std::cout << "\n----- Console Programs:\n";
         std::cout << "They are programs that use characters to communicate with the user and the environment i.e. printer, keyboard etc.\n";
         std::cout << "The fact of easy interaction, simple implementation and identical behaviour of console programs across all platforms make them very useful to learn the basics of a programming language.\n";
         std::cout << "The programmer's decision to use a particular tool defines the way, in which a console program get compiled.\n";
 
-        // #######################################
-        //--- IDE:
+        //! ####################################################################
+        //! ----- IDE:
         // 
         std::cout << "\n----- IDE:\n";
         std::cout << "The easiest way for a beginner is to use an Integrated Development Environment (IDE).\n";

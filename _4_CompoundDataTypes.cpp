@@ -49,8 +49,8 @@ void Arrays ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ arrays:
+        //! ####################################################################
+        //! ~~~~~ arrays:
         // a series of the same type elements placed in contiguous memory locations that can be individually referenced by adding an index to its unique identifier.
         // in C++ the first element in an array is always numbered with zero no matter the length.
         // like variables an array must be declared before it is used.
@@ -60,8 +60,8 @@ void Arrays ()
         std::cout << nline << "~~~~~ Arrays:" << nline;
         std::cout << "An array is a series of elements of the same type that every element can be referenced by its index which the unique identifier of array provides." << nline;
 
-        // #######################################
-        //--- initializing arrays:
+        //! ####################################################################
+        //! ----- initializing arrays:
         // arrays of local scope are uninitialized by default
         // to explicitly initialize an array the values must be enclosed in curly braces.
         // the number of values must not be grater than the exact number of elements in the array.
@@ -91,8 +91,8 @@ void Arrays ()
         std::cout << "Declaring an array with the use of universal initialization:" << nline;
         print_simple_array ( array6, 5 );
 
-        // #######################################
-        //--- accessing the values of an array:
+        //! ####################################################################
+        //! ----- accessing the values of an array:
         // the values of any elements in an array can be accessed just like the value of regular variable of the same type.
         // syntax: name[index]
         std::cout << "----- Accessing the values of an array:" << nline;
@@ -128,8 +128,8 @@ void Arrays ()
         }
         std::cout << "The addition result of all the elements of the array:" << tab << result << nline;
 
-        // #######################################
-        //--- multidimensional arrays:
+        //! ####################################################################
+        //! ----- multidimensional arrays:
         // can be described as 'arrays of arrays' for example a bidimensional array can be imagined as a two-dimensional table made of elements, all of them of a same uniform date type.
         // multidimensional arrays are not limited to two indices (i.e. two dimensions), but be careful, thus the amount of memory needed for an array increases exponentially with each dimension.
         // multidimensional arrays are just an abstraction for the programmers, since the same result can be achieved with a simple array, by multiplying its indices.
@@ -160,8 +160,8 @@ void Arrays ()
         std::cout << "Elements of a simple array (achieving the same result):" << nline;
         print_simple_array ( equivalent_simple_array, HEIGHT* WIDTH );
 
-        // #######################################
-        //--- arrays as parameters:
+        //! ####################################################################
+        //! ----- arrays as parameters:
         // in C++ it isn't possible to pass the entire block of memory represented by an array to a function directly as an argument.
         // the address of the array can be passed and in practice this has almost the same effect while being much faster and efficient.
         // to accept an array as parameter for a function, the parameters can be declared as the array type but with empty brackets, omitting the actual size of the array, thus the format is: base_type parameter_name[]
@@ -183,8 +183,8 @@ void Arrays ()
         std::cout << "Passing a bidimensional array as the argument of an earlier used function:" << nline << nline;
         print_bidimensional_array ( another_array, 2, 5 );
 
-        // #######################################
-        //--- library arrays:
+        //! ####################################################################
+        //! ----- library arrays:
         // the arrays explained above are directly implemented as a language features, inherited from the C language.
         // they are a great features, but by restricting its copy and easily decay into pointers, they probably suffer from an excess of optimization.
         // C++ provides an alternative array type as a standard container, to overcome some of these issues with the language built-in arrays. it is a type template (a class template in fact) defined in header <array>.
@@ -240,8 +240,8 @@ void CharacterSequences ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ character sequences:
+        //! ####################################################################
+        //! ~~~~~ character sequences:
         // the string class is a powerful features to handle and manipulate strings of characters.
         // since strings are also sequences of characters, we can represent them as plain arrays of elements of a character type.
         // the capacity of the array doesn't need to be fully exhausted.
@@ -249,8 +249,8 @@ void CharacterSequences ()
         std::cout << nline << "~~~~~ Character Sequences:" << nline;
         std::cout << "Since strings are sequences of character, a plain array can also be used to represent them." << nline << nline;
 
-        // #######################################
-        //--- initialization of null-terminated character sequences:
+        //! ####################################################################
+        //! ----- initialization of null-terminated character sequences:
         // since arrays of characters are ordinary arrays, they follow the same rules, and the initialization can also be done just like any other array.
         // arrays of character elements have also another way to be initialized: using sting literals directly
         // string literals are introduced earlier. they are specified by enclosing the text in double quotes (").
@@ -274,8 +274,8 @@ void CharacterSequences ()
         std::cout << "The string stored in the first array after assigning each of its elements a new value:" << nline << nline;
         print_simple_array_of_characters ( the_word_hello_1, 6 );
 
-        // #######################################
-        //--- strings and null-terminated character sequences:
+        //! ####################################################################
+        //! ----- strings and null-terminated character sequences:
         // plain arrays with null-terminated character sequences are the typical types to represent strings in the C language (also known as C-strings).
         // in C++ C-strings are a natural way of representing strings in the language. in fact, string literals still always produce null- terminated character sequences, and not string objects.
         // in standard library. both representation for strings (C-string and library string) coexist and most functions requiring strings are overloaded to support both.
@@ -381,8 +381,8 @@ void Pointers ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ Pointers:
+        //! ####################################################################
+        //! ~~~~~ Pointers:
         // variables which are locations in memory can be accessed by their identifier. this way, the program doesn't need to care about the physical address of the data in the memory.
         // for a C++ program, the memory of a computer is like a succession of memory cells, each one byte in size, and each with a unique address. the order of these one-byte sells is in a way that allows data representation larger than one byte to occupy memory cells that have consecutive addresses.
         // each sell can be easily located in the memory by the means of its unique address.
@@ -391,8 +391,8 @@ void Pointers ()
         std::cout << nline << "~~~~~ Pointers:" << nline;
         std::cout << "To obtain the address of a variable in the runtime in order to access its relative data sells that are at a certain position." << nline << nline;
 
-        // #######################################
-        //--- reference operator (&):
+        //! ####################################################################
+        //! ----- reference operator (&):
         // the ampersand sign (&) preceding the variable identifier can be used to obtain the address of it.
         // pointers are a kind of variable that can store the address of another variables. They are a very powerful feature of a language like C++ that has many uses in the low-level programming.
         // more on their declaration and use is going to come later.
@@ -404,8 +404,8 @@ void Pointers ()
         int variable2 = variable; // normal assignment
         std::cout << "The address of the variable stored in the pointer is:" << tab << pointer << nline;
 
-        // #######################################
-        //--- dereference operator (*):
+        //! ####################################################################
+        //! ----- dereference operator (*):
         // pointers are said to "point to" the variable whose address they store.
         // by preceding the pointer name with the asterisk sign (*) pointers can be used to access the variable they point to directly which is an interesting property of them.
         // the operator itself can be read as "value pointed to by"
@@ -416,8 +416,8 @@ void Pointers ()
         variable2 = *pointer; // 'variable2' equal to value pointed to by 'pointer'
         std::cout << "The value pointed to by the pointer and accessed directly by the dereference operator is: " << tab << variable2 << nline;
 
-        // #######################################
-        //--- declaring pointers:
+        //! ####################################################################
+        //! ----- declaring pointers:
         // due to the ability of a pointer to directly refer to the value that it points to, a pointer has different properties when it points to a char than when it points to an int or a float.
         // once dereferenced, the type needs to be known, and for that, the declaration of pointers also needs the data types which the pointers are going to point to.
         // syntax: type *name;
@@ -459,8 +459,8 @@ void Pointers ()
         std::cout << "Modifying values indirectly through the use of pointers." << nline;
         std::cout << "firstValue is:" << tab << firstValue << nline << "secondValue is:" << tab << secondValue << nline;
 
-        // #######################################
-        //--- pointers and arrays:
+        //! ####################################################################
+        //! ----- pointers and arrays:
         // the concepts of arrays and pointers are related. in fact, arrays work very much like pointers to their first elements.
         // actually an array can always be implicitly converted to the pointer of the proper type.
         // after the first assignment 'thePointer' and 'theArray' would be equivalent and would have very similar properties.
@@ -501,8 +501,8 @@ void Pointers ()
         // if it is an array, its name can be used to its first element just like a pointer.
         std::cout << nline;
 
-        // #######################################
-        //--- pointer initialization:
+        //! ####################################################################
+        //! ----- pointer initialization:
         // the initialization of pointers can be introduced at the very moment of their declaration.
         // what is going to be initialized is the address to be pointed to and never the value stored in memory.
         // pointers can be initialized not only to the address of a variable, but also to the value of another pointer or array.
@@ -517,8 +517,8 @@ void Pointers ()
         std::cout << "The value of myPtr2 is:" << tab << myPtr2 << nline;
         std::cout << "The value of myPtr3 is:" << tab << myPtr3 << nline;
 
-        // #######################################
-        //--- pointer arithmetics:
+        //! ####################################################################
+        //! ----- pointer arithmetics:
         // conduction of arithmetical operations on pointers are a little different to those of the regular integer types.
         // to begin with there are just addition and subtraction are allowed.
         // because of the fact that types have different sizes even the conductions of these two operations are going to have different  behaviours. (the size of the types is going to be added or subtracted to or from the stored address value in pointers)
@@ -577,8 +577,8 @@ void Pointers ()
         std::cout << "temp is:" << tab << temp << nline;
 
 
-        // #######################################
-        //--- pointers and constants:
+        //! ####################################################################
+        //! ----- pointers and constants:
         // pointers can be used to access a variable by its address and this access may include modifying the value pointed.
         // to declare pointers that can access the pointed value to read it but not to modify it, it is enough to qualify the type pointed to by the pointer as constant.
         // a pointer to non-const can be implicitly converted to a pointer to const, but not the other way around.
@@ -629,8 +629,8 @@ void Pointers ()
         const int* ptr5 { &x_var };
         int const* ptr6 { &x_var }; // the exact same meaning and use as the expression above
 
-        // #######################################
-        //--- pointers and string literals:
+        //! ####################################################################
+        //! ----- pointers and string literals:
         // by using pointers string literals can be accessed directly.
         // They are arrays of the proper array type to contain all its character plus terminating null-character with each of the element being of type const char (as literals, they can never be modified).
         // pointers that point to character sequences can be used to access their characters in the same way null-terminated character sequences are.
@@ -650,8 +650,8 @@ void Pointers ()
         }
         std::cout << nline;
 
-        // #######################################
-        //--- pointers to pointers:
+        //! ####################################################################
+        //! ----- pointers to pointers:
         // the use of pointers that point to pointers is allowed in C++.
         // these pointers, in its turn, point to data or even to other pointers.
         // the syntax in declaration of pointers simply requires an asterisk for each level of indirection.
@@ -667,8 +667,8 @@ void Pointers ()
         std::cout << *int_ptr_ptr << nline; // second level, the address of pointed pointer
         std::cout << **int_ptr_ptr << nline; // third level, the value being pointed by pointer to pointer
 
-        // #######################################
-        //--- void pointers: (a special type of pointer)
+        //! ####################################################################
+        //! ----- void pointers: (a special type of pointer)
         // in C++ void represents the absence of type.
         // therefore void pointers are pointers that point to a value that has no type, thus also an undetermined length and undetermined dereferencing properties.
         // this gives void pointers a great flexibility, by being able to point to any data type, but also a great limitation, which is the data pointed to by them can not be directly dereferenced.
@@ -686,8 +686,8 @@ void Pointers ()
         std::cout << "Increased values in the function that has void pointers as parameters are:" << nline;
         std::cout << tab << a << tab << b << nline;
 
-        // #######################################
-        //--- invalid pointers and null pointers:
+        //! ####################################################################
+        //! ----- invalid pointers and null pointers:
         // in principle, pointers are meant to point to valid addresses, such as the addresses that introduced and worked with till now.
         // but pointers can actually point to an addresses, including addresses that do not refer to any valid element, such as uninitialized variables and non-existent elements of an array.
         // in C++ pointers are allowed to take any address value, no matter whether there actually is something in that address or not.
@@ -715,8 +715,8 @@ void Pointers ()
         std::cout << "FYI :) ==> the addresses of the defined null pointers are:" << nline;
         std::cout << tab << pp2 << tab << qq2 << tab << rr << nline;
 
-        // #######################################
-        //--- pointers to functions:
+        //! ####################################################################
+        //! ----- pointers to functions:
         // C++ allows operations with pointers to functions.
         // typical uses: using pointers to call functions, passing a function as an argument to another function.
         // pointers arithmetic can not be performed on the pointers to function.
@@ -752,15 +752,15 @@ void DynamicMemory ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ dynamic memory:
+        //! ####################################################################
+        //! ~~~~~ dynamic memory:
         // up until now all demonstrations used memory that were determined before the execution of the program by defining the variables needed.
         // in cases that there is a need to determine the memory needed during runtime, such as when the memory needed depends on the user input, programs need to dynamically allocate memory, for which the C++ language integrates the operators 'new' and 'delete'.
         std::cout << nline << "~~~~~ Dynamic memory:" << nline;
         std::cout << "In cases that there is a need for programs to allocate the memory during runtime, C++ language introduces the concepts of dynamic memory." << nline;
 
-        // #######################################
-        //--- operators new and new[]:
+        //! ####################################################################
+        //! ----- operators new and new[]:
         // dynamic memory is allocated using the operator new.
         // syntax:
         // pointer = new type
@@ -807,8 +807,8 @@ void DynamicMemory ()
         else
             std::cout << "The address of the first element is:" << tab << ptr3 << nline;
 
-        // #######################################
-        //--- operators delete and delete[]:
+        //! ####################################################################
+        //! ----- operators delete and delete[]:
         // since the allocated memory in most cases is only needed during specific periods of time within a program, with the operator delete, it can be freed once it is no longer needed, so that the memory become available for other requests of dynamic memory.
         // syntax:
         // delete pointer; (releases the memory of a single element allocated with new)
@@ -891,8 +891,8 @@ void DataStructures ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ data structures:
+        //! ####################################################################
+        //! ~~~~~ data structures:
         // a data structure is a group of data elements grouped together under one name.
         // these data elements, known as members, can have different types and different lengths.
         // syntax:
@@ -950,8 +950,8 @@ void DataStructures ()
         for ( int i = 0; i < 3; i++ )
             printMovie ( films [i] );
 
-        // #######################################
-        //--- pointers to structures:
+        //! ####################################################################
+        //! ----- pointers to structures:
         // structures can be pointed to by their own type of pointers just like any other type.
         // the arrow operator (->):
         // the arrow operator is a dereference operator that is used exclusively with pointers to objects that have members.
@@ -982,8 +982,8 @@ void DataStructures ()
         // note that:
         // *ptrMovie.title which is rather equivalent to *(ptrMovie.title) in the case above, would access the value pointed by a hypothetical pointer member called 'title' of the structure object 'ptrMovie', which is not the case, since 'title' is not a pointer type.
 
-        // #######################################
-        //--- nesting structures:
+        //! ####################################################################
+        //! ----- nesting structures:
         // structures can also be nested, so an element of an structure is itself another structure.
         std::cout << nline << "----- Nesting structures:" << nline;
         std::cout << "To introduce elements in a structure that themselves are also structures." << nline << nline;
@@ -1031,14 +1031,14 @@ void OtherDataTypes ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ other data types:
+        //! ####################################################################
+        //! ~~~~~ other data types:
         // 
         std::cout << nline << "~~~~~ Other data types:" << nline;
         std::cout << "In the past sections, a lot of types have been introduced and there is even more about them." << nline;
 
-        // #######################################
-        //--- type aliases (typedef / using):
+        //! ####################################################################
+        //! ----- type aliases (typedef / using):
         // in C++ any valid type either fundamental or compound can be aliased, which is a different name and then it can be referred to by it, which is its another identifier.
         // once the aliases are defined, they can be used in any declaration like any other valid type.
         //- the first syntax (inherited from the C language):
@@ -1064,8 +1064,8 @@ void OtherDataTypes ()
         // reducing the length of long or confusing type names
         // most useful as tools to abstract programs from the underlying types they use (i.e. to easily replace the types used in a program in a later version)
 
-        // #######################################
-        //--- unions:
+        //! ####################################################################
+        //! ----- unions:
         // unions allow one portion of memory to be accessed as different date types. while its declaration is similar to the one of structures, its functionality is totally different.
         // syntax:
         // union type_name {
@@ -1100,8 +1100,8 @@ void OtherDataTypes ()
             char c [4];  // 4*1 byte (access in array form)
         } mix;
 
-        // #######################################
-        //--- anonymous unions:
+        //! ####################################################################
+        //! ----- anonymous unions:
         // when unions are members of a class or structure, they can be declared with no names, with which they become anonymous unions, and their members are directly accessible from objects by their member name.
         // remember that the members of an union share a space in the memory so they can never have different values simultaneously.
         std::cout << nline << "----- Anonymous unions:" << nline;
@@ -1130,8 +1130,8 @@ void OtherDataTypes ()
         book1.price.dollar = 3.4;
         book2.dollar = 3.4;
 
-        // #######################################
-        //--- enumerated types (enum):
+        //! ####################################################################
+        //! ----- enumerated types (enum):
         // enumerated types are types that are defined with a set of custom identifiers, known as enumerators, as possible values.
         // objects of these enumerated types can take any of these enumerators as value.
         // syntax:
@@ -1168,8 +1168,8 @@ void OtherDataTypes ()
         // a value of type months_t can be assigned a value of 1 (equivalent to January)
         // or an integer variable can be assigned a value of January (equivalent to 1)
 
-        // #######################################
-        //--- enumerated types with enum class:
+        //! ####################################################################
+        //! ----- enumerated types with enum class:
         // in C++, real enum types can be created with enum class (or enum struct), which are then neither convertible to int and neither have enumerator values of type int, but of the enum type itself, thus preserving the type safety.
         // each of the enumerator values of an enum class needs to be scoped into its type (this is also possible with enum type, but it is only optional).
         // enumerated types declared with the enum class have also more control over their underlying type;

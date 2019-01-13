@@ -131,8 +131,8 @@ void ClassesI ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ Classes I:
+        //! ####################################################################
+        //! ~~~~~ Classes I:
         // classes are an expanded concept of data structures, which not only can contain data members, but also functions as members.
         // an object is an instantiation of the class. in terms of variable, a class would be the type and an object would be the variable.
         // classes are defined either using the keyword 'class' or the keyword 'struct'.
@@ -151,14 +151,14 @@ void ClassesI ()
         // protected: members are accessible from other members of the same class (or from their 'friends'), but also from members of their derived classes.
         // public: members of a class are accessible from everywhere where the object is visible.
         // the default access specifier is private, and it is valid for every member in a class declared with the keyword 'class', until any other specifier is chosen.
-        //-----------------------------------------------------------------------------------------
+        //! -------------------------------------------------------------------------------------------
         // classes defined with 'struct' and 'union' keywords:
         // classes can be defined also using the keywords struct and union.
         //-- the keyword struct:
         // the same syntax as the keyword 'class' is to be used and the only difference is that the members of a class defined with the keyword 'struct' have public access by default and for all other purposes the both keyword are equivalent in this context.
         //-- the keyword 'union'
         // conversely, the concepts of the keyword 'union' is different from that of the classes defined with the keywords 'class' and 'struct', since unions only store one data member at a time, but nevertheless they are also classes and can thus also hold member functions. the default access in union classes is public.
-        //-----------------------------------------------------------------------------------------
+        //! -------------------------------------------------------------------------------------------
         std::cout << nline << "~~~~~ Classes I:" << nline;
         std::cout << "Classes are an expanded concept of data structure with the ability not only containing data members but also functions as members." << nline << nline;
         class Rectangle_ex
@@ -183,8 +183,8 @@ void ClassesI ()
         // data and functions are both members of the object, thus the reduction of passing and carrying of handlers or other state variables as arguments to functions, since they are part of the objects whose member is called.
         // notice the calls to the 'area' member function
 
-        // #######################################
-        //--- constructors:
+        //! ####################################################################
+        //! ----- constructors:
         // to avoid undetermined result of calling a member function of a class that uses data members, that aren't set any value yet, a class can include a special function called its constructor,
         // which automatically called whenever a new objects of the class is created, allowing the class to initialize member variables or allocate storage.
         // the constructor function is declared just like a regular member function, but with a name that matches the class name and without any return type, not even void.
@@ -197,8 +197,8 @@ void ClassesI ()
         rectC.print_values ();
         std::cout << "Using improved version of the class, the calculated area of the rectangle is:" << tab << rectC.area () << nline;
 
-        // #######################################
-        //--- overloading constructors:
+        //! ####################################################################
+        //! ----- overloading constructors:
         // like any other functions constructors can also be overloaded with different parameters (different number of parameters and/or parameters of different types).
         // overloading constructors can be used to introduce the special kind of constructor known as default constructor which takes no parameters.
         std::cout << nline << "----- Overloading constructors:" << nline;
@@ -211,8 +211,8 @@ void ClassesI ()
         rectE.print_values ();
         std::cout << "Using the overloaded (default) constructor that takes no parameters:" << tab << rectE.area () << nline;
 
-        // #######################################
-        //--- uniform initialization:
+        //! ####################################################################
+        //! ----- uniform initialization:
         // beside the above way to call constructors known as functional form which encloses their parameters in parenthesis, there are also other syntaxes for constructors to be called.
         // variable initialization syntax (constructors with a single parameter):
         // --class_name object_name = initialization_value;
@@ -241,8 +241,8 @@ void ClassesI ()
         // even when the newer style guides suggest the use of the uniform initialization, it also has its potential pitfalls for its preference of initilizer_list as its type.
         // http://www.cplusplus.com/reference/initializer_list/initializer_list/
 
-        // #######################################
-        //--- member initialization in constructors:
+        //! ####################################################################
+        //! ----- member initialization in constructors:
         // when a constructor is used to initialize other members, these other members can be initialized directly, without resorting to statements in its body.
         // this is done by inserting, before the constructor body, a colon (:) and a list on initializations for class members.
         // read the 'Rectangle_ex2' class and its comments.
@@ -261,8 +261,8 @@ void ClassesI ()
         Cylinder cylA { 10,20 };
         std::cout << "cylA's volume:" << tab << cylA.volume () << nline;
 
-        // #######################################
-        //--- pointers to classes:
+        //! ####################################################################
+        //! ----- pointers to classes:
         // once declared, a class becomes a valid type and can be used as the type pointed to by a pointer, thus a pointer can also point to the objects of this new type.
         // similar to plain data structures, the arrow operator (->) can be used to directly access the members of an object from a pointer.
         std::cout << nline << "----- Pointers to classes:" << nline;
@@ -416,6 +416,32 @@ T aPair<T>::getMax () // the T between angel brackets is a requirement.
     retVal = values [0] > values [1] ? values [0] : values [1];
     return retVal;
 }
+// class template:
+template <class T>
+class aContainer
+{
+    T element;
+public:
+    aContainer ( T arg ) { element = arg; }
+    T get () { return  element; }
+    T increase () { return ++element; }
+};
+// class template specialization
+template <>
+class aContainer <char>
+{
+    char element;
+public:
+    aContainer ( char arg ) { element = arg; }
+    char get () { return  element; }
+    char uppercase ()
+    {
+        if ( ( element >= 'a' ) && ( element <= 'z' ) )
+            element += 'A' - 'a';
+        return element;
+    }
+};
+
 
 
 // ********************************************************************************
@@ -434,14 +460,14 @@ void ClassesII ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ Classes II:
+        //! ####################################################################
+        //! ~~~~~ Classes II:
         // more on classes.
         std::cout << nline << "~~~~~ Classes II:" << nline;
         std::cout << "More on the concepts of classes comes in this section." << nline << nline;
 
-        // #######################################
-        //--- overloading operators:
+        //! ####################################################################
+        //! ----- overloading operators:
         // Classes, essentially define new types to be used in C++ code, and these new types interact with code not only by means of constructors and assignments, but also operators.
         // for fundamental arithmetic types the meaning of such operators are obvious and unambiguous but this story can change in certain class types.
         // consider these two below examples:
@@ -519,8 +545,8 @@ void ClassesII ()
         //CartesianR_2 = Cartesian3.operator+(Cartesian4); // explicit
         std::cout << nline << "The result of the overloaded addition operator on two Cartesian vectors is:" << tab << CartesianR_2.x << tab << CartesianR_2.y << nline;
 
-        // #######################################
-        //--- the keyword this:
+        //! ####################################################################
+        //! ----- the keyword this:
         // the keyword 'this' represents a pointer to the object whose member function is being executed.
         // it is used within a class's member function to refer to the object itself.
         std::cout << nline << "----- The keyword this:" << nline;
@@ -542,8 +568,8 @@ void ClassesII ()
         std::cout << "The Cartesian 6 vector:";
         Cartesian6.printValues ();
 
-        // #######################################
-        //--- static members:
+        //! ####################################################################
+        //! ----- static members:
         // it is possible for a class to have either data or function as static member.
         // a static class member is also known as a 'class member', since there is only one common variable for all the objects of that same class, sharing the same value.
         // for example, it may be used as a variable within a class to contain the value of a counter, that stores the number of the objects of that class, which are already allocated.
@@ -568,8 +594,8 @@ void ClassesII ()
         // and they can neither use the keyword 'this'.
 
 
-        // #######################################
-        //--- constant member functions:
+        //! ####################################################################
+        //! ----- constant member functions:
         // defining an object of a class with qualification as constant means that the access to its data member from outside is read-only as if all its data member were constant, while the constructor is still called and has modification-right on these data member.
         // properties of:
         // no modification right on non-static data members or call right on non-constant member function
@@ -611,8 +637,8 @@ void ClassesII ()
         temp = OverloadsInUse2.overloadedGet ();
         std::cout << "Second overload without modification right, thus getting:" << tab << temp << nline << nline;
 
-        // #######################################
-        //--- class templates:
+        //! ####################################################################
+        //! ----- class templates:
         // the same as function templates, class templates allow the classes to have members that use template parameters as type.
         // if the member function is defined outside the definition of the class template, it shall be preceded with the template <...> prefix.
         std::cout << nline << "----- Class templates:" << nline;
@@ -625,13 +651,32 @@ void ClassesII ()
         std::cout << "Two doubles are:" << twoDouble.get ();
         std::cout << "The max in this pair is:" << tab << twoDouble.getMax () << nline;
 
-        // #######################################
-        //--- template specialization:
+        //! ####################################################################
+        //! ----- template specialization:
         // to define a different implementation for a template when a specific type is passed as argument
-        // 
+        // for example the simple increment function on types and a special implementation on char type:
+        // the syntax used for the template specialization of the example:
+        // template <> class aContainer <cahr> {...};
+        // empty parameter list <> is needed, since all types are known and there is no need for any template arguments for this specialization.
+        // the second note is the <char> specialization parameter, which identify the type, on which the class template is specialized for.
+        // this difference is also notable:
+        // generic class template: template <class T> class aContainter {...};
+        // the specialization of: template <> class aContainer <cahr> {...};
+        // note: in declaration of a specialization, all members of the generic class even identical members must be defined again, since no inheritance happens between a generic class and its specialization.
         std::cout << nline << "----- Template specialization:" << nline;
         std::cout << "Different implementation of a template when a specific type is passed." << nline << nline;
+        aContainer <int> theInt ( 7 );
+        aContainer <char> theChar ( 'j' );
+        std::cout << "The integer value and its increment are:" << tab << theInt.get () << tab;
+        std::cout << theInt.increase () << nline;
+        std::cout << "The character and its uppercase are:" << tab << tab << theChar.get () << tab;
+        std::cout << theChar.uppercase () << nline;
 
+        //! ####################################################################
+        //! ----- special members:
+        // 
+        std::cout << nline << "----- Special members:" << nline;
+        std::cout << "." << nline << nline;
 
 
 

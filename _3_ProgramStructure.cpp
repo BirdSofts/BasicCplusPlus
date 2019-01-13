@@ -28,15 +28,15 @@ void ControlStructures ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ statements and flow control (control structures): apart from linear sequence of statements a program can contain repeated segments of code, decision taking and bifurcations
+        //! ####################################################################
+        //! ~~~~~ statements and flow control (control structures): apart from linear sequence of statements a program can contain repeated segments of code, decision taking and bifurcations
         // generic (sub)statements required by most of the flow control statements in C++ as a part of their syntax are either simple statements ended with semicolon (;) or a compound one which every single statement ends with its own semicolon (;) enclosed as a block in curly braces ({}). { statement1; statement2; ... }
         // the entire block composed of sub-statements is considered a single statement.
         std::cout << nline << "~~~~~ Statements and flow control (Control Structures):" << nline;
         std::cout << "A program can contain linear sequence of statements, repeated segments of code, decision taking and bifurcations." << nline;
 
-        // #######################################
-        //~~~ selection statements (if and else): execution of a statement or block if the condition is fulfilled.
+        //! ####################################################################
+        //! ~~~~~ selection statements (if and else): execution of a statement or block if the condition is fulfilled.
         // the keywords are if and else.
         // syntax: if (condition) statement
         // if condition is true the statement will be executed
@@ -66,14 +66,14 @@ void ControlStructures ()
         else
             std::cout << "x is zero" << nline;
 
-        // #######################################
-        //~~~ iteration statements (loops): repetition of statements a certain times or till a condition is fulfilled.
+        //! ####################################################################
+        //! ~~~~~ iteration statements (loops): repetition of statements a certain times or till a condition is fulfilled.
         // the keywords are while, do and for.
         std::cout << nline << "~~~~~ Iteration Statements:" << nline;
         std::cout << "Can be used to introduce repetition of statements." << nline;
 
-        // #######################################
-        //--- the while loop: repeat the statement while the expression is true.
+        //! ####################################################################
+        //! ----- the while loop: repeat the statement while the expression is true.
         // alteration of the value must somehow happen in the statement to avoid looping forever in while loops
         // syntax: while (expression) statement
         // the complexity of the loop in the example below is trivial for computer so it will be performed instantly without any practical delay
@@ -88,8 +88,8 @@ void ControlStructures ()
         }
         std::cout << "lift-off!" << nline;
 
-        // #######################################
-        //--- the do-while loop: the same behaviour like while loop but the condition will be checked after the execution of the statement.
+        //! ####################################################################
+        //! ----- the do-while loop: the same behaviour like while loop but the condition will be checked after the execution of the statement.
         // in this loop even when the condition is never fulfilled, at least one execution of the statement is guaranteed.
         // the use of do-while loop is preferred over the while, especially when the condition that is to be checked is determined within the statement itself.
         // syntax: do statement while (condition);
@@ -104,8 +104,8 @@ void ControlStructures ()
             std::cout << "You have entered:" << tab << user_input << nline;
         } while ( user_input != "bye" );
 
-        // #######################################
-        //--- the for loop: iteration of the statement a certain number of times while its condition is true
+        //! ####################################################################
+        //! ----- the for loop: iteration of the statement a certain number of times while its condition is true
         // the initialization expression executes before the loop begins and the increase expression after each iteration, therefore the usefulness is placed on the introduction of counter variables.
         // syntax: for (initialization; condition; increase) statement;
         std::cout << nline << "----- The for loop:" << nline;
@@ -150,8 +150,8 @@ void ControlStructures ()
             std::cout << nline;
         }
 
-        // #######################################
-        //--- range-based for loops: iteration over all the elements in a range
+        //! ####################################################################
+        //! ----- range-based for loops: iteration over all the elements in a range
         // syntax: for (declaration : range) statement;
         // declaration declares a variable of a type which able to take values of an element in the range.
         // ranges are sequences of elements including arrays, containers and any other type supporting the functions begin and end.
@@ -175,14 +175,14 @@ void ControlStructures ()
         }
         std::cout << nline;
 
-        // #######################################
-        //~~~ jump statements:
+        //! ####################################################################
+        //! ~~~~~ jump statements:
         // they can be used to alter the flow of a program by jumping to specific locations
         std::cout << nline << "~~~~~ Jump statements:" << nline;
         std::cout << "The flow of a program can be altered by jumping to specific locations." << nline;
 
-        // #######################################
-        //--- the break statement:
+        //! ####################################################################
+        //! ----- the break statement:
         // to leave a loop, even if its end condition isn't fulfilled.
         // purposes: to end an infinite loop, to leave a loop before its natural end
         std::cout << nline << "----- The break statement:" << nline;
@@ -199,8 +199,8 @@ void ControlStructures ()
             }
         }
 
-        // #######################################
-        //--- the continue statement:
+        //! ####################################################################
+        //! ----- the continue statement:
         // to skip the current iteration and jumping to the next one.
         std::cout << nline << "----- The continue statement:" << nline;
         std::cout << "To introduce skipping the iterations of a loop." << nline << nline;
@@ -216,8 +216,8 @@ void ControlStructures ()
         }
         std::cout << "The steps 8, 5 and 2 are skipped!" << nline;
 
-        // #######################################
-        //--- the goto statement: provides absolute jump to another point in the program
+        //! ####################################################################
+        //! ----- the goto statement: provides absolute jump to another point in the program
         // this jump is an unconditional jump, ignores the nesting levels and doesn't cause any automatic stack unwinding,
         // therefore it is to be used with care, preferably within the same block and especially in the presence of local variables.
         // defined labels which are valid identifier followed by colon (:), are destinations point and will be used as argument for goto.
@@ -233,8 +233,8 @@ void ControlStructures ()
         if ( n2 > 0 ) goto a_loop_with_goto;
         std::cout << "lift-off!" << nline;
 
-        // #######################################
-        //~~~ another selection statement (switch): to compare the evaluated expression against labels that are constant expressions.
+        //! ####################################################################
+        //! ~~~~~ another selection statement (switch): to compare the evaluated expression against labels that are constant expressions.
         // it is like concatenations of 'if' and 'else if' statements but limited to constant expressions.
         // it is not possible to use variables or ranges as labels since they aren't valid C++ constant expressions, therefore it is better to use 'if' for ranges and values that aren't constant.
         // after evaluating the expression and finding the equivalent constant, its break statement causes the end of the switch.
@@ -346,8 +346,8 @@ void Functions ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ functions: a group of code that is given a name to structure a program in segment of code to perform individual tasks and can be called from some point of the program.
+        //! ####################################################################
+        //! ~~~~~ functions: a group of code that is given a name to structure a program in segment of code to perform individual tasks and can be called from some point of the program.
         // most common syntax: type name (parameter1, ...) {statements}
         // the parenthesis which differentiate functions from other kind of declaration or statements are always required no matter declaring or calling a function.
         // parameters which allow passing arguments to the function act like local variables within the functions
@@ -372,8 +372,8 @@ void Functions ()
         result = subtraction ( x, y ) + 6; // same as above: commutative property of addition operation
         std::cout << "The result of subtraction function called as an operand of addition operation:" << tab << result << nline << nline; // inserting returned value stored in result variable
 
-        // #######################################
-        //--- functions with no type (the use of void):
+        //! ####################################################################
+        //! ----- functions with no type (the use of void):
         // if the function doesn't need to return a value it shall be defined as void function.
         // the void type is an spacial type to represent the absence of value.
         // void keyword can also be used in function's parameter list to explicitly specify that the function takes no actual parameters
@@ -384,8 +384,8 @@ void Functions ()
         print_message ();
 
 
-        // #######################################
-        //--- the return value of main: the type of return value of main is int.
+        //! ####################################################################
+        //! ----- the return value of main: the type of return value of main is int.
         // if the execution of main ends normally without encountering the return statement the compiler assumes that the function has ended with an implicit return statement. this only applies to the main function for historical reasons.
         // implicit return statement: return 0;
         // the returned zero value either implicitly or explicitly will be interpreted by the environment that the program ended successfully.
@@ -400,8 +400,8 @@ void Functions ()
         std::cout << "Read the comments in the source code..." << nline;
 
 
-        // #######################################
-        //--- arguments passed by value and by reference:
+        //! ####################################################################
+        //! ----- arguments passed by value and by reference:
 
         // by value: the values of arguments will be passed to function on the moment of the call.
         // the values will be copied into the variables represented by function parameters.
@@ -429,8 +429,8 @@ void Functions ()
         std::cout << tab << "x = " << x << tab << "y = " << y << tab << "z = " << z << nline;
 
 
-        // #######################################
-        //--- efficiency consideration and constant reference:
+        //! ####################################################################
+        //! ----- efficiency consideration and constant reference:
         // passing arguments by value causes the arguments to be copied which it may be relatively inexpensive for fundamental types like int but in compound type it may result in certain overhead and copying large quantities of data just for function call.
         // for this unneeded copy to be avoided, calling functions by reference is suggested and with it, the function operates directly on aliases of passed strings and at most, it might mean the transfer of certain pointer to the function.
         std::cout << nline << "----- Efficiency consideration and constant reference:" << nline;
@@ -451,8 +451,8 @@ void Functions ()
         std::cout << "And the concatenated result is:" << tab << c << nline;
 
 
-        // #######################################
-        //--- inline functions:
+        //! ####################################################################
+        //! ----- inline functions:
         // since calling a function has a certain overhead (stacking arguments, jumps etc...) it isn't efficient for short functions.
         // by using inline specifier in the function declaration the compiler will be suggested that inline expansion is preferred over the usual function call mechanism.
         // behaviour of a function won't be changed but the function body will be inserted at each point of the function call, so the regular invocation will be avoided.
@@ -466,8 +466,8 @@ void Functions ()
         // most compiler already optimize code to generate inline functions whenever there is an opportunity, even not explicitly marked with inline specifier.
         // Therefore using it in the declaration of a function is merely a suggestion and the compiler is free to not inline it and optimize otherwise, as long as the resulting behaviour is one specified by the code.
 
-        // #######################################
-        //--- default value in parameters:
+        //! ####################################################################
+        //! ----- default value in parameters:
         // optional parameters in C++ functions that doesn't require any arguments in the call shall have default values in the definition which will be used when a function called with fewer arguments.
         // 
         std::cout << nline << "----- Default value in Parameters:" << nline;
@@ -480,8 +480,8 @@ void Functions ()
         std::cout << "divide (20, 4):" << tab << result << nline;
 
 
-        // #######################################
-        //--- declaring functions:
+        //! ####################################################################
+        //! ----- declaring functions:
         // in C++ functions like identifiers can not be used before declaration.
         // the prototype of a function can be declared without actually defining the function completely, giving just enough details about the types involved in the function definition which at least makes the call to the function possible.
         // the prototype of a function shall be declared before calling the function.
@@ -503,8 +503,8 @@ void Functions ()
             odd ( number );
         } while ( number != 0 );
 
-        // #######################################
-        //--- recursivity: the property of functions that allow them to call themselves.
+        //! ####################################################################
+        //! ----- recursivity: the property of functions that allow them to call themselves.
         // usual for some task like sorting elements or factorial (n!)
         std::cout << nline << "----- Recursivity:" << nline;
         std::cout << "To introduce the property of functions, of that they take the ability to call themselves." << nline << nline;
@@ -584,12 +584,12 @@ void OverloadsAndTemplates ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ overloads and templates:
+        //! ####################################################################
+        //! ~~~~~ overloads and templates:
         std::cout << nline << "~~~~~ Overloads and templates:" << nline;
 
-        // #######################################
-        //--- Overloads:
+        //! ####################################################################
+        //! ----- Overloads:
         // in C++, two or more different functions can have the same name if their parameters are different (number, type).
         // it isn't enough to have different return type to overload a function and at least one parameter must be different.
         // the compiler distinguish which overload of a function shall be called by examining the type of the passed arguments.
@@ -606,8 +606,8 @@ void OverloadsAndTemplates ()
         std::cout << "n =" << tab << n << tab << "m =" << tab << m << nline;
         std::cout << "Result of overload division of the function operate is:" << tab << operate ( n, m ) << nline;
 
-        // #######################################
-        //--- function templates:
+        //! ####################################################################
+        //! ----- function templates:
         // overloaded functions may have the same definition.
         // the function sum could be overloaded for many types and all of them having the same body or definition.
         std::cout << nline << "----- Function templates:" << nline;
@@ -649,8 +649,8 @@ void OverloadsAndTemplates ()
         else
             std::cout << "The numbers 10 and 10.0 are not equal" << nline;
 
-        // #######################################
-        //--- non-type template arguments:
+        //! ####################################################################
+        //! ----- non-type template arguments:
         // the template parameter can also include expression of a particular type additionally to types introduced with class and typename.
         // the second argument of fixed-multiply function template is of type int, looks like regular function parameter and can actually be used just like one.
         // but there exist a major difference: template parameter's values will be determined in compile-time to generate different instantiations, thus the value of that argument is never passed during runtime.
@@ -730,8 +730,8 @@ void NameVisibility ()
         const char tab { '\t' };
         const char nline { '\n' };
 
-        // #######################################
-        //~~~ name visibility:
+        //! ####################################################################
+        //! ~~~~~ name visibility:
         // in C++ name entities such as variables, functions and compound types need to be declared before being used.
         // the point where this declaration happens hat influence on its visibility.
         std::cout << nline << "~~~~~ Name Visibility:" << nline;
@@ -739,8 +739,8 @@ void NameVisibility ()
         std::cout << "The point where an entity is declared, influences its visibility." << nline;
 
 
-        // #######################################
-        //--- scope:
+        //! ####################################################################
+        //! ----- scope:
         // global scope: the entity is defined outside all blocks and is visible to all of them.
         // local scope: the entity is defined inside a block and is only visible to it.
         // a name can represents only one entity, therefore two variables can't have same name within the same scope.
@@ -772,8 +772,8 @@ void NameVisibility ()
         std::cout << "x (the outer block x entity) :" << tab << x << nline;
         std::cout << "y (the outer block y entity) :" << tab << y << nline;
 
-        // #######################################
-        //--- namespaces: organization of named entities with global scope into narrower namespace scope to avoid name collision
+        //! ####################################################################
+        //! ----- namespaces: organization of named entities with global scope into narrower namespace scope to avoid name collision
         // only one entity can exist with a particular name in a particular scope, which for local names is seldom a problem, since the blocks tend to be relatively short.
         // non-local names bring more possibilities for name collision, considering the number of functions, types and variables, neither of them local in the nature and some of them very generic.
         // namespaces allow the introduction of different logical scopes referred to by names to organize the elements of program.
@@ -795,8 +795,8 @@ void NameVisibility ()
         std::cout << "The result of value function in the second namespace:" << tab << secondNamespace::value () << nline;
         std::cout << "The variable pi defined in the second namespace:" << tab << secondNamespace::pi << nline;
 
-        // #######################################
-        //--- the using keyword:
+        //! ####################################################################
+        //! ----- the using keyword:
         // to introduce a name into the current declarative region (such as a block), thus avoiding the need to qualify the name.
         std::cout << nline << "----- The using keyword:" << nline;
         std::cout << "To avoid the need to qualify a name in the current declarative region." << nline << nline;
@@ -844,8 +844,8 @@ void NameVisibility ()
             std::cout << "The value of xx :" << tab << xx << nline;
         }
 
-        // #######################################
-        //--- storage classes:
+        //! ####################################################################
+        //! ----- storage classes:
         //# static storage: variables with global or namespace scope
         // their storage is allocated for the entire duration of the program
         // if they aren't explicitly initialized, they will be initialized automatically with zeroes

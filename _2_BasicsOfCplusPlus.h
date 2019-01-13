@@ -13,9 +13,12 @@
 #define INTRODUCTIONANDBASICS_H
 
 
-void HelloWorld ();
-void VariablesAndTypes ();
-void Constants ();
+void _2_1_StructureOfaProgram ();
+void _2_2_VariablesTypesAndIdentifiers ();
+void _2_3_FundamentalTypesAndDeduction ();
+void _2_4_ConstantNumerals ();
+void _2_5_ConstantLiterals ();
+void _2_6_OtherConstantLiterals ();
 void Operators ();
 void BasicInputOutput ();
 

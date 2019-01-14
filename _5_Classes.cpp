@@ -127,7 +127,7 @@ void ClassesI ()
     // the classes used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -456,7 +456,7 @@ void ClassesII ()
     // the classes used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 

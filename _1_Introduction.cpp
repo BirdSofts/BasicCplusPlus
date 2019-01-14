@@ -13,7 +13,7 @@ void _1_1_Introduction ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
         //! ~~~~~ C++ language:

@@ -45,7 +45,7 @@ void Arrays ()
     // the functions used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -236,7 +236,7 @@ void CharacterSequences ()
     // the functions used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -377,7 +377,7 @@ void Pointers ()
     // the functions used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -748,7 +748,7 @@ void DynamicMemory ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -887,7 +887,7 @@ void DataStructures ()
     // the functions and structures used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -1027,7 +1027,7 @@ void OtherDataTypes ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 

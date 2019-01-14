@@ -13,7 +13,7 @@ void _2_1_StructureOfaProgram ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
         //! ~~~~~ structure of a program:
@@ -46,7 +46,7 @@ void _2_2_VariablesTypesAndIdentifiers ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
         //! ~~~~~ variables, types and identifiers:
@@ -89,7 +89,7 @@ void _2_3_FundamentalTypesAndDeduction ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
         //! ----- fundamental types: characters
@@ -221,7 +221,7 @@ void _2_4_ConstantNumerals ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
         //! ~~~~~ constants numerals:
@@ -275,11 +275,12 @@ void _2_4_ConstantNumerals ()
     }
 }
 
+
 void _2_5_ConstantLiterals ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
         //! ~~~~~ constant literals:
@@ -349,11 +350,12 @@ paRTed"  " And "		  "wriTTen In TreeLine" };
     }
 }
 
+
 void _2_6_OtherConstantLiterals ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
         //! ~~~~~ other constant literals:
@@ -400,29 +402,25 @@ void _2_6_OtherConstantLiterals ()
 }
 
 
-// ********************************************************************************
-/// <summary>
-/// Operators in C++
-/// </summary>
-/// <created>ʆϒʅ,21.04.2018</created>
-/// <changed>ʆϒʅ,10.05.2018</changed>
-// ********************************************************************************
-void Operators ()
+// can be used from this point, in which they are defined:
+const char tab { '\t' };
+const char nline { '\n' };
+int x { 0 }, y { 2 }, z { 4 };
+void _2_7_ArithmeticOperators ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
-        const char tab { '\t' };
-        const char nline { '\n' };
-        int x { 0 }, y { 2 }, z { 4 };
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
-        //! ~~~~~ operators: operators will be used to operate with variables and constants
-        std::cout << nline << "~~~~~ Operators:" << nline;
-        std::cout << "The following is a complete list of operator to serve as reference." << nline;
+        //! ~~~~~ mathematical operators:
+        // mathematical operators will be used to have mathematical operations on operands.
+        std::cout << nline << "~~~~~ Mathematical operators:" << nline;
+        std::cout << "Mathematical operators represent the most important and basic mathematical operations." << nline;
 
         //! ####################################################################
-        //! ----- assignment operator (=): the assignment operation always takes place from right to left.
+        //! ----- assignment operator (=):
+        // the assignment operation always takes place from right to left.
         std::cout << nline << "----- Assignment operator (=):" << nline;
         std::cout << "x: " << x << tab << "y: " << y << nline;
         x = 5;
@@ -432,6 +430,7 @@ void Operators ()
         x = y = 3; // this statement is valid in C++
         std::cout << "x = y = 3;" << nline << "x: " << x << tab << "y: " << y << nline << nline;
 
+        //! - in addition:
         // assignment operation can be evaluated meaning the assignment itself has a value 
         // in fundamental types it is the value that assigned in the operation.
         std::cout << "The value of assignment operation:" << nline;
@@ -440,20 +439,23 @@ void Operators ()
 
 
         //! ####################################################################
-        //! ----- arithmetic operators (+, -, *, /, %): percentage sign represent modulo which is the remainder of a division.
+        //! ----- arithmetic operators (+, -, *, /, %):
+        // percentage sign represent modulo which is the remainder of a division.
         std::cout << nline << "----- Arithmetic operator (+, -, *, /, %):" << nline;
         x = 40 % 9;
         std::cout << "x = 40 % 9;" << tab << "x: " << x << nline;
 
         //! ####################################################################
-        //! ----- compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=): modification of the current value of the variable by performing an operation on it.
+        //! ----- compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):
+        // modification of the current value of the variable by performing an operation on it.
         std::cout << nline << "----- Compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):" << nline;
         std::cout << "x: " << x << tab << "y: " << y << nline;
         y *= x + 1; // equivalent to y=y*(x+1)
         std::cout << "y *= x + 1;" << nline << "x: " << x << tab << "y: " << y << nline;
 
         //! ####################################################################
-        //! ----- increment and decrement (++, --): increase or decrease by one the value stored in a variable.
+        //! ----- increment and decrement (++, --):
+        // increase or decrease by one the value stored in a variable.
         std::cout << nline << "----- Increment and decrement (++, --):" << nline;
         std::cout << "x: " << x << tab << "y: " << y << nline;
         x++;
@@ -461,6 +463,7 @@ void Operators ()
         std::cout << "x++;" << tab << "--y;" << nline;
         std::cout << "x: " << x << tab << "y: " << y << nline << nline;
 
+        //! - in addition:
         // these operators can be used both as prefix and as suffix.
         // although simple expressions like ++x and x++ have the same meaning, they result a different value in different expressions.
         std::cout << "Difference between 'y = ++x' and 'y = x++':" << nline;
@@ -472,9 +475,29 @@ void Operators ()
         y = x++; // y = x before the increment
         std::cout << "x=3;" << tab << "y = x++;" << nline;
         std::cout << "x: " << x << tab << "y: " << y << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _2_8_LagicalOperators ()
+{
+    try
+    {
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
-        //! ----- relational and comparison operators (==, !=, <, > ,<=, >=): the results of comparison will be boolean. any value can be compared.
+        //! ~~~~~ boolean operators:
+        // boolean operators will be used to have logical operations on operands.
+        std::cout << nline << "~~~~~ Boolean operators:" << nline;
+        std::cout << "Boolean operators represent the logical operations." << nline;
+
+        //! ####################################################################
+        //! ----- relational and comparison operators (==, !=, <, > ,<=, >=):
+        // the results of comparison will be boolean. any value can be compared.
         std::cout << nline << "----- Relational and comparison operators (==, !=, <, > ,<=, >=):" << nline;
         std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         if ( ( x + 16 ) >= ( y*x ) )
@@ -487,13 +510,15 @@ void Operators ()
         }
 
         //! ####################################################################
-        //! ----- logical operators (!, &&, ||): the operator ! (logical NOT) inverts its one operand which will be written to its right.
+        //! ----- logical operators (!, &&, ||):
+        // the operator ! (logical NOT) inverts its one operand which will be written to its right.
         std::cout << nline << "----- Logical operators (!, &&, ||):" << nline;
         std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         std::cout << "!(x <= y): " << !( x <= y ) << nline;
         std::cout << "!(y >= z): " << !( y >= z ) << nline;
 
-        // schort circuit evaluation: C++ only evaluates what is necessary to come up with the combined relational result. this evaluation happens from left to right. 
+        //! - in addition:
+        // short circuit evaluation: C++ only evaluates what is necessary to come up with the combined relational result. this evaluation happens from left to right. 
         // for example in '(x==y)&&(x<=y)' statement, considering the logical AND, if 'x==y' is false, C++ never checks the rest of the statement.
         std::cout << nline << "Short circuit evaluation in C++:" << nline;
         if ( !( x == y ) )
@@ -501,7 +526,6 @@ void Operators ()
             std::cout << "((x == y) && (x <= y)): " << ( ( x == y ) && ( x <= y ) ) << nline;
             std::cout << "((x == y) || (x >= y)): " << ( ( x == y ) || ( x >= y ) ) << nline;
         }
-
         // this is most important when it comes to statements that has side effects
         // for example altering values in the right-hand expression.
         std::cout << nline << "Side effects of short circuit evaluation:" << nline;
@@ -513,8 +537,10 @@ void Operators ()
         std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
 
         //! ####################################################################
-        //! ----- conditional ternary operator (?): if its condition is true, the operator will return result1 and otherwise result2.
-        // statement format: condition ? result1 : result2
+        //! ----- conditional ternary operator (?):
+        // if its condition is true, the operator will return result1 and otherwise result2.
+        //? statement syntax (format):
+        // condition ? result1 : result2
         std::cout << nline << "----- Conditional ternary operator (?):" << nline;
         std::string str_result;
         int int_result;
@@ -525,21 +551,44 @@ void Operators ()
         std::cout << "int_result = ((x == y) && (x > z)) ? x : z;" << nline << "int_result: " << int_result << nline;
 
         //! ####################################################################
-        //! ----- comma operator (,): this operator will be used to separate the expressions when there are more than one expression in a statement that actually suppose to have one.
+        //! ----- comma operator (,):
+        // this operator will be used to separate the expressions,
+        // when there are more than one expression in a statement that actually suppose to have one.
         std::cout << nline << "----- Comma operator (,):" << nline;
         std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         z = ( x = 2, ++y * x );
         std::cout << "z = (x = 2, ++y * x);" << tab << "z: " << z << nline;
 
+        //! - in addition:
         // the need of evaluation in expressions with comma operator:
         // only the most right one will be considered.
         std::cout << nline << "In evaluation sets only the right expression will be considered:" << nline;
         std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         z = ( x >= 2, y <= 4, y != 4 ); // the expressions 'x>=2' and 'y<=4' won't be considered
         std::cout << "z = (x >= 2, y <= 4, y != 4);" << tab << "z: " << z << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _2_9_OtherOperators ()
+{
+    try
+    {
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
-        //! ----- bitwise operators (&, |, ^, ~, <<, >>): modifying an operand in its stored bit patterns which represent their value in system.
+        //! ~~~~~ other operators:
+        // 
+        std::cout << nline << "~~~~~ Other operators:" << nline;
+        std::cout << "Some other important operators." << nline;
+
+        //! ####################################################################
+        //! ----- bitwise operators (&, |, ^, ~, <<, >>):
+        // modifying an operand in its stored bit patterns which represent their value in system.
         // & bitwise And
         // | bitwise inclusive or
         // ^ bitwise exclusive or
@@ -557,7 +606,8 @@ void Operators ()
         std::cout << "result of (x >> 2) " << ( x >> 2 ) << nline;
 
         //! ####################################################################
-        //! ----- explicit type casting operator: convert the value of a given type to another type
+        //! ----- explicit type casting operator:
+        // convert the value of a given type to another type
         std::cout << nline << "----- Explicit type casting operator:" << nline;
         float f { static_cast<float> ( 3.14 ) }; // initialization in C++ standard 2011 revision
         std::cout << "x (int): " << x << tab << "f (float): " << f << nline;
@@ -567,23 +617,36 @@ void Operators ()
         std::cout << "Converting the type (C++ functional notation casting): " << x << nline;
 
         //! ####################################################################
-        //! ----- other operators:
+        //! ----- The 'sizeof' operator:
         // sizeof: take one parameter (type or variable) and return the size in bytes.
-        // there or some other operators that will be mentioned later
         std::cout << nline << "----- The 'sizeof' operator:" << nline;
         std::cout << "x: " << x << nline;
-        x = sizeof ( long long ); // the returned value of 'sizeof' is a compile-time constant
-                                // this means it is determined before the program execution
+        x = sizeof ( long long ); // the returned value of 'sizeof' is a compile-time constant (before program execution)
         std::cout << "x = sizeof (long long);" << tab << "x: " << x << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _2_10_PrecedenceOfOperators ()
+{
+    try
+    {
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
 
         //! ####################################################################
-        //! ----- precedence of operators: higher precedence of operators determines the evaluation order of operators in an expression
-        std::cout << nline << "----- Precedence of operators:" << nline;
+        //! ~~~~~ precedence of operators:
+        // higher precedence of operators determines the evaluation order of operators in an expression
+        std::cout << nline << "~~~~~ Precedence of operators:" << nline;
         std::cout << "x: " << x << nline;
         x = 2 + 5 % 2; // the remainder operator will be evaluated first
         std::cout << "x = 2 + 5 % 2;" << tab << "x: " << x << nline;
 
-        // use of parenthesis:
+        //! - in addition:
+        // uses of parenthesis:
         // to explicitly clarify the intended effect
         // to override the precedence of operators
         std::cout << nline << "Overriding the precedence of operators:" << nline;
@@ -592,9 +655,44 @@ void Operators ()
         x = ( 2 + 5 ) % 2; // overriding the precedence
         std::cout << "x = (2 + 5) % 2;" << tab << "x: " << x << nline;
 
+        //! - in addition:
         // more on evaluation order of operators in C++:
         // end of the page=> http://www.cplusplus.com/doc/tutorial/operators/
         // http://de.cppreference.com/w/cpp/language/operator_precedence
+        // evaluation of C++ operator from greatest to smallest happen in the following order:
+
+
+        // ------------------------------------------------------------------------------------------------
+        // Level    Precedence Group        Operator    Description                         Grouping
+        // ------------------------------------------------------------------------------------------------
+        // 1        Scope                   ::          scope qualifier                     left-to-right
+        // ------------------------------------------------------------------------------------------------
+        // 2        Postfix (unary)         ++ --       postfix increment / decrement       left-to-right
+        // 2        "                       ()          functional forms                    "
+        // 2        "                       []          subscript                           "
+        // 2        "                       . ->        member access                       "
+        // ------------------------------------------------------------------------------------------------
+        // 3        Prefix (unary)          ++ --       prefix increment / decrement        Right-to-left
+        // 3        "                       ~ !         bitwise NOT / logical NOT           "
+        // 3        "                       + -         unary prefix                        "
+        // 3        "                       & *         reference / dereference             "
+        // 3        "                       new delete  allocation / deallocation           "
+        // 3        "                       sizeof      parameter pack                      "
+        // 3        "                       (type)      C-style type casting                "
+        // ------------------------------------------------------------------------------------------------
+        // 4        pointer-to-member       .* ->*      access pointer                      left-to-right
+        // 4        Arithmetic: scaling     * / %
+
+
+        /*
+
+
+
+
+
+
+        */
+
     }
     catch ( const std::exception& )
     {
@@ -614,7 +712,7 @@ void BasicInputOutput ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '#'; std::cout << '\n';
+        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
         const char tab { '\t' };
         const char nline { '\n' };
 

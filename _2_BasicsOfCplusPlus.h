@@ -19,7 +19,11 @@ void _2_3_FundamentalTypesAndDeduction ();
 void _2_4_ConstantNumerals ();
 void _2_5_ConstantLiterals ();
 void _2_6_OtherConstantLiterals ();
-void Operators ();
+void _2_7_ArithmeticOperators ();
+void _2_8_LagicalOperators ();
+void _2_9_OtherOperators ();
+void _2_10_PrecedenceOfOperators ();
+
 void BasicInputOutput ();
 
 

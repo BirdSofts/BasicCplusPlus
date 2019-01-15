@@ -656,43 +656,45 @@ void _2_10_PrecedenceOfOperators ()
         std::cout << "x = (2 + 5) % 2;" << tab << "x: " << x << nline;
 
         //! - in addition:
-        // more on evaluation order of operators in C++:
-        // end of the page=> http://www.cplusplus.com/doc/tutorial/operators/
-        // http://de.cppreference.com/w/cpp/language/operator_precedence
         // evaluation of C++ operator from greatest to smallest happen in the following order:
 
+        // -------------------------------------------------------------------------------------------------------
+        // Level    Precedence Group        Operator            Description                         Grouping
+        // -------------------------------------------------------------------------------------------------------
+        // 1        Scope                   ::                  scope qualifier                     left-to-right
+        // -------------------------------------------------------------------------------------------------------
+        // 2        Postfix (unary)         ++ --               postfix increment / decrement       left-to-right
+        // 2        "                       ()                  functional forms                    "
+        // 2        "                       []                  subscript                           "
+        // 2        "                       . ->                member access                       "
+        // -------------------------------------------------------------------------------------------------------
+        // 3        Prefix (unary)          ++ --               prefix increment / decrement        Right-to-left
+        // 3        "                       ~ !                 bitwise NOT / logical NOT           "
+        // 3        "                       + -                 unary prefix                        "
+        // 3        "                       & *                 reference / dereference             "
+        // 3        "                       new delete          allocation / deallocation           "
+        // 3        "                       sizeof              parameter pack                      "
+        // 3        "                       (type)              C-style type casting                "
+        // -------------------------------------------------------------------------------------------------------
+        // 4        pointer-to-member       .* ->*              access pointer                      left-to-right
+        // 5        Arithmetic: scaling     * / %               multiply, divide, modulo            "
+        // 6        Arithmetic: addition    + -                 addition, subtraction               "
+        // 7        Bitwise shift           << >>               shift left, shift right             "
+        // 8        Relational              < > <= >=           comparison operators                "
+        // 9        Equality                == !=               equality / inequality               "
+        // 10       And                     &                   bitwise AND                         "
+        // 11       Exclusive or            ^                   bitwise XOR                         "
+        // 12       Inclusive or            |                   bitwise OR                          "
+        // 13       Conjunction             &&                  logical AND                         "
+        // 14       Disjunction             ||                  logical OR                          "
+        //          Assignment-level        = *= /= %= -=       assignment / compound
+        // 15       expressions             >>= <<= &= ^= |=    assignment                          Right-to-left
+        //                                  ? :                 conditional operator
+        // 16       sequencing              ,                   comma separator                     left-to-right
+        // -------------------------------------------------------------------------------------------------------
 
-        // ------------------------------------------------------------------------------------------------
-        // Level    Precedence Group        Operator    Description                         Grouping
-        // ------------------------------------------------------------------------------------------------
-        // 1        Scope                   ::          scope qualifier                     left-to-right
-        // ------------------------------------------------------------------------------------------------
-        // 2        Postfix (unary)         ++ --       postfix increment / decrement       left-to-right
-        // 2        "                       ()          functional forms                    "
-        // 2        "                       []          subscript                           "
-        // 2        "                       . ->        member access                       "
-        // ------------------------------------------------------------------------------------------------
-        // 3        Prefix (unary)          ++ --       prefix increment / decrement        Right-to-left
-        // 3        "                       ~ !         bitwise NOT / logical NOT           "
-        // 3        "                       + -         unary prefix                        "
-        // 3        "                       & *         reference / dereference             "
-        // 3        "                       new delete  allocation / deallocation           "
-        // 3        "                       sizeof      parameter pack                      "
-        // 3        "                       (type)      C-style type casting                "
-        // ------------------------------------------------------------------------------------------------
-        // 4        pointer-to-member       .* ->*      access pointer                      left-to-right
-        // 4        Arithmetic: scaling     * / %
-
-
-        /*
-
-
-
-
-
-
-        */
-
+        // an expression that has two the same precedence level operators, either left-to-right or right-to-left groupings determine which one is first to be evaluated. so every operator based on its defined precedence and grouping is independent.
+        // therefore, the consideration is there, that enclosure in parenthesis is a good practice and can improve the code readability.
     }
     catch ( const std::exception& )
     {
@@ -701,13 +703,6 @@ void _2_10_PrecedenceOfOperators ()
 }
 
 
-// ********************************************************************************
-/// <summary>
-/// Basic input and output in C++
-/// </summary>
-/// <created>ʆϒʅ,04.05.2018</created>
-/// <changed>ʆϒʅ,10.05.2018</changed>
-// ********************************************************************************
 void BasicInputOutput ()
 {
     try

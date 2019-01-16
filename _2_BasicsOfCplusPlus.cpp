@@ -7,13 +7,15 @@
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
+#include "ConsoleAdjustments.h"
 
 
 void _2_1_StructureOfaProgram ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ structure of a program:
@@ -46,7 +48,8 @@ void _2_2_VariablesTypesAndIdentifiers ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ variables, types and identifiers:
@@ -89,7 +92,8 @@ void _2_3_FundamentalTypesAndDeduction ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ----- fundamental types: characters
@@ -221,7 +225,8 @@ void _2_4_ConstantNumerals ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ constants numerals:
@@ -280,7 +285,8 @@ void _2_5_ConstantLiterals ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ constant literals:
@@ -355,7 +361,8 @@ void _2_6_OtherConstantLiterals ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ other constant literals:
@@ -410,7 +417,8 @@ void _2_7_ArithmeticOperators ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ mathematical operators:
@@ -487,7 +495,8 @@ void _2_8_LagicalOperators ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ boolean operators:
@@ -578,7 +587,8 @@ void _2_9_OtherOperators ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ other operators:
@@ -635,7 +645,8 @@ void _2_10_PrecedenceOfOperators ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
 
         //! ####################################################################
         //! ~~~~~ precedence of operators:
@@ -703,25 +714,30 @@ void _2_10_PrecedenceOfOperators ()
 }
 
 
-void BasicInputOutput ()
+void _2_11_BasicInputOutput ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
         const char tab { '\t' };
         const char nline { '\n' };
 
         //! ####################################################################
-        //! ~~~~~ basic input/output: standard features to interact with users.
+        //! ~~~~~ basic input/output:
+        // standard features to interact with users.
         // abstraction streams is the convenient way C++ use to perform input/ output operations in sequential media like screen. a stream is an entity to insert or extract characters to/from. there are a handful of streams in the standard library to access the standard source and destination in an environment where the program runs. the most useful ones are cin, cout, cerr and clog.
-        // cerr and clog streams work like the cout stream with the difference that they identify streams for error messages and logging which in many cases and most environment setups they do the same thing which is printing on screen, although they can be individually redirected.
-        std::cout << nline << "~~~~~ Basic Input/Output (cin, cout, cerr and clog):" << nline;
+        std::cout << nline << "~~~~~ Basic input/output (cin, cout, cerr and clog):" << nline;
         std::cout << "The streams are the standard features to interact with users." << nline;
         std::cout << "The streams cin and cout will be mentioned in details." << nline;
         std::cout << "The streams cerr and clog work like cout and identify streams for special purposes." << nline;
 
+        //! - in addition:
+        // cerr and clog streams work like the cout stream with the difference that they identify streams for error messages and logging which in many cases and most environment setups they do the same thing which is printing on screen, although they can be individually redirected.
+
         //! ####################################################################
-        //! ----- standard output (cout): default output of this stream is screen and processes the operation with using the insertion operator (<<) which inserts the data into the stream that precedes it
+        //! ----- standard output (cout):
+        // default output of this stream is screen and processes the operation with using the insertion operator (<<) which inserts the data into the stream that precedes it
         std::cout << nline << "----- Standard output (cout):" << nline;
         std::cout << nline << "Inserting outputs of different types:" << nline;
         std::cout << "An output string"; // a string literal
@@ -729,17 +745,20 @@ void BasicInputOutput ()
         std::cout << 23487284; // a number
         std::cout << nline; // a variable of type char (\n)
 
+        //! - in addition:
         // chained insertion:
         std::cout << nline << "Chained insertion:" << nline;
         std::cout << "Below is my birth year." << tab << "Current year: " << 2018 << nline << 1989;
 
+        //! - in addition:
         // since cout dosen't automatically break the line, use '\n' or endl manipulator instead. endl manipulator also flushes the buffer which means to physically write the output in device. this affects the fully-buffered systems but cout generally isn't one.
         // it is a good idea to use it as an extra feature when needed since it incurs a certain overhead and on some devices it may produce a delay.
         std::cout << nline << "Breaking the line:" << nline;
         std::cout << "\n\n __This is the sentence in between__ \n" << std::endl;
 
         //! ####################################################################
-        //! ----- standard input (cin): default input of this stream is keyboard and processes the operation with the help of extraction operator (>>) which followed by the variable where the extracted data needs to be stored.
+        //! ----- standard input (cin):
+        // default input of this stream is keyboard and processes the operation with the help of extraction operator (>>) which followed by the variable where the extracted data needs to be stored.
         // the extraction of characters from input by cin stream will be continued till the user presses the enter or return key.
         // depended on the type of the variable cin stream determines how to interpret the entered characters.
         std::cout << nline << "----- Standard input (cin):" << nline;
@@ -749,6 +768,7 @@ void BasicInputOutput ()
         std::cin >> char_in;
         std::cout << "The character you have entered is:" << tab << char_in << nline;
 
+        //! - in addition:
         // taking input from the cin stream is easy but it has a big drawback. if the entered characters couldn't be interpreted to an integer type for example, when they need to, the program continue and the result of process is unknown.
         // a program shall handle invalid values properly, independent from what user enters. latter on the stringstreams will be used to have a better control on user input.
         std::cout << nline << "The drawback of cin (Entered input with invalid value):" << nline;
@@ -757,6 +777,7 @@ void BasicInputOutput ()
         std::cin >> int_in; // unknown results caused from unwanted inputs
         std::cout << "The double of it is:" << tab << int_in * 2 << nline;
 
+        //! - in addition:
         // chained extraction of more than one datum in one line: user must separate inputs with blank spaces.
         // the blank spaces are white space, tab and new line.
         std::cout << nline << "Chained extraction:" << nline;
@@ -765,8 +786,11 @@ void BasicInputOutput ()
         std::cin >> int_in >> int_in2; // chained extraction
         std::cout << "The entered values are:" << tab << int_in << tab << int_in2 << nline;
 
+        //! - in addition:
         // the stream cin can extract strings just like other fundamental types. the only problem is that it consider any type of spaces as termination of the operation so it can only extract a single word by one extraction operator.
         // to get an entire line with the stream cin the function getline() from the standard library can be used.
+        // what users generally expect for inputs to happen in console environment is to introduce the field and press enter or return. in terms of lines getline function can be used to obtain inputs from user.
+        // if there isn't any strong reason not to, getline shall be used to extract inputs instead of cin.
         std::cout << nline << "Extracting strings in line:" << nline;
         std::string str_in;
         std::cout << "Please enter a line of string containing spaces:" << nline << tab;
@@ -777,11 +801,10 @@ void BasicInputOutput ()
         // std::cin.ignore (100,'\n'); // clear unneeded buffered characters (another way but in most cases not a good idea)
         std::getline ( std::cin, str_in ); // getting a line with spaces
         std::cout << "The extracted line with getline function is:" << tab << str_in << nline;
-        // what users generally expect for inputs to happen in console environment is to introduce the field and press enter or return. in terms of lines getline function can be used to obtain inputs from user.
-        // if there isn't any strong reason not to, getline shall be used to extract inputs instead of cin.
 
         //! ####################################################################
-        //! ----- stringstream: this type which is defined in standard header <sstream> allows the strings to be treated like streams, and thus allowing the insertion and extraction operations to be performed on strings like what happens in cin or cout streams.
+        //! ----- stringstream:
+        // this type which is defined in standard header <sstream> allows the strings to be treated like streams, and thus allowing the insertion and extraction operations to be performed on strings like what happens in cin or cout streams.
         // the most useful means of this feature is to convert string to numeral values and vice versa.
         std::cout << nline << "----- The type stringstream:" << nline;
         std::cout << nline << "Converting string to int:" << nline;
@@ -791,6 +814,7 @@ void BasicInputOutput ()
         std::stringstream ( str_var ) >> int_var; // extract the value from a stringstream constructed from the string variable
         std::cout << "The value converted from string to integer:" << tab << int_var << nline;
 
+        //! - in addition:
         // acquiring numeric values indirectly from the standard input: using getline and stringstream instead of cin
         // the goal is to separate the input process from its interpretation as data.
         // demonstration of extracting in the user-expected behaviour of console programs and in the same time gaining more control over the transformation of inputs into more useful data.

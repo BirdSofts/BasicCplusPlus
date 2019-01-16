@@ -7,6 +7,7 @@
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
+#include "ConsoleAdjustments.h"
 
 
 #define Tab '\t'
@@ -24,7 +25,8 @@ void ControlStructures ()
 {
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -342,7 +344,8 @@ void Functions ()
     // the body code of functions used in this section are defined above it
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -580,7 +583,8 @@ void OverloadsAndTemplates ()
     // the body code of functions used in this section are defined above it
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -726,7 +730,8 @@ void NameVisibility ()
     // the functions, namespaces and variables used in this section are defined above it.
     try
     {
-        std::cout << '\n'; for ( int L = 0; L < 110; L++ ) std::cout << '-'; std::cout << '\n';
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
         const char tab { '\t' };
         const char nline { '\n' };
 

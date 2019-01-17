@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,20.12.2018</changed>
+/// <changed>ʆϒʅ,17.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -14,8 +14,8 @@ void _2_1_StructureOfaProgram ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ structure of a program:
@@ -24,8 +24,8 @@ void _2_1_StructureOfaProgram ()
         // the main function is the only function which called automatically.
         // other functions can be executed if they are called directly or indirectly from main function.
 
-        std::cout << "\n~~~~~ Structure of a program:\n";
-        std::cout << "Programming needs patience and practical practice.\n";
+        std::cout << "~~~~~ Structure of a program:\n";
+        std::cout << "Programming needs patience and practical practice.\n\n";
 
         // line comment
 
@@ -33,7 +33,7 @@ void _2_1_StructureOfaProgram ()
         comment*/
 
         std::cout << "\nHello World! "; // inserting an output, '/n' is the newline character
-        std::cout << "I'm a C++ program.\n";
+        std::cout << "I'm a C++ program.\n\n";
 
         //using namespace std; // make writing code simple but by not using it name collision can be avoided.
     }
@@ -48,13 +48,13 @@ void _2_2_VariablesTypesAndIdentifiers ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ variables, types and identifiers:
         // variables are portions of memory that have types and are defined to store values.
-        std::cout << "\n~~~~~ Variables, types and identifiers:\n";
+        std::cout << "~~~~~ Variables, types and identifiers:\n";
         std::cout << "Portions of memory to store values of different types.\n";
 
         //! ####################################################################
@@ -71,7 +71,7 @@ void _2_2_VariablesTypesAndIdentifiers ()
         int a { 0 }, b { 0 }, result { 0 }; // C++ standard initialization (2011 revision)
         std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Result: " << result << std::endl;
 
-        //! - in addition
+        //! - in addition:
         // the assignment of new values plus process
         std::cout << "\nAssigning new values and process:\n";
         a = 5;
@@ -92,8 +92,8 @@ void _2_3_FundamentalTypesAndDeduction ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ----- fundamental types: characters
@@ -225,8 +225,8 @@ void _2_4_ConstantNumerals ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ constants numerals:
@@ -285,8 +285,8 @@ void _2_5_ConstantLiterals ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ constant literals:
@@ -361,8 +361,8 @@ void _2_6_OtherConstantLiterals ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ other constant literals:
@@ -417,8 +417,8 @@ void _2_7_ArithmeticOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ mathematical operators:
@@ -495,8 +495,8 @@ void _2_8_LagicalOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ boolean operators:
@@ -587,8 +587,8 @@ void _2_9_OtherOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ other operators:
@@ -645,8 +645,8 @@ void _2_10_PrecedenceOfOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ precedence of operators:
@@ -718,8 +718,8 @@ void _2_11_BasicInputOutput ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 

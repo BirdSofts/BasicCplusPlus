@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,20.12.2018</changed>
+/// <changed>ʆϒʅ,17.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -25,8 +25,8 @@ void ControlStructures ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -344,8 +344,8 @@ void Functions ()
     // the body code of functions used in this section are defined above it
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -583,8 +583,8 @@ void OverloadsAndTemplates ()
     // the body code of functions used in this section are defined above it
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -730,8 +730,8 @@ void NameVisibility ()
     // the functions, namespaces and variables used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
-        ColourCouter ( "-------------------------------------------------------", F_YELLOW );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 

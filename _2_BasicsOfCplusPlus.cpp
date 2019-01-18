@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,17.01.2019</changed>
+/// <changed>ʆϒʅ,18.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -24,15 +24,15 @@ void _2_1_StructureOfaProgram ()
         // the main function is the only function which called automatically.
         // other functions can be executed if they are called directly or indirectly from main function.
 
-        std::cout << "~~~~~ Structure of a program:\n";
-        std::cout << "Programming needs patience and practical practice.\n\n";
+        ColourCouter ( "~~~~~ Structure of a program:\n", F_bBLUE );
+        ColourCouter ( "Programming needs patience and practical practice.\n\n", F_YELLOW );
 
         // line comment
 
         /* block
         comment*/
 
-        std::cout << "\nHello World! "; // inserting an output, '/n' is the newline character
+        std::cout << "Hello World! "; // inserting an output, '/n' is the newline character
         std::cout << "I'm a C++ program.\n\n";
 
         //using namespace std; // make writing code simple but by not using it name collision can be avoided.
@@ -54,8 +54,8 @@ void _2_2_VariablesTypesAndIdentifiers ()
         //! ####################################################################
         //! ~~~~~ variables, types and identifiers:
         // variables are portions of memory that have types and are defined to store values.
-        std::cout << "~~~~~ Variables, types and identifiers:\n";
-        std::cout << "Portions of memory to store values of different types.\n";
+        ColourCouter ( "~~~~~ Variables, types and identifiers:\n", F_bBLUE );
+        ColourCouter ( "Portions of memory to store values of different types.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- definition and initialization in different C++ revisions
@@ -65,21 +65,30 @@ void _2_2_VariablesTypesAndIdentifiers ()
         // C++ is a case-sensitive language.
         // more info on identifiers: http://www.cplusplus.com/doc/tutorial/variables/
         // std::endl: flushes the stream and prints the newline character
-        std::cout << "\n----- Definition and initialization in different C++ revisions:\n";
+        ColourCouter ( "----- Definition and initialization in different C++ revisions:\n", F_bBLUE );
+        ColourCouter ( "Definition alone defines variables with undetermined values and they are practically unusable till their first time value assignation.\n", F_YELLOW );
+        ColourCouter ( "Initialization is the process of introducing a value for a variable in definition time.\n", F_YELLOW );
         int a1 = 0; // C-like initialization
         int a2 ( 0 ); // constructor initialization (C++ language)
+        std::cout << "Initialized with C-Like initialization:\t\t" << "a1: " << a1 << "\n";
+        std::cout << "Initialized in constructor (C++ language):\t" << "a2: " << a2 << "\n";
         int a { 0 }, b { 0 }, result { 0 }; // C++ standard initialization (2011 revision)
-        std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Result: " << result << std::endl;
+
+        std::cout << "Initialized in C++ standard revision:\t\t" << "a: " << a << '\t' << "b: " << b << '\t' << "Result: " << result << std::endl << std::endl;
 
         //! - in addition:
-        // the assignment of new values plus process
-        std::cout << "\nAssigning new values and process:\n";
+        // some simple processes on variables for the time being:
+        ColourCouter ( "Assigning new values to variables:\n", F_bYELLOW );
+        std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Initialization's value of Result is: " << result << std::endl;
         a = 5;
         b = 2;
+        std::cout << "Assigned values:\t" << "a: " << a << '\t' << "b: " << b << std::endl;
         a = a + 1;
+        ColourCouter ( "Some processes on the variables above: \n", F_bYELLOW );
+        std::cout << "Result of ( a + 1 ):\t" << a << std::endl;
         result = b - a;
-        // insertion
-        std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Result of (b-a): " << result << std::endl;
+        // last insertion:
+        std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Result of ( b - a ): " << result << std::endl;
     }
     catch ( const std::exception& )
     {

@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,18.01.2019</changed>
+/// <changed>ʆϒʅ,19.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -59,6 +59,8 @@ void _2_2_VariablesTypesAndIdentifiers ()
 
         //! ####################################################################
         //! ----- definition and initialization in different C++ revisions
+        // definition alone defines variables with undetermined values and they are practically unusable till their first time value assignation.
+        // initialization is the process of introducing a value for a variable in definition time.
         // a valid identifiers could be built by a sequence of one or more letters, digits or underscore _
         // identifiers shall always begin with letters, additionally they can begin with underscore too.
         // programmers identifiers can not match C++ reserved keywords.
@@ -66,8 +68,7 @@ void _2_2_VariablesTypesAndIdentifiers ()
         // more info on identifiers: http://www.cplusplus.com/doc/tutorial/variables/
         // std::endl: flushes the stream and prints the newline character
         ColourCouter ( "----- Definition and initialization in different C++ revisions:\n", F_bBLUE );
-        ColourCouter ( "Definition alone defines variables with undetermined values and they are practically unusable till their first time value assignation.\n", F_YELLOW );
-        ColourCouter ( "Initialization is the process of introducing a value for a variable in definition time.\n", F_YELLOW );
+        ColourCouter ( "A variable must first be defined and after or in the moment of definition, it can be initialized.\n", F_YELLOW );
         int a1 = 0; // C-like initialization
         int a2 ( 0 ); // constructor initialization (C++ language)
         std::cout << "Initialized with C-Like initialization:\t\t" << "a1: " << a1 << "\n";
@@ -82,13 +83,13 @@ void _2_2_VariablesTypesAndIdentifiers ()
         std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Initialization's value of Result is: " << result << std::endl;
         a = 5;
         b = 2;
-        std::cout << "Assigned values:\t" << "a: " << a << '\t' << "b: " << b << std::endl;
+        std::cout << "Assigned values:\t" << "a: " << a << '\t' << "b: " << b << std::endl << std::endl;
         a = a + 1;
         ColourCouter ( "Some processes on the variables above: \n", F_bYELLOW );
         std::cout << "Result of ( a + 1 ):\t" << a << std::endl;
         result = b - a;
         // last insertion:
-        std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Result of ( b - a ): " << result << std::endl;
+        std::cout << "a: " << a << '\t' << "b: " << b << '\t' << "Result of ( b - a ): " << result << std::endl << std::endl;
     }
     catch ( const std::exception& )
     {
@@ -102,32 +103,45 @@ void _2_3_FundamentalTypesAndDeduction ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- fundamental types: characters
-        std::cout << "\n----- Fundamental types: characters" << std::endl;
+        // ------------------------------------------------------------------------
+        // Type name            Size / Precision description
+        // ------------------------------------------------------------------------
+        // char                 Exactly one byte in size. At least 8 bits.
+        // ------------------------------------------------------------------------
+        // char16_t             Not smaller than char. At least 16 bits.
+        // ------------------------------------------------------------------------
+        // char32_t             Not smaller than char16_t. At least 32 bits.
+        // ------------------------------------------------------------------------
+        // wchar_t              Can represent the largest supported character set.
+        // ------------------------------------------------------------------------
 
-        std::cout << "size of char: " << sizeof ( char ) << '\n';
-        char ch1 { 'A' }; // std::string: ascii, iso8559-x, utf-8, gb18030, or any other byte size encoding
-        std::cout << "char: " << ch1 << std::endl;
+        ColourCouter ( "----- Fundamental types: Character types\n", F_bBLUE );
+        ColourCouter ( "Character types can represents a single character and are in different sizes.\n\n", F_YELLOW );
 
-        std::cout << "size of char16_t: " << sizeof ( char16_t ) << '\n';
-        char16_t ch2 { 'A' }; // std::u16string: utf-16, ucs2, or any other 16-bit size encoding
-        std::cout << "char16_t: " << static_cast<char>( ch2 ) << std::endl;
+        std::cout << "Size of char in byte: " << sizeof ( char ) << '\n';
+        char ch1 { 'M' };
+        std::cout << "char: " << ch1 << std::endl << std::endl;
 
-        std::cout << "size of char32_t: " << sizeof ( char32_t ) << '\n';
-        char32_t ch3 { 'A' }; // std::u32string: utf-32/ucs4 or any other 32-bit size encoding
-        std::cout << "char32_t: " << static_cast<char>( ch3 ) << std::endl;
+        std::cout << "Size of char16_t in byte: " << sizeof ( char16_t ) << '\n';
+        char16_t ch2 { 'M' }; 
+        std::cout << "char16_t: " << ch2 << std::endl << std::endl;
 
-        std::cout << "size of wchar_t: " << sizeof ( wchar_t ) << '\n';
-        wchar_t ch4 { 'A' }; // std::wstring (supposed to store ucs4 or any other 32-bit encoding,
-                             // dose it on Linux/Unix, but stores utf-16 on Windows for backwards compatibility)
-        std::cout << "wchar_t: " << static_cast<char>( ch4 ) << "\n";
+        std::cout << "Size of char32_t in byte: " << sizeof ( char32_t ) << '\n';
+        char32_t ch3 { 'M' }; 
+        std::cout << "char32_t: " << ch3 << std::endl << std::endl;
+
+        std::cout << "Size of wchar_t in byte: " << sizeof ( wchar_t ) << '\n';
+        wchar_t ch4 { 'M' }; 
+        std::cout << "wchar_t: " << ch4 << std::endl << std::endl;
 
         //! ####################################################################
         //! ----- fundamental types: integers
-        std::cout << "\n----- Fundamental types: integers" << std::endl;
+        ColourCouter ( "----- Fundamental types: integer types\n", F_bBLUE );
+        ColourCouter ( "Integer types can represent numerical values, are in variety of sizes and can be signed or unsigned.\n\n", F_YELLOW );
 
         signed char num1_1 { -128 }; // one byte: -128 to 127 (no difference to char type)
         unsigned char num1_2 { 255 }; // one byte: 0 to 255
@@ -157,11 +171,22 @@ void _2_3_FundamentalTypesAndDeduction ()
         unsigned long long num5_2 { 18446744073709551615 }; // eight bytes: 0 to 18,446,744,073,709,551,615
         std::cout << "size of long long: " << sizeof ( long long ) << '\n';
         std::cout << "signed long long: " << num5_1 << '\n';
-        std::cout << "unsigned long long: " << num5_2 << "\n";
+        std::cout << "unsigned long long: " << num5_2 << "\n\n";
+
+        //ColourCouter ( "", F_bBLUE );
+        //ColourCouter ( "", F_YELLOW );
+
+
+        //ColourCouter ( "", F_bYELLOW );
+        //ColourCouter ( "", F_bCYAN );
+
+
+        //! - in addition:
+
 
         //! ####################################################################
         //! ----- fundamental types: floats
-        std::cout << "\n----- Fundamental types: floats" << std::endl;
+        ColourCouter ( "----- Fundamental types: floats\n\n", F_bBLUE );
 
         float num6 { static_cast<float> ( 3.4e-38 ) }; // four bytes: 3.4E +/- 38 (7 digits)
         std::cout << "size of float: " << sizeof ( float ) << '\n';
@@ -173,16 +198,17 @@ void _2_3_FundamentalTypesAndDeduction ()
 
         long double num8 { 1.7e-308 };  // same as double
         std::cout << "size of long double: " << sizeof ( long double ) << '\n';
-        std::cout << "long double: " << num8 << "\n";
+        std::cout << "long double: " << num8 << "\n\n";
         // check the link for more details on float: http://de.cppreference.com/w/cpp/language/types
 
         //! ####################################################################
         //! ----- fundamental other types: bool, void and nullptr
         // bool is boolean type, a logical type that can store 'true' or 'false' as values
-        std::cout << "\n----- Fundamental other types: bool, void and nullptr" << std::endl;
+        ColourCouter ( "----- Fundamental other types: bool, void and nullptr\n\n", F_bBLUE );
+
         bool bool_var { true };
         std::cout << "size of bool: " << sizeof ( bool ) << '\n';
-        std::cout << "bool: " << bool_var << "\n";
+        std::cout << "bool: " << bool_var << "\n\n";
 
         // void typed pointers identify the lack of type, used in function return types, function parameters and universal pointers
         // they can't point to constant and volatile variables
@@ -202,10 +228,11 @@ void _2_3_FundamentalTypesAndDeduction ()
         //! ----- strings:
         // the class string is one of the compound types in C++.
         // header file is <string>.
-        std::cout << "\n----- Strings:" << std::endl;
+        ColourCouter ( "----- Strings:\n\n", F_bBLUE );
+
         std::cout << "One of the compound types in C++ is the class string." << std::endl;
         std::string str1 = { "This is the initial string." }; // initialization in C++ standard form.
-        std::cout << "string: " << str1 << std::endl;
+        std::cout << "string: " << str1 << std::endl << std::endl;
         // more details on standard C++ strings: http://www.cplusplus.com/string
 
         // the properties of fundamental types in particular systems and compiler implementations: http://www.cplusplus.com/%3Climits%3E
@@ -214,13 +241,14 @@ void _2_3_FundamentalTypesAndDeduction ()
         //! ####################################################################
         //! ----- deduction of type:
         // auto and decltype shall mainly be used when the type can't be determined or for improving the readability. the example below is non of them.
-        std::cout << "\n----- Deduction of type:\n";
+        ColourCouter ( "----- Deduction of type:\n\n", F_bBLUE );
+
         int int_var { 0 };
         auto aut_var { int_var }; // same as: int aut_var{ int_var }
         decltype( int_var ) dec_var { int_var }; // same as: int dec_var { int_var }
         std::cout << "Normal declaration and initialization: " << int_var << std::endl;
         std::cout << "Using auto for declaration: " << aut_var << std::endl;
-        std::cout << "Using decltype for declaration:" << dec_var << std::endl;
+        std::cout << "Using decltype for declaration:" << dec_var << std::endl << std::endl;
 
     }
     catch ( const std::exception& )
@@ -235,14 +263,14 @@ void _2_4_ConstantNumerals ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ constants numerals:
         // first kind of the most obvious constants are numerals, which can be be of types integer or floating-point.
         // like variables numerals have types.
         // in the statement "i=5;" 5 is a numeral constant.
-        std::cout << "\n~~~~~ Constants numerals:\n";
+        std::cout << "~~~~~ Constants numerals:\n";
         std::cout << "One of the most obvious kind of constants are numerals.\n";
 
         //! ####################################################################

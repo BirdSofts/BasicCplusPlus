@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,19.01.2019</changed>
+/// <changed>ʆϒʅ,20.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -107,59 +107,83 @@ void _2_3_FundamentalTypesAndDeduction ()
 
         //! ####################################################################
         //! ----- fundamental types: characters
-        // ------------------------------------------------------------------------
-        // Type name            Size / Precision description
-        // ------------------------------------------------------------------------
-        // char                 Exactly one byte in size. At least 8 bits.
-        // ------------------------------------------------------------------------
-        // char16_t             Not smaller than char. At least 16 bits.
-        // ------------------------------------------------------------------------
-        // char32_t             Not smaller than char16_t. At least 32 bits.
-        // ------------------------------------------------------------------------
-        // wchar_t              Can represent the largest supported character set.
-        // ------------------------------------------------------------------------
+        // ----------------------------------------------------------------
+        // Type name    Size / Precision description
+        // ----------------------------------------------------------------
+        // char         Exactly one byte in size. At least 8 bits.
+        // ----------------------------------------------------------------
+        // char16_t     Not smaller than char. At least 16 bits.
+        // ----------------------------------------------------------------
+        // char32_t     Not smaller than char16_t. At least 32 bits.
+        // ----------------------------------------------------------------
+        // wchar_t      Can represent the largest supported character set.
+        // ----------------------------------------------------------------
 
         ColourCouter ( "----- Fundamental types: Character types\n", F_bBLUE );
         ColourCouter ( "Character types can represents a single character and are in different sizes.\n\n", F_YELLOW );
 
-        std::cout << "Size of char in byte: " << sizeof ( char ) << '\n';
+        std::cout << "Size of char in byte:\t\t" << sizeof ( char ) << '\n';
         char ch1 { 'M' };
-        std::cout << "char: " << ch1 << std::endl << std::endl;
+        std::cout << "char:\t\t\t\t" << ch1 << std::endl << std::endl;
 
-        std::cout << "Size of char16_t in byte: " << sizeof ( char16_t ) << '\n';
-        char16_t ch2 { 'M' }; 
-        std::cout << "char16_t: " << ch2 << std::endl << std::endl;
+        std::cout << "Size of char16_t in byte:\t" << sizeof ( char16_t ) << '\n';
+        char16_t ch2 { 'M' };
+        std::cout << "char16_t:\t\t\t" << ch2 << std::endl << std::endl;
 
-        std::cout << "Size of char32_t in byte: " << sizeof ( char32_t ) << '\n';
-        char32_t ch3 { 'M' }; 
-        std::cout << "char32_t: " << ch3 << std::endl << std::endl;
+        std::cout << "Size of char32_t in byte:\t" << sizeof ( char32_t ) << '\n';
+        char32_t ch3 { 'M' };
+        std::cout << "char32_t:\t\t\t" << ch3 << std::endl << std::endl;
 
-        std::cout << "Size of wchar_t in byte: " << sizeof ( wchar_t ) << '\n';
-        wchar_t ch4 { 'M' }; 
-        std::cout << "wchar_t: " << ch4 << std::endl << std::endl;
+        std::cout << "Size of wchar_t in byte:\t" << sizeof ( wchar_t ) << '\n';
+        wchar_t ch4 { 'M' };
+        std::cout << "wchar_t:\t\t\t" << ch4 << std::endl << std::endl;
 
         //! ####################################################################
         //! ----- fundamental types: integers
+        // ------------------------------------------------------------------
+        // Type name                Size / Precision description
+        // ------------------------------------------------------------------
+        // signed char              Same size as char. At least 8 bits.
+        // ------------------------------------------------------------------
+        // signed short int         Not smaller than char. At least 16 bits.
+        // ------------------------------------------------------------------
+        // signed int               Not smaller than short. At least 16 bits.
+        // ------------------------------------------------------------------
+        // signed long int          Not smaller than int. At least 32 bits.
+        // ------------------------------------------------------------------
+        // signed long long int     Not smaller than long. At least 64 bits
+        // ------------------------------------------------------------------
+        // unsigned char            Same size as its signed counterpart
+        // ------------------------------------------------------------------
+        // unsigned short int       "
+        // ------------------------------------------------------------------
+        // unsigned int             "
+        // ------------------------------------------------------------------
+        // unsigned long int        "
+        // ------------------------------------------------------------------
+        // unsigned long long int   "
+        // ------------------------------------------------------------------
+
         ColourCouter ( "----- Fundamental types: integer types\n", F_bBLUE );
-        ColourCouter ( "Integer types can represent numerical values, are in variety of sizes and can be signed or unsigned.\n\n", F_YELLOW );
+        ColourCouter ( "Integer types can represent numerical values, are in variety of sizes and can be either signed or unsigned.\n\n", F_YELLOW );
 
-        signed char num1_1 { -128 }; // one byte: -128 to 127 (no difference to char type)
-        unsigned char num1_2 { 255 }; // one byte: 0 to 255
-        std::cout << "size of char: " << sizeof ( char ) << '\n';
-        std::cout << "signed char: " << static_cast<int>( num1_1 ) << '\n';
-        std::cout << "unsigned char: " << static_cast<int>( num1_2 ) << "\n\n";
+        signed char num1_1 { -128 }, num1_2 { 127 }; // hexadecimal: -0x80 to 0x7f
+        unsigned char num1_3 { 0 }, num1_4 { 255 }; // hexadecimal: 0xff
+        std::cout << "Size of char:\t\t\t" << sizeof ( char ) << '\n';
+        std::cout << "Signed char range:\t\t" << static_cast<int>( num1_1 ) << "\t\t\tto\t\t\t" << static_cast<int>( num1_2 ) << '\n';
+        std::cout << "Unsigned char range:\t\t" << static_cast<int>( num1_3 ) << "\t\t\tto\t\t\t" << static_cast<int>( num1_4 ) << "\n\n";
 
-        short num2_1 = { -32578 }; // two bytes: -32768 to 32767
-        unsigned short num2_2 { 65535 }; // two bytes: 0 to 65535
-        std::cout << "size of short: " << sizeof ( short ) << '\n';
-        std::cout << "signed short: " << num2_1 << '\n';
-        std::cout << "unsigned short: " << num2_2 << "\n\n";
+        short num2_1 = { -32768 }, num2_2 = { 32767 }; // hexadecimal: -0x8000 to 0x7fff
+        unsigned short num2_3 { 0 }, num2_4 { 65535 }; // hexadecimal: 0xffff
+        std::cout << "Size of short:\t\t\t" << sizeof ( short ) << '\n';
+        std::cout << "Signed short range:\t\t" << num2_1 << "\t\t\tto\t\t\t" << num2_2 << '\n';
+        std::cout << "Unsigned short range:\t\t" << num2_3 << "\t\t\tto\t\t\t" << num2_4 << "\n\n";
 
-        int num3_1 { -2147483647 }; // four bytes: -2,147,483,647 to 2,147,483,647
-        unsigned int num3_2 { 4294967295 }; // four bytes: 0 to 4,294,967,295
-        std::cout << "size of int: " << sizeof ( int ) << '\n';
-        std::cout << "signed int: " << num3_1 << '\n';
-        std::cout << "unsigned int: " << num3_2 << "\n\n";
+        int num3_1 { -2147483647 }, num3_2 { 2147483647 }; // hexadecimal: -0x7fffffff to 0x7fffffff
+        unsigned int num3_3 { 0 }, num3_4 { 4294967295 }; // hexadecimal: 0xffffffff
+        std::cout << "Size of int:\t\t\t" << sizeof ( int ) << '\n';
+        std::cout << "Signed int range:\t\t" << num3_1 << "\t\tto\t\t\t" << num3_2 << '\n';
+        std::cout << "Unsigned int:\t\t\t" << num3_3 << "\t\t\tto\t\t\t" << num3_4 << "\n\n";
 
         long num4_1 { -2147483647 }; // four bytes: -2,147,483,647 to 2,147,483,647
         unsigned long num4_2 { 4294967295 }; // four bytes: 0 to 4,294,967,295

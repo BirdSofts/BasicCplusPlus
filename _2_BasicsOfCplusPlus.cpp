@@ -23,7 +23,6 @@ void _2_1_StructureOfaProgram ()
         // the main function of this program is in LearningCplusPlus.cpp file.
         // the main function is the only function which called automatically.
         // other functions can be executed if they are called directly or indirectly from main function.
-
         ColourCouter ( "~~~~~ Structure of a program:\n", F_bBLUE );
         ColourCouter ( "Programming needs patience and practical practice.\n\n", F_YELLOW );
 
@@ -32,7 +31,7 @@ void _2_1_StructureOfaProgram ()
         /* block
         comment*/
 
-        std::cout << "Hello World! "; // inserting an output, '/n' is the newline character
+        std::cout << "Hello World! "; // inserting an output, '/n' is the newline character.
         std::cout << "I'm a C++ program.\n\n";
 
         //using namespace std; // make writing code simple but by not using it name collision can be avoided.
@@ -118,7 +117,6 @@ void _2_3_FundamentalTypesAndDeduction ()
         // ----------------------------------------------------------------
         // wchar_t      Can represent the largest supported character set.
         // ----------------------------------------------------------------
-
         ColourCouter ( "----- Fundamental types: Character types\n", F_bBLUE );
         ColourCouter ( "Character types can represents a single character and are in different sizes.\n\n", F_YELLOW );
 
@@ -163,91 +161,122 @@ void _2_3_FundamentalTypesAndDeduction ()
         // ------------------------------------------------------------------
         // unsigned long long int   "
         // ------------------------------------------------------------------
-
         ColourCouter ( "----- Fundamental types: integer types\n", F_bBLUE );
         ColourCouter ( "Integer types can represent numerical values, are in variety of sizes and can be either signed or unsigned.\n\n", F_YELLOW );
 
         signed char num1_1 { -128 }, num1_2 { 127 }; // hexadecimal: -0x80 to 0x7f
         unsigned char num1_3 { 0 }, num1_4 { 255 }; // hexadecimal: 0xff
         std::cout << "Size of char:\t\t\t" << sizeof ( char ) << '\n';
-        std::cout << "Signed char range:\t\t" << static_cast<int>( num1_1 ) << "\t\t\tto\t\t\t" << static_cast<int>( num1_2 ) << '\n';
-        std::cout << "Unsigned char range:\t\t" << static_cast<int>( num1_3 ) << "\t\t\tto\t\t\t" << static_cast<int>( num1_4 ) << "\n\n";
+        std::cout << "Signed char range:\t\t" << static_cast<int>( num1_1 ) << "\t\t\tto\t" << static_cast<int>( num1_2 ) << '\n';
+        std::cout << "Unsigned char range:\t\t" << static_cast<int>( num1_3 ) << "\t\t\tto\t" << static_cast<int>( num1_4 ) << "\n\n";
 
         short num2_1 = { -32768 }, num2_2 = { 32767 }; // hexadecimal: -0x8000 to 0x7fff
         unsigned short num2_3 { 0 }, num2_4 { 65535 }; // hexadecimal: 0xffff
         std::cout << "Size of short:\t\t\t" << sizeof ( short ) << '\n';
-        std::cout << "Signed short range:\t\t" << num2_1 << "\t\t\tto\t\t\t" << num2_2 << '\n';
-        std::cout << "Unsigned short range:\t\t" << num2_3 << "\t\t\tto\t\t\t" << num2_4 << "\n\n";
+        std::cout << "Signed short range:\t\t" << num2_1 << "\t\t\tto\t" << num2_2 << '\n';
+        std::cout << "Unsigned short range:\t\t" << num2_3 << "\t\t\tto\t" << num2_4 << "\n\n";
 
         int num3_1 { -2147483647 }, num3_2 { 2147483647 }; // hexadecimal: -0x7fffffff to 0x7fffffff
         unsigned int num3_3 { 0 }, num3_4 { 4294967295 }; // hexadecimal: 0xffffffff
         std::cout << "Size of int:\t\t\t" << sizeof ( int ) << '\n';
-        std::cout << "Signed int range:\t\t" << num3_1 << "\t\tto\t\t\t" << num3_2 << '\n';
-        std::cout << "Unsigned int:\t\t\t" << num3_3 << "\t\t\tto\t\t\t" << num3_4 << "\n\n";
+        std::cout << "Signed int range:\t\t" << num3_1 << "\t\tto\t" << num3_2 << '\n';
+        std::cout << "Unsigned int:\t\t\t" << num3_3 << "\t\t\tto\t" << num3_4 << "\n\n";
 
-        long num4_1 { -2147483647 }; // four bytes: -2,147,483,647 to 2,147,483,647
-        unsigned long num4_2 { 4294967295 }; // four bytes: 0 to 4,294,967,295
-        std::cout << "size of long: " << sizeof ( int ) << '\n';
-        std::cout << "signed long: " << num4_1 << '\n';
-        std::cout << "unsigned long: " << num4_2 << "\n\n";
+        long num4_1 { -2147483647 }, num4_2 { 2147483647 }; // hexadecimal: -0x7fffffff to 0x7fffffff
+        unsigned int num4_3 { 0 }, num4_4 { 4294967295 }; // hexadecimal: 0xffffffff
+        std::cout << "Size of long:\t\t\t" << sizeof ( long ) << '\n';
+        std::cout << "Signed long range:\t\t" << num4_1 << "\t\tto\t" << num4_2 << '\n';
+        std::cout << "Unsigned long:\t\t\t" << num4_3 << "\t\t\tto\t" << num4_4 << "\n\n";
 
-        long long num5_1 { -9223372036854775807 }; // eight bytes: -9,223,372,036,854,775,807 to 9,223,372,036,854,775,807
-        unsigned long long num5_2 { 18446744073709551615 }; // eight bytes: 0 to 18,446,744,073,709,551,615
-        std::cout << "size of long long: " << sizeof ( long long ) << '\n';
-        std::cout << "signed long long: " << num5_1 << '\n';
-        std::cout << "unsigned long long: " << num5_2 << "\n\n";
-
-        //ColourCouter ( "", F_bBLUE );
-        //ColourCouter ( "", F_YELLOW );
-
-
-        //ColourCouter ( "", F_bYELLOW );
-        //ColourCouter ( "", F_bCYAN );
-
-
-        //! - in addition:
-
+        long long num5_1 { -9223372036854775807 }, num5_2 { 9223372036854775807 }; // hexadecimal: -0x7fffffffffffffff to 0x7fffffffffffffff
+        unsigned long long num5_3 { 0 }, num5_4 { 18446744073709551615 }; // // hexadecimal: -0xffffffffffffffff
+        std::cout << "Size of long long:\t\t" << sizeof ( long long ) << '\n';
+        std::cout << "Signed long long range:\t\t" << num5_1 << "\tto\t" << num5_2 << '\n';
+        std::cout << "Unsigned long long:\t\t" << num5_3 << "\t\t\tto\t" << num5_4 << "\n\n";
 
         //! ####################################################################
         //! ----- fundamental types: floats
+        // ------------------------------------------------------------------
+        // Type name                Size / Precision description
+        // ------------------------------------------------------------------
+        // float                    (7 digits)
+        // ------------------------------------------------------------------
+        // double                   precision not less than float (15 digits)
+        // ------------------------------------------------------------------
+        // long double              precision not less than double (15 digits)
+        // ------------------------------------------------------------------
         ColourCouter ( "----- Fundamental types: floats\n\n", F_bBLUE );
+        ColourCouter ( "Depending on the kind of the floating-point of these types, they can represent real values with different levels of precision.\n\n", F_YELLOW );
 
-        float num6 { static_cast<float> ( 3.4e-38 ) }; // four bytes: 3.4E +/- 38 (7 digits)
-        std::cout << "size of float: " << sizeof ( float ) << '\n';
-        std::cout << "float: " << num6 << '\n';
+        float num6_1 { 1.8e-38 }, num6_2 { 3.4e+38 };
+        std::cout << "Size of float:\t\t" << sizeof ( float ) << '\n';
+        std::cout << "Float range:\t\t" << num6_1 << "\t\tto\t" << num6_2 << '\n';
 
-        double num7 { 1.7e-308 };  // eight bytes: 1.7E +/- 308 (15 digits)
-        std::cout << "size of double: " << sizeof ( double ) << '\n';
-        std::cout << "double: " << num7 << '\n';
+        double num7_1 { 2.2e-308 }, num7_2 { 1.79e+308 };
+        std::cout << "Size of double:\t\t" << sizeof ( double ) << '\n';
+        std::cout << "Double rang:\t\t" << num7_1 << "\tto\t" << num7_2 << '\n';
 
-        long double num8 { 1.7e-308 };  // same as double
-        std::cout << "size of long double: " << sizeof ( long double ) << '\n';
-        std::cout << "long double: " << num8 << "\n\n";
+        long double num8_1 { 2.2e-308 }, num8_2 { 1.79e+308 };
+        std::cout << "Size of long double:\t" << sizeof ( long double ) << '\n';
+        std::cout << "Long double range:\t" << num8_1 << "\tto\t" << num8_2 << "\n\n";
         // check the link for more details on float: http://de.cppreference.com/w/cpp/language/types
+
+        //! - in addition:
+        // since C++ has a lot different compilers, when it comes to types C++ can give these guaranties:
+        // char size 1 byte [-128...127]
+        // short is smaller than int, which is smaller than long and long long is the largest one.
+        // long long, which is a GCC extension, has found his way into C++ standard.
 
         //! ####################################################################
         //! ----- fundamental other types: bool, void and nullptr
-        // bool is boolean type, a logical type that can store 'true' or 'false' as values
+        // ------------------------------------------------------------------
+        // Type name                Size / Precision description
+        // ------------------------------------------------------------------
+        // bool                     one byte
+        // ------------------------------------------------------------------
+        // void                     no storage
+        // ------------------------------------------------------------------
+        // decltype (nullptr)       void pointer
+        // ------------------------------------------------------------------
         ColourCouter ( "----- Fundamental other types: bool, void and nullptr\n\n", F_bBLUE );
+        ColourCouter ( "The in C++ known as bool Boolean type, is a logical type and represents 'true' or 'false' as values.\n\n", F_YELLOW );
 
-        bool bool_var { true };
-        std::cout << "size of bool: " << sizeof ( bool ) << '\n';
-        std::cout << "bool: " << bool_var << "\n\n";
+        bool bool_var_1 { true }, bool_var_2 { false };
+        std::cout << "Size of bool:\t\t" << sizeof ( bool ) << '\n';
+        std::cout << "Two bool variables:\t" << bool_var_1 << "\tand\t" << bool_var_2 << "\n\n";
 
-        // void typed pointers identify the lack of type, used in function return types, function parameters and universal pointers
-        // they can't point to constant and volatile variables
-        // in fact there is no variable of type void.
-        // they can be dereferenced only by casting to another type
-        // they can be converted to other types of data pointer
-        // they can point to a function but not to a class member
-        // more on void and nullptr will be mentioned in pointer section
-        void *void_poi;
-        int *int_poi;
+        //! - in addition:
+        // additional reference: https://docs.microsoft.com/en-us/cpp/cpp/void-cpp?view=vs-2017
+        // void identifies the lack of type.
+        // use: in function return types, function parameters, universal pointers
+        // there is no constant or volatile variables of type void.
+        //! - in addition:
+        // some basic knowledge on void (universal) pointers:
+        // they can be dereferenced only by casting to another type.
+        // they can be converted to other types of data pointer.
+        // they can point to a function but not to a class member.
+        //! - in addition:
+        // A null pointer (nullptr) is a value that any pointer can take to represent that it points to nowhere.
+        // more on void and nullptr will be mentioned in further sections.
+        ColourCouter ( "The lack of type is identified with 'void' keyword.\n", F_YELLOW );
+        ColourCouter ( "Any pointer can point to nowhere by taking nullptr as its value.\n\n", F_YELLOW );
+        void *void_poi; // uninitialized: can not be used
+        int *int_poi; // uninitialized: can not be used
+        int *nullptr_poi { nullptr }; // initialized to point to nowhere! :)
+        std::cout << "The address of a pointer initialized with nullptr:\t\t\t\t" << nullptr_poi<< '\n';
         int int_i { 22 };
         void_poi = &int_i;
+        std::cout << "Variable address -pointed to by a void pointer-:\t\t\t\t" << void_poi << '\n';
         int_poi = (int*) void_poi; // casting operation: optional in C, required in C++
-        nullptr; // is a spacial type of pointer
+        std::cout << "Variable address -pointed to by a int pointer- -cast from void pointer-:\t" << int_poi << "\n\n";
 
+        //ColourCouter ( "", F_bBLUE );
+        //ColourCouter ( "", F_YELLOW );
+        //ColourCouter ( "", F_bYELLOW );
+        //ColourCouter ( "", F_bCYAN );
+        /*
+
+        */
         //! ####################################################################
         //! ----- strings:
         // the class string is one of the compound types in C++.

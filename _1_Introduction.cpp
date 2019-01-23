@@ -3,7 +3,7 @@
 /// _1_Introduction.cpp
 /// </summary>
 /// <created>ʆϒʅ,20.12.2018</created>
-/// <changed>ʆϒʅ,19.01.2019</changed>
+/// <changed>ʆϒʅ,24.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -22,7 +22,7 @@ void _1_1_Introduction ()
         // over the years the evolution of the C++ language was constant.
         // therefore having a compiler with the ability to support the most recent feature is self-explanatory.
         ColourCouter ( "~~~~~ C++ Language:\n", F_bBLUE );
-        ColourCouter ( "The constant evolution of the C++ language over the years, make the use of a compiler with support for the most recent feature self-explanatory.\n", F_YELLOW );
+        ColourCouter ( "The constant evolution of the C++ language over the years, make the use of a compiler with support for the most recent feature self-explanatory.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- C++ compilers:
@@ -30,14 +30,14 @@ void _1_1_Introduction ()
         // C++ language is designed to be a compiled language, therefore its code generally get translated into machine language, which results to a highly efficient program.
         // for this purpose, a set of tools, known as development toolchain, are needed, whose core are a compiler and its linker.
         ColourCouter ( "----- C++ Compilers:\n", F_bBLUE );
-        ColourCouter ( "The compilers job are to rewrite the code in higher level language into machine language, which have been built into various programming applications\n", F_YELLOW );
+        ColourCouter ( "The compilers job are to rewrite the code in higher level language into machine language, which have been built into various programming applications\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- console programs:
         // the fact of easy interaction, simple implementation and identical behaviour of console programs across all platforms make them very useful to learn the basics of a programming language.
         // the programmer's decision to use a particular tool defines the way, in which a console program get compiled.
         ColourCouter ( "----- Console Programs:\n", F_bBLUE );
-        ColourCouter ( "They are programs that use characters to communicate with user and their environment i.e. printer, keyboard etc.\n", F_YELLOW );
+        ColourCouter ( "They are programs that use characters to communicate with user and their environment i.e. printer, keyboard etc.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- IDE:

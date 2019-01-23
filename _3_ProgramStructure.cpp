@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,17.01.2019</changed>
+/// <changed>ʆϒʅ,24.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -26,7 +26,7 @@ void ControlStructures ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -345,7 +345,7 @@ void Functions ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -584,7 +584,7 @@ void OverloadsAndTemplates ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -731,7 +731,7 @@ void NameVisibility ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 

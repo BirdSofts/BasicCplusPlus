@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,20.01.2019</changed>
+/// <changed>ʆϒʅ,24.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -67,7 +67,7 @@ void _2_2_VariablesTypesAndIdentifiers ()
         // more info on identifiers: http://www.cplusplus.com/doc/tutorial/variables/
         // std::endl: flushes the stream and prints the newline character
         ColourCouter ( "----- Definition and initialization in different C++ revisions:\n", F_bBLUE );
-        ColourCouter ( "A variable must first be defined and after or in the moment of definition, it can be initialized.\n", F_YELLOW );
+        ColourCouter ( "A variable must first be defined and after or in the moment of definition, it can be initialized.\n\n", F_YELLOW );
         int a1 = 0; // C-like initialization
         int a2 ( 0 ); // constructor initialization (C++ language)
         std::cout << "Initialized with C-Like initialization:\t\t" << "a1: " << a1 << "\n";
@@ -103,6 +103,15 @@ void _2_3_FundamentalTypesAndDeduction ()
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
         ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ~~~~~ fundamental types and deduction
+        // the zeros and ones stored in memory which represent variables need to be interpreted.
+        // for this purpose the program needs to be aware of the kind of the stored data.
+        // implementations of basic types, supported by most systems, directly into the language, represent basic storage units known as fundamental types.
+        ColourCouter ( "~~~~~ Fundamental types and deduction:\n", F_bBLUE );
+        ColourCouter ( "Fundamental types are the basics types supported by most systems.\n", F_YELLOW );
+        ColourCouter ( "Deduction introduce the ability of the compiler, with which the type of an unknown variable can be identified.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- fundamental types: characters
@@ -205,7 +214,7 @@ void _2_3_FundamentalTypesAndDeduction ()
         // ------------------------------------------------------------------
         // long double              precision not less than double (15 digits)
         // ------------------------------------------------------------------
-        ColourCouter ( "----- Fundamental types: floats\n\n", F_bBLUE );
+        ColourCouter ( "----- Fundamental types: floats\n", F_bBLUE );
         ColourCouter ( "Depending on the kind of the floating-point of these types, they can represent real values with different levels of precision.\n\n", F_YELLOW );
 
         float num6_1 { 1.8e-38 }, num6_2 { 3.4e+38 };
@@ -238,7 +247,7 @@ void _2_3_FundamentalTypesAndDeduction ()
         // ------------------------------------------------------------------
         // decltype (nullptr)       void pointer
         // ------------------------------------------------------------------
-        ColourCouter ( "----- Fundamental other types: bool, void and nullptr\n\n", F_bBLUE );
+        ColourCouter ( "----- Fundamental other types: bool, void and nullptr\n", F_bBLUE );
         ColourCouter ( "The in C++ known as bool Boolean type, is a logical type and represents 'true' or 'false' as values.\n\n", F_YELLOW );
 
         bool bool_var_1 { true }, bool_var_2 { false };
@@ -263,46 +272,37 @@ void _2_3_FundamentalTypesAndDeduction ()
         void *void_poi; // uninitialized: can not be used
         int *int_poi; // uninitialized: can not be used
         int *nullptr_poi { nullptr }; // initialized to point to nowhere! :)
-        std::cout << "The address of a pointer initialized with nullptr:\t\t\t\t" << nullptr_poi<< '\n';
+        std::cout << "The address of a pointer initialized with nullptr:\t\t\t\t" << nullptr_poi << '\n';
         int int_i { 22 };
         void_poi = &int_i;
         std::cout << "Variable address -pointed to by a void pointer-:\t\t\t\t" << void_poi << '\n';
         int_poi = (int*) void_poi; // casting operation: optional in C, required in C++
         std::cout << "Variable address -pointed to by a int pointer- -cast from void pointer-:\t" << int_poi << "\n\n";
 
-        //ColourCouter ( "", F_bBLUE );
-        //ColourCouter ( "", F_YELLOW );
-        //ColourCouter ( "", F_bYELLOW );
-        //ColourCouter ( "", F_bCYAN );
-        /*
-
-        */
         //! ####################################################################
         //! ----- strings:
         // the class string is one of the compound types in C++.
         // header file is <string>.
-        ColourCouter ( "----- Strings:\n\n", F_bBLUE );
-
-        std::cout << "One of the compound types in C++ is the class string." << std::endl;
+        ColourCouter ( "----- Strings:\n", F_bBLUE );
+        ColourCouter ( "One of the compound types in C++ is the class string.\n\n", F_YELLOW );
         std::string str1 = { "This is the initial string." }; // initialization in C++ standard form.
-        std::cout << "string: " << str1 << std::endl << std::endl;
-        // more details on standard C++ strings: http://www.cplusplus.com/string
+        std::cout << "The String:\t" << str1 << "\n\n";
 
+        // more details on standard C++ strings: http://www.cplusplus.com/string
         // the properties of fundamental types in particular systems and compiler implementations: http://www.cplusplus.com/%3Climits%3E
         // types of specific sizes: http://www.cplusplus.com/%3Ccstdint%3E
 
         //! ####################################################################
         //! ----- deduction of type:
         // auto and decltype shall mainly be used when the type can't be determined or for improving the readability. the example below is non of them.
-        ColourCouter ( "----- Deduction of type:\n\n", F_bBLUE );
-
+        ColourCouter ( "----- Deduction of type:\n", F_bBLUE );
+        ColourCouter ( "Uses: determination of types, improving the readability.\n\n", F_YELLOW );
         int int_var { 0 };
         auto aut_var { int_var }; // same as: int aut_var{ int_var }
         decltype( int_var ) dec_var { int_var }; // same as: int dec_var { int_var }
-        std::cout << "Normal declaration and initialization: " << int_var << std::endl;
-        std::cout << "Using auto for declaration: " << aut_var << std::endl;
-        std::cout << "Using decltype for declaration:" << dec_var << std::endl << std::endl;
-
+        std::cout << "Normal declaration and initialization:\t" << int_var << std::endl;
+        std::cout << "Using auto to deduct the type:\t\t" << aut_var << std::endl;
+        std::cout << "Using decltype to deduct the type:\t" << dec_var << std::endl << std::endl;
     }
     catch ( const std::exception& )
     {
@@ -320,49 +320,65 @@ void _2_4_ConstantNumerals ()
 
         //! ####################################################################
         //! ~~~~~ constants numerals:
-        // first kind of the most obvious constants are numerals, which can be be of types integer or floating-point.
+        // first kind of the most obvious constants are numerals, which can be of types integer or floating-point.
         // like variables numerals have types.
         // in the statement "i=5;" 5 is a numeral constant.
-        std::cout << "~~~~~ Constants numerals:\n";
-        std::cout << "One of the most obvious kind of constants are numerals.\n";
+        ColourCouter ( "~~~~~ Constants numerals:\n", F_bBLUE );
+        ColourCouter ( "One of the most obvious kind of constants are numerals.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- integer constants:
         // C++ allows the use of numbers in octal or hexadecimal base
-        std::cout << "\n----- Integer constants: \n";
+        ColourCouter ( "----- Integer constants:\n", F_bBLUE );
+        ColourCouter ( "Fixed values of type integer.\n\n", F_YELLOW );
         const int con1 { 75 }; // decimal
         const int con2 { 0113 }; // octal (preceded with 0)
         const int con3 { 0x4b }; // hexadecimal (preceded with 0x)
-        std::cout << "Defining integer constant (decimal): " << con1 << '\n';
-        std::cout << "Defining integer constant (octal): " << con2 << '\n';
-        std::cout << "Defining integer constant (hexadecimal): " << con3 << '\n';
+        std::cout << "Integer constant (initialized in decimal base):\t\t" << con1 << '\n';
+        std::cout << "Integer constant (initialized in octal base):\t\t" << con2 << '\n';
+        std::cout << "Integer constant (initialized in hexadecimal base):\t" << con3 << "\n\n";
 
         //! - in addition:
-        // by default integer literals are "int" but it can be modified by appending certain suffixes which aren't case-sensitive.
-        const int con4 { 75u }; // unsigned
-        const int con5 { 0113lU }; // unsigned long
-        const int con6 { 0x4bll }; // long long
-        const int con7 { 0X4buLl }; // unsigned long long
-        std::cout << "Modification of type (to unsigned): " << con4 << '\n';
-        std::cout << "Modification of type (to unsigned long): " << con5 << '\n';
-        std::cout << "Modification of type (to long long): " << con6 << '\n';
-        std::cout << "Modification of type (to unsigned long long): " << con7 << "\n";
+        // by default integer literals are "int" but they can be modified by appending certain suffixes.
+        // modification of types: (these suffixes aren't case-sensitiv.)
+        // -------------------
+        // u        unsigned
+        // -------------------
+        // l        long
+        // -------------------
+        // ll       long long
+        // -------------------
+        ColourCouter ( "Modifying integer constant by using suffixes:\n\n", F_YELLOW );
+        const int con4 { 75u };
+        const int con5 { 0113lU };
+        const int con6 { 0x4blL };
+        const int con7 { 0X4buLl };
+        std::cout << "Modified to type unsigned:\t\t" << con4 << '\n';
+        std::cout << "Modified to type unsigned long:\t\t" << con5 << '\n';
+        std::cout << "Modified to type long long:\t\t" << con6 << '\n';
+        std::cout << "Modified to type unsigned long long:\t" << con7 << "\n\n";
 
         //! ####################################################################
         //! ----- floating point constants:
         // expressing real values which can include either decimal point or "e" character
         // "e" character stands for exponents, isn't case-sensitiv.
         // expresses "by ten at the Xth height" where "X" is an integer value that follows "e".
-        // modification of types: the suffixes used below, aren't case-sensitiv.
-        std::cout << "\n----- Floating point constants: \n";
-        const double con8 { 3.14159f }; // PI ("f" suffix stand for float)
-        const float con9 { static_cast<float>( 6.02e23L ) }; // the number of Avogadro ("l" suffix make long double)
-        const double con10 { 1.6E-19 }; // electric charge of an electron
-        const float con11 { 3.0 }; // a float number expressed in decimal point
-        std::cout << "PI number: " << con8 << '\n';
-        std::cout << "Avogadro number: " << con9 << '\n';
-        std::cout << "Electric charge number of an electron: " << con10 << '\n';
-        std::cout << "A float number: " << con11 << "\n";
+        // modification of types: (these suffixes aren't case-sensitiv.)
+        // ---------------------
+        // f        float
+        // ---------------------
+        // l        long double
+        // ---------------------
+        ColourCouter ( "----- Floating point constants:\n", F_bBLUE );
+        ColourCouter ( "Fixed values of type floating point.\n\n", F_YELLOW );
+        const double con8 { 3.14159f }; // the PI number
+        const float con9 { static_cast<float>( 6.02e23L ) }; // the number of Avogadro
+        const double con10 { 1.6E-19 }; // the number of electric charge of an electron
+        const float con11 { 3.0 };
+        std::cout << "The PI number:\t\t\t\t\t" << con8 << '\n';
+        std::cout << "The Avogadro number:\t\t\t\t" << con9 << '\n';
+        std::cout << "The number of electric charge of an electron:\t" << con10 << '\n';
+        std::cout << "A float number:\t\t\t\t\t" << con11 << "\n\n";
     }
     catch ( const std::exception& )
     {
@@ -376,21 +392,28 @@ void _2_5_ConstantLiterals ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ constant literals:
         // second kind of the most obvious constants are literals, which can be of types character or string
         // this kind of constants are enclosed in quotes.
         // ' for characters and "  for strings
-        std::cout << "\n~~~~~ Constant literals: \n";
-        std::cout << "Another of the most obvious kind of constants are literals.\n";
+        ColourCouter ( "~~~~~ Constant literals:\n", F_bBLUE );
+        ColourCouter ( "Another of the most obvious kind of constants are literals.\n\n", F_YELLOW );
 
-        std::cout << "\n----- Some character or string constants: \n";
+        ColourCouter ( "Some constant characters and strings:\n\n", F_bYELLOW );
         const char con12 { 'Z' };
         const std::string con13 = { "How do you do?" };
-        std::cout << "'Z' character: " << con12 << '\n';
-        std::cout << "A string: " << con13 << "\n\n";
+        std::cout << "'Z' character:\t" << con12 << '\n';
+        std::cout << "A string:\t" << con13 << "\n\n";
+        //ColourCouter ( "", F_bBLUE );
+        //ColourCouter ( "", F_YELLOW );
+        //ColourCouter ( "", F_bYELLOW );
+        //ColourCouter ( "", F_bCYAN );
+        /*
+
+        */
 
         //! - in addition:
         // character and string literals can be used to represent special characters,
@@ -452,7 +475,7 @@ void _2_6_OtherConstantLiterals ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ other constant literals:
@@ -508,7 +531,7 @@ void _2_7_ArithmeticOperators ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ mathematical operators:
@@ -586,7 +609,7 @@ void _2_8_LagicalOperators ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ boolean operators:
@@ -678,7 +701,7 @@ void _2_9_OtherOperators ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ other operators:
@@ -736,7 +759,7 @@ void _2_10_PrecedenceOfOperators ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ precedence of operators:
@@ -809,7 +832,7 @@ void _2_11_BasicInputOutput ()
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
+        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 

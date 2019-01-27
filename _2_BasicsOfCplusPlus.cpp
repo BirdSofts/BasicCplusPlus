@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,26.01.2019</changed>
+/// <changed>ʆϒʅ,27.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -498,14 +498,17 @@ c0de"           " paRTed"  " And "
         // R        string is a raw string
         // ----------------------------------
         // in a raw string no special character is going to be identified
-        // format: R"sequence(string)sequence"
-        // note: in the format above, the both sequences must be alike, both are going to be ignored and both can be anything.
+        //? format:
+        // R"sequence(string)sequence"
+        // note: in the format above, the both delimiting sequences must be alike,
+        // both are going to be ignored and both can be anything,
+        // therefore what lies between parenthesis is the content of the string.
         // if needed the combinations of raw prefix and other ones (u, U, L and u8) are a possibility.
         ColourCouter ( "All possible modification to string literals:\n", F_bYELLOW );
         const std::string con22 { u8"Z\t!\tz" };
-        const std::string con23 { u8R"aRawString(--\"'/(^&@#$&!) AnY likeable StrIng (^&@#$&!)\'"/--)aRawString" };
-        std::cout << "Modifying the type of literal string to UTF_8:\t" << con22 << "\n";
-        std::cout << "A raw string encoded in UTF_8:\t\t\t" << con23 << "\n\n";
+        const std::string con23 { u8R"aRawString(--\"' (^_^) AnY likeable StrIng (^.^) '"/--)aRawString" };
+        std::cout << "Modifying the type of literal string to UTF_8:\t\t" << con22 << "\n";
+        std::cout << "A raw string encoded in UTF_8:\t\t\t\t" << con23 << "\n\n";
     }
     catch ( const std::exception& )
     {
@@ -523,50 +526,50 @@ void _2_6_OtherConstantLiterals ()
 
         //! ####################################################################
         //! ~~~~~ other constant literals:
-        // in C++ there are 3 more keyword literals. true, false and nullptr.
-          //Numerals and literals are the most obvious kind of constants. they can be integer, floating-point, characters, strings, boolean, pointers and user-defined.
-        // second kind of the most obvious constants are literals, which can be of types character or string
-        // nullptr is the null pointer value.
-        std::cout << "\n~~~~~ Other constant literals: \n";
+        // third kind of constants is boolean and pointers type, that is keyword literals true, false and nullptr.
+        ColourCouter ( "~~~~~ Other constant literals:\n", F_bBLUE );
+        ColourCouter ( "In C++ language there are three other keyword literals which are 'true', 'false' and 'nullptr'.\n\n", F_YELLOW );
         const bool con24 { false };
-        std::cout << "A boolean constant:\t" << con24 << "\n";
+        std::cout << "Boolean constant keyword literal 'false':\t" << con24 << "\n";
         const int *p { nullptr };
-        /*
-
-        */
-        //ColourCouter ( "", F_bBLUE );
-        //ColourCouter ( "", F_YELLOW );
-        //ColourCouter ( "", F_bYELLOW );
-        //ColourCouter ( "", F_bCYAN );
-
-        //! - in addition:
+        std::cout << "Pointer constant keyword literal 'nullptr':\t" << p << "\n\n";
 
         //! ####################################################################
-        //! ----- typed constant expressions:
-        // for convenience sake, since some literals will often be repeated in source code. an example:
-        std::cout << "\n----- Typed constant expressions: \n";
+        //! ----- typed constant expressions (programmer defined):
+        // for convenience sake, since some literals may often be repeated in source code.
+        // an example:
+        ColourCouter ( "----- Typed constant expressions:\n", F_bBLUE );
+        ColourCouter ( "To avoid the often repetition of literals in the source code.\n\n", F_YELLOW );
         const char tab { '\t' };
         const char nline { '\n' };
         const double pi { 3.1415926 };
         double r { 5.0 }, circle;
         circle = 2 * r * pi;
-        std::cout << "Example of using constant" << nline << tab << circle << nline;
+        ColourCouter ( "Using typed constants:\n", F_bYELLOW );
+        std::cout << "The circle circumference:" << tab << "2 * " << r << " * " << pi << " =  " << circle << nline << nline;
+
 
         //! ####################################################################
         //! ----- preprocessor definitions (#define):
         // another way to define constant values
         //? syntax:
         // #define identifier replacement
-        // the occurrences of identifier will be interpreted to replacement and it can be any set of characters till the end of the line.
-        // the replacement happens before compiling by the preprocessor so it is a blind replacement and there is no verification of the involved syntax.
-        std::cout << "\n----- Another mechanism to define constants (preprocessor definitions): \n";
+        // the occurrences of identifier will be interpreted to replacement.
+        // the replacement can be any set of characters till the end of the line.
+        // the replacement happens before compiling by the preprocessor,
+        // therefore the mechanism is a blind replacement and there is no verification of the involved syntax.
+        // #define lines are preprocessor directives,
+        // which means they are single line instructions and unlike statements don't need semicolons.
+        // a semicolon in the replacement will be a part of the sequence,
+        // so it is going to be included in all of the occurrences.
+        ColourCouter ( "----- Preprocessor definitions:\n", F_bBLUE );
+        ColourCouter ( "Another mechanism to define constant values.\n\n", F_YELLOW );
 #define Tab '\t'
 #define Nline '\n'
 #define Pi 3.1415926
         circle = 2 * r * Pi;
-        std::cout << "Defining constant by #define" << Nline << Tab << circle << Nline;
-        // #define lines are preprocessor directives, these are single line instructions and unlike statements don't need semicolons.
-        // a semicolon in the replacement will be a part of the sequence and is going to be included in all of the occurrences.
+        ColourCouter ( "Using preprocessor definitions:\n", F_bYELLOW );
+        std::cout << "The circle circumference:" << Tab << "2 * " << r << " * " << Pi << " =  " << circle << Nline << Nline;
     }
     catch ( const std::exception& )
     {
@@ -575,7 +578,7 @@ void _2_6_OtherConstantLiterals ()
 }
 
 
-// can be used from this point, in which they are defined:
+// scope start point of these constants
 const char tab { '\t' };
 const char nline { '\n' };
 int x { 0 }, y { 2 }, z { 4 };
@@ -589,8 +592,8 @@ void _2_7_ArithmeticOperators ()
         //! ####################################################################
         //! ~~~~~ mathematical operators:
         // mathematical operators will be used to have mathematical operations on operands.
-        std::cout << nline << "~~~~~ Mathematical operators:" << nline;
-        std::cout << "Mathematical operators represent the most important and basic mathematical operations." << nline;
+        ColourCouter ( "~~~~~ Mathematical operators:\n", F_bBLUE );
+        ColourCouter ( "Mathematical operators represent the most important and basic mathematical operations.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- assignment operator (=):
@@ -603,6 +606,14 @@ void _2_7_ArithmeticOperators ()
         std::cout << "x = y;" << nline << "x: " << x << tab << "y: " << y << nline;
         x = y = 3; // this statement is valid in C++
         std::cout << "x = y = 3;" << nline << "x: " << x << tab << "y: " << y << nline << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "", F_bYELLOW );
+        //ColourCouter ( "", F_bCYAN );
+        //! - in addition:
 
         //! - in addition:
         // assignment operation can be evaluated meaning the assignment itself has a value 

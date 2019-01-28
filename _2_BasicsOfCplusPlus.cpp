@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,27.01.2019</changed>
+/// <changed>ʆϒʅ,29.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -581,13 +581,14 @@ void _2_6_OtherConstantLiterals ()
 // scope start point of these constants
 const char tab { '\t' };
 const char nline { '\n' };
-int x { 0 }, y { 2 }, z { 4 };
 void _2_7_ArithmeticOperators ()
 {
     try
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
         ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+
+        int x { 0 }, y { 2 }, z { 4 };
 
         //! ####################################################################
         //! ~~~~~ mathematical operators:
@@ -597,69 +598,68 @@ void _2_7_ArithmeticOperators ()
 
         //! ####################################################################
         //! ----- assignment operator (=):
-        // the assignment operation always takes place from right to left.
-        std::cout << nline << "----- Assignment operator (=):" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << nline;
+        // the assignment operations always takes place from right to left.
+        ColourCouter ( "----- Assignment operator (=):\n", F_bBLUE );
+        ColourCouter ( "The most simple mathematical operation in C++ is represented by assignment.\n\n", F_YELLOW );
+        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
         x = 5;
-        std::cout << "x = 5;" << nline << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "The values after first assignment:" << tab << "x: " << x << tab << "y: " << y << nline;
         x = y;
-        std::cout << "x = y;" << nline << "x: " << x << tab << "y: " << y << nline;
-        x = y = 3; // this statement is valid in C++
-        std::cout << "x = y = 3;" << nline << "x: " << x << tab << "y: " << y << nline << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "", F_bYELLOW );
-        //ColourCouter ( "", F_bCYAN );
-        //! - in addition:
+        std::cout << "The values after second assignment:" << tab << "x: " << x << tab << "y: " << y << nline;
+        x = y = 3; // valid in C++
+        std::cout << "The values after third assignment:" << tab << "x: " << x << tab << "y: " << y << nline << nline;
 
         //! - in addition:
-        // assignment operation can be evaluated meaning the assignment itself has a value 
-        // in fundamental types it is the value that assigned in the operation.
-        std::cout << "The value of assignment operation:" << nline;
+        // assignment operation can be evaluated, this means the assignment itself has a value,
+        // which in fundamental types is the value that assigned in the operation.
+        ColourCouter ( "The value of assignment operation:\n", F_bYELLOW );
         y = 6 + ( x = 10 ); // y is 6 + the value of another assignment operation
-        std::cout << "y = 6 + (x = 10);" << nline << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "y = 6 + ( x = 10 ):" << tab << "x: " << x << tab << "y: " << y << nline << nline;
 
 
         //! ####################################################################
         //! ----- arithmetic operators (+, -, *, /, %):
         // percentage sign represent modulo which is the remainder of a division.
-        std::cout << nline << "----- Arithmetic operator (+, -, *, /, %):" << nline;
+        ColourCouter ( "----- Arithmetic operator (+, -, *, /, %):\n", F_bBLUE );
+        ColourCouter ( "The most simple arithmetic operators with the most use.\n\n", F_YELLOW );
         x = 40 % 9;
-        std::cout << "x = 40 % 9;" << tab << "x: " << x << nline;
+        std::cout << "The result of modulo operator ( 40 % 9 ):" << tab << "x: " << x << nline << nline;
 
         //! ####################################################################
         //! ----- compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):
         // modification of the current value of the variable by performing an operation on it.
-        std::cout << nline << "----- Compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << nline;
+        ColourCouter ( "----- Compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):\n", F_bBLUE );
+        ColourCouter ( "To introduce expressions that modify the current value while assigning.\n\n", F_YELLOW );
+        std::cout << "Current values are:" << tab << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
         y *= x + 1; // equivalent to y=y*(x+1)
-        std::cout << "y *= x + 1;" << nline << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "The result of expression ( y *= x + 1 ):" << tab << "x: " << x << tab << "y: " << y << nline << nline;
 
         //! ####################################################################
         //! ----- increment and decrement (++, --):
-        // increase or decrease by one the value stored in a variable.
-        std::cout << nline << "----- Increment and decrement (++, --):" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << nline;
-        x++;
-        --y;// equivalent to x+=1 and x=x+1
-        std::cout << "x++;" << tab << "--y;" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << nline << nline;
+        // these operators increase or decrease the value stored in a variable by one.
+        ColourCouter ( "----- Increment and decrement (++, --):\n", F_bBLUE );
+        ColourCouter ( "Increment and decrement of the value by one.\n\n", F_YELLOW );
+        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
+        x++;// equivalent to x+=1 or x=x+1
+        --y;
+        std::cout << "The result of expression ( x++ ):" << tab << "x: " << x << nline;
+        std::cout << "The result of expression ( --y ):" << tab << "y: " << y << nline << nline;
 
         //! - in addition:
         // these operators can be used both as prefix and as suffix.
-        // although simple expressions like ++x and x++ have the same meaning, they result a different value in different expressions.
-        std::cout << "Difference between 'y = ++x' and 'y = x++':" << nline;
+        // although simple expressions like ++x and x++ have the same meaning,
+        // they result a different value in different expressions.
+        ColourCouter ( "Difference between the expressions ( y = ++x ) and ( y = x++ ):\n", F_bYELLOW );
         x = 3;
+        y = 0;
+        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
         y = ++x; // y = x after the increment
-        std::cout << "x=3;" << tab << "y = ++x;" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "The result of expression ( y = ++x ):" << tab << "y: " << y << nline << nline;
         x = 3;
+        y = 0;
+        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
         y = x++; // y = x before the increment
-        std::cout << "x=3;" << tab << "y = x++;" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "The result of expression ( y = x++ ):" << tab << "y: " << y << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -675,33 +675,38 @@ void _2_8_LagicalOperators ()
         ColourCouter ( "-------------------------------------------------------", F_bRED );
         ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
 
+        int x { 0 }, y { 2 }, z { 4 };
+
         //! ####################################################################
         //! ~~~~~ boolean operators:
         // boolean operators will be used to have logical operations on operands.
-        std::cout << nline << "~~~~~ Boolean operators:" << nline;
-        std::cout << "Boolean operators represent the logical operations." << nline;
+        ColourCouter ( "~~~~~ Boolean operators:\n", F_bBLUE );
+        ColourCouter ( "Boolean operators represent the logical operations.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- relational and comparison operators (==, !=, <, > ,<=, >=):
-        // the results of comparison will be boolean. any value can be compared.
-        std::cout << nline << "----- Relational and comparison operators (==, !=, <, > ,<=, >=):" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
-        if ( ( x + 16 ) >= ( y*x ) )
+        // the results of comparison are going be boolean. any value can be compared.
+        ColourCouter ( "----- Relational and comparison operators (==, !=, <, > ,<=, >=):\n", F_bBLUE );
+        ColourCouter ( "To introduce the comparison of expressions.\n\n", F_YELLOW );
+        std::cout << "To be compared values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        if ( ( x + 6 ) >= ( y*x ) )
         {
-            if ( ( z - x ) <= y )
+            if ( ( z - x ) >= y )
             {
-                std::cout << "(z != y): " << ( z != y ) << nline;
-                std::cout << "((z = 2) == x): " << ( ( z = 2 ) == x ) << tab << "z: " << z << nline; // pay attention to the use of = and == operators
+                std::cout << "The result of expression ( z != y ):" << tab << tab << ( z != y ) << nline;
+                // the use of = and == operators needs some attention:
+                std::cout << "The result of expression (( z = 2 ) == x ):" << tab << ( ( z = 2 ) == x ) << tab << "z: " << z << nline << nline;
             }
         }
 
         //! ####################################################################
         //! ----- logical operators (!, &&, ||):
-        // the operator ! (logical NOT) inverts its one operand which will be written to its right.
-        std::cout << nline << "----- Logical operators (!, &&, ||):" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
-        std::cout << "!(x <= y): " << !( x <= y ) << nline;
-        std::cout << "!(y >= z): " << !( y >= z ) << nline;
+        // the operator ! (logical NOT) inverts its one operand, which will be written to its right.
+        ColourCouter ( "----- Logical operators (!, &&, ||):\n", F_bBLUE );
+        ColourCouter ( "Logical operators evaluate their operands to come up with the rational end results.\n\n", F_YELLOW );
+        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        std::cout << "The result of expression !( x <= y ): " << tab << !( x <= y ) << nline;
+        std::cout << "The result of expression !( y >= z ): " << tab << !( y >= z ) << nline << nline;
 
         //! - in addition:
         // short circuit evaluation: C++ only evaluates what is necessary to come up with the combined relational result. this evaluation happens from left to right. 
@@ -721,6 +726,14 @@ void _2_8_LagicalOperators ()
             std::cout << "The right-hand expression of ((x == 4) || (++y > z)) will never be executed:" << nline;
         }
         std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- conditional ternary operator (?):
@@ -766,6 +779,8 @@ void _2_9_OtherOperators ()
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
         ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+
+        int x { 0 }, y { 2 }, z { 4 };
 
         //! ####################################################################
         //! ~~~~~ other operators:
@@ -824,6 +839,8 @@ void _2_10_PrecedenceOfOperators ()
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
         ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+
+        int x { 0 }, y { 2 }, z { 4 };
 
         //! ####################################################################
         //! ~~~~~ precedence of operators:
@@ -897,8 +914,6 @@ void _2_11_BasicInputOutput ()
     {
         ColourCouter ( "-------------------------------------------------------", F_bRED );
         ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ basic input/output:

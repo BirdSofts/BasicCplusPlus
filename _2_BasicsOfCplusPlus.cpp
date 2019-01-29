@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,29.01.2019</changed>
+/// <changed>ʆϒʅ,30.01.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -630,20 +630,20 @@ void _2_7_ArithmeticOperators ()
         // modification of the current value of the variable by performing an operation on it.
         ColourCouter ( "----- Compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):\n", F_bBLUE );
         ColourCouter ( "To introduce expressions that modify the current value while assigning.\n\n", F_YELLOW );
-        std::cout << "Current values are:" << tab << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
         y *= x + 1; // equivalent to y=y*(x+1)
-        std::cout << "The result of expression ( y *= x + 1 ):" << tab << "x: " << x << tab << "y: " << y << nline << nline;
+        std::cout << "Result of expression ( y *= x + 1 ):" << tab << "x: " << x << tab << "y: " << y << nline << nline;
 
         //! ####################################################################
         //! ----- increment and decrement (++, --):
         // these operators increase or decrease the value stored in a variable by one.
         ColourCouter ( "----- Increment and decrement (++, --):\n", F_bBLUE );
         ColourCouter ( "Increment and decrement of the value by one.\n\n", F_YELLOW );
-        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "Current values are:" << tab << tab << "x: " << x << tab << "y: " << y << nline;
         x++;// equivalent to x+=1 or x=x+1
         --y;
-        std::cout << "The result of expression ( x++ ):" << tab << "x: " << x << nline;
-        std::cout << "The result of expression ( --y ):" << tab << "y: " << y << nline << nline;
+        std::cout << "Result of expression ( x++ ):" << tab << "x: " << x << nline;
+        std::cout << "Result of expression ( --y ):" << tab << "y: " << y << nline << nline;
 
         //! - in addition:
         // these operators can be used both as prefix and as suffix.
@@ -652,14 +652,14 @@ void _2_7_ArithmeticOperators ()
         ColourCouter ( "Difference between the expressions ( y = ++x ) and ( y = x++ ):\n", F_bYELLOW );
         x = 3;
         y = 0;
-        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
         y = ++x; // y = x after the increment
-        std::cout << "The result of expression ( y = ++x ):" << tab << "y: " << y << nline << nline;
+        std::cout << "Result of expression ( y = ++x ):" << tab << "y: " << y << nline << nline;
         x = 3;
         y = 0;
-        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
         y = x++; // y = x before the increment
-        std::cout << "The result of expression ( y = x++ ):" << tab << "y: " << y << nline << nline;
+        std::cout << "Result of expression ( y = x++ ):" << tab << "y: " << y << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -688,14 +688,14 @@ void _2_8_LagicalOperators ()
         // the results of comparison are going be boolean. any value can be compared.
         ColourCouter ( "----- Relational and comparison operators (==, !=, <, > ,<=, >=):\n", F_bBLUE );
         ColourCouter ( "To introduce the comparison of expressions.\n\n", F_YELLOW );
-        std::cout << "To be compared values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        std::cout << "To be compared values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         if ( ( x + 6 ) >= ( y*x ) )
         {
             if ( ( z - x ) >= y )
             {
-                std::cout << "The result of expression ( z != y ):" << tab << tab << ( z != y ) << nline;
+                std::cout << "Result of expression ( z != y ):" << tab << tab << ( z != y ) << nline;
                 // the use of = and == operators needs some attention:
-                std::cout << "The result of expression (( z = 2 ) == x ):" << tab << ( ( z = 2 ) == x ) << tab << "z: " << z << nline << nline;
+                std::cout << "Result of expression (( z = 2 ) == x ):" << tab << ( ( z = 2 ) == x ) << tab << "z: " << z << nline << nline;
             }
         }
 
@@ -704,67 +704,66 @@ void _2_8_LagicalOperators ()
         // the operator ! (logical NOT) inverts its one operand, which will be written to its right.
         ColourCouter ( "----- Logical operators (!, &&, ||):\n", F_bBLUE );
         ColourCouter ( "Logical operators evaluate their operands to come up with the rational end results.\n\n", F_YELLOW );
-        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
-        std::cout << "The result of expression !( x <= y ): " << tab << !( x <= y ) << nline;
-        std::cout << "The result of expression !( y >= z ): " << tab << !( y >= z ) << nline << nline;
+        std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        std::cout << "Result of expression !( x <= y ): " << tab << !( x <= y ) << nline;
+        std::cout << "Result of expression !( y >= z ): " << tab << !( y >= z ) << nline << nline;
 
         //! - in addition:
-        // short circuit evaluation: C++ only evaluates what is necessary to come up with the combined relational result. this evaluation happens from left to right. 
+        // short circuit evaluation: C++ only evaluates what is necessary to come up with the combined relational result.
+        // this evaluation happens from left to right.
         // for example in '(x==y)&&(x<=y)' statement, considering the logical AND, if 'x==y' is false, C++ never checks the rest of the statement.
-        std::cout << nline << "Short circuit evaluation in C++:" << nline;
+        ColourCouter ( "Short circuit evaluation in C++:\n", F_bYELLOW );
+        std::cout << "Current values are:" << "\t\t\t\t\t" << "x: " << x << tab << "y: " << y << nline;
         if ( !( x == y ) )
         {
-            std::cout << "((x == y) && (x <= y)): " << ( ( x == y ) && ( x <= y ) ) << nline;
-            std::cout << "((x == y) || (x >= y)): " << ( ( x == y ) || ( x >= y ) ) << nline;
+            std::cout << "Result of expression (( x == y ) && ( x <= y )):" << tab << ( ( x == y ) && ( x <= y ) ) << nline;
+            std::cout << "Result of expression (( x == y ) || ( x >= y )):" << tab << ( ( x == y ) || ( x >= y ) ) << nline << nline;
         }
-        // this is most important when it comes to statements that has side effects
-        // for example altering values in the right-hand expression.
-        std::cout << nline << "Side effects of short circuit evaluation:" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
-        if ( ( x == 4 ) || ( ++y > z ) ) // if x==4 is true, then ++y will never be executed
-        {
-            std::cout << "The right-hand expression of ((x == 4) || (++y > z)) will never be executed:" << nline;
-        }
-        std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
-        /*
 
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
         //! - in addition:
+        // this is most important when it comes to statements that has side effects.
+        // for example altering values in the right-hand expression.
+        ColourCouter ( "Side effects of short circuit evaluation:\n", F_bYELLOW );
+        std::cout << "Current values are:" << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        if ( ( x == 4 ) || ( ++y > z ) ) // if x==4 is true, then ++y will never be executed
+            std::cout << "The increment in (( x == 4 ) || ( ++y > z )) is going to happen if x isn't 4:" << nline;
+        std::cout << "Current values are:" << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline << nline;
 
         //! ####################################################################
         //! ----- conditional ternary operator (?):
         // if its condition is true, the operator will return result1 and otherwise result2.
         //? statement syntax (format):
         // condition ? result1 : result2
-        std::cout << nline << "----- Conditional ternary operator (?):" << nline;
+        ColourCouter ( "----- Conditional ternary operator (?):\n", F_bBLUE );
+        ColourCouter ( "This operator evaluate an expression and returns one value.\n\n", F_YELLOW );
         std::string str_result;
         int int_result;
-        std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        std::cout << "Current values are:" << "\t\t\t\t\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         str_result = ( ( x == y ) && ( x > z ) ) ? "True" : "False";
         int_result = ( ( x == y ) && ( x > z ) ) ? x : z;
-        std::cout << "str_result = ((x == y) && (x > z)) ? \"True\" : \"False\";" << nline << "str_result: " << str_result << nline;
-        std::cout << "int_result = ((x == y) && (x > z)) ? x : z;" << nline << "int_result: " << int_result << nline;
+        std::cout << "Result of expression (( x == y ) && ( x > z )) ? \"True\" : \"False\"; is:" << tab << str_result << nline;
+        std::cout << "Result of expression (( x == y ) && ( x > z )) ? x : z; is:" << "\t\t" << int_result << nline << nline;
 
         //! ####################################################################
         //! ----- comma operator (,):
         // this operator will be used to separate the expressions,
         // when there are more than one expression in a statement that actually suppose to have one.
-        std::cout << nline << "----- Comma operator (,):" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        ColourCouter ( "----- Comma operator (,):\n", F_bBLUE );
+        ColourCouter ( "Separating the expressions is what this operator does.\n\n", F_YELLOW );
+        std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         z = ( x = 2, ++y * x );
-        std::cout << "z = (x = 2, ++y * x);" << tab << "z: " << z << nline;
+        std::cout << "Result of expression (x = 2, ++y * x):" << tab << z << nline << nline;
 
         //! - in addition:
-        // the need of evaluation in expressions with comma operator:
-        // only the most right one will be considered.
-        std::cout << nline << "In evaluation sets only the right expression will be considered:" << nline;
-        std::cout << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
-        z = ( x >= 2, y <= 4, y != 4 ); // the expressions 'x>=2' and 'y<=4' won't be considered
-        std::cout << "z = (x >= 2, y <= 4, y != 4);" << tab << "z: " << z << nline;
+        // in cases that the set of expressions need to be evaluated for a value to be reached,
+        // only the most right expression is considered.
+        ColourCouter ( "Evaluation of a set of expressions and reaching a value:\n", F_bYELLOW );
+        std::cout << "Current values are:" << "\t\t\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        z = ( x = 2, x + 2 ); // in this expression set, first the assignment 'b=2' is considered and then the rest.
+        std::cout << "Result of expression ( x = 2, x + 2 ):" << "\t\t\t" << z << nline << nline;
+        std::cout << "Current values are:" << "\t\t\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        z = ( x >= 2, y <= 4, y != 4 ); // in this expression set, only the last expression 'y!=4' is considered.
+        std::cout << "Result of expression ( x >= 2, y <= 4, y != 4 ):" << tab << z << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -785,8 +784,8 @@ void _2_9_OtherOperators ()
         //! ####################################################################
         //! ~~~~~ other operators:
         // 
-        std::cout << nline << "~~~~~ Other operators:" << nline;
-        std::cout << "Some other important operators." << nline;
+        ColourCouter ( "~~~~~ Other operators:\n", F_bBLUE );
+        ColourCouter ( "The introduction of some other important operators.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- bitwise operators (&, |, ^, ~, <<, >>):
@@ -806,6 +805,14 @@ void _2_9_OtherOperators ()
         std::cout << "result of (~x) " << ( ~x ) << nline;
         std::cout << "result of (x << 2) " << ( x << 2 ) << nline;
         std::cout << "result of (x >> 2) " << ( x >> 2 ) << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- explicit type casting operator:

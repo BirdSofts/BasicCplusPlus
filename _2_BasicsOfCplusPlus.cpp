@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,31.01.2019</changed>
+/// <changed>ʆϒʅ,01.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -990,10 +990,9 @@ void _2_11_BasicInputOutput ()
         // the program continue and the result of process is unknown.
         // a program shall handle invalid values properly, independent from what user enters.
         // for this purpose, latter on the stringstreams will be used to have a better control on user input.
-        ColourCouter ( "The drawback of cin:\n", F_bBLUE );
-        ColourCouter ( "If user inserts an invalid value while entering the input, the result is unknown.\n\n", F_YELLOW );
+        ColourCouter ( "The drawback of cin:\n", F_bYELLOW );
         int int_in;
-        ColourCouter ( "Test: for the next insertion input a character:\n", F_bYELLOW );
+        ColourCouter ( "Test: for the next insertion input a character:\n", F_bCYAN );
         ColourCouter ( "-- If you try it, you probably need to debug the program again. ^_^\n", F_bCYAN );
         std::cout << "Please enter a number as input:" << tab << tab;
         std::cin >> int_in; // unknown results caused from unwanted inputs
@@ -1002,8 +1001,7 @@ void _2_11_BasicInputOutput ()
         //! - in addition:
         // chained extraction of more than one datum in one line.
         // user must separate inputs with blank spaces such as white space, tab or new line.
-        ColourCouter ( "Chained extraction:\n", F_bBLUE );
-        ColourCouter ( "The process of extracting more than one datum from input.\n\n", F_YELLOW );
+        ColourCouter ( "Chained extraction:\n", F_bYELLOW );
         int int_in2;
         std::cout << "Please enter two integer values as input (separate them with any kind of spaces):" << tab;
         std::cin >> int_in >> int_in2; // chained extraction
@@ -1014,58 +1012,52 @@ void _2_11_BasicInputOutput ()
         // to get an entire line with the stream cin the function getline() from the standard library can be used.
         // what users generally expect for inputs to happen in console environment is to introduce the field and press enter or return. in terms of lines getline function can be used to obtain inputs from user.
         // if there isn't any strong reason not to, getline shall be used to extract inputs instead of cin.
-        ColourCouter ( "Extracting strings in line:\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
+        ColourCouter ( "Extracting an entire line (string):\n", F_bYELLOW );
         std::string str_in;
-        std::cout << "Please enter a line of string containing spaces:" << nline << tab;
+        std::cout << "Please enter a line of string containing spaces:" << nline << "  - ";
         std::cin >> str_in; // extracting the input till first space
-        std::cout << "The stream cin did extract the first word which is:" << tab << str_in << nline;
-        std::cout << "Please enter another line of string containing spaces:" << nline << tab;
+        std::cout << "The stream cin did extract the first word which is:" << tab << str_in << nline << nline;
+        std::cout << "Please enter another line of string containing spaces:" << nline << "  - ";
         std::getline ( std::cin, str_in ); // clear unneeded buffered characters
         // std::cin.ignore (100,'\n'); // clear unneeded buffered characters (another way but in most cases not a good idea)
         std::getline ( std::cin, str_in ); // getting a line with spaces
-        std::cout << "The extracted line with getline function is:" << tab << str_in << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << "The extracted line with getline function is:" << tab << tab << str_in << nline << nline;
 
         //! ####################################################################
         //! ----- stringstream:
-        // this type which is defined in standard header <sstream> allows the strings to be treated like streams, and thus allowing the insertion and extraction operations to be performed on strings like what happens in cin or cout streams.
+        // this type which is defined in standard header <sstream> allows the strings to be treated like streams,
+        // thus allowing the insertion and extraction operations to be performed on strings like what happens in cin or cout streams.
         // the most useful means of this feature is to convert string to numeral values and vice versa.
-        std::cout << nline << "----- The type stringstream:" << nline;
-        std::cout << nline << "Converting string to int:" << nline;
+        ColourCouter ( "----- The type stringstream:\n", F_bBLUE );
+        ColourCouter ( "Performing insertion and extraction on strings just like what happens in cin or cout stream.\n\n", F_YELLOW );
+        ColourCouter ( "Converting string to int:\n", F_bYELLOW );
         std::string str_var { "2048 ABC 1024" };
-        std::cout << "The string containing numeral values:" << tab << str_var << nline;
+        std::cout << "The string containing numeral values:" << tab << tab << str_var << nline;
         int int_var;
         std::stringstream ( str_var ) >> int_var; // extract the value from a stringstream constructed from the string variable
-        std::cout << "The value converted from string to integer:" << tab << int_var << nline;
+        std::cout << "The value converted from string to integer:" << tab << int_var << nline << nline;
 
         //! - in addition:
-        // acquiring numeric values indirectly from the standard input: using getline and stringstream instead of cin
+        // acquiring numeric values indirectly from the standard input:
+        // using getline and stringstream instead of cin
         // the goal is to separate the input process from its interpretation as data.
-        // demonstration of extracting in the user-expected behaviour of console programs and in the same time gaining more control over the transformation of inputs into more useful data.
-        std::cout << nline << "Separating input process from its interpretation:" << nline;
+        // a demonstration of extracting in the user-expected behaviour of console programs and in the same time gaining more control over the transformation of inputs into more useful data.
+        ColourCouter ( "Separating input process from its interpretation:\n", F_bYELLOW );
         std::string str_var2;
         float price { 0 }; int quantity { 0 };
-        std::cout << "Enter the price:" << tab;
+        std::cout << "  - Enter the price:" << tab << tab;
         //std::getline (std::cin, str_var2); //clear
         std::getline ( std::cin, str_var2 );
-        std::cout << "The entered string is:" << tab << str_var2 << nline;
+        std::cout << "The entered string is:" << tab << tab << str_var2 << nline;
         std::stringstream ( str_var2 ) >> price;
-        std::cout << "The interpreted value is:" << tab << price << nline;
-        std::cout << "Enter the quantity:" << tab;
+        std::cout << "The interpreted value is:" << tab << tab << price << nline;
+        std::cout << "  - Enter the quantity:" << tab << tab;
         //std::getline (std::cin, str_var2); //clear
         std::getline ( std::cin, str_var2 );
-        std::cout << "The entered string is:" << tab << str_var2 << nline;
+        std::cout << "The entered string is:" << tab << tab << str_var2 << nline;
         std::stringstream ( str_var2 ) >> quantity;
-        std::cout << "The interpreted value is:" << tab << quantity << nline;
-        std::cout << nline << "The total price is:" << tab << price * quantity << nline;
+        std::cout << "The interpreted value is:" << tab << tab << quantity << nline;
+        std::cout << "  - The total price is:" << tab << tab << price * quantity << nline << nline;
     }
     catch ( const std::exception& )
     {

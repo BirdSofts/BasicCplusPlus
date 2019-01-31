@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,24.01.2019</changed>
+/// <changed>ʆϒʅ,01.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -36,6 +36,14 @@ void ControlStructures ()
         // the entire block composed of sub-statements is considered a single statement.
         std::cout << nline << "~~~~~ Statements and flow control (Control Structures):" << nline;
         std::cout << "A program can contain linear sequence of statements, repeated segments of code, decision taking and bifurcations." << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ~~~~~ selection statements (if and else): execution of a statement or block if the condition is fulfilled.

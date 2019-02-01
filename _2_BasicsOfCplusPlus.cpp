@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,01.02.2019</changed>
+/// <changed>ʆϒʅ,02.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -14,8 +14,8 @@ void _2_1_StructureOfaProgram ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ structure of a program:
@@ -47,8 +47,8 @@ void _2_2_VariablesTypesAndIdentifiers ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ variables, types and identifiers:
@@ -101,8 +101,8 @@ void _2_3_FundamentalTypesAndDeduction ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ fundamental types and deduction
@@ -315,8 +315,8 @@ void _2_4_ConstantNumerals ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ constants numerals:
@@ -391,8 +391,8 @@ void _2_5_ConstantLiterals ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ constant literals:
@@ -507,8 +507,8 @@ c0de"           " paRTed"  " And "
         ColourCouter ( "All possible modification to string literals:\n", F_bYELLOW );
         const std::string con22 { u8"Z\t!\tz" };
         const std::string con23 { u8R"aRawString(--\"' (^_^) AnY likeable StrIng (^.^) '"/--)aRawString" };
-        std::cout << "Modifying the type of literal string to UTF_8:\t\t" << con22 << "\n";
-        std::cout << "A raw string encoded in UTF_8:\t\t\t\t" << con23 << "\n\n";
+        std::cout << "Modifying the type of literal string to UTF_8:\t" << con22 << "\n";
+        std::cout << "A raw string encoded in UTF_8:\t\t\t" << con23 << "\n\n";
     }
     catch ( const std::exception& )
     {
@@ -521,8 +521,8 @@ void _2_6_OtherConstantLiterals ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ other constant literals:
@@ -585,8 +585,8 @@ void _2_7_ArithmeticOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         int x { 0 }, y { 2 }, z { 4 };
 
@@ -672,8 +672,8 @@ void _2_8_LagicalOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         int x { 0 }, y { 2 }, z { 4 };
 
@@ -738,11 +738,11 @@ void _2_8_LagicalOperators ()
         ColourCouter ( "This operator evaluate an expression and returns one value.\n\n", F_YELLOW );
         std::string str_result;
         int int_result;
-        std::cout << "Current values are:" << "\t\t\t\t\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        std::cout << "Current values are:" << tab << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         str_result = ( ( x == y ) && ( x > z ) ) ? "True" : "False";
         int_result = ( ( x == y ) && ( x > z ) ) ? x : z;
-        std::cout << "Result of expression (( x == y ) && ( x > z )) ? \"True\" : \"False\"; is:" << tab << str_result << nline;
-        std::cout << "Result of expression (( x == y ) && ( x > z )) ? x : z; is:" << "\t\t" << int_result << nline << nline;
+        std::cout << "Result of expression (( x == y ) && ( x > z )) ? \"True\" : \"False\";\tis:" << tab << str_result << nline;
+        std::cout << "Result of expression (( x == y ) && ( x > z )) ? x : z;\t\t\tis:" << tab << int_result << nline << nline;
 
         //! ####################################################################
         //! ----- comma operator (,):
@@ -750,9 +750,9 @@ void _2_8_LagicalOperators ()
         // when there are more than one expression in a statement that actually suppose to have one.
         ColourCouter ( "----- Comma operator (,):\n", F_bBLUE );
         ColourCouter ( "Separating the expressions is what this operator does.\n\n", F_YELLOW );
-        std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        std::cout << "Current values are:" << "\t\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         z = ( x = 2, ++y * x );
-        std::cout << "Result of expression (x = 2, ++y * x):" << tab << z << nline << nline;
+        std::cout << "Result of expression (x = 2, ++y * x):" << tab << tab << z << nline << nline;
 
         //! - in addition:
         // in cases that the set of expressions need to be evaluated for a value to be reached,
@@ -776,8 +776,8 @@ void _2_9_OtherOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         int x { 0 }, y { 2 }, z { 4 };
 
@@ -846,8 +846,8 @@ void _2_10_PrecedenceOfOperators ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         int x { 0 }, y { 2 }, z { 4 };
 
@@ -924,8 +924,8 @@ void _2_11_BasicInputOutput ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ basic input/output:
@@ -1003,7 +1003,8 @@ void _2_11_BasicInputOutput ()
         // user must separate inputs with blank spaces such as white space, tab or new line.
         ColourCouter ( "Chained extraction:\n", F_bYELLOW );
         int int_in2;
-        std::cout << "Please enter two integer values as input (separate them with any kind of spaces):" << tab;
+        std::cout << "Please enter two integer values as input (separate them with any kind of spaces):" << nline;
+        std::cout << "  - ";
         std::cin >> int_in >> int_in2; // chained extraction
         std::cout << "The entered values are:" << tab << tab << int_in << tab << int_in2 << nline << nline;
 

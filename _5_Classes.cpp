@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,24.01.2019</changed>
+/// <changed>ʆϒʅ,02.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -128,8 +128,8 @@ void ClassesI ()
     // the classes used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -458,8 +458,8 @@ void ClassesII ()
     // the classes used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 

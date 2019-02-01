@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,24.01.2019</changed>
+/// <changed>ʆϒʅ,02.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -46,8 +46,8 @@ void Arrays ()
     // the functions used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -238,8 +238,8 @@ void CharacterSequences ()
     // the functions used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -380,8 +380,8 @@ void Pointers ()
     // the functions used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -752,8 +752,8 @@ void DynamicMemory ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -892,8 +892,8 @@ void DataStructures ()
     // the functions and structures used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -1033,8 +1033,8 @@ void OtherDataTypes ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 

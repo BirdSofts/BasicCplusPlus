@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,01.02.2019</changed>
+/// <changed>ʆϒʅ,02.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -25,62 +25,62 @@ void ControlStructures ()
 {
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
         //! ####################################################################
-        //! ~~~~~ statements and flow control (control structures): apart from linear sequence of statements a program can contain repeated segments of code, decision taking and bifurcations
-        // generic (sub)statements required by most of the flow control statements in C++ as a part of their syntax are either simple statements ended with semicolon (;) or a compound one which every single statement ends with its own semicolon (;) enclosed as a block in curly braces ({}). { statement1; statement2; ... }
+        //! ~~~~~ control structures (statements and flow control):
+        // apart from linear sequence of statements a program can contain repeated segments of code, decision taking and bifurcations.
+        // generic (sub)statements required by most of the flow control statements in C++ as a part of their syntax are:
+        // either simple statements ended with semicolon (;)
+        // or a compound one which every single statement ends with its own semicolon (;) enclosed as a block in curly braces ({}). { statement1; statement2; ... }
         // the entire block composed of sub-statements is considered a single statement.
-        std::cout << nline << "~~~~~ Statements and flow control (Control Structures):" << nline;
-        std::cout << "A program can contain linear sequence of statements, repeated segments of code, decision taking and bifurcations." << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        ColourCouter ( "~~~~~ Control structures (Statements and flow control):\n", F_bBLUE );
+        ColourCouter ( "A program can contain linear sequence of statements, repeated segments of code, decision taking and bifurcations.\n\n", F_YELLOW );
 
         //! ####################################################################
-        //! ~~~~~ selection statements (if and else): execution of a statement or block if the condition is fulfilled.
-        // the keywords are if and else.
-        // syntax: if (condition) statement
-        // if condition is true the statement will be executed
-        std::cout << nline << "~~~~~ Selection Statements (if and else):" << nline;
-        std::cout << "Can be used to introduce conditioned selection of statements." << nline;
+        //! ~~~~~ selection statements (if and else):
+        // execution of a statement or block if the condition is fulfilled.
+        //! keywords:   if  else
+
+        //? syntax: if (condition) statement
+        ColourCouter ( "~~~~~ Selection Statements (if and else):\n", F_bBLUE );
+        ColourCouter ( "Can be used to introduce conditioned execution of statements.\n\n", F_YELLOW );
         int x { 99 };
-        std::cout << nline << "The value stored in x is:" << tab << x << nline;
+        std::cout << "Current value of x is:" << tab << x << nline;
         if ( x == 80 )
-            std::cout << "x is 80" << nline; // a statement
-        if ( x != 80 ) { std::cout << "x is "; std::cout << x << nline; } // a block statement without usual indentation and line breaks
-        // syntax: id (condition) statement1 else statement2
-        // the introduced statement2 by else executed when the condition is not fulfilled.
+            std::cout << "x is 80." << nline; // a statement
+        // a block statement without usual indentation and line breaks:
+        if ( x != 80 ) { std::cout << "x is "; std::cout << "greater than 80." << nline << nline; }
+
+        //? syntax: if (condition) statement1 else statement2
+        // the introduced statement2 by 'else' keyword will be executed, when the condition is not fulfilled.
         x = 46;
-        std::cout << nline << "The value stored in x is:" << tab << x << nline;
+        std::cout << "Current value of x is:" << tab << x << nline;
         if ( x == 80 )
-            std::cout << "x is 80" << nline;
+            std::cout << "x is 80." << nline;
         else // introduction of an alternative statement
-            std::cout << "x is not 80" << nline;
+            std::cout << "x is not 80." << nline << nline;
+
         // concatenated several if + else structure
         // for example it can be introduced to fulfil the intention of checking a range of values
         x = -2;
-        std::cout << nline << "The value stored in x is:" << tab << x << nline;
+        std::cout << "Current value of x is:" << tab << x << nline;
         if ( x > 0 )
-            std::cout << "x is positive" << nline;
+            std::cout << "x is positive." << nline << nline;
         else if ( x < 0 ) // alternative statement is concatenated with another if-else structure
-            std::cout << "x is negative" << nline;
+            std::cout << "x is negative." << nline << nline;
         else
-            std::cout << "x is zero" << nline;
+            std::cout << "x is zero." << nline << nline;
 
         //! ####################################################################
-        //! ~~~~~ iteration statements (loops): repetition of statements a certain times or till a condition is fulfilled.
-        // the keywords are while, do and for.
-        std::cout << nline << "~~~~~ Iteration Statements:" << nline;
-        std::cout << "Can be used to introduce repetition of statements." << nline;
+        //! ~~~~~ iteration statements (loops):
+        // repetition of statements a certain times or till a condition is fulfilled.
+        //! keywords:   while   do  for
+        ColourCouter ( "~~~~~ Iteration statements (Loops):\n", F_bBLUE );
+        ColourCouter ( "To repeat statements a certain times or until a condition is fulfilled.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- the while loop: repeat the statement while the expression is true.
@@ -97,6 +97,14 @@ void ControlStructures ()
             std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );; // add delays to the countdown
         }
         std::cout << "lift-off!" << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- the do-while loop: the same behaviour like while loop but the condition will be checked after the execution of the statement.
@@ -352,8 +360,8 @@ void Functions ()
     // the body code of functions used in this section are defined above it
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -591,8 +599,8 @@ void OverloadsAndTemplates ()
     // the body code of functions used in this section are defined above it
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 
@@ -738,8 +746,8 @@ void NameVisibility ()
     // the functions, namespaces and variables used in this section are defined above it.
     try
     {
-        ColourCouter ( "-------------------------------------------------------", F_bRED );
-        ColourCouter ( "-------------------------------------------------------\n\n", F_bRED );
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
         const char tab { '\t' };
         const char nline { '\n' };
 

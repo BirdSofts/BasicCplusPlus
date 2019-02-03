@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,02.02.2019</changed>
+/// <changed>ʆϒʅ,04.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -498,7 +498,7 @@ c0de"           " paRTed"  " And "
         // R        string is a raw string
         // ----------------------------------
         // in a raw string no special character is going to be identified
-        //? format:
+        // Note format:
         // R"sequence(string)sequence"
         // note: in the format above, the both delimiting sequences must be alike,
         // both are going to be ignored and both can be anything,
@@ -552,7 +552,7 @@ void _2_6_OtherConstantLiterals ()
         //! ####################################################################
         //! ----- preprocessor definitions (#define):
         // another way to define constant values
-        //? syntax:
+        // Note syntax:
         // #define identifier replacement
         // the occurrences of identifier will be interpreted to replacement.
         // the replacement can be any set of characters till the end of the line.
@@ -732,7 +732,7 @@ void _2_8_LagicalOperators ()
         //! ####################################################################
         //! ----- conditional ternary operator (?):
         // if its condition is true, the operator will return result1 and otherwise result2.
-        //? statement syntax (format):
+        // Note statement syntax (format):
         // condition ? result1 : result2
         ColourCouter ( "----- Conditional ternary operator (?):\n", F_bBLUE );
         ColourCouter ( "This operator evaluate an expression and returns one value.\n\n", F_YELLOW );

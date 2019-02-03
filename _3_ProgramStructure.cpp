@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,02.02.2019</changed>
+/// <changed>ʆϒʅ,04.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -45,8 +45,8 @@ void ControlStructures ()
         // execution of a statement or block if the condition is fulfilled.
         //! keywords:   if  else
 
-        //? syntax: if (condition) statement
-        ColourCouter ( "~~~~~ Selection Statements (if and else):\n", F_bBLUE );
+        // Note syntax: if (condition) statement
+        ColourCouter ( "~~~~~ Selection statements (if and else):\n", F_bBLUE );
         ColourCouter ( "Can be used to introduce conditioned execution of statements.\n\n", F_YELLOW );
         int x { 99 };
         std::cout << "Current value of x is:" << tab << x << nline;
@@ -55,7 +55,7 @@ void ControlStructures ()
         // a block statement without usual indentation and line breaks:
         if ( x != 80 ) { std::cout << "x is "; std::cout << "greater than 80." << nline << nline; }
 
-        //? syntax: if (condition) statement1 else statement2
+        // Note syntax: if (condition) statement1 else statement2
         // the introduced statement2 by 'else' keyword will be executed, when the condition is not fulfilled.
         x = 46;
         std::cout << "Current value of x is:" << tab << x << nline;
@@ -83,90 +83,100 @@ void ControlStructures ()
         ColourCouter ( "To repeat statements a certain times or until a condition is fulfilled.\n\n", F_YELLOW );
 
         //! ####################################################################
-        //! ----- the while loop: repeat the statement while the expression is true.
+        //! ----- the while loop:
+        // repeat the statement while the expression is true.
         // alteration of the value must somehow happen in the statement to avoid looping forever in while loops
-        // syntax: while (expression) statement
-        // the complexity of the loop in the example below is trivial for computer so it will be performed instantly without any practical delay
-        std::cout << nline << "----- The while loop:" << nline;
-        std::cout << "Countdown example with while loop." << nline << nline;
+        // Note syntax: while (expression) statement
+        // the complexity of the loop in the example below is trivial for computer,
+        // so it will be performed instantly without any practical delay
+        ColourCouter ( "----- The while loop:\n", F_bBLUE );
+        ColourCouter ( "While the expression is true, this loop continue to iterate.\n\n", F_YELLOW );
+        std::cout << "Countdown example using a while loop:" << tab;
         int n { 10 };
         while ( n > 0 )
         {
             std::cout << n << ", ";
-            --n; // altering value checked in condition.
+            --n; // alter the value checked in condition.
             std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );; // add delays to the countdown
         }
-        std::cout << "lift-off!" << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << "lift-off!" << nline << nline;
 
         //! ####################################################################
-        //! ----- the do-while loop: the same behaviour like while loop but the condition will be checked after the execution of the statement.
-        // in this loop even when the condition is never fulfilled, at least one execution of the statement is guaranteed.
-        // the use of do-while loop is preferred over the while, especially when the condition that is to be checked is determined within the statement itself.
-        // syntax: do statement while (condition);
-        std::cout << nline << "----- The do-while loop:" << nline;
-        std::cout << "Echoing the user inputted text with do-while loop." << nline;
-        std::cout << "Enter 'bye' to exit the loop." << nline << nline;
+        //! ----- the do-while loop:
+        // the same behaviour like while loop but the condition will be checked after the execution of the statement.
+        // either if the condition is fulfilled or not, at least one execution of the statement is guaranteed.
+        // the use of do-while loop is preferred over the while loop,
+        // especially when the to be checked condition is determined within the statement itself.
+        // Note syntax: do statement while (condition);
+        ColourCouter ( "----- The do-while loop:\n", F_bBLUE );
+        ColourCouter ( "Same behaviour like while loop, but with guarantee of one time statement execution.\n\n", F_YELLOW );
+        ColourCouter ( "Echoing the user inputted text with do-while loop.\n", F_bYELLOW );
+        ColourCouter ( "Enter 'bye' to exit the loop.\n", F_bCYAN );
         std::string user_input;
         do
         {
-            std::cout << "+++++++ Enter something:" << tab;
+            std::cout << "-- Enter something:" << tab;
             std::getline ( std::cin, user_input );
-            std::cout << "You have entered:" << tab << user_input << nline;
+            std::cout << "You have entered:" << tab << user_input << nline << nline;
         } while ( user_input != "bye" );
 
         //! ####################################################################
-        //! ----- the for loop: iteration of the statement a certain number of times while its condition is true
-        // the initialization expression executes before the loop begins and the increase expression after each iteration, therefore the usefulness is placed on the introduction of counter variables.
-        // syntax: for (initialization; condition; increase) statement;
-        std::cout << nline << "----- The for loop:" << nline;
-        std::cout << "Countdown example using a for loop." << nline << nline;
+        //! ----- the for loop:
+        // iteration of the statement a certain number of times while its condition is true
+        // the initialization expression executes before the loop begins and the increase expression after each iteration,
+        // therefore this loop is most useful, when it comes to counter variables.
+        // Note syntax: for (initialization; condition; increase) statement;
+        ColourCouter ( "----- The for loop:\n", F_bBLUE );
+        ColourCouter ( "To introduce loops that iterate a certain number of times.\n\n", F_YELLOW );
+        std::cout << "Countdown example using a for loop:" << tab;
         for ( int n { 10 }; n > 0; n-- )
         {
             std::cout << n << ", ";
             std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) ); // add delays to the countdown
         }
-        std::cout << "lift-off!" << nline;
+        std::cout << "lift-off!" << nline << nline;
 
-        // more about for loops plus some features:
-        // the tree fields in the for loop are optional but the semicolons between them in all cases are obligatory
-        // for example: for (; n<10; ;) --(equivalent to a while loop)
-        // another example: for (; n<10; ++n;) --(maybe the variable is initialized before)
-        // equivalent to a loop with no condition is a loop with true as condition i.e. an infinite loop.
-        // each field will be executed in a particular time in the life cycle of a loop. these fields are expressions so they can use the comma operator, therefore a for loop can handle two counter variables at the same time.
-        // expressions are not statements so they can't be replaced by a block.
-        std::cout << nline << "Some features of the for loop:" << nline << nline;
-        std::cout << "The practice of multiple expressions as fields." << nline << nline;
+        //! - in addition:
+        // more on for loops plus some other features:
+        // the tree fields in the for loop are optional but the semicolons between them in all cases are obligatory.
+        //! for example: for (; n<10; ;) -equivalent to a while loop
+        //! another example: for (; n<10; ++n;) -maybe the variable is initialized before
+        // a loop with true as condition (no condition) is equivalent to an infinite loop
+        // each field will be executed in a particular time in the life cycle of a loop.
+        // these fields are expressions so they can use the comma operator, therefore a for loop can handle two counter variables at the same time.
+        // Note expressions are not statements so they can't be replaced by a block.
+        ColourCouter ( "Features of for loop: multiple expressions as fields:\n", F_bYELLOW );
+        std::cout << nline << tab;
         for ( int i = 30, n = 0; n != i; n++, i -= 2 )
         {
             std::cout << "^-^" << tab; // times of execution is 10
         }
-        std::cout << nline;
+        std::cout << nline << nline;
+
+        //! - in addition:
         // example of nested for loops:
+        // Added to pattern: take note of repeated line and division in patterns
         //  *   *  
         //   * *   
         //    *      * 9 times
+        //    *    
         //   * *   
         //  *   *  
-        std::cout << nline << "Demonstration of a pattern using nested for loops." << nline << nline;
+        ColourCouter ( "Demonstration of a pattern using nested for loops.\n", F_bYELLOW );
+        bool flag { false };
         for ( int i = 1; i <= 5; i++ )
         {
-            for ( int j = 1; j < 47; j++ )
+            if ( i == 4 && flag == false ) { i = 3; flag = true; } // repeat a line
+            for ( int j = 1; j < 54; j++ )
             {
-                if ( ( i == ( j % 5 ) ) || ( ( ( i - 1 ) + ( j % 5 ) ) == 5 ) )
-                    std::cout << '*';
+                if ( ( i == ( j % 6 ) ) || ( ( ( i - 1 ) + ( j % 6 ) ) == 5 ) ) // 6 to divide the patterns (try 5 too)
+                    ColourCouter ( "*", F_bBLUE );
                 else
                     std::cout << ' ';
             }
             std::cout << nline;
         }
+        std::cout << nline;
 
         //! ####################################################################
         //! ----- range-based for loops: iteration over all the elements in a range
@@ -175,8 +185,8 @@ void ControlStructures ()
         // ranges are sequences of elements including arrays, containers and any other type supporting the functions begin and end.
         // none of these types is mentioned yet, therefore stings will be used which are sequences of character.
         // this kind of loop is automatic and doesn't require the explicit declaration of counter variable.
-        std::cout << nline << "----- Rang-based for loops:" << nline;
-        std::cout << "Iteration over all the elements in a range." << nline << nline;
+        ColourCouter ( "----- Rang-based for loops:\n", F_bBLUE );
+        ColourCouter ( "Iteration over all the elements in a range.\n\n", F_YELLOW );
         std::string for_range { "SequenceOfCharacters" };
         std::cout << "The stored string in the variable is:" << tab << for_range << nline << nline;
         for ( char c : for_range )
@@ -192,6 +202,14 @@ void ControlStructures ()
             std::cout << "-" << c << " ";
         }
         std::cout << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ~~~~~ jump statements:

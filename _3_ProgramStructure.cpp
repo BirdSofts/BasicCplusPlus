@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,04.02.2019</changed>
+/// <changed>ʆϒʅ,06.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -132,7 +132,7 @@ void ControlStructures ()
         for ( int n { 10 }; n > 0; n-- )
         {
             std::cout << n << ", ";
-            std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) ); // add delays to the countdown
+            std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
         }
         std::cout << "lift-off!" << nline << nline;
 
@@ -180,57 +180,49 @@ void ControlStructures ()
 
         //! ####################################################################
         //! ----- range-based for loops: iteration over all the elements in a range
-        // syntax: for (declaration : range) statement;
-        // declaration declares a variable of a type which able to take values of an element in the range.
+        // Note syntax: for (declaration : range) statement;
+        // declaration declares a variable of a type which is able to take values of an element in the range.
         // ranges are sequences of elements including arrays, containers and any other type supporting the functions begin and end.
         // none of these types is mentioned yet, therefore stings will be used which are sequences of character.
         // this kind of loop is automatic and doesn't require the explicit declaration of counter variable.
         ColourCouter ( "----- Rang-based for loops:\n", F_bBLUE );
         ColourCouter ( "Iteration over all the elements in a range.\n\n", F_YELLOW );
         std::string for_range { "SequenceOfCharacters" };
-        std::cout << "The stored string in the variable is:" << tab << for_range << nline << nline;
+        std::cout << "The stored string in the variable is:" << tab << for_range << nline;
         for ( char c : for_range )
         {
             std::cout << "-" << c << " "; // representing the value of each element in the range using the variable c
         }
-        std::cout << nline;
+        std::cout << nline << nline;
         // using type deduction (auto):
         // to automatically deduct the type of elements in a range
-        std::cout << nline << "Type deduction in range-based for loops:" << nline << nline;
+        ColourCouter ( "Type deduction in range-based for loops:\n", F_bYELLOW );
         for ( auto c : for_range )
         {
             std::cout << "-" << c << " ";
         }
-        std::cout << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << nline << nline;
 
         //! ####################################################################
         //! ~~~~~ jump statements:
         // they can be used to alter the flow of a program by jumping to specific locations
-        std::cout << nline << "~~~~~ Jump statements:" << nline;
-        std::cout << "The flow of a program can be altered by jumping to specific locations." << nline;
+        ColourCouter ( "~~~~~ Jump statements:\n", F_bBLUE );
+        ColourCouter ( "The flow of a program can be altered by jumping to specific locations.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- the break statement:
         // to leave a loop, even if its end condition isn't fulfilled.
         // purposes: to end an infinite loop, to leave a loop before its natural end
-        std::cout << nline << "----- The break statement:" << nline;
-        std::cout << "To introduce leaving of a loop before its natural end." << nline << nline;
-        std::cout << "Countdown example and breaking its loop." << nline << nline;
+        ColourCouter ( "----- The break statement:\n", F_bBLUE );
+        ColourCouter ( "To leave a loop before its natural end.\n\n", F_YELLOW );
+        std::cout << "Countdown example and breaking its loop:" << tab;
         for ( int n { 10 }; n > 0; n-- )
         {
             std::cout << n << ", ";
-            std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) ); // add delays to the countdown
+            std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
             if ( n == 3 )
             {
-                std::cout << "Countdown aborted!" << nline;
+                std::cout << "Countdown aborted!" << nline << nline;
                 break;
             }
         }
@@ -238,9 +230,9 @@ void ControlStructures ()
         //! ####################################################################
         //! ----- the continue statement:
         // to skip the current iteration and jumping to the next one.
-        std::cout << nline << "----- The continue statement:" << nline;
-        std::cout << "To introduce skipping the iterations of a loop." << nline << nline;
-        std::cout << "Countdown example with for loop and skipping some of its iterations." << nline << nline;
+        ColourCouter ( "----- The continue statement:\n", F_bBLUE );
+        ColourCouter ( "To introduce skipping the iterations of a loop.\n\n", F_YELLOW );
+        std::cout << "Skipping some of iterations in countdown example with for loop:" << nline << "--\t";
         for ( int n { 10 }; n > 0; n-- )
         {
             if ( n == 8 || n == 5 || n == 2 )
@@ -248,73 +240,77 @@ void ControlStructures ()
                 continue;
             }
             std::cout << n << ", ";
-            std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) ); // add delays to the countdown
+            std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
         }
-        std::cout << "The steps 8, 5 and 2 are skipped!" << nline;
+        std::cout << "The steps 8, 5 and 2 are skipped!" << nline << nline;
 
         //! ####################################################################
         //! ----- the goto statement: provides absolute jump to another point in the program
         // this jump is an unconditional jump, ignores the nesting levels and doesn't cause any automatic stack unwinding,
         // therefore it is to be used with care, preferably within the same block and especially in the presence of local variables.
-        // defined labels which are valid identifier followed by colon (:), are destinations point and will be used as argument for goto.
+        // defined labels which are valid identifier followed by colon (:), are destinations point and will be used as argument for goto statement.
         // goto is deemed a low-level feature with no particular use in modern higher-level C++ programming paradigms.
-        std::cout << nline << "----- The goto statement:" << nline;
-        std::cout << "To introduce absolute and unconditional jump to another point in the program." << nline << nline;
-        std::cout << "Countdown example using goto feature." << nline << nline;
+        ColourCouter ( "----- The goto statement:\n", F_bBLUE );
+        ColourCouter ( "To introduce absolute and unconditional jump to another point in the program.\n\n", F_YELLOW );
+        std::cout << "Countdown example using goto statement:" << tab << tab;
         int n2 { 10 };
     a_loop_with_goto:
         std::cout << n2 << ", ";
         --n2;
-        std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) ); // add delays to the countdown
+        std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
         if ( n2 > 0 ) goto a_loop_with_goto;
-        std::cout << "lift-off!" << nline;
+        std::cout << "lift-off!" << nline << nline;
 
         //! ####################################################################
-        //! ~~~~~ another selection statement (switch): to compare the evaluated expression against labels that are constant expressions.
+        //! ~~~~~ another selection statement (switch):
+        // to compare the evaluated expression against labels that are constant expressions.
         // it is like concatenations of 'if' and 'else if' statements but limited to constant expressions.
         // it is not possible to use variables or ranges as labels since they aren't valid C++ constant expressions, therefore it is better to use 'if' for ranges and values that aren't constant.
         // after evaluating the expression and finding the equivalent constant, its break statement causes the end of the switch.
-        // if the evaluation value isn't match to any of the constants, the default case and its group of statement, if existed since it is optional, will be executed.
-        // syntax:
-        // switch (expression) {
-        // case constant1:
-        //   group_of_statement1;
-        //   break;
-        // .
-        // .
-        // .
-        // default:
-        //   group_of_default_statement;
-        //   break;
+        // if the evaluation value isn't match to any of the constants, the default case and its group of statement when it is existed, will be executed since it is optional, .
+        // Note syntax: (type 'switch' and press tab key twice)
+        // switch (expression)
+        // {
+        //  case constant1:
+        //      group_of_statement1;
+        //      break;
+        //  .
+        //  .
+        //  default:
+        //      group_of_default_statement;
+        //      break;
         // }
-        std::cout << nline << "~~~~~ Another selection statement (switch):" << nline;
-        std::cout << "Switching and checking for a value among the possible constant expressions." << nline << nline;
-        int x2 { 0 };
+        ColourCouter ( "~~~~~ Another selection statement (switch):\n", F_bBLUE );
+        ColourCouter ( "Switching and checking for a value among the possible constant expressions.\n\n", F_YELLOW );
+        int x2 { 1 };
         switch ( x2 )
         {
             case 1:
-                std::cout << "The value of x2 is one" << nline;
+                std::cout << "The value of variable is one" << nline << nline;
                 break;
             case 2:
-                std::cout << "The value of x2 is two" << nline;
+                std::cout << "The value of variable is two" << nline << nline;
                 break;
             default:
-                std::cout << "The value of x2 is not among the cases" << nline;
+                std::cout << "The value of variable is not among the cases" << nline << nline;
                 break;
         }
+
+        //! - in addition:
         // the syntax of switch is inherited from the early versions of C language. switch uses labels in place of blocks.
         // the break statement for each case is needed, otherwise switch executes all the statements after the equivalent case till the end or reaching a break no matter what case they belong to.
-        // this makes enclosing a group statement in braces unnecessary and can be useful for execution the same group of statement for more than one case.
-        std::cout << nline;
+        // this makes enclosing a group statement in braces unnecessary,
+        // and can be useful for execution of same group of statement for more than one case.
+        ColourCouter ( "Execution of same group of statement for more than one case.\n", F_bYELLOW );
         switch ( x2 )
         {
             case 1:
             case 2:
             case 3:
-                std::cout << "The value of x2 is either one, two or tree" << nline;
+                std::cout << "The value of variable is either one, two or tree" << nline << nline;
                 break;
             default:
-                std::cout << "The value of x2 is not one, two nor tree" << nline;
+                std::cout << "The value of variable is not one, two nor tree" << nline << nline;
                 break;
         }
     }
@@ -408,6 +404,14 @@ void Functions ()
         result = 6 + subtraction ( x, y ); // the function call is operand of addition operation.
         result = subtraction ( x, y ) + 6; // same as above: commutative property of addition operation
         std::cout << "The result of subtraction function called as an operand of addition operation:" << tab << result << nline << nline; // inserting returned value stored in result variable
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- functions with no type (the use of void):

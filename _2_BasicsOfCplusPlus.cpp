@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,04.02.2019</changed>
+/// <changed>ʆϒʅ,07.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -24,7 +24,7 @@ void _2_1_StructureOfaProgram ()
         // the main function is the only function which called automatically.
         // other functions can be executed if they are called directly or indirectly from main function.
         ColourCouter ( "~~~~~ Structure of a program:\n", F_bBLUE );
-        ColourCouter ( "Programming needs patience and practical practice.\n\n", F_YELLOW );
+        ColourCouter ( "Although C++ language doesn't have any strict rules on structure and indention in source code, it is better for human understanding, that it be properly structured and indented.\n\n", F_YELLOW );
 
         // line comment
 

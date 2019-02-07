@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,06.02.2019</changed>
+/// <changed>ʆϒʅ,07.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -12,23 +12,16 @@
 
 #define Tab '\t'
 #define Nline '\n'
+const char tab { '\t' };
+const char nline { '\n' };
 
 
-// ********************************************************************************
-/// <summary>
-/// Control structures in C++
-/// </summary>
-/// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,15.05.2018</changed>
-// ********************************************************************************
-void ControlStructures ()
+void _3_1_ControlStructures ()
 {
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ control structures (statements and flow control):
@@ -39,6 +32,20 @@ void ControlStructures ()
         // the entire block composed of sub-statements is considered a single statement.
         ColourCouter ( "~~~~~ Control structures (Statements and flow control):\n", F_bBLUE );
         ColourCouter ( "A program can contain linear sequence of statements, repeated segments of code, decision taking and bifurcations.\n\n", F_YELLOW );
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _3_2_SelectionStatements ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ selection statements (if and else):
@@ -74,6 +81,20 @@ void ControlStructures ()
             std::cout << "x is negative." << nline << nline;
         else
             std::cout << "x is zero." << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _3_3_IterationStatements ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ iteration statements (loops):
@@ -202,6 +223,20 @@ void ControlStructures ()
             std::cout << "-" << c << " ";
         }
         std::cout << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _3_4_JumpStatements ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ jump statements:
@@ -260,6 +295,20 @@ void ControlStructures ()
         std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
         if ( n2 > 0 ) goto a_loop_with_goto;
         std::cout << "lift-off!" << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _3_5_AnotherSelectionStatement ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ~~~~~ another selection statement (switch):
@@ -329,39 +378,6 @@ int subtraction ( int a, int b )
 {
     int r; r = a - b; return r;
 }
-void duplication ( int& a, int& b, int& c )
-{
-    a *= 2, b *= 2, c *= 2;
-}
-void print_message ( void )
-{
-    std::cout << "\n\n\t I'm a Function. \n\n";
-}
-std::string concatenate ( std::string& a, std::string& b )
-{
-    return a + b;
-}
-std::string constant_concatenate ( const std::string& a, const std::string& b )
-{
-    return a + b;
-}
-inline std::string inline_constant_concatenate ( const std::string& a, const std::string& b )
-{
-    return a + b;
-}
-int divide ( int a, int b = 2 )
-{
-    int r; r = a / b; return r;
-}
-void odd ( int x ); // declaration before definition
-void even ( int x ); // declaration before definition
-long factorial ( long a )
-{
-    if ( a > 1 )
-        return ( a*factorial ( a - 1 ) );
-    else
-        return 1;
-}
 // ********************************************************************************
 /// <summary>
 /// Functions in C++
@@ -369,41 +385,241 @@ long factorial ( long a )
 /// <created>ʆϒʅ,15.05.2018</created>
 /// <changed>ʆϒʅ,24.05.2018</changed>
 // ********************************************************************************
-void Functions ()
+void _4_1_Functions ()
 {
-    // the body code of functions used in this section are defined above it
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
-        //! ~~~~~ functions: a group of code that is given a name to structure a program in segment of code to perform individual tasks and can be called from some point of the program.
-        // most common syntax: type name (parameter1, ...) {statements}
-        // the parenthesis which differentiate functions from other kind of declaration or statements are always required no matter declaring or calling a function.
-        // parameters which allow passing arguments to the function act like local variables within the functions
-        // the expression that calls a function is evaluated as the returned value by the function
+        //! ~~~~~ functions:
+        // a group of code that is given a name to structure a program in segment of code to perform individual tasks,
+        // which can be called from some points of the program.
+        // Note most common syntax: type name (parameter1, ...) {statements}
+        // the parenthesis which differentiate functions from other kind of declarations or statements are always required no matter declaring or calling a function.
+        // parameters which allow passing arguments to the function act like local variables within the functions.
+        // the expression that calls a function, will be evaluated as the returned value by the function.
         // all the functions that have defined return type in their definitions must return a value with a proper return statement that includes a return value, even if this value is never going to be used.
         // a function can be called multiple times and its parameter aren't limited to literals.
-        std::cout << nline << "~~~~~ Functions:" << nline;
-        std::cout << "Introduce structures that can be used to perform individual tasks in segment of code." << nline << nline;
+        ColourCouter ( "~~~~~ Functions:\n", F_bBLUE );
+        ColourCouter ( "To introduce structures that can be used to perform individual tasks in segment of code.\n\n", F_YELLOW );
         int result;
-        std::cout << "Two function to perform addition and subtraction operations." << nline << nline;
+        ColourCouter ( "Two function to perform addition and subtraction operations.\n", F_bYELLOW );
         std::cout << "Passed literal values as parameters to be added:\t" << "2 and 7" << nline;
         result = addition ( 2, 7 ); // passing literals
-        std::cout << "The result of addition function:" << tab << result << nline; // inserting returned value stored in result variable
-        std::cout << "The result of addition function without storing in additional variable:" << tab << addition ( 2, 7 ) << nline << nline; // direct function calling in insertion stream
+        std::cout << "The result of addition function:" << "\t\t\t" << result << nline;
+        std::cout << "Result of function without any additional variable:" << tab << addition ( 2, 7 ) << nline << nline; // direct function calling in insertion stream
         int x { 4 }; int y { 3 };
         std::cout << "Passed variables as parameters to be subtracted:" << tab << "x = " << x << tab << "y = " << y << nline;
         result = subtraction ( x, y ); // passing variables
-        std::cout << "The result of subtraction function:" << tab << result << nline << nline; // inserting returned value stored in result variable
-        std::cout << "The result of subtraction function without storing in additional variable:" << tab << subtraction ( x, y ) << nline << nline; // direct function calling in insertion stream
+        std::cout << "The result of subtraction function:" << "\t\t\t" << result << nline << nline;
+
+        std::cout << "The result of subtraction function called as an operand of addition operation:" << nline;
+        std::cout << "So the expression is:  subtraction ( x, y ) + 6:" << nline;
         std::cout << "Passed variables as parameters to be subtracted:" << tab << "x = " << x << tab << "y = " << y << nline;
         result = 6 + subtraction ( x, y ); // the function call is operand of addition operation.
         result = subtraction ( x, y ) + 6; // same as above: commutative property of addition operation
-        std::cout << "The result of subtraction function called as an operand of addition operation:" << tab << result << nline << nline; // inserting returned value stored in result variable
+        std::cout << "The result of both expressions is:" << "\t\t\t" << result << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void print_message ( void )
+{
+    std::cout << "\t\t Hi, I'm a Function. ^_^ \n\n";
+}
+void _4_2_VoidFunctions ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- functions with no type (the use of void):
+        // if the function doesn't need to return a value it shall be defined as a void function.
+        // the void type is an spacial type to represent the absence of value.
+        // void keyword can also be used in function's parameter list to explicitly specify that the function takes no actual parameters
+        // void keyword in parameter's list: in C++ optional, in C language required
+        ColourCouter ( "----- Functions with no type (The use of void):\n", F_bBLUE );
+        ColourCouter ( "Void functions are those that don't have any returned value.\n\n", F_YELLOW );
+        std::cout << "Following message is inserted by calling a void function with no parameters:" << nline << nline;
+        print_message ();
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _4_3_MainFunctionReturnValue ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- the return value of main function:
+        // the type of return value of main is int.
+        // if the execution of main ends normally without encountering the return statement,
+        // the compiler assumes that the function has ended with an implicit return statement.
+        // this only applies to the main function for historical reasons.
+        //! return statement: return 0;
+        // the returned zero value either implicitly or explicitly will be interpreted by the environment that the program ended successfully.
+        // returning other values are possible and some environment give access to them to the caller in some way,
+        // although this behaviour is not required nor necessarily portable between platforms.
+        // Note in some way guaranteed interpretable values on all platforms are:
+        // ----------------------------------------------------------------------
+        // 0                the program was successful
+        // ----------------------------------------------------------------------
+        // EXIT_SUCCESS     the program was successful (the header is <cstdlib>)
+        // ----------------------------------------------------------------------
+        // EXIT_FAILURE     the program failed (the header is <cstdlib>)
+        // ----------------------------------------------------------------------
+        // Note some authors consider the explicitly written return statement a good practice,
+        // thus the implicit return statement for main function is a tricky exception.
+        ColourCouter ( "----- The return value of main function:\n", F_bBLUE );
+        ColourCouter ( "The return value of the main function which is of type int has his own peculiarity.\n\n", F_YELLOW );
+        ColourCouter ( "Read the comments in the source code...\n\n", F_bYELLOW );
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+// ampersand signs '&' indicate, that the arguments are passed as reference
+void duplication ( int& a, int& b, int& c )
+{
+    a *= 2, b *= 2, c *= 2;
+}
+void _4_4_PassedArgumentsTypes ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- arguments passed by value and by reference:
+        //? by value:
+        // the values of arguments will be passed to function on the moment of the call, that is:
+        // the values will be copied into the variables represented by function parameters.
+        // the values of passed arguments will be used to initial the function parameters,
+        // thus the modification of them in function doesn't have any effect on the variables outside of it.
+        ColourCouter ( "----- Arguments passed by value and by reference:\n", F_bBLUE );
+        ColourCouter ( "The Arguments can be passed to a function by value and by reference.\n\n", F_YELLOW );
+        int x { 3 }; int y { 4 };
+        int result { 0 };
+        ColourCouter ( "Passing arguments by value:\n", F_bYELLOW );
+        std::cout << "The passed arguments are:" << "\t\t" << "x = " << x << tab << "y = " << y << nline;
+        result = addition ( x, y );
+        std::cout << "Result of addition function:" << "\t\t" << result << nline << nline;
+        //? by reference:
+        // to make access to variables outside of function passible.
+        // to actually modify the value of variables used as arguments to call a function, arguments need to be passed by reference.
+        // to gain access to arguments, the function defines its parameters as reference.
+        // in C++ language, references are indicated by the ampersand sign '&' following the parameter type.
+        // what is passed is the variable itself,
+        // so somehow the association happens between the passed arguments and the parameters of the function to the extent,
+        // that the modification of arguments on their corresponding local variables within function becomes possible,
+        // and in the end its reflection is on the variables passed as arguments.
+        ColourCouter ( "Passing arguments by reference:\n", F_bYELLOW );
+        x = 2, y = 3;
+        int z { 4 };
+        std::cout << "The passed arguments are:" << "\t\t" << "x = " << x << tab << "y = " << y << tab << "z = " << z << nline;
+        duplication ( x, y, z );
+        std::cout << "Result of duplication function:" << "\t\t" << "x = " << x << tab << "y = " << y << tab << "z = " << z << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+std::string concatenate ( std::string& a, std::string& b )
+{
+    return a + b;
+}
+// constant arguments passed as reference
+std::string constant_concatenate ( const std::string& a, const std::string& b )
+{
+    return a + b;
+}
+void _4_5_Efficiency ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- efficiency consideration and constant reference:
+        // passing arguments by value causes the arguments to be copied which it may be relatively inexpensive for fundamental types like int,
+        // but in compound type it may result in certain overhead and copying large quantities of data just for function call.
+        // for this unneeded copy to be avoided, calling functions by reference is suggested and with it,
+        // the function operates directly on aliases of passed arguments and at utter most, it might mean the transfer of certain pointer to the function.
+        ColourCouter ( "----- Efficiency consideration and constant reference:\n", F_bBLUE );
+        ColourCouter ( "Passing arguments by reference to avoid certain overhead.\n\n", F_YELLOW );
+        std::string a, b, c;
+        std::cout << "Enter two long string to be concatenated:" << nline;
+        std::cout << "- The first one is:" << tab << tab;
+        std::getline ( std::cin, a );
+        std::cout << "- And the second one is:" << tab;
+        std::getline ( std::cin, b );
+        c = concatenate ( a, b );
+        std::cout << nline << "The concatenated result is:" << tab << c << nline << nline;
+
+        //! - in addition:
+        // functions with reference parameters are generally perceived as functions that modify the arguments passed.
+        // by qualifying the parameters as constant, it can be guaranteed that the function doesn't modify the arguments 
+        ColourCouter ( "The use of constant parameters in passing arguments by reference.\n", F_bYELLOW );
+        std::cout << "Above entered strings will be used:" << nline << nline;
+        c = constant_concatenate ( a, b );
+        std::cout << "The concatenated result is:" << tab << c << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+inline std::string inline_constant_concatenate ( const std::string& a, const std::string& b )
+{
+    return a + b;
+}
+void _4_6_InlineFunctions ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- inline functions:
+        // since calling a function has a certain overhead (stacking arguments, jumps etc...) it isn't efficient for short functions.
+        // by using inline specifier in the function declaration the compiler will be suggested that inline expansion is preferred over the usual function call mechanism.
+        // behaviour of a function won't be changed but the function body will be inserted at each point of the function call, so the regular invocation will be avoided.
+        ColourCouter ( "----- Inline functions:\n", F_bBLUE );
+        ColourCouter ( "To introduce the inline expansion of a function body and replace the regular invocation with it.\n\n", F_YELLOW );
+        std::cout << "Concatenate function with inline specifier declaration:" << nline;
+        std::string a { "AAA" }, b { "BBB" }, c { "" };
+        std::cout << "The strings to be concatenated are:" << tab << a << tab << b << nline;
+        c = inline_constant_concatenate ( a, b );
+        std::cout << "And the concatenated result is:" << tab << tab << c << nline << nline;
+        // note that in C++ the optimization task is delegated to the compiler.
+        // most compiler already optimize code to generate inline functions whenever there is an opportunity, even not explicitly marked with inline specifier.
+        // Therefore using it in the declaration of a function is merely a suggestion and the compiler is free to not inline it and optimize otherwise, as long as the resulting behaviour is one specified by the code.
         /*
 
         */
@@ -412,100 +628,24 @@ void Functions ()
         //ColourCouter ( "\n", F_bYELLOW );
         //ColourCouter ( "\n", F_bCYAN );
         //! - in addition:
+    }
+    catch ( const std::exception& )
+    {
 
-        //! ####################################################################
-        //! ----- functions with no type (the use of void):
-        // if the function doesn't need to return a value it shall be defined as void function.
-        // the void type is an spacial type to represent the absence of value.
-        // void keyword can also be used in function's parameter list to explicitly specify that the function takes no actual parameters
-        // void keyword in parameter's list: in C++ optional, in C language required
-        std::cout << nline << "----- Functions with no type (The use of void):" << nline;
-        std::cout << "Void functions are those that don't have any returned value." << nline << nline;
-        std::cout << "The message is inserted by calling a void function with no parameters:" << nline;
-        print_message ();
+    }
+}
 
 
-        //! ####################################################################
-        //! ----- the return value of main: the type of return value of main is int.
-        // if the execution of main ends normally without encountering the return statement the compiler assumes that the function has ended with an implicit return statement. this only applies to the main function for historical reasons.
-        // implicit return statement: return 0;
-        // the returned zero value either implicitly or explicitly will be interpreted by the environment that the program ended successfully.
-        // returning other values are possible and some environment give access to them to the caller in some way, although this behaviour is not required nor necessarily portable between platforms.
-        // the values that are guaranteed that can be interpreted in the same way on all platform are:
-        // 0 : the program was successful
-        // EXIT_SUCCESS : the program was successful (the heater is <cstdlib>)
-        // EXIT_FAILURE : the program failed (the heater is <cstdlib>)
-        // some authors consider explicitly writing the statement is a good practice, since the implicit return statement for main is a tricky exception.
-        std::cout << nline << "----- The return value of main:" << nline;
-        std::cout << "The return value of the main function which is of type int has his own peculiarity." << nline << nline;
-        std::cout << "Read the comments in the source code..." << nline;
-
-
-        //! ####################################################################
-        //! ----- arguments passed by value and by reference:
-
-        // by value: the values of arguments will be passed to function on the moment of the call.
-        // the values will be copied into the variables represented by function parameters.
-        // the values of passed arguments will be used to initial the function parameters, thus the modification of them in function doesn't have any effect on the variables outside of it.
-        std::cout << nline << "----- Arguments passed by value and by reference:" << nline;
-        std::cout << "The Arguments can be passed to a function by value and by reference." << nline << nline;
-        std::cout << "Passing arguments by value:" << nline;
-        x = 3, y = 4, result = 0;
-        std::cout << "The passed arguments are:" << tab << "x = " << x << tab << "y = " << y << nline;
-        result = addition ( x, y );
-        std::cout << "The result of addition function which has arguments passed by value:" << tab << result << nline;
-
-        // by reference: make access to variables outside of function passible.
-        // to actually modify the value of variables used as arguments to call a function, arguments need to be passed by reference.
-        // to gain access to arguments, the function defines its parameters as reference.
-        // in C++ references are indicated by the ampersand sign '&' following the parameter type.
-        // what is passed is the variable itself, so somehow the association happens between the passed arguments and the parameters of the function to the extent that the modification of arguments on their corresponding local variables within function becomes possible and its reflection is on the variables passed as arguments.
-        // 
-        std::cout << nline << "Passing arguments by reference:" << nline;
-        x = 2, y = 3;
-        int z { 4 };
-        std::cout << "The passed arguments are:" << tab << "x = " << x << tab << "y = " << y << tab << "z = " << z << nline;
-        duplication ( x, y, z );
-        std::cout << "The result of duplication function which has arguments passed by reference:" << nline;
-        std::cout << tab << "x = " << x << tab << "y = " << y << tab << "z = " << z << nline;
-
-
-        //! ####################################################################
-        //! ----- efficiency consideration and constant reference:
-        // passing arguments by value causes the arguments to be copied which it may be relatively inexpensive for fundamental types like int but in compound type it may result in certain overhead and copying large quantities of data just for function call.
-        // for this unneeded copy to be avoided, calling functions by reference is suggested and with it, the function operates directly on aliases of passed strings and at most, it might mean the transfer of certain pointer to the function.
-        std::cout << nline << "----- Efficiency consideration and constant reference:" << nline;
-        std::cout << "Passing arguments by reference to avoid certain overhead." << nline << nline;
-        std::string a, b, c;
-        std::cout << "Enter two long string to be concatenated:" << nline << nline << "Enter the first one:" << tab;
-        std::getline ( std::cin, a );
-        std::cout << nline << "And the second one is:" << tab;
-        std::getline ( std::cin, b );
-        c = concatenate ( a, b );
-        std::cout << nline << "And the concatenated result is:" << tab << c << nline << nline;
-
-        // functions with reference parameters are generally perceived as functions that modify the arguments passed.
-        // by qualifying the parameters as constant it can be guaranteed that the function doesn't modify the arguments 
-        std::cout << "The use of constant parameters in passing arguments by reference." << nline << nline;
-        std::cout << "Above entered strings will be used." << nline << nline;
-        c = constant_concatenate ( a, b );
-        std::cout << "And the concatenated result is:" << tab << c << nline;
-
-
-        //! ####################################################################
-        //! ----- inline functions:
-        // since calling a function has a certain overhead (stacking arguments, jumps etc...) it isn't efficient for short functions.
-        // by using inline specifier in the function declaration the compiler will be suggested that inline expansion is preferred over the usual function call mechanism.
-        // behaviour of a function won't be changed but the function body will be inserted at each point of the function call, so the regular invocation will be avoided.
-        std::cout << nline << "----- Inline functions:" << nline;
-        std::cout << "To introduce the inline expansion of a function body and replace the regular invocation with it." << nline << nline;
-        std::cout << "Example of concatenate function with inline specifier declaration." << nline << nline;
-        std::cout << "Above entered strings will be used." << nline << nline;
-        c = inline_constant_concatenate ( a, b );
-        std::cout << "And the concatenated result is:" << tab << c << nline;
-        // note that in C++ the optimization task is delegated to the compiler.
-        // most compiler already optimize code to generate inline functions whenever there is an opportunity, even not explicitly marked with inline specifier.
-        // Therefore using it in the declaration of a function is merely a suggestion and the compiler is free to not inline it and optimize otherwise, as long as the resulting behaviour is one specified by the code.
+int divide ( int a, int b = 2 )
+{
+    int r; r = a / b; return r;
+}
+void _4_7_ParametersDefaultValues ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- default value in parameters:
@@ -515,11 +655,27 @@ void Functions ()
         std::cout << "To introduce optional parameters of the function." << nline << nline;
         std::cout << "The divide function with two parameters of which the last one is optional." << nline;
         std::cout << "There are going to be two calls to this function and the results will be:" << nline << nline;
+        int result;
         result = divide ( 12 );
         std::cout << "divide (12):" << tab << result << nline;
         result = divide ( 20, 4 ); // optional parameter is used in the call, therefore the default value will be ignored
         std::cout << "divide (20, 4):" << tab << result << nline;
+    }
+    catch ( const std::exception& )
+    {
 
+    }
+}
+
+
+void odd ( int x ); // declaration before definition
+void even ( int x ); // declaration before definition
+void _4_8_FunctionsDeclaration ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- declaring functions:
@@ -543,15 +699,6 @@ void Functions ()
             std::cin >> number;
             odd ( number );
         } while ( number != 0 );
-
-        //! ####################################################################
-        //! ----- recursivity: the property of functions that allow them to call themselves.
-        // usual for some task like sorting elements or factorial (n!)
-        std::cout << nline << "----- Recursivity:" << nline;
-        std::cout << "To introduce the property of functions, of that they take the ability to call themselves." << nline << nline;
-        std::cout << "A recursive function to calculate factorial:" << nline;
-        long number2 { 9 };
-        std::cout << number2 << "! =" << tab << factorial ( number2 ) << nline;
     }
     catch ( const std::exception& )
     {
@@ -567,6 +714,36 @@ void even ( int x )
 {
     if ( ( x % 2 ) == 0 ) std::cout << "The entered number is even.\n\n";
     else odd ( x );
+}
+
+
+long factorial ( long a )
+{
+    if ( a > 1 )
+        return ( a*factorial ( a - 1 ) );
+    else
+        return 1;
+}
+void _4_9_Recursivity ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- recursivity: the property of functions that allow them to call themselves.
+        // usual for some task like sorting elements or factorial (n!)
+        std::cout << nline << "----- Recursivity:" << nline;
+        std::cout << "To introduce the property of functions, of that they take the ability to call themselves." << nline << nline;
+        std::cout << "A recursive function to calculate factorial:" << nline;
+        long number2 { 9 };
+        std::cout << number2 << "! =" << tab << factorial ( number2 ) << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
 }
 
 
@@ -623,8 +800,6 @@ void OverloadsAndTemplates ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ overloads and templates:
@@ -770,8 +945,6 @@ void NameVisibility ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ name visibility:

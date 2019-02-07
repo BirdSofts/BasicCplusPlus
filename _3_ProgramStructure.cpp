@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,07.02.2019</changed>
+/// <changed>ʆϒʅ,08.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -378,13 +378,6 @@ int subtraction ( int a, int b )
 {
     int r; r = a - b; return r;
 }
-// ********************************************************************************
-/// <summary>
-/// Functions in C++
-/// </summary>
-/// <created>ʆϒʅ,15.05.2018</created>
-/// <changed>ʆϒʅ,24.05.2018</changed>
-// ********************************************************************************
 void _4_1_Functions ()
 {
     try
@@ -616,18 +609,10 @@ void _4_6_InlineFunctions ()
         std::string a { "AAA" }, b { "BBB" }, c { "" };
         std::cout << "The strings to be concatenated are:" << tab << a << tab << b << nline;
         c = inline_constant_concatenate ( a, b );
-        std::cout << "And the concatenated result is:" << tab << tab << c << nline << nline;
+        std::cout << "The concatenated result is:" << tab << tab << c << nline << nline;
         // note that in C++ the optimization task is delegated to the compiler.
         // most compiler already optimize code to generate inline functions whenever there is an opportunity, even not explicitly marked with inline specifier.
-        // Therefore using it in the declaration of a function is merely a suggestion and the compiler is free to not inline it and optimize otherwise, as long as the resulting behaviour is one specified by the code.
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        // Therefore using it in the declaration of a function is merely a suggestion and the compiler is free to not inline it and optimize otherwise, as long as the resulting behaviour is the one specified by the code.
     }
     catch ( const std::exception& )
     {
@@ -636,6 +621,7 @@ void _4_6_InlineFunctions ()
 }
 
 
+// a default value in function's declaration (optional parameters)
 int divide ( int a, int b = 2 )
 {
     int r; r = a / b; return r;
@@ -648,18 +634,17 @@ void _4_7_ParametersDefaultValues ()
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
-        //! ----- default value in parameters:
-        // optional parameters in C++ functions that doesn't require any arguments in the call shall have default values in the definition which will be used when a function called with fewer arguments.
-        // 
-        std::cout << nline << "----- Default value in Parameters:" << nline;
-        std::cout << "To introduce optional parameters of the function." << nline << nline;
-        std::cout << "The divide function with two parameters of which the last one is optional." << nline;
-        std::cout << "There are going to be two calls to this function and the results will be:" << nline << nline;
+        //! ----- default values in parameters:
+        // optional parameters in C++ functions that doesn't require any arguments in the call shall have default values in the definition,
+        // which will be used when a function is needed to be called with fewer arguments.
+        ColourCouter ( "----- Default values in Parameters:\n", F_bBLUE );
+        ColourCouter ( "To declare functions with optional parameters.\n\n", F_YELLOW );
+        std::cout << "Two call to divide function with two parameters of which the last one is optional:" << nline;
         int result;
         result = divide ( 12 );
-        std::cout << "divide (12):" << tab << result << nline;
+        std::cout << "-- divide (12):" << tab << tab << result << nline;
         result = divide ( 20, 4 ); // optional parameter is used in the call, therefore the default value will be ignored
-        std::cout << "divide (20, 4):" << tab << result << nline;
+        std::cout << "-- divide (20, 4):" << tab << result << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -668,8 +653,8 @@ void _4_7_ParametersDefaultValues ()
 }
 
 
-void odd ( int x ); // declaration before definition
-void even ( int x ); // declaration before definition
+void odd ( int x ); // function prototype
+void even ( int x ); // the same
 void _4_8_FunctionsDeclaration ()
 {
     try
@@ -679,24 +664,28 @@ void _4_8_FunctionsDeclaration ()
 
         //! ####################################################################
         //! ----- declaring functions:
-        // in C++ functions like identifiers can not be used before declaration.
-        // the prototype of a function can be declared without actually defining the function completely, giving just enough details about the types involved in the function definition which at least makes the call to the function possible.
-        // the prototype of a function shall be declared before calling the function.
-        // the declaration of prototype needs to include all types involved (return and arguments) and uses the same syntax as used in declaration of functions but it doesn't have any body code, and ends with semicolon.
-        // in the declaration of the prototype, names of parameters are optional, therefore they can be mentioned with different names, not matching to the declaration of the function itself, or don't be mentioned at all.
-        // so the syntax can be: int proto_function (int first, int second);
-        // or it can be: int proto_function (int, int);
-        // anyway including a name always improves the legibility of the declaration.
-        // declaring function is not only useful to recognize the order of functions.
-        // in the example below there is a call to function odd and this function, if needed, calls the function even, therefore without declaration of at least one of them before their actual definitions there isn't any way to structure the code so that the function odd is defined before even and the function even before odd.
-        std::cout << nline << "----- Declaring functions:" << nline;
-        std::cout << "To introduce the declaration of a function and place its definition elsewhere." << nline << nline;
-        std::cout << "Working with the functions odd and even:" << nline;
+        // in C++ language, like identifiers, functions can not be used before declaration.
+        // in any case, at least the prototype of a function needs to be declared before any call to the function,
+        // which gives enough details about the types involved (return and parameters) in the function definition (function body).
+        // prototype syntax is like the one of a function's declaration without any body code which ends with semicolon.
+        // name of parameters are optional in the declaration, this means they can be mentioned or not,
+        // and when mentioned, not matching to the declaration of the function itself is also possible.
+        //? so two possible syntaxes are:
+        // Note int proto_function (int first, int second);
+        // Note int proto_function (int, int);
+        // name inclusion always improves the legibility of the declaration anyhow.
+        // the purposes of declaring functions before their actual definition:
+        // the order of functions becomes recognizable.
+        // possibility to call another function from within the already called function. (example below)
+        ColourCouter ( "----- Declaring functions:\n", F_bBLUE );
+        ColourCouter ( "To introduce the declaration of a function and place its definition elsewhere.\n\n", F_YELLOW );
+        ColourCouter ( "Working with the functions odd and even:\n", F_bYELLOW );
         int number;
         do
         {
-            std::cout << "Please enter a number (0 to exit):" << tab;
+            std::cout << "Please enter a number (enter zero to exit):" << tab;
             std::cin >> number;
+            if ( number == 0 ) { std::cout << nline; break; }
             odd ( number );
         } while ( number != 0 );
     }
@@ -732,13 +721,35 @@ void _4_9_Recursivity ()
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
-        //! ----- recursivity: the property of functions that allow them to call themselves.
+        //! ----- recursivity:
+        // the property with which functions can call themselves.
         // usual for some task like sorting elements or factorial (n!)
-        std::cout << nline << "----- Recursivity:" << nline;
-        std::cout << "To introduce the property of functions, of that they take the ability to call themselves." << nline << nline;
+        ColourCouter ( "----- Recursivity:\n", F_bBLUE );
+        ColourCouter ( "The call that a function can make to itself.\n\n", F_YELLOW );
         std::cout << "A recursive function to calculate factorial:" << nline;
         long number2 { 9 };
-        std::cout << number2 << "! =" << tab << factorial ( number2 ) << nline;
+        std::cout << "-- " << number2 << "! =" << tab << factorial ( number2 ) << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _5_1_OverloadsAndTemplates ()
+{
+    // the body code of functions used in this section are defined above it
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ~~~~~ overloads and templates:
+        ColourCouter ( "~~~~~ Overloads and templates:\n", F_bBLUE );
+        ColourCouter ( "-- Overloads are two or more functions with the same name.\n", F_YELLOW );
+        ColourCouter ( "-- Defining a function with generic type is known as function template.\n\n", F_YELLOW );
     }
     catch ( const std::exception& )
     {
@@ -756,6 +767,38 @@ double operate ( double a, double b )
 {
     return ( a / b );
 }
+void _5_2_OverloadedFunctions ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- overloaded functions:
+        // in C++, two or more different functions can have the same name if their parameters are different (number, type).
+        // it isn't enough to have different return type to overload a function, hence at least one parameter must be different.
+        // by examining the type of the passed arguments the compiler distinguish which overload of a function shall be called.
+        // the example below is not generally a good idea to demonstrate overloads of a function, since similar behaviour of overloads is expected,
+        // on the other hand it shows the possibility that the overloads can be fully different.
+        // the functions in this example have entirely different behaviours, declarations and definitions and the only similarity is their name.
+        ColourCouter ( "----- Overloaded functions:\n", F_bBLUE );
+        ColourCouter ( "C++ ability to define multiple instances of a function.\n\n", F_YELLOW );
+        std::cout << "Operations addition and division performed by the overloads of the function operate:" << nline;
+        int x { 2 }, y { 3 };
+        double n { 2.4 }, m { 3.7 };
+        std::cout << "x = " << x << tab << "y = " << y << nline;
+        std::cout << "Result of overload addition is:" << tab << operate ( x, y ) << nline;
+        std::cout << "n = " << n << tab << "m = " << m << nline;
+        std::cout << "Result of overload division is:" << tab << operate ( n, m ) << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
 int sum ( int a, int b )
 {
     return ( a + b );
@@ -780,48 +823,12 @@ bool equality_check ( T a, U b )
 {
     return ( a == b );
 }
-// non-type template arguments: expressions of particular type
-template <class T, int N>
-T fixed_multiply ( T val )
+void _5_3_FunctionTemplates ()
 {
-    return val * N;
-}
-// ********************************************************************************
-/// <summary>
-/// Overloads and templates in C++
-/// </summary>
-/// <created>ʆϒʅ,24.05.2018</created>
-/// <changed>ʆϒʅ,26.05.2018</changed>
-// ********************************************************************************
-void OverloadsAndTemplates ()
-{
-    // the body code of functions used in this section are defined above it
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
-        //! ####################################################################
-        //! ~~~~~ overloads and templates:
-        std::cout << nline << "~~~~~ Overloads and templates:" << nline;
-
-        //! ####################################################################
-        //! ----- Overloads:
-        // in C++, two or more different functions can have the same name if their parameters are different (number, type).
-        // it isn't enough to have different return type to overload a function and at least one parameter must be different.
-        // the compiler distinguish which overload of a function shall be called by examining the type of the passed arguments.
-        std::cout << nline << "----- Overloaded functions:" << nline;
-        std::cout << "C++ ability to define multiple operation for the same overloaded function." << nline << nline;
-        // the example below is not generally a good idea to demonstrate overloads of a function, since it is expected, that the behaviour of the overloads of a function to be similar.
-        // the functions in this example have entirely different behaviours, declarations and definitions and the only similarity is their name.
-        // this example shows the possibility, while a similar behaviour is expected, the overloads can be fully different.
-        std::cout << "The result of the operations addition and division performed by the overloads of the function operate:" << nline << nline;
-        int x { 2 }, y { 3 };
-        double n { 2.4 }, m { 3.7 };
-        std::cout << "x =" << tab << x << tab << "y =" << tab << y << nline;
-        std::cout << "Result of overload addition of the function operate is:" << tab << operate ( x, y ) << nline << nline;
-        std::cout << "n =" << tab << n << tab << "m =" << tab << m << nline;
-        std::cout << "Result of overload division of the function operate is:" << tab << operate ( n, m ) << nline;
 
         //! ####################################################################
         //! ----- function templates:
@@ -847,6 +854,14 @@ void OverloadsAndTemplates ()
         double result2;
         result2 = sum2<double> ( 1.2, 1.5 ); // making another instance with double type
         std::cout << "Another call for the sum of 1.2 and 1.5 (double):" << tab << result2 << nline << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         // since the generic type SomeType is also used as parameters of the function, the compiler is able to deduce the data type automatically.
         // therefore there is no need to explicitly specify the type within angle-brackets when calling the function.
@@ -865,6 +880,26 @@ void OverloadsAndTemplates ()
             std::cout << "The numbers 10 and 10.0 are equal" << nline;
         else
             std::cout << "The numbers 10 and 10.0 are not equal" << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+// non-type template arguments: expressions of particular type
+template <class T, int N>
+T fixed_multiply ( T val )
+{
+    return val * N;
+}
+void _5_4_NonTypeTemplateArguments ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- non-type template arguments:

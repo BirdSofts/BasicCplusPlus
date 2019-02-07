@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.h
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,07.12.2018</changed>
+/// <changed>ʆϒʅ,08.12.2018</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -18,6 +18,7 @@ void _3_2_SelectionStatements ();
 void _3_3_IterationStatements ();
 void _3_4_JumpStatements ();
 void _3_5_AnotherSelectionStatement ();
+
 void _4_1_Functions ();
 void _4_2_VoidFunctions ();
 void _4_3_MainFunctionReturnValue ();
@@ -28,7 +29,11 @@ void _4_7_ParametersDefaultValues ();
 void _4_8_FunctionsDeclaration ();
 void _4_9_Recursivity ();
 
-void OverloadsAndTemplates ();
+void _5_1_OverloadsAndTemplates ();
+void _5_2_OverloadedFunctions ();
+void _5_3_FunctionTemplates ();
+void _5_4_NonTypeTemplateArguments ();
+
 void NameVisibility ();
 
 

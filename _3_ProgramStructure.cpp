@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,09.02.2019</changed>
+/// <changed>ʆϒʅ,10.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -925,10 +925,32 @@ void _5_4_NonTypeTemplateArguments ()
 }
 
 
-int global_variable { 22 }; // has global scope from this point of code
+void _6_1_NameVisibility ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ~~~~~ name visibility:
+        // in C++ name entities such as variables, functions and compound types need to be declared before being used.
+        // the point where this declaration happens hat influence on its visibility.
+        ColourCouter ( "~~~~~ Name Visibility\n", F_bBLUE );
+        ColourCouter ( "The visibility of name entities such as variables, functions and compound types can be different after declaration.\n", F_YELLOW );
+        ColourCouter ( "The point where an entity is declared, influences its visibility.\n\n", F_YELLOW );
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+int global_variable { 22 }; // global scope from this point of code (not in other .cpp files)
 int first_function ()
 {
-    int local_variable; // has local scope within this block
+    int local_variable; // local scope within this block
     local_variable = 0;
     return local_variable;
 }
@@ -939,7 +961,61 @@ int second_function ()
     local_variable = 2;
     return local_variable;
 }
-namespace fistNamespace
+void _6_2_Scopes ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- scopes:
+        // global scope: the entity is defined outside all blocks and is visible to them all.
+        // Note real global scope in all translation units (i.e. files of source code):
+        // -------- definition with 'extern' keyword in pch.h or whichever file that is foreseen for pre-compiled header,
+        // -------- then its initialization in one of the translation units
+        // Note another global scope in all translation units:
+        // -------- definition inside pch.cpp or whichever file that is foreseen for pre-compiled header,
+        // local scope: the entity is defined inside a block and is visible inside of it.
+        // a name can represents only one entity, therefore two variables can't have same name within the same scope.
+        ColourCouter ( "----- Scopes:\n", F_bBLUE );
+        ColourCouter ( "The scope of every entity is dependent on the point of its declaration.\n\n", F_YELLOW );
+        std::cout << "Global variable's value:" << "\t\t\t\t" << global_variable << nline;
+        std::cout << "Local variable's value (first function scope):" << "\t\t" << first_function () << nline;
+        std::cout << "Local variable's value (second function scope):" << "\t\t" << second_function () << nline;
+        std::cout << "Global variable's value after change:" << "\t\t\t" << global_variable << nline << nline;
+
+        //! - in addition:
+        // the visibility of an entity with block scope extends until the end of the block including its inner blocks.
+        // nevertheless, re-utilization of an outer block defined name in the inner blocks is possible.
+        // this re-utilization hides the outer block entity name in the inner block and refers to a different entity.
+        // declarations that introduce a block such as functions, for, if etc... are local to the block they introduce.
+        ColourCouter ( "Inner blocks and their scopes:\n", F_bYELLOW );
+        int x { 10 };
+        int y { 20 };
+        std::cout << "Inserted from outer block:" << nline;
+        std::cout << tab << "The initialized value of x:" << tab << x << nline;
+        std::cout << tab << "The initialized value of y:" << tab << y << nline << nline;
+        {
+            int x; // OK, inner scope.
+            x = 30; // assigns a value to the inner block x variable; outer block x variable is hidden.
+            y = 30; // assigns a value to the outer block y variable; outer block y variable is not hidden.
+            std::cout << "Inserted from inner block:" << nline;
+            std::cout << tab << "x (the inner block x entity):" << tab << x << nline;
+            std::cout << tab << "y (the outer block y entity):" << tab << y << nline << nline;
+        }
+        std::cout << "Inserted from outer block:" << nline;
+        std::cout << tab << "x (the outer block x entity) :" << tab << x << nline;
+        std::cout << tab << "y (the outer block y entity) :" << tab << y << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+namespace firstNamespace
 {
     int a { 2 };
     int b { 3 };
@@ -951,11 +1027,49 @@ namespace secondNamespace
     double value () { return ( 2 * pi ); }
 }
 // namespaces can be split
-namespace fistNamespace
+namespace firstNamespace
 {
     int c { 4 };
     int d { 5 };
 }
+void _6_3_Namespaces ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- namespaces:
+        // organization of named entities with global scope into narrower namespace scope to avoid name collision
+        // only one entity can exist with a particular name in a particular scope, which for local names is seldom a problem, since the blocks tend to be relatively short.
+        // non-local names bring more possibilities for name collision, considering the number of functions, types and variables declared by libraries, neither of them local in the nature and some of them very generic.
+        // namespaces allow the introduction of different logical scopes referred to by names to organize the elements of program.
+        // syntax: namespace identifier { name-entities }
+        // the elements of namespaces can be accessed normally with their own identifier from within their scope.
+        // the elements of namespaces have to be properly qualified with the scope operator (::) and the identifier of their namespace to be reached from outside.
+        // namespaces can be split: first segment of a code can be extended to the second segment in the same namespace
+        // namespaces can even get extend across different translation units (i.e.: across different files of source code)
+        ColourCouter ( "----- Namespaces:\n", F_bBLUE );
+        ColourCouter ( "To introduce the organization of named entities with global scope into narrower namespaces scope.\n\n", F_YELLOW );
+        std::cout << "The elements of first namespace before change:" << nline;
+        std::cout << tab << "a: " << firstNamespace::a << "\t\t" << "b: " << firstNamespace::b << nline;
+        firstNamespace::a = 55; // an element of namespace, accessed from outside
+        firstNamespace::b = 66; // the same
+        std::cout << "The elements of first namespace after change:" << nline;
+        std::cout << tab << "a: " << firstNamespace::a << "\t\t" << "b: " << firstNamespace::b << nline << nline;
+        ColourCouter ( "Two function with the same name defined in two namespaces:\n", F_bYELLOW );
+        std::cout << "Result of the function (first namespace):" << tab << firstNamespace::value () << nline;
+        std::cout << "Result of the function (second namespace):" << tab << secondNamespace::value () << nline;
+        std::cout << "Defined pi variable (second namespace):" << "\t\t" << secondNamespace::pi << nline << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
 namespace first
 {
     int xx { 5 };
@@ -966,93 +1080,12 @@ namespace second
     double xx { 3.1416 };
     double yy { 2.7183 };
 }
-int aGlobalVariable; // has static storage, is automatic initialized
-// ********************************************************************************
-/// <summary>
-/// Name visibility
-/// </summary>
-/// <created>ʆϒʅ,26.05.2018</created>
-/// <changed>ʆϒʅ,30.05.2018</changed>
-// ********************************************************************************
-void NameVisibility ()
+void _6_4_UsingKeyword ()
 {
-    // the functions, namespaces and variables used in this section are defined above it.
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
-        //! ####################################################################
-        //! ~~~~~ name visibility:
-        // in C++ name entities such as variables, functions and compound types need to be declared before being used.
-        // the point where this declaration happens hat influence on its visibility.
-        ColourCouter ( "~~~~~ Name Visibility\n", F_bBLUE );
-        ColourCouter ( "The visibility of name entities such as variables, functions and compound types after declaration can be different.\n", F_YELLOW );
-        ColourCouter ( "The point where an entity is declared, influences its visibility.\n\n", F_YELLOW );
-
-        //! ####################################################################
-        //! ----- scope:
-        // global scope: the entity is defined outside all blocks and is visible to all of them.
-        // local scope: the entity is defined inside a block and is only visible to it.
-        // a name can represents only one entity, therefore two variables can't have same name within the same scope.
-        std::cout << nline << "----- Scope:" << nline;
-        std::cout << "The scope of every entity is dependent on the point of its declaration." << nline << nline;
-        std::cout << "The value of global_variable:" << tab << global_variable << nline;
-        std::cout << "The value of local_variable of first_function:" << tab << first_function () << nline;
-        std::cout << "The value of local_variable of second_function:" << tab << second_function () << nline;
-        std::cout << "The value of global_variable after calling the second_function:" << tab << global_variable << nline << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
-
-        // the visibility of an entity with block scope extends until the end of its block including its inner blocks.
-        // nevertheless, re-utilization of an outer block defined name in the inner blocks is possible.
-        // this re-utilization hides the outer block entity name in the inner block and refers to a different entity.
-        // declarations that introduce a block such as functions, for, if etc... have these inner block entity rules too.
-        std::cout << "The introduction of inner blocks and their scopes:" << nline << nline;
-        int x { 10 };
-        int y { 20 };
-        std::cout << "The initialized value of x :" << tab << x << nline;
-        std::cout << "The initialized value of y :" << tab << y << nline << nline;
-        {
-            int x; // OK, inner scope.
-            x = 30; // assigns a value to the inner block x variable; outer block x variable is hidden.
-            y = 30; // assigns a value to the outer block y variable; outer block y variable is not hidden.
-            std::cout << "Inserted from inner block:" << nline;
-            std::cout << "x (the inner block x entity) :" << tab << x << nline;
-            std::cout << "y (the outer block y entity) :" << tab << y << nline << nline;
-        }
-        std::cout << "Inserted from outer block:" << nline;
-        std::cout << "x (the outer block x entity) :" << tab << x << nline;
-        std::cout << "y (the outer block y entity) :" << tab << y << nline;
-
-        //! ####################################################################
-        //! ----- namespaces: organization of named entities with global scope into narrower namespace scope to avoid name collision
-        // only one entity can exist with a particular name in a particular scope, which for local names is seldom a problem, since the blocks tend to be relatively short.
-        // non-local names bring more possibilities for name collision, considering the number of functions, types and variables, neither of them local in the nature and some of them very generic.
-        // namespaces allow the introduction of different logical scopes referred to by names to organize the elements of program.
-        // syntax: namespace identifier { name-entities }
-        // the elements of namespaces can be accessed normally with their own identifier from within of their scope.
-        // the elements of namespaces have to be properly qualified with the scope operator (::) and the identifier of their namespace to be reached from outside.
-        // namespaces can be split, two segments of code can be declared in the same namespace
-        // namespaces can even extend across different translation unit (i.e.: across different files of source code)
-        std::cout << nline << "----- Namespaces:" << nline;
-        std::cout << "To introduce the organization of named entities with global scope into narrower namespace scope." << nline << nline;
-        std::cout << "The elements of first namespace before change:" << nline;
-        std::cout << "a :" << tab << fistNamespace::a << tab << "b :" << fistNamespace::b << nline;
-        fistNamespace::a = 55; // an element of namespace, accessed from outside
-        fistNamespace::b = 66; // the same
-        std::cout << "The elements of first namespace after change:" << nline;
-        std::cout << "a :" << tab << fistNamespace::a << tab << "b :" << fistNamespace::b << nline << nline;
-        std::cout << "Two function with the same name defined in two namespaces to avoid name collision:" << nline;
-        std::cout << "The result of value function in the first namespace:" << tab << fistNamespace::value () << nline;
-        std::cout << "The result of value function in the second namespace:" << tab << secondNamespace::value () << nline;
-        std::cout << "The variable pi defined in the second namespace:" << tab << secondNamespace::pi << nline;
 
         //! ####################################################################
         //! ----- the using keyword:
@@ -1070,6 +1103,14 @@ void NameVisibility ()
             std::cout << "The value of xx in the second namespace:" << tab << second::xx << nline;
             std::cout << "The value of yy in the first namespace:" << tab << tab << first::yy << nline << nline;
         }
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         // the use of the keyword using as a directive to introduce an entire namespace
         // using and using namespace have validity only in the same block in which they are stated or in the entire source code if they are used directly in the global scope.
@@ -1102,6 +1143,24 @@ void NameVisibility ()
             std::cout << "Using the alias of the first namespace." << nline;
             std::cout << "The value of xx :" << tab << xx << nline;
         }
+
+        // add:
+        // the std namespace
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+int aGlobalVariable; // has static storage, is automatic initialized
+void _6_5_StorageClasses ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- storage classes:

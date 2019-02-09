@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.h
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,08.12.2018</changed>
+/// <changed>ʆϒʅ,10.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -34,7 +34,11 @@ void _5_2_OverloadedFunctions ();
 void _5_3_FunctionTemplates ();
 void _5_4_NonTypeTemplateArguments ();
 
-void NameVisibility ();
+void _6_1_NameVisibility ();
+void _6_2_Scopes ();
+void _6_3_Namespaces ();
+void _6_4_UsingKeyword ();
+void _6_5_StorageClasses ();
 
 
 #endif // !PROGRAMSTRUCTURE_H

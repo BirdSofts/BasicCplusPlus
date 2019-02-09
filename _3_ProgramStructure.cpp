@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,08.02.2019</changed>
+/// <changed>ʆϒʅ,09.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -166,7 +166,7 @@ void _3_3_IterationStatements ()
         // each field will be executed in a particular time in the life cycle of a loop.
         // these fields are expressions so they can use the comma operator, therefore a for loop can handle two counter variables at the same time.
         // Note expressions are not statements so they can't be replaced by a block.
-        ColourCouter ( "Features of for loop: multiple expressions as fields:\n", F_bYELLOW );
+        ColourCouter ( "Features of for loops: multiple expressions as fields:\n", F_bYELLOW );
         std::cout << nline << tab;
         for ( int i = 30, n = 0; n != i; n++, i -= 2 )
         {
@@ -183,7 +183,7 @@ void _3_3_IterationStatements ()
         //    *    
         //   * *   
         //  *   *  
-        ColourCouter ( "Demonstration of a pattern using nested for loops.\n", F_bYELLOW );
+        ColourCouter ( "Demonstration of a pattern using nested for loops:\n", F_bYELLOW );
         bool flag { false };
         for ( int i = 1; i <= 5; i++ )
         {
@@ -398,7 +398,7 @@ void _4_1_Functions ()
         ColourCouter ( "~~~~~ Functions:\n", F_bBLUE );
         ColourCouter ( "To introduce structures that can be used to perform individual tasks in segment of code.\n\n", F_YELLOW );
         int result;
-        ColourCouter ( "Two function to perform addition and subtraction operations.\n", F_bYELLOW );
+        ColourCouter ( "Two function to perform addition and subtraction operations:\n", F_bYELLOW );
         std::cout << "Passed literal values as parameters to be added:\t" << "2 and 7" << nline;
         result = addition ( 2, 7 ); // passing literals
         std::cout << "The result of addition function:" << "\t\t\t" << result << nline;
@@ -408,8 +408,8 @@ void _4_1_Functions ()
         result = subtraction ( x, y ); // passing variables
         std::cout << "The result of subtraction function:" << "\t\t\t" << result << nline << nline;
 
-        std::cout << "The result of subtraction function called as an operand of addition operation:" << nline;
-        std::cout << "So the expression is:  subtraction ( x, y ) + 6:" << nline;
+        ColourCouter ( "Subtraction function called as an operand of addition operation:\n", F_bYELLOW );
+        std::cout << "So the expression is: \t\t subtraction ( x, y ) + 6:" << nline;
         std::cout << "Passed variables as parameters to be subtracted:" << tab << "x = " << x << tab << "y = " << y << nline;
         result = 6 + subtraction ( x, y ); // the function call is operand of addition operation.
         result = subtraction ( x, y ) + 6; // same as above: commutative property of addition operation
@@ -575,7 +575,7 @@ void _4_5_Efficiency ()
         //! - in addition:
         // functions with reference parameters are generally perceived as functions that modify the arguments passed.
         // by qualifying the parameters as constant, it can be guaranteed that the function doesn't modify the arguments 
-        ColourCouter ( "The use of constant parameters in passing arguments by reference.\n", F_bYELLOW );
+        ColourCouter ( "The use of constant parameters in passing arguments by reference:\n", F_bYELLOW );
         std::cout << "Above entered strings will be used:" << nline << nline;
         c = constant_concatenate ( a, b );
         std::cout << "The concatenated result is:" << tab << c << nline << nline;
@@ -605,7 +605,7 @@ void _4_6_InlineFunctions ()
         // behaviour of a function won't be changed but the function body will be inserted at each point of the function call, so the regular invocation will be avoided.
         ColourCouter ( "----- Inline functions:\n", F_bBLUE );
         ColourCouter ( "To introduce the inline expansion of a function body and replace the regular invocation with it.\n\n", F_YELLOW );
-        std::cout << "Concatenate function with inline specifier declaration:" << nline;
+        ColourCouter ( "Concatenate function with inline specifier declaration:\n", F_bYELLOW );
         std::string a { "AAA" }, b { "BBB" }, c { "" };
         std::cout << "The strings to be concatenated are:" << tab << a << tab << b << nline;
         c = inline_constant_concatenate ( a, b );
@@ -784,7 +784,7 @@ void _5_2_OverloadedFunctions ()
         // the functions in this example have entirely different behaviours, declarations and definitions and the only similarity is their name.
         ColourCouter ( "----- Overloaded functions:\n", F_bBLUE );
         ColourCouter ( "C++ ability to define multiple instances of a function.\n\n", F_YELLOW );
-        std::cout << "Operations addition and division performed by the overloads of the function operate:" << nline;
+        ColourCouter ( "Operations addition and division performed by overloads of the function operate:\n", F_bYELLOW );
         int x { 2 }, y { 3 };
         double n { 2.4 }, m { 3.7 };
         std::cout << "x = " << x << tab << "y = " << y << nline;
@@ -818,7 +818,6 @@ SomeType sum2 ( SomeType a, SomeType b )
 }
 // multiple template parameters
 template <class T, class U>
-// the use of regular non-template type
 bool equality_check ( T a, U b )
 {
     return ( a == b );
@@ -832,54 +831,54 @@ void _5_3_FunctionTemplates ()
 
         //! ####################################################################
         //! ----- function templates:
-        // overloaded functions may have the same definition.
-        // the function sum could be overloaded for many types and all of them having the same body or definition.
-        std::cout << nline << "----- Function templates:" << nline;
-        std::cout << "The ability of C++ to define generic functions known as function templates." << nline << nline;
-        std::cout << "Overloads of the function sum with the same definition:" << nline;
-        std::cout << "Sum of 10 and 20 (overloaded function for int type):" << tab << sum ( 10, 20 ) << nline;
-        std::cout << "Sum of 1.2 and 1.5 (overloaded function for double type):" << tab << sum ( 1.2, 1.5 ) << nline << nline;
-        // for cases such as the case above, C++ has the ability to define generic functions known as function templates.
-        // syntax: template <template-parameters> function-declaration
+        // a function (the function sum for example) could be overloaded for many types and all of them having the same body or definition.
+        ColourCouter ( "----- Function templates:\n", F_bBLUE );
+        ColourCouter ( "The ability of C++ to define generic functions known as function templates.\n\n", F_YELLOW );
+        ColourCouter ( "A function could be overloaded for different types while all of them having the same definition:\n", F_bYELLOW );
+        std::cout << "Sum of 10 and 20 (overload for int type):" << tab << sum ( 10, 20 ) << nline;
+        std::cout << "Sum of 1.2 and 1.5 (overload for double type):" << tab << sum ( 1.2, 1.5 ) << nline << nline;
+        // for such a case (above),
+        // C++ has the ability to define generic functions known as function templates.
+        // Note syntax: template <template-parameters> function-declaration
         // it is like regular function, preceded with template keyword and a series of template parameters enclosed in angle-brackets <> and separated with comma
-        // the template parameters can be generic template types by specifying either the class or typename keyword (100% synonym in template declaration) followed by an identifier. this identifier can then be used in the function definition like regular types. (seed generic sum function)
+        // the template parameters can be generic template types by specifying either the class or typename keyword (both are 100% synonym in template declaration) followed by an identifier.
+        // this identifier can then be used in the function definition like regular types. (see generic function sum2)
         // no matter how a generic type would be used (parameter, return or variable), it will be determined on the moment the template is instantiated.
         // a template can be instantiated by applying it to create a function using particular types or values for its template parameters.
-        // the instantiation will be done when a template function called. call statement syntax is like function but the template arguments enclosed in angle-brackets are to be specified.
-        // syntax: name <tamplate-arguments> (function-arguments)
-        std::cout << "Calling sum2 function template (the use of generic function in C++):" << nline;
+        // the instantiation will be done when a template function called.
+        // call statement syntax is like function but the template arguments, enclosed in angle-brackets shall to be specified.
+        // Note syntax: name <tamplate-arguments> (function-arguments)
+        ColourCouter ( "Multiple instances of a function (the use of generic function or function template):\n", F_bYELLOW );
         int result1;
         result1 = sum2<int> ( 10, 20 ); // using int type to make an instance
-        std::cout << "A call for the sum of 10 and 20 (int):" << tab << result1 << nline;
+        std::cout << "Result of the instance for int type:" << tab << tab << result1 << nline;
         double result2;
         result2 = sum2<double> ( 1.2, 1.5 ); // making another instance with double type
-        std::cout << "Another call for the sum of 1.2 and 1.5 (double):" << tab << result2 << nline << nline;
-        /*
+        std::cout << "Result of another instance for double type:" << tab << result2 << nline << nline;
 
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
         //! - in addition:
-
         // since the generic type SomeType is also used as parameters of the function, the compiler is able to deduce the data type automatically.
         // therefore there is no need to explicitly specify the type within angle-brackets when calling the function.
-        // for this the type shall be unambiguous so the compiler could perform the deduction.
-        // if the function is called with arguments of different types, the compiler may not be able to deduct the type of generic type.
+        // for this, the type shall be unambiguous so the compiler could perform the deduction.
+        // if the function is called with arguments of different types, the compiler may not be able to deduct the type of the generic type.
         // take the following call for instance:
+        ColourCouter ( "Instantiating another instance while using deduction of type:\n", F_bYELLOW );
         long long result3;
         result3 = sum2 ( 21355479374, 21370547592 ); // type deduction in generic types
-        std::cout << "Using type deduction: a call for the sum of 21355479374 and 21370547592 (long long):" << tab << result3 << nline << nline;
+        std::cout << "Result of another instance (deduction for type long long):" << tab << result3 << nline << nline;
 
-        // templates are a powerful and versatile features. they can have multiple template parameters and the function can still use regular non-templated types.
-        // in the example below there is no ambiguity possible since numerical literals are always of a specific type:
-        // unless otherwise specified with a suffix, integer literals always produce values of type int and floating-point literals always produce values of type double.
-        std::cout << "The versatile features that function templates have to offer:" << nline;
-        if ( equality_check ( 10, 10.0 ) ) // automatic template parameter deduction
-            std::cout << "The numbers 10 and 10.0 are equal" << nline;
+        //! - in addition:
+        // templates are a powerful and versatile feature.
+        // while they can have multiple template parameters, it is still possible for the function to use regular non-templated types.
+        // since numerical literals are always of a specific type, unless otherwise specified with a suffix.
+        // this means integer literals always produce values of type int and floating-point literals always produce values of type double.
+        // so there is no ambiguity possible in the example below.
+        ColourCouter ( "Multiple template parameters plus using non-templated types:\n", F_bYELLOW );
+        if ( equality_check ( 10, 10.0 ) ) // the use of regular non-template type
+                                           // automatic template parameter deduction
+            std::cout << "The numbers 10 and 10.0 are equal" << nline << nline;
         else
-            std::cout << "The numbers 10 and 10.0 are not equal" << nline;
+            std::cout << "The numbers 10 and 10.0 are not equal" << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -904,18 +903,20 @@ void _5_4_NonTypeTemplateArguments ()
         //! ####################################################################
         //! ----- non-type template arguments:
         // the template parameter can also include expression of a particular type additionally to types introduced with class and typename.
-        // the second argument of fixed-multiply function template is of type int, looks like regular function parameter and can actually be used just like one.
-        // but there exist a major difference: template parameter's values will be determined in compile-time to generate different instantiations, thus the value of that argument is never passed during runtime.
-        // this means that the two calls essentially happens to two different versions of fixed-multiply function template, one of them always multiplies by two and other one by tree.
-        // therefore the second template argument needs to be a constant expression and it can't be passed a variable.
-        std::cout << nline << "----- Non-type template arguments:" << nline;
-        std::cout << "To include expression of particular types in the template parameter." << nline << nline;
-        std::cout << "The use of fixed-multiply function template and its second template argument:" << nline;
+        // when a particular type is used, the parameter looks like regular function parameter and can actually be used just like one.
+        // the major difference:
+        // since template parameter's values are compile-time-determined, so different instantiations could be generated,
+        // the values of arguments of particular types are never passed during runtime.
+        // this means that every call to such a template generates a different version of the function template,
+        // therefore the values of argument of particular types need to be constant expressions and the template can not be instantiated with variables.
+        ColourCouter ( "----- Non-type template arguments:\n", F_bBLUE );
+        ColourCouter ( "To include expression of particular types in the template parameter.\n\n", F_YELLOW );
+        ColourCouter ( "A function template and its second template parameter of particular type int:\n", F_bYELLOW );
         int result4;
         result4 = fixed_multiply<int, 2> ( 10 );
         std::cout << "First instance (always multiply with 2):" << tab << result4 << nline;
         result4 = fixed_multiply<int, 3> ( 10 );
-        std::cout << "Second instance (always multiply with 3):" << tab << result4 << nline;
+        std::cout << "Second instance (always multiply with 3):" << tab << result4 << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -985,10 +986,9 @@ void NameVisibility ()
         //! ~~~~~ name visibility:
         // in C++ name entities such as variables, functions and compound types need to be declared before being used.
         // the point where this declaration happens hat influence on its visibility.
-        std::cout << nline << "~~~~~ Name Visibility:" << nline;
-        std::cout << "The visibility of name entities such as variables, functions and compound types after declaration can be different." << nline;
-        std::cout << "The point where an entity is declared, influences its visibility." << nline;
-
+        ColourCouter ( "~~~~~ Name Visibility\n", F_bBLUE );
+        ColourCouter ( "The visibility of name entities such as variables, functions and compound types after declaration can be different.\n", F_YELLOW );
+        ColourCouter ( "The point where an entity is declared, influences its visibility.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- scope:
@@ -1001,6 +1001,14 @@ void NameVisibility ()
         std::cout << "The value of local_variable of first_function:" << tab << first_function () << nline;
         std::cout << "The value of local_variable of second_function:" << tab << second_function () << nline;
         std::cout << "The value of global_variable after calling the second_function:" << tab << global_variable << nline << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         // the visibility of an entity with block scope extends until the end of its block including its inner blocks.
         // nevertheless, re-utilization of an outer block defined name in the inner blocks is possible.

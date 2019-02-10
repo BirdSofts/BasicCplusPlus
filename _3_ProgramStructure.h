@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.h
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,10.02.2019</changed>
+/// <changed>ʆϒʅ,11.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -38,7 +38,8 @@ void _6_1_NameVisibility ();
 void _6_2_Scopes ();
 void _6_3_Namespaces ();
 void _6_4_UsingKeyword ();
-void _6_5_StorageClasses ();
+void _6_5_NamespaceAliasing ();
+void _6_6_StorageClasses ();
 
 
 #endif // !PROGRAMSTRUCTURE_H

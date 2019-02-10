@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,02.02.2019</changed>
+/// <changed>ʆϒʅ,11.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -12,6 +12,9 @@
 
 #define Tab '\t'
 #define Nline '\n'
+
+const char tab { '\t' };
+const char nline { '\n' };
 
 
 void print_simple_array ( int arg [], int length )
@@ -34,13 +37,6 @@ void print_bidimensional_array ( int arg [] [5], int width, int height )
     }
     std::cout << Nline;
 }
-// ********************************************************************************
-/// <summary>
-/// Arrays in C++
-/// </summary>
-/// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,11.06.2018</changed>
-// ********************************************************************************
 void Arrays ()
 {
     // the functions used in this section are defined above it.
@@ -48,8 +44,6 @@ void Arrays ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ arrays:
@@ -59,8 +53,18 @@ void Arrays ()
         // declaration syntax: type name [elements];
         // elements field which is always enclosed in square brackets [] specifies the length of the array in terms of the number of elements.
         // since arrays are blocks of static memory whose size must be determined at the compile time, the elements field must be a constant expression.
-        std::cout << nline << "~~~~~ Arrays:" << nline;
-        std::cout << "An array is a series of elements of the same type that every element can be referenced by its index which the unique identifier of array provides." << nline;
+        ColourCouter ( "~~~~~ Arrays:\n", F_bBLUE );
+        ColourCouter ( "An array is a series of elements of the same type.\n", F_YELLOW );
+        ColourCouter ( "Every element of the array can be referenced to by its index.\n", F_YELLOW );
+        ColourCouter ( "Indexes are the unique identifier of an array.\n\n", F_YELLOW );
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- initializing arrays:
@@ -240,8 +244,6 @@ void CharacterSequences ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ character sequences:
@@ -382,8 +384,6 @@ void Pointers ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ Pointers:
@@ -754,8 +754,6 @@ void DynamicMemory ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ dynamic memory:
@@ -894,8 +892,6 @@ void DataStructures ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ data structures:
@@ -1035,8 +1031,6 @@ void OtherDataTypes ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ other data types:

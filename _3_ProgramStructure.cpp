@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,10.02.2019</changed>
+/// <changed>ʆϒʅ,11.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -12,6 +12,7 @@
 
 #define Tab '\t'
 #define Nline '\n'
+
 const char tab { '\t' };
 const char nline { '\n' };
 
@@ -1089,63 +1090,42 @@ void _6_4_UsingKeyword ()
 
         //! ####################################################################
         //! ----- the using keyword:
-        // to introduce a name into the current declarative region (such as a block), thus avoiding the need to qualify the name.
-        std::cout << nline << "----- The using keyword:" << nline;
-        std::cout << "To avoid the need to qualify a name in the current declarative region." << nline << nline;
-        std::cout << "Accessing variables in the first and second namespace with and without qualification:" << nline << nline;
+        // to introduce a name into the current declarative region (such as a block), to avoid name qualification need.
+        ColourCouter ( "----- The using keyword:\n", F_bBLUE );
+        ColourCouter ( "To avoid the need to qualify a name in the current declarative region.\n\n", F_YELLOW );
+        ColourCouter ( "Accessing variables in the first and second namespace with and without qualification:\n", F_bYELLOW );
         {
             using first::xx; // avoid the need of name qualifier
             using second::yy; // the same
             std::cout << "No need to qualify the name:" << nline;
-            std::cout << "The value of xx in the first namespace:" << tab << tab << xx << nline;
-            std::cout << "The value of yy in the second namespace:" << tab << yy << nline << nline;
+            std::cout << tab << "The value of xx (first namespace):" << tab << xx << nline;
+            std::cout << tab << "The value of yy (second namespace):" << tab << yy << nline;
             std::cout << "Need to qualify the name:" << nline;
-            std::cout << "The value of xx in the second namespace:" << tab << second::xx << nline;
-            std::cout << "The value of yy in the first namespace:" << tab << tab << first::yy << nline << nline;
+            std::cout << tab << "The value of xx (second namespace):" << tab << second::xx << nline;
+            std::cout << tab << "The value of yy (first namespace):" << tab << first::yy << nline << nline;
         }
-        /*
 
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
-
-        // the use of the keyword using as a directive to introduce an entire namespace
-        // using and using namespace have validity only in the same block in which they are stated or in the entire source code if they are used directly in the global scope.
-        // therefore it would be possible to first use the objects of one namespace and then those of another one by splitting the code in different blocks.
-        std::cout << "To introduce an entire namespace, the keyword using can be used as a directive:" << nline;
+        // using as a directive to introduce an entire namespace:
+        // using and using namespace stated in a block, have only validity within inside of it,
+        // and when stated directly in the global scope, inside of the entire source code,
+        // therefore the possibility is there to split the code in different blocks and use the objects of different namespaces.
+        ColourCouter ( "Introducing an entire namespace by the keyword 'using' as a directive:\n", F_bYELLOW );
         {
             using namespace first;
-            std::cout << "The value of xx in the first namespace:" << tab << tab << xx << nline;
-            std::cout << "The value of yy in the first namespace:" << tab << tab << yy << nline;
-            std::cout << "The value of xx in the second namespace:" << tab << second::xx << nline;
-            std::cout << "The value of yy in the second namespace:" << tab << second::yy << nline << nline;
+            std::cout << tab << "The value of xx (first namespace):" << tab << xx << nline;
+            std::cout << tab << "The value of yy (first namespace):" << tab << yy << nline;
+            std::cout << tab << "The value of xx (second namespace):" << tab << second::xx << nline;
+            std::cout << tab << "The value of yy (second namespace):" << tab << second::yy << nline << nline;
         }
-        std::cout << "Splitting the code in different blocks to use different namespaces:" << nline;
+        ColourCouter ( "Splitting the code in different blocks and using different namespaces:\n", F_bYELLOW );
         {
             using namespace first;
-            std::cout << "The value of xx (first block in which the first namespace is used):" << tab << xx << nline;
+            std::cout << "The value of xx (first block - first namespace):" << tab << xx << nline;
         }
         {
             using namespace second;
-            std::cout << "The value of xx (second block in which the second namespace is used):" << tab << xx << nline << nline;
+            std::cout << "The value of xx (second block - second namespace):" << tab << xx << nline << nline;
         }
-        // while the direct visibility with the power of the keyword using facilitate comprehension and shorten the length of the code,
-        // for projects mixing libraries explicit qualification tends to be preferred and with it the name collision can be avoided.
-
-        // namespace aliasing: existing namespaces can be aliased with new names
-        // syntax: namespace new_name = current_name;
-        namespace firstNewName = first;
-        {
-            using namespace firstNewName;
-            std::cout << "Using the alias of the first namespace." << nline;
-            std::cout << "The value of xx :" << tab << xx << nline;
-        }
-
-        // add:
-        // the std namespace
     }
     catch ( const std::exception& )
     {
@@ -1154,8 +1134,48 @@ void _6_4_UsingKeyword ()
 }
 
 
-int aGlobalVariable; // has static storage, is automatic initialized
-void _6_5_StorageClasses ()
+namespace third
+{
+    int xx { 5 };
+    int yy { 10 };
+}
+void _6_5_NamespaceAliasing ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+        //! ####################################################################
+        //! ----- : namespace aliasing
+        // existing namespaces can be aliased with new names
+        // Note syntax: namespace new_name = current_name;
+        ColourCouter ( "----- Namespace aliasing:\n", F_bBLUE );
+        ColourCouter ( "New names can be used as alias to have a different name for a defined namespace in a project.\n\n", F_YELLOW );
+        ColourCouter ( "Using the alias of the namespace 'third':\n", F_bYELLOW );
+        namespace firstNewName = third;
+        {
+            using namespace firstNewName;
+            std::cout << "The value of xx (third namespace):" << tab << xx << nline << nline;
+        }
+
+        //! ####################################################################
+        //! ----- : the std namespace
+        // entities declared in this namespace belong to the standard C++ library.
+        // using this namespace with the keyword 'using' facilitate comprehension and shorten the length of the code
+        // on the other hand, to avoid name collision, most programmers tend to prefer explicit qualification for projects mixing libraries.
+        ColourCouter ( "----- The std namespace:\n", F_bBLUE );
+        ColourCouter ( "All the entities of the standard C++ library is declared within the namespace 'std'.\n\n", F_YELLOW );
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+int aGlobalVariable; // static storage, is automatic initialized
+void _6_6_StorageClasses ()
 {
     try
     {
@@ -1169,14 +1189,14 @@ void _6_5_StorageClasses ()
         // if they aren't explicitly initialized, they will be initialized automatically with zeroes
         //# automatic storage: local variables
         // their storage is only available during their declaration block
-        // if they aren't explicitly initialized, they will be left uninitialized, and thus have undetermined value (considering compiler differences)
-        std::cout << nline << "----- Storage classes:" << nline;
-        std::cout << "The difference between static and automatic storage." << nline << nline;
-        // int aLocalVariable; // has automatic storage, isn't automatically initialized and can't be used without initialization
-        int anotherLocalVariable { 235 }; // has automatic storage, is explicitly initialized
-        std::cout << "The value of a global variable which has static storage:" << tab << tab << aGlobalVariable << nline;
-        // std::cout << aLocalVariable; // Error
-        std::cout << "The value of another local variable which has automatic storage:" << tab << anotherLocalVariable << nline;
+        // if they aren't explicitly initialized, they will be left uninitialized, and thus have undetermined values
+        ColourCouter ( "----- Storage classes:\n", F_bBLUE );
+        ColourCouter ( "The difference between static and automatic storage.\n\n", F_YELLOW );
+        int aLocalVariable; // automatic storage, not automatically initialized, can't be used without initialization
+        int anotherLocalVariable { 235 }; // automatic storage, explicitly initialized
+        std::cout << "Value of a global variable (static storage, uninitialized):" << tab << aGlobalVariable << nline;
+        // std::cout << aLocalVariable; // not valid, uninitialized
+        std::cout << "Value of a local variable (automatic storage, initialized):" << tab << anotherLocalVariable << nline << nline;
     }
     catch ( const std::exception& )
     {

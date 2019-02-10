@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,02.02.2019</changed>
+/// <changed>ʆϒʅ,11.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -12,6 +12,9 @@
 
 #define Tab '\t'
 #define Nline '\n'
+
+const char tab { '\t' };
+const char nline { '\n' };
 
 
 class Rectangle
@@ -130,8 +133,6 @@ void ClassesI ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ Classes I:
@@ -460,8 +461,6 @@ void ClassesII ()
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
         ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-        const char tab { '\t' };
-        const char nline { '\n' };
 
         //! ####################################################################
         //! ~~~~~ Classes II:

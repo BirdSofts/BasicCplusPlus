@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.h
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,12.02.2019</changed>
+/// <changed>ʆϒʅ,13.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -17,6 +17,7 @@ void _7_1_Arrays ();
 void _7_2_InitializingArrays ();
 void _7_3_AccessingValues ();
 void _7_4_MultidimensionalArrays ();
+void _7_5_ArraysAsParameters ();
 void _7_6_LibraryArrays ();
 
 void CharacterSequences ();

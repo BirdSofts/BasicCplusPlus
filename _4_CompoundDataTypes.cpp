@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,12.02.2019</changed>
+/// <changed>ʆϒʅ,13.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -48,6 +48,7 @@ void _7_1_Arrays ()
 
 void print_simple_array ( int arg [], int length )
 {
+    std::cout << tab;
     for ( int n = 0; n < length; n++ )
     {
         std::cout << arg [n];
@@ -84,15 +85,15 @@ void _7_2_InitializingArrays ()
         int array6 [5] { 0,10,20,30,40 }; // universal initialization
         std::cout << "The elements of an uninitialized array (it can be inserted):" << nline;
         print_simple_array ( array1, 5 );
-        std::cout << "The elements of an array with explicit initialization:" << "\t\t\t";
+        std::cout << "The elements of an array with explicit initialization:" << "\t\t";
         print_simple_array ( array2, 5 );
-        std::cout << "The remaining uninitialized elements of an array:" << "\t\t\t";
+        std::cout << "The remaining uninitialized elements of an array:" << "\t\t";
         print_simple_array ( array3, 5 );
-        std::cout << "Initialization of an array with default values of its elements:" << "\t\t";
+        std::cout << "Initialization of an array with default values of its elements:" << tab;
         print_simple_array ( array4, 5 );
-        std::cout << "Assuming the size of an array automatically:" << "\t\t\t\t";
+        std::cout << "Assuming the size of an array automatically:" << "\t\t\t";
         print_simple_array ( array5, 5 );
-        std::cout << "Declaring an array with the use of universal initialization:" << "\t\t";
+        std::cout << "Declaring an array with the use of universal initialization:" << tab;
         print_simple_array ( array6, 5 );
         std::cout << nline;
     }
@@ -117,12 +118,12 @@ void _7_3_AccessingValues ()
         ColourCouter ( "----- Accessing the values of an array:\n", F_bBLUE );
         ColourCouter ( "Elements of an array can be accessed by their indices.\n\n", F_YELLOW );
         int a_array [5] {};
-        std::cout << "The values of the array's elements (automatically initialized):" << "\t\t";
+        std::cout << "The array's elements are (automatically initialized):" << "\t\t";
         print_simple_array ( a_array, 5 );
         a_array [0] = 11;
         a_array [2] = 33;
         a_array [4] = 55;
-        std::cout << "The values of the array's elements (after assignment):" << "\t\t\t";
+        std::cout << "The array's elements are (after assignment):" << "\t\t\t";
         print_simple_array ( a_array, 5 );
         std::cout << nline;
 
@@ -139,14 +140,14 @@ void _7_3_AccessingValues ()
         b_array [a] = 33;
         int b { b_array [a + 1] }; // equivalent: int b {0};
         b_array [b_array [a] / 11] = b_array [2] + 5; // equivalent: b_array[3] = 5;
-        std::cout << "The values of the array's elements (after some valid operation):" << tab;
+        std::cout << "The array's elements are (after some valid operation):" << "\t\t";
         print_simple_array ( b_array, 5 );
         int result {};
         for ( int n = 0; n < 5; n++ )
         {
             result += b_array [n];
         }
-        std::cout << "Subtraction of all the values of the array's elements:" << "\t\t\t" << result << nline << nline;
+        std::cout << "Subtraction of all the array's elements are:" << "\t\t\t\t" << result << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -157,13 +158,30 @@ void _7_3_AccessingValues ()
 
 void print_bidimensional_array ( int arg [] [5], int width, int height )
 {
+    std::cout << tab;
     for ( int n = 0; n < width; n++ )
     {
         for ( int m = 0; m < height; m++ )
         {
-            std::cout << arg [n] [m] << "  ";
+            std::cout << arg [n] [m];
+            if ( arg [n] [m] < 9 ) std::cout << "   "; else std::cout << "  ";
         }
-        std::cout << Nline;
+        std::cout << Nline << tab;
+    }
+    std::cout << Nline;
+}
+// depth parameter: to represent a simple array in a table (bidimensional):
+// explanation in multidimensional arrays section
+void print_simple_array_bidimensional ( int arg [], int length, int depth = 0 )
+{
+    std::cout << tab;
+    for ( int n = 0; n < length; n++ )
+    {
+        if ( depth != 0 )
+            if ( ( n != 0 ) && ( n % ( length / depth ) ) == 0 )
+                std::cout << nline << tab;
+        std::cout << arg [n];
+        if ( arg [n] < 9 ) std::cout << "   "; else std::cout << "  ";
     }
     std::cout << Nline;
 }
@@ -176,18 +194,23 @@ void _7_4_MultidimensionalArrays ()
 
         //! ####################################################################
         //! ----- multidimensional arrays:
-        // can be described as 'arrays of arrays' for example a bidimensional array can be imagined as a two-dimensional table made of elements, all of them of a same uniform date type.
-        // multidimensional arrays are not limited to two indices (i.e. two dimensions), but be careful, thus the amount of memory needed for an array increases exponentially with each dimension.
+        // arrays with more than one dimension can be described as 'arrays of arrays'.
+        // a bidimensional array can be described as a two-dimensional table made of elements, all of the same uniform data type.
+        // with each additional dimension for an array, the number of its indices is going to be added to, and with it the amount of needed memory is also increases exponentially
         // multidimensional arrays are just an abstraction for the programmers, since the same result can be achieved with a simple array, by multiplying its indices.
-        // the only difference is that with multidimensional arrays, the compiler automatically remembers the depth of each imaginary dimension.
 #define HEIGHT 3 // using defined constants for better readability and easiness of later changes in one place
 #define WIDTH 5 // the same
         ColourCouter ( "----- Multidimensional arrays:\n", F_bBLUE );
         ColourCouter ( "Can be described as 'arrays of arrays'.\n\n", F_YELLOW );
         int bidimensional_array [HEIGHT] [WIDTH] {}; // declaration of a bidimensional array of 3 per 5 elements of type int
-        bidimensional_array [0] [2] = 13; // to reference to the first element vertically and third horizontally
-        std::cout << "Elements of the bidimensional_array:" << nline;
+        bidimensional_array [0] [2] = 13; // to reference to the element vertically first and horizontally third
+        std::cout << "The bidimensional arrays's elements are:" << nline;
         print_bidimensional_array ( bidimensional_array, HEIGHT, WIDTH );
+
+        //! - in addition:
+        // a simple array can replace every multidimensional array by multiplying the needed indices. (multidimensional is just an abstraction for programmers.)
+        // the only and useful difference is the depth of every imaginary dimension of an multidimensional array, which compiler automatically remembers.
+        ColourCouter ( "Representing a bidimensional array with a simple array:\n", F_bYELLOW );
         int equivalent_simple_array [HEIGHT*WIDTH] {}; // equivalent to bidimensional_array (3*5=15)
         int o { 1 };
         for ( int n = 0; n < HEIGHT; n++ )
@@ -200,19 +223,13 @@ void _7_4_MultidimensionalArrays ()
                 ++o;
             }
         }
-        std::cout << "The multidimensional arrays are just an abstraction for the programmers:" << nline << nline;
-        std::cout << "Elements of a bidimensional array:" << nline;
+        std::cout << "The bidimensional arrays's elements are:" << nline;
         print_bidimensional_array ( bidimensional_array, HEIGHT, WIDTH );
-        std::cout << "Elements of a simple array (achieving the same result):" << nline;
+        std::cout << "The simple arrays's elements are (same result is achieved):" << nline;
         print_simple_array ( equivalent_simple_array, HEIGHT* WIDTH );
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << "The simple arrays's elements are (same result is achieved plus printing bidimensional):" << nline;
+        print_simple_array_bidimensional ( equivalent_simple_array, HEIGHT* WIDTH, 3 );
+        std::cout << nline;
     }
     catch ( const std::exception& )
     {
@@ -234,13 +251,21 @@ void _7_5_ArraysAsParameters ()
         // the address of the array can be passed and in practice this has almost the same effect while being much faster and efficient.
         // to accept an array as parameter for a function, the parameters can be declared as the array type but with empty brackets, omitting the actual size of the array, thus the format is: base_type parameter_name[]
         // example for syntax: void procedure (int arg[])  --accepts a parameter of type 'array of int'
-        std::cout << "----- Arrays as parameters:" << nline;
-        std::cout << "In C++ the address of an array can be passed to a function." << nline << nline;
+        ColourCouter ( "----- Arrays as parameters:\n", F_bBLUE );
+        ColourCouter ( "In C++ the address of an array can be passed to a function.\n\n", F_YELLOW );
         int first_array [] { 5, 10, 15 };
         int second_array [] { 2, 4, 6, 8, 10 };
         std::cout << "Passing arrays as arguments to an earlier used function:" << nline << nline;
         print_simple_array ( first_array, 3 );
         print_simple_array ( second_array, 5 );
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         // in a function declaration it is also passible to include multidimensional arrays.
         // the format for a tridimensional array is: base_type parameter_name[] [depth] [depth]

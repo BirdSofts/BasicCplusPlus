@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,11.02.2019</changed>
+/// <changed>ʆϒʅ,12.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -288,7 +288,7 @@ void _3_4_JumpStatements ()
         // goto is deemed a low-level feature with no particular use in modern higher-level C++ programming paradigms.
         ColourCouter ( "----- The goto statement:\n", F_bBLUE );
         ColourCouter ( "To introduce absolute and unconditional jump to another point in the program.\n\n", F_YELLOW );
-        std::cout << "Countdown example using goto statement:" << tab << tab;
+        std::cout << "Countdown example using goto statement:" << "\t\t";
         int n2 { 10 };
     a_loop_with_goto:
         std::cout << n2 << ", ";
@@ -566,7 +566,7 @@ void _4_5_Efficiency ()
         ColourCouter ( "Passing arguments by reference to avoid certain overhead.\n\n", F_YELLOW );
         std::string a, b, c;
         std::cout << "Enter two long string to be concatenated:" << nline;
-        std::cout << "- The first one is:" << tab << tab;
+        std::cout << "- The first one is:" << "\t\t";
         std::getline ( std::cin, a );
         std::cout << "- And the second one is:" << tab;
         std::getline ( std::cin, b );
@@ -610,7 +610,7 @@ void _4_6_InlineFunctions ()
         std::string a { "AAA" }, b { "BBB" }, c { "" };
         std::cout << "The strings to be concatenated are:" << tab << a << tab << b << nline;
         c = inline_constant_concatenate ( a, b );
-        std::cout << "The concatenated result is:" << tab << tab << c << nline << nline;
+        std::cout << "The concatenated result is:" << "\t\t" << c << nline << nline;
         // note that in C++ the optimization task is delegated to the compiler.
         // most compiler already optimize code to generate inline functions whenever there is an opportunity, even not explicitly marked with inline specifier.
         // Therefore using it in the declaration of a function is merely a suggestion and the compiler is free to not inline it and optimize otherwise, as long as the resulting behaviour is the one specified by the code.
@@ -643,7 +643,7 @@ void _4_7_ParametersDefaultValues ()
         std::cout << "Two call to divide function with two parameters of which the last one is optional:" << nline;
         int result;
         result = divide ( 12 );
-        std::cout << "-- divide (12):" << tab << tab << result << nline;
+        std::cout << "-- divide (12):" << "\t\t" << result << nline;
         result = divide ( 20, 4 ); // optional parameter is used in the call, therefore the default value will be ignored
         std::cout << "-- divide (20, 4):" << tab << result << nline << nline;
     }
@@ -852,7 +852,7 @@ void _5_3_FunctionTemplates ()
         ColourCouter ( "Multiple instances of a function (the use of generic function or function template):\n", F_bYELLOW );
         int result1;
         result1 = sum2<int> ( 10, 20 ); // using int type to make an instance
-        std::cout << "Result of the instance for int type:" << tab << tab << result1 << nline;
+        std::cout << "Result of the instance for int type:" << "\t\t" << result1 << nline;
         double result2;
         result2 = sum2<double> ( 1.2, 1.5 ); // making another instance with double type
         std::cout << "Result of another instance for double type:" << tab << result2 << nline << nline;

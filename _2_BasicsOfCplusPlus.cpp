@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,07.02.2019</changed>
+/// <changed>ʆϒʅ,12.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -601,7 +601,7 @@ void _2_7_ArithmeticOperators ()
         // the assignment operations always takes place from right to left.
         ColourCouter ( "----- Assignment operator (=):\n", F_bBLUE );
         ColourCouter ( "The most simple mathematical operation in C++ is represented by assignment.\n\n", F_YELLOW );
-        std::cout << "Current values are:" << tab << tab << tab << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
         x = 5;
         std::cout << "The values after first assignment:" << tab << "x: " << x << tab << "y: " << y << nline;
         x = y;
@@ -639,7 +639,7 @@ void _2_7_ArithmeticOperators ()
         // these operators increase or decrease the value stored in a variable by one.
         ColourCouter ( "----- Increment and decrement (++, --):\n", F_bBLUE );
         ColourCouter ( "Increment and decrement of the value by one.\n\n", F_YELLOW );
-        std::cout << "Current values are:" << tab << tab << "x: " << x << tab << "y: " << y << nline;
+        std::cout << "Current values are:" << "\t\t" << "x: " << x << tab << "y: " << y << nline;
         x++;// equivalent to x+=1 or x=x+1
         --y;
         std::cout << "Result of expression ( x++ ):" << tab << "x: " << x << nline;
@@ -693,7 +693,7 @@ void _2_8_LagicalOperators ()
         {
             if ( ( z - x ) >= y )
             {
-                std::cout << "Result of expression ( z != y ):" << tab << tab << ( z != y ) << nline;
+                std::cout << "Result of expression ( z != y ):" << "\t\t" << ( z != y ) << nline;
                 // the use of = and == operators needs some attention:
                 std::cout << "Result of expression (( z = 2 ) == x ):" << tab << ( ( z = 2 ) == x ) << tab << "z: " << z << nline << nline;
             }
@@ -738,7 +738,7 @@ void _2_8_LagicalOperators ()
         ColourCouter ( "This operator evaluate an expression and returns one value.\n\n", F_YELLOW );
         std::string str_result;
         int int_result;
-        std::cout << "Current values are:" << tab << tab << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
+        std::cout << "Current values are:" << "\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         str_result = ( ( x == y ) && ( x > z ) ) ? "True" : "False";
         int_result = ( ( x == y ) && ( x > z ) ) ? x : z;
         std::cout << "Result of expression (( x == y ) && ( x > z )) ? \"True\" : \"False\";\tis:" << tab << str_result << nline;
@@ -752,7 +752,7 @@ void _2_8_LagicalOperators ()
         ColourCouter ( "Separating the expressions is what this operator does.\n\n", F_YELLOW );
         std::cout << "Current values are:" << "\t\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
         z = ( x = 2, ++y * x );
-        std::cout << "Result of expression (x = 2, ++y * x):" << tab << tab << z << nline << nline;
+        std::cout << "Result of expression (x = 2, ++y * x):" << "\t\t" << z << nline << nline;
 
         //! - in addition:
         // in cases that the set of expressions need to be evaluated for a value to be reached,
@@ -808,10 +808,10 @@ void _2_9_OtherOperators ()
         ColourCouter ( "To introduce modification on the stored bit patterns of a value.\n\n", F_YELLOW );
         std::cout << "Current value which stays unchanged:" << tab << xx << nline;
         ColourCouter ( "The result of modification:\n", F_bYELLOW );
-        std::cout << "Result of expression ( x & x ):" << tab << tab << ( xx & xx ) << nline; // -0001 and -0001 = -0001
-        std::cout << "Result of expression ( x | x ):" << tab << tab << ( xx | xx ) << nline; // -0001 or -0001 = -0001
-        std::cout << "Result of expression ( x ^ x ):" << tab << tab << ( xx ^ xx ) << nline; // -0001 xor -0001 = -0000
-        std::cout << "Result of expression ( ~x ):" << tab << tab << ( ~xx ) << nline; // not -0001 = -1110
+        std::cout << "Result of expression ( x & x ):" << "\t\t" << ( xx & xx ) << nline; // -0001 and -0001 = -0001
+        std::cout << "Result of expression ( x | x ):" << "\t\t" << ( xx | xx ) << nline; // -0001 or -0001 = -0001
+        std::cout << "Result of expression ( x ^ x ):" << "\t\t" << ( xx ^ xx ) << nline; // -0001 xor -0001 = -0000
+        std::cout << "Result of expression ( ~x ):" << "\t\t" << ( ~xx ) << nline; // not -0001 = -1110
         std::cout << "Result of expression ( x << 2 ):" << tab << ( xx << 2 ) << nline; // left shift -0001 = -0100
         std::cout << "Result of expression ( x >> 2 ):" << tab << ( xx >> 2 ) << nline << nline; // right shift -0001 = -0000
 
@@ -857,7 +857,7 @@ void _2_10_PrecedenceOfOperators ()
         ColourCouter ( "~~~~~ Precedence of operators:\n", F_bBLUE );
         ColourCouter ( "Defines the evaluation order of operators in an expression.\n\n", F_YELLOW );
         x = 2 + 5 % 2; // the remainder operator will be evaluated first
-        std::cout << "The result of expression ( 2 + 5 % 2 ):" << tab << tab << x << nline << nline;
+        std::cout << "The result of expression ( 2 + 5 % 2 ):" << "\t\t" << x << nline << nline;
 
         //! - in addition:
         // uses of parenthesis:
@@ -994,7 +994,7 @@ void _2_11_BasicInputOutput ()
         int int_in;
         ColourCouter ( "Test: for the next insertion input a character:\n", F_bCYAN );
         ColourCouter ( "-- If you try it, you probably need to debug the program again. ^_^\n", F_bCYAN );
-        std::cout << "Please enter a number as input:" << tab << tab;
+        std::cout << "Please enter a number as input:" << "\t\t";
         std::cin >> int_in; // unknown results caused from unwanted inputs
         std::cout << "The double of it is:" << "\t\t\t" << int_in * 2 << nline << nline;
 
@@ -1006,7 +1006,7 @@ void _2_11_BasicInputOutput ()
         std::cout << "Please enter two integer values as input (separate them with any kind of spaces):" << nline;
         std::cout << "  - ";
         std::cin >> int_in >> int_in2; // chained extraction
-        std::cout << "The entered values are:" << tab << tab << int_in << tab << int_in2 << nline << nline;
+        std::cout << "The entered values are:" << "\t\t" << int_in << tab << int_in2 << nline << nline;
 
         //! - in addition:
         // the stream cin can extract strings just like other fundamental types. the only problem is that it consider any type of spaces as termination of the operation so it can only extract a single word by one extraction operator.
@@ -1022,7 +1022,7 @@ void _2_11_BasicInputOutput ()
         std::getline ( std::cin, str_in ); // clear unneeded buffered characters
         // std::cin.ignore (100,'\n'); // clear unneeded buffered characters (another way but in most cases not a good idea)
         std::getline ( std::cin, str_in ); // getting a line with spaces
-        std::cout << "The extracted line with getline function is:" << tab << tab << str_in << nline << nline;
+        std::cout << "The extracted line with getline function is:" << "\t\t" << str_in << nline << nline;
 
         //! ####################################################################
         //! ----- stringstream:
@@ -1033,7 +1033,7 @@ void _2_11_BasicInputOutput ()
         ColourCouter ( "Performing insertion and extraction on strings just like what happens in cin or cout stream.\n\n", F_YELLOW );
         ColourCouter ( "Converting string to int:\n", F_bYELLOW );
         std::string str_var { "2048 ABC 1024" };
-        std::cout << "The string containing numeral values:" << tab << tab << str_var << nline;
+        std::cout << "The string containing numeral values:" << "\t\t" << str_var << nline;
         int int_var;
         std::stringstream ( str_var ) >> int_var; // extract the value from a stringstream constructed from the string variable
         std::cout << "The value converted from string to integer:" << tab << int_var << nline << nline;
@@ -1046,19 +1046,19 @@ void _2_11_BasicInputOutput ()
         ColourCouter ( "Separating input process from its interpretation:\n", F_bYELLOW );
         std::string str_var2;
         float price { 0 }; int quantity { 0 };
-        std::cout << "  - Enter the price:" << tab << tab;
+        std::cout << "  - Enter the price:" << "\t\t";
         //std::getline (std::cin, str_var2); //clear
         std::getline ( std::cin, str_var2 );
-        std::cout << "The entered string is:" << tab << tab << str_var2 << nline;
+        std::cout << "The entered string is:" << "\t\t" << str_var2 << nline;
         std::stringstream ( str_var2 ) >> price;
-        std::cout << "The interpreted value is:" << tab << tab << price << nline;
-        std::cout << "  - Enter the quantity:" << tab << tab;
+        std::cout << "The interpreted value is:" << "\t\t" << price << nline;
+        std::cout << "  - Enter the quantity:" << "\t\t";
         //std::getline (std::cin, str_var2); //clear
         std::getline ( std::cin, str_var2 );
-        std::cout << "The entered string is:" << tab << tab << str_var2 << nline;
+        std::cout << "The entered string is:" << "\t\t" << str_var2 << nline;
         std::stringstream ( str_var2 ) >> quantity;
-        std::cout << "The interpreted value is:" << tab << tab << quantity << nline;
-        std::cout << "  - The total price is:" << tab << tab << price * quantity << nline << nline;
+        std::cout << "The interpreted value is:" << "\t\t" << quantity << nline;
+        std::cout << "  - The total price is:" << "\t\t" << price * quantity << nline << nline;
     }
     catch ( const std::exception& )
     {

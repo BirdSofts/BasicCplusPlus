@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,13.02.2019</changed>
+/// <changed>ʆϒʅ,14.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -54,7 +54,7 @@ void print_simple_array ( int arg [], int length )
         std::cout << arg [n];
         if ( arg [n] < 9 ) std::cout << "   "; else std::cout << "  ";
     }
-    std::cout << Nline;
+    std::cout << Nline << Nline;
 }
 void _7_2_InitializingArrays ()
 {
@@ -95,7 +95,6 @@ void _7_2_InitializingArrays ()
         print_simple_array ( array5, 5 );
         std::cout << "Declaring an array with the use of universal initialization:" << tab;
         print_simple_array ( array6, 5 );
-        std::cout << nline;
     }
     catch ( const std::exception& )
     {
@@ -125,7 +124,6 @@ void _7_3_AccessingValues ()
         a_array [4] = 55;
         std::cout << "The array's elements are (after assignment):" << "\t\t\t";
         print_simple_array ( a_array, 5 );
-        std::cout << nline;
 
         //! - in addition:
         // exceeding the valid (defined) range of array indices is syntactically (compiler doesn't cause any error) correct,
@@ -183,7 +181,7 @@ void print_simple_array_bidimensional ( int arg [], int length, int depth = 0 )
         std::cout << arg [n];
         if ( arg [n] < 9 ) std::cout << "   "; else std::cout << "  ";
     }
-    std::cout << Nline;
+    std::cout << Nline << Nline;
 }
 void _7_4_MultidimensionalArrays ()
 {
@@ -229,7 +227,6 @@ void _7_4_MultidimensionalArrays ()
         print_simple_array ( equivalent_simple_array, HEIGHT* WIDTH );
         std::cout << "The simple arrays's elements are (same result is achieved plus printing bidimensional):" << nline;
         print_simple_array_bidimensional ( equivalent_simple_array, HEIGHT* WIDTH, 3 );
-        std::cout << nline;
     }
     catch ( const std::exception& )
     {
@@ -247,33 +244,30 @@ void _7_5_ArraysAsParameters ()
 
         //! ####################################################################
         //! ----- arrays as parameters:
-        // in C++ it isn't possible to pass the entire block of memory represented by an array to a function directly as an argument.
-        // the address of the array can be passed and in practice this has almost the same effect while being much faster and efficient.
+        // C++ language passes the address of an array to a function.
+        // in practice this has the same effect as passing the entire block of memory, while being more efficient and much faster.
         // to accept an array as parameter for a function, the parameters can be declared as the array type but with empty brackets, omitting the actual size of the array, thus the format is: base_type parameter_name[]
-        // example for syntax: void procedure (int arg[])  --accepts a parameter of type 'array of int'
+        // for a function to accept an array as parameter, the parameter must be declared as the type of the array but with empty brackets [], and with this the actual array size is omitted.
+        // Note format: base_type parameter_name[]
+        // Note syntax: void procedure (int arg[])  --accepts an array of type int as parameter
+        // Note calling format: function_identifier ( array_identifier ) --without brackets
         ColourCouter ( "----- Arrays as parameters:\n", F_bBLUE );
         ColourCouter ( "In C++ the address of an array can be passed to a function.\n\n", F_YELLOW );
         int first_array [] { 5, 10, 15 };
         int second_array [] { 2, 4, 6, 8, 10 };
-        std::cout << "Passing arrays as arguments to an earlier used function:" << nline << nline;
+        std::cout << "Passing two simple arrays as argument to an earlier defined function:" << nline;
         print_simple_array ( first_array, 3 );
         print_simple_array ( second_array, 5 );
-        /*
 
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
         //! - in addition:
-
-        // in a function declaration it is also passible to include multidimensional arrays.
-        // the format for a tridimensional array is: base_type parameter_name[] [depth] [depth]
-        // example for syntax: void procedure (int myarray[][3][4])
-        // notice that the first brackets is empty, while the following ones specify sizes for their respective dimensions. this is necessary in order for the compiler to be able to determine the depth of each additional dimension.
-        // in a way, passing an array as argument always loses a dimension. the reason behind is that, for historical reasons, arrays can not be directly copied, and thus what is really passed is a pointer. a clear understanding of pointer in the pointer section helps a lot.
+        // a function can also have a multidimensional array as parameter.
+        // Note the format for tridimensional arrays: base_type parameter_name[] [depth] [depth]
+        // Note syntax: void procedure (int myarray[][depth][depth])
+        // for the compiler to determines the depth of each additional dimension, the size of all dimensions after the first one is necessary. (just first twin brackets stays empty)
+        // explanation behind is, that for historical reasons, arrays can't be directly copied, therefore all arrays after passing as arguments lose one dimension, and the actual passed is just a pointer.
+        // for this to be really understood, a clear understanding in pointer section helps a lot.
         int another_array [2] [5] { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
-        std::cout << "Passing a bidimensional array as the argument of an earlier used function:" << nline << nline;
+        std::cout << "Passing a bidimensional array as argument of an earlier defined function:" << nline;
         print_bidimensional_array ( another_array, 2, 5 );
     }
     catch ( const std::exception& )
@@ -292,29 +286,29 @@ void _7_6_LibraryArrays ()
 
         //! ####################################################################
         //! ----- library arrays:
-        // the arrays explained above are directly implemented as a language features, inherited from the C language.
-        // they are a great features, but by restricting its copy and easily decay into pointers, they probably suffer from an excess of optimization.
-        // C++ provides an alternative array type as a standard container, to overcome some of these issues with the language built-in arrays. it is a type template (a class template in fact) defined in header <array>.
-        // they operate in a similar way as built-in arrays, with the exception that they allow being copied (an actually expensive operation that copies the entire block of memory, and thus to use with care) and decay into pointers only when explicitly told to do so (by means of its member data).
-        // the main differences in practice lays on the declaration of the array and the inclusion of an additional header for the library array.
+        // all the arrays up until now were directly implemented as language features and inherited from C Language.
+        // while they are great features, the restriction on copy and decay into pointers make them suffer from an excess of optimization.
+        // to over come some of these issues, C++ provides an alternative array type, a type template (a class template in fact) as a standard container, defined in header <array>.
+        // this alternative operates similar to built-in one, exception is that the expensive copying of entire block of memory is allowed and it decays into pointers by means of its member data only when explicitly told to do so.
+        // in practice the main difference lays on the declaration and the additional inclusion of needed header.
         // classes and containers will be explained later.
-        std::cout << "----- Library arrays:" << nline;
-        std::cout << "To introduce an alternative for overcoming the issues with the language built-in arrays." << nline << nline;
+        ColourCouter ( "----- Library arrays:\n", F_bBLUE );
+        ColourCouter ( "To introduce an alternative for overcoming the issues with built-in C++ language arrays.\n\n", F_YELLOW );
+        std::cout << "A built in array in practice:" << nline << tab;
         int built_in_array [] { 10, 20, 30 };
-        std::array<int, 3> library_array { 10, 20, 30 };
-        //
-        std::cout << "Using the built in arrays:" << nline;
         for ( int i = 0; i < 3; i++ )
             ++built_in_array [i];
-        for ( int elem : built_in_array ) // range-based for loop
-            std::cout << elem << tab;
-        //
-        std::cout << nline << nline << "Using the library arrays:" << nline;
-        for ( int i = 0; i < library_array.size (); i++ ) // notice the easiness of accessing the size of the library array
-            ++library_array [i];
-        for ( int elem : library_array ) // range-based for loop
-            std::cout << elem << tab;
+        for ( int element : built_in_array ) // range-based for loop
+            std::cout << element << tab;
         std::cout << nline;
+        //
+        std::cout << "A library array in practice:" << nline << tab;
+        std::array<int, 3> library_array { 10, 20, 30 };
+        for ( int i = 0; i < library_array.size (); i++ ) // Note the easiness of accessing the size of the library array
+            ++library_array [i];
+        for ( int element : library_array )
+            std::cout << element << tab;
+        std::cout << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -331,16 +325,8 @@ void print_simple_array_of_characters ( char arg [], int length )
     }
     std::cout << Nline << Nline;
 }
-// ********************************************************************************
-/// <summary>
-/// Character sequences
-/// </summary>
-/// <created>ʆϒʅ,11.06.2018</created>
-/// <changed>ʆϒʅ,25.06.2018</changed>
-// ********************************************************************************
-void CharacterSequences ()
+void _8_1_CharacterSequences ()
 {
-    // the functions used in this section are defined above it.
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
@@ -352,8 +338,16 @@ void CharacterSequences ()
         // since strings are also sequences of characters, we can represent them as plain arrays of elements of a character type.
         // the capacity of the array doesn't need to be fully exhausted.
         // by convention, the end of strings represented in character sequences is signalled by the null character, whose literal value can be written as '\0'.
-        std::cout << nline << "~~~~~ Character Sequences:" << nline;
-        std::cout << "Since strings are sequences of character, a plain array can also be used to represent them." << nline << nline;
+        ColourCouter ( "~~~~~ Character Sequences:\n", F_bBLUE );
+        ColourCouter ( "Since strings are sequences of characters, plain character type arrays can also represent them.\n\n", F_YELLOW );
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- initialization of null-terminated character sequences:
@@ -712,6 +706,8 @@ void Pointers ()
         std::cout << "The array elements after execution of the functions are:" << nline;
         increment_all_PointersUsed ( numbers_array, numbers_array + 3 );
         print_all_ConstantPointersUsed ( numbers_array, numbers_array + 3 );
+
+        //Todo add: passing a library array
 
         // constant pointers:
         // a second dimension to constness added to pointers is that the pointers themselves can also be constant.

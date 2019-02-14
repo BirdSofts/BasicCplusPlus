@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,14.02.2019</changed>
+/// <changed>ʆϒʅ,15.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -321,7 +321,7 @@ void print_simple_array_of_characters ( char arg [], int length )
 {
     for ( int n = 0; n < length; n++ )
     {
-        std::cout << arg [n]; // print the characters as a word
+        std::cout << arg [n]; // printing characters as a word in a loop
     }
     std::cout << Nline << Nline;
 }
@@ -334,58 +334,53 @@ void _8_1_CharacterSequences ()
 
         //! ####################################################################
         //! ~~~~~ character sequences:
-        // the string class is a powerful features to handle and manipulate strings of characters.
-        // since strings are also sequences of characters, we can represent them as plain arrays of elements of a character type.
+        // while string class is a powerful feature to handle and manipulate strings,
+        // they can aslo be represented by plain arrays of a character type, since they are also sequences of characters
+        // by convention, the end of strings represented in character sequences is signalled by null character with literal value \0.
         // the capacity of the array doesn't need to be fully exhausted.
-        // by convention, the end of strings represented in character sequences is signalled by the null character, whose literal value can be written as '\0'.
         ColourCouter ( "~~~~~ Character Sequences:\n", F_bBLUE );
         ColourCouter ( "Since strings are sequences of characters, plain character type arrays can also represent them.\n\n", F_YELLOW );
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
 
         //! ####################################################################
         //! ----- initialization of null-terminated character sequences:
-        // since arrays of characters are ordinary arrays, they follow the same rules, and the initialization can also be done just like any other array.
-        // arrays of character elements have also another way to be initialized: using sting literals directly
-        // string literals are introduced earlier. they are specified by enclosing the text in double quotes (").
-        // sequences of characters enclosed in double quotes are literal constants and their type is null-terminated array of characters which means that they have always a null character ('\0') automatically appeared at the end.
-        // note that the talk here is about he initialization of the arrays in the declaration time and not assigning values later on after their declaration.
-        // in fact because the string literals are regular arrays, they have the same restriction as these and can not be assigned values, but each of their elements can be assigned a value individually.
-        std::cout << "----- Initialization of null-terminated character sequences:" << nline;
-        std::cout << "Arrays of characters are ordinary arrays and they follow the same rules." << nline << nline;
-        char the_word_hello_1 [] { 'H','e','l','l','o','\0' }; // normal initialization
-        char the_word_hello_2 [] { "How are you?" }; // the use of string literals in the initialization
-        std::cout << "The string stored in the first array which is initialized normally:" << nline << nline;
+        // arrays of characters are ordinary arrays with the same rules, so the initialization can be done just like any other array.
+        // the second way to initialize an array of character is to directly use string literals.
+        // string literals, as introduced earlier, are specified by enclosing the text in double quotes (").
+        // string literals or literal constants are of type null-terminated arrays of characters, this means that null character automatically appear at the end of their strings.
+        // note that the talk here is about the initialization of the arrays in the declaration time.
+        // in fact because the string literals are regular arrays, they have the same restriction,
+        // therefore they can only be used at declaration time.
+        // to assign a new value to an array containing a sequence of character, each element of the array needs to be assigned a value separately.
+        ColourCouter ( "----- Initialization of null-terminated character sequences:\n", F_bBLUE );
+        ColourCouter ( "Arrays of characters and their different initializations.\n\n", F_YELLOW );
+        // normal initialization of a null-terminated character sequence using an array (needs null character at the end)
+        char the_word_hello_1 [] { 'H','e','l','l','o','\0' };
+        // initialization of a null-terminated character sequence with a string literal using an array
+        char the_word_hello_2 [] { "How are you?" };
+        std::cout << "First array's string (initialized normally):" << nline << tab;
         print_simple_array_of_characters ( the_word_hello_1, 6 );
-        std::cout << "The string stored in the second array which is initialized by using string literals:" << nline << nline;
+        std::cout << "Second array's string (initialized by string literals):" << nline << tab;
         print_simple_array_of_characters ( the_word_hello_2, 13 );
         the_word_hello_1 [0] = 'B';
         the_word_hello_1 [1] = 'y';
         the_word_hello_1 [2] = 'e';
         the_word_hello_1 [3] = '\0';
-        the_word_hello_1 [4] = '\0';
-        the_word_hello_1 [5] = '\0';
-        std::cout << "The string stored in the first array after assigning each of its elements a new value:" << nline << nline;
-        print_simple_array_of_characters ( the_word_hello_1, 6 );
+        std::cout << "New string assigned to each elements of first array is:" << nline << tab;
+        print_simple_array_of_characters ( the_word_hello_1, 4 );
 
         //! ####################################################################
         //! ----- strings and null-terminated character sequences:
-        // plain arrays with null-terminated character sequences are the typical types to represent strings in the C language (also known as C-strings).
-        // in C++ C-strings are a natural way of representing strings in the language. in fact, string literals still always produce null- terminated character sequences, and not string objects.
-        // in standard library. both representation for strings (C-string and library string) coexist and most functions requiring strings are overloaded to support both.
+        // C-strings describe plain arrays with null-terminated character sequences, which is the typical types to represents strings in C language.
+        // natural way to represent strings in C++ language is still C-strings,
+        // therefore string literals still always produce null-terminated character sequences and not string objects.
+        // both representations for strings (C-string and library string) coexist in standard library, and most functions with strings requirement are overloaded to support both.
         // for example: cin and cout both support null-terminated sequences directly (direct extraction and insertion just like strings).
         // the main difference between C-strings and library strings:
         // arrays have fixed size that need to be specified either implicit or explicitly in the declaration time (the size of arrays is determined on compilation)
-        // strings are simply strings and no size is needed to be specified. this is due to the fact that strings have a dynamic size determined during runtime.
-        std::cout << "----- Strings and null-terminated character sequences:" << nline;
-        std::cout << "In standard library both representations of strings (C-string and library string) coexist." << nline << nline;
-        std::cout << "A demonstration that use both representations:" << nline << nline;
+        // while no size specified, strings are simply strings, since strings have a dynamic size determined during runtime.
+        ColourCouter ( "----- Strings and null-terminated character sequences:\n", F_bBLUE );
+        ColourCouter ( "In standard library both representations of strings (C-string and library string) coexist.\n\n", F_YELLOW );
+        ColourCouter ( "A demonstration that use both representations:\n", F_bYELLOW );
         char question_1 [] { "What is your name?" };
         std::string question_2 { "Where do you live?" };
         char answer_1 [80];
@@ -396,18 +391,19 @@ void _8_1_CharacterSequences ()
         std::cin >> answer_2;
         std::cout << nline << "Hello, " << answer_1 << " from " << answer_2 << "!" << nline << nline;
 
-        // in any case, null- terminated character sequences and strings are easily transformed from one another.
+        //! - in addition:
+        // in any case, null- terminated character sequences and strings are easily transformed from and to one another.
         // null-terminated character sequences can be transformed into strings implicitly.
-        // strings can be transformed into null-terminated character sequences by using either of string's member functions c_str or data and both c_str and data member of string are equivalent
-        std::cout << "Null-terminated character sequences and strings are easily transformed from one another." << nline << nline;
-        char my_c_string [] { "some text" };
-        std::string my_string = my_c_string; // transfer into library string implicitly
-        std::cout << "A string in C-string representation:" << tab << my_c_string << nline;
-        std::cout << "The same string transformed into library string representation:" << tab << my_string << nline;
+        // transformation of strings into null-terminated character sequences can happen with string's member functions c_str or data and both are equivalent.
+        ColourCouter ( "Null-terminated character sequences and strings are easily transformed from or to one another.\n", F_bYELLOW );
+        char a_c_string [] { "some text" };
+        std::string a_string = a_c_string; // implicit transformation into library string
+        std::cout << "A string in C-string representation:" << "\t\t\t\t\t" << a_c_string << nline;
+        std::cout << "The same string transformed into library string representation:" << "\t\t" << a_string << nline;
         std::cout << "The same string inserted as C-string representation by using c_str:" << tab;
-        std::cout << my_string.c_str () << nline; // print as a C-string
-        std::cout << "The same string inserted again as C-string representation by using data:" << tab;
-        std::cout << my_string.data () << nline; // print as a C-string
+        std::cout << a_string.c_str () << nline; // print as a C-string
+        std::cout << "The same string inserted as C-string representation by using data:" << tab;
+        std::cout << a_string.data () << nline << nline; // print as a C-string
     }
     catch ( const std::exception& )
     {
@@ -465,13 +461,6 @@ int operation_PointerToFunction ( int x, int y, int ( *FuncToCall ) ( int, int )
     g = ( *FuncToCall ) ( x, y ); // the call to the wished function
     return g;
 }
-// ********************************************************************************
-/// <summary>
-/// Pointers
-/// </summary>
-/// <created>ʆϒʅ,25.06.2018</created>
-/// <changed>ʆϒʅ,05.09.2018</changed>
-// ********************************************************************************
 void Pointers ()
 {
     // the functions used in this section are defined above it.
@@ -487,8 +476,16 @@ void Pointers ()
         // each sell can be easily located in the memory by the means of its unique address.
         // after declaration of a variable, the needed memory for its value to be stored is assigned a specific location in memory (its memory address). generally, C++ programs don't actively decide the exact memory addresses where its variables are stored. fortunately this task is left to the environment (generally an OS) where the program runs and it decides the particular memory locations on runtime.
         // however, it may be useful for a program to be able to obtain the address of a variable in the runtime in order to access the data sells that are at a certain position relative to it.
-        std::cout << nline << "~~~~~ Pointers:" << nline;
-        std::cout << "To obtain the address of a variable in the runtime in order to access its relative data sells that are at a certain position." << nline << nline;
+        ColourCouter ( "~~~~~ Pointers:\n", F_bBLUE );
+        ColourCouter ( "To obtain the address of a variable at runtime in order to access its relative data sells which are at a certain position.\n\n", F_YELLOW );
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- reference operator (&):

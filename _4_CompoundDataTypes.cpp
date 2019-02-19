@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,15.02.2019</changed>
+/// <changed>ʆϒʅ,20.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -412,58 +412,8 @@ void _8_1_CharacterSequences ()
 }
 
 
-void increment_all_PointersUsed ( int* start, int* stop )
+void _9_1_PointersBasics ()
 {
-    int* current = start;
-    while ( current != stop )
-    {
-        ++( *current );
-        ++current;
-    }
-}
-void print_all_ConstantPointersUsed ( const int* start, const int* stop )
-{
-    const int* current = start;
-    while ( current != stop )
-    {
-        std::cout << *current << Tab;
-        ++current;
-    }
-    std::cout << Nline;
-}
-void increase ( void* data, int p_size )
-{
-    if ( p_size == sizeof ( char ) )
-    {
-        char* p_char;
-        p_char = static_cast<char*>( data );
-        ++( *p_char );
-    }
-    if ( p_size == sizeof ( int ) )
-    {
-        int* p_int;
-        p_int = static_cast<int*>( data );
-        ++( *p_int );
-    }
-}
-int addition_PointerToFunction ( int a, int b )
-{
-    return ( a + b );
-}
-int subtraction_PointerToFunction ( int a, int b )
-{
-    return ( a - b );
-}
-int operation_PointerToFunction ( int x, int y, int ( *FuncToCall ) ( int, int ) )
-{
-    // taking the function to be called as a pointer that points to the wished function
-    int g;
-    g = ( *FuncToCall ) ( x, y ); // the call to the wished function
-    return g;
-}
-void Pointers ()
-{
-    // the functions used in this section are defined above it.
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
@@ -471,46 +421,41 @@ void Pointers ()
 
         //! ####################################################################
         //! ~~~~~ Pointers:
-        // variables which are locations in memory can be accessed by their identifier. this way, the program doesn't need to care about the physical address of the data in the memory.
-        // for a C++ program, the memory of a computer is like a succession of memory cells, each one byte in size, and each with a unique address. the order of these one-byte sells is in a way that allows data representation larger than one byte to occupy memory cells that have consecutive addresses.
-        // each sell can be easily located in the memory by the means of its unique address.
-        // after declaration of a variable, the needed memory for its value to be stored is assigned a specific location in memory (its memory address). generally, C++ programs don't actively decide the exact memory addresses where its variables are stored. fortunately this task is left to the environment (generally an OS) where the program runs and it decides the particular memory locations on runtime.
-        // however, it may be useful for a program to be able to obtain the address of a variable in the runtime in order to access the data sells that are at a certain position relative to it.
+        // variables identifiers give to program the ability to access locations in memory, without the need to care about the physical address of the data in the memory.
+        // for a C++ program, succession of memory cells, each one byte in size and with a unique address is known as memory.
+        // the order of these memory cells allows the data representations larger than one byte to occupy memory in cells with consecutive addresses.
+        // the locations of these cells can easily located by the means of their unique addresses.
+        // declaration of a variable provides needed memory for its value on a specific location with a unique address.
+        // active decision on the exact storage address of a variable is fortunately left to the environment (generally an OS) where the C++ program runs, and it happens on runtime.
+        // it may be useful for a C++ program to obtain the exact address of a variable in the runtime to access the relevant data cells at a certain position, which happens with the help of pointers.
         ColourCouter ( "~~~~~ Pointers:\n", F_bBLUE );
         ColourCouter ( "To obtain the address of a variable at runtime in order to access its relative data sells which are at a certain position.\n\n", F_YELLOW );
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
 
         //! ####################################################################
         //! ----- reference operator (&):
         // the ampersand sign (&) preceding the variable identifier can be used to obtain the address of it.
-        // pointers are a kind of variable that can store the address of another variables. They are a very powerful feature of a language like C++ that has many uses in the low-level programming.
-        // more on their declaration and use is going to come later.
-        // the operator itself can be read as "address of"
-        std::cout << "----- Reference operator:" << nline;
-        std::cout << "The reference operator (&) can be used to obtain the address of the variable identifier." << nline << nline;
+        // pointers are a kind of variable that can store the address of other variables.
+        // for a language like C++ with a lot of uses in low-level programming pointers are a powerful feature.
+        // Note reference operator (&) itself can be read as "address of"
+        ColourCouter ( "----- Reference operator:\n", F_bBLUE );
+        ColourCouter ( "The reference operator (&) can be used to obtain the address of the variable identifier.\n\n", F_YELLOW );
         int variable { 25 };
         int* pointer { &variable }; // declaring and assigning the address of a variable to a pointer
         int variable2 = variable; // normal assignment
-        std::cout << "The address of the variable stored in the pointer is:" << tab << pointer << nline;
+        std::cout << "Stored address of the variable in the pointer is:" << tab << pointer << nline << nline;
 
         //! ####################################################################
         //! ----- dereference operator (*):
-        // pointers are said to "point to" the variable whose address they store.
-        // by preceding the pointer name with the asterisk sign (*) pointers can be used to access the variable they point to directly which is an interesting property of them.
-        // the operator itself can be read as "value pointed to by"
-        // the reference and dereference operators are thus complementary,
-        // thus they have opposite meanings: an address obtained with & can be dereferenced with *
-        std::cout << nline << "----- Dereference Operator (*):" << nline;
-        std::cout << "The dereference operator can be used to access the variable directly which the pointers point to." << nline << nline;
+        // to give it a more simple description, pointers point to the variable whose address they store.
+        // an interesting property of pointers is, that by preceding the pointer identifier with asterisk sign (*),
+        // pointers can be used to access the variable they point to directly.
+        // Note dereference operator itself (*) can be read as "value pointed to by"
+        // since reference and dereference operators are complementary, identified opposite meaning to know is:
+        // an address obtained with ampersand (&) can be dereferenced with asterisk (*)
+        ColourCouter ( "----- Dereference Operator (*):\n", F_bBLUE );
+        ColourCouter ( "The dereference operator can be used to access the variable directly which the pointers point to.\n\n", F_YELLOW );
         variable2 = *pointer; // 'variable2' equal to value pointed to by 'pointer'
-        std::cout << "The value pointed to by the pointer and accessed directly by the dereference operator is: " << tab << variable2 << nline;
+        std::cout << "The value pointed to by the pointer and accessed directly by the dereference operator is: " << variable2 << nline << nline;
 
         //! ####################################################################
         //! ----- declaring pointers:
@@ -519,6 +464,14 @@ void Pointers ()
         // syntax: type *name;
         std::cout << nline << "----- Declaring Pointers:" << nline;
         std::cout << "Different properties of the pointers when they directly refer to the values justify the need to declare them with the needed specified data type." << nline << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         // the declaration type is not the type of the pointer itself.
         // all pointers are likely going to occupy the same amount of space in memory no matter their declaration type (the size of a pointer in memory depends on the platform where the program runs).
@@ -554,6 +507,20 @@ void Pointers ()
         *p1 = 20;          // value pointed to by
         std::cout << "Modifying values indirectly through the use of pointers." << nline;
         std::cout << "firstValue is:" << tab << firstValue << nline << "secondValue is:" << tab << secondValue << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void _9_2_PointersAndTypes ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- pointers and arrays:
@@ -672,6 +639,39 @@ void Pointers ()
         std::cout << "ptr is:" << tab << ptr << nline;
         std::cout << "temp is:" << tab << temp << nline;
 
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void increment_all_PointersUsed ( int* start, int* stop )
+{
+    int* current = start;
+    while ( current != stop )
+    {
+        ++( *current );
+        ++current;
+    }
+}
+void print_all_ConstantPointersUsed ( const int* start, const int* stop )
+{
+    const int* current = start;
+    while ( current != stop )
+    {
+        std::cout << *current << Tab;
+        ++current;
+    }
+    std::cout << Nline;
+}
+void _9_3_PointersAndLiterals ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- pointers and constants:
@@ -747,6 +747,35 @@ void Pointers ()
             std::cout << *( Ptr_StrLit + i ) << ' '; // accessing in usual pointer way
         }
         std::cout << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+void increase ( void* data, int p_size )
+{
+    if ( p_size == sizeof ( char ) )
+    {
+        char* p_char;
+        p_char = static_cast<char*>( data );
+        ++( *p_char );
+    }
+    if ( p_size == sizeof ( int ) )
+    {
+        int* p_int;
+        p_int = static_cast<int*>( data );
+        ++( *p_int );
+    }
+}
+void _9_4_MoreOnPointers ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- pointers to pointers:
@@ -812,6 +841,35 @@ void Pointers ()
                          // NULL is defined in several headers of the standard library, and is defined as an alias of some null pointer constant value such as 0 and nullpter.
         std::cout << "FYI :) ==> the addresses of the defined null pointers are:" << nline;
         std::cout << tab << pp2 << tab << qq2 << tab << rr << nline;
+    }
+    catch ( const std::exception& )
+    {
+
+    }
+}
+
+
+int addition_PointerToFunction ( int a, int b )
+{
+    return ( a + b );
+}
+int subtraction_PointerToFunction ( int a, int b )
+{
+    return ( a - b );
+}
+int operation_PointerToFunction ( int x, int y, int ( *FuncToCall ) ( int, int ) )
+{
+    // taking the function to be called as a pointer that points to the wished function
+    int g;
+    g = ( *FuncToCall ) ( x, y ); // the call to the wished function
+    return g;
+}
+void _9_5_PointersToFunctions ()
+{
+    try
+    {
+        ColourCouter ( "--------------------------------------------------", F_bRED );
+        ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
         //! ####################################################################
         //! ----- pointers to functions:

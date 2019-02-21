@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,20.02.2019</changed>
+/// <changed>ʆϒʅ,22.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -459,54 +459,51 @@ void _9_1_PointersBasics ()
 
         //! ####################################################################
         //! ----- declaring pointers:
-        // due to the ability of a pointer to directly refer to the value that it points to, a pointer has different properties when it points to a char than when it points to an int or a float.
-        // once dereferenced, the type needs to be known, and for that, the declaration of pointers also needs the data types which the pointers are going to point to.
-        // syntax: type *name;
-        std::cout << nline << "----- Declaring Pointers:" << nline;
-        std::cout << "Different properties of the pointers when they directly refer to the values justify the need to declare them with the needed specified data type." << nline << nline;
-        /*
+        // when it comes to different types of variable, a pointer has different properties,
+        // due to its ability to directly refer to the value of the variable it points to.
+        // the type needs to be known for dereferencing and it can happens in the moment of declaration of the pointer.
+        // Note syntax: type* name;
+        // the type is not the type of the pointer itself but the type of the data pointed to.
+        // asterisk (*) in declaration is just a part of the pointer's type compound specifier,
+        // therefore it is to be differentiate with dereference operator.
+        // all pointers types likely to occupy the same amount of memory, since the pointer size in memory depends on the platform where the program runs.
+        ColourCouter ( "----- Declaring Pointers:\n", F_bBLUE );
+        ColourCouter ( "Different properties of the pointers when they directly refer to the values of variables justify the need to declare them with the needed specified data type.\n\n", F_YELLOW );
 
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
-
-        // the declaration type is not the type of the pointer itself.
-        // all pointers are likely going to occupy the same amount of space in memory no matter their declaration type (the size of a pointer in memory depends on the platform where the program runs).
-        // the asterisk (*) in the declaration syntax is just a part of the pointer's type compound specifier and means that it is the declaration of a pointer, thus differentiate it with the dereference operator.
         int* number;
         char* character;
         double* decimal;
 
-        // setting a value indirectly by using the memory location address of a variable which is stored in a pointer.
-        // a pointer can point to different variables during its life time
+        //! - in addition:
+        // an example:
+        // setting values to variables indirectly through pointers (using the memory location addresses of variables)
+        // a pointer can point to different variables during its life time.
         int firstValue, secondValue;
         int* myPointer;
         myPointer = &firstValue;
-        *myPointer = 10; // assigning a value to the value pointed by the pointer
+        *myPointer = 10; // assigning a value to the variable pointed by the pointer
         myPointer = &secondValue;
         *myPointer = 20; // the same
-        std::cout << "Setting values indirectly through the use of a pointer." << nline;
+        ColourCouter ( "Indirectly setting values to variables through pointers.\n", F_bYELLOW );
         std::cout << "The value of firstValue is:" << tab << firstValue << nline;
         std::cout << "The value of secondValue is:" << tab << secondValue << nline << nline;
 
-        // each pointer needs an asterisk (*) in declaration of multiple pointers per statement.
-        // it is even better to declare each pointer variable in a different statement.
-        // other comments are written to get familiar with the way to read each statement.
-        std::cout << "New setted values for a more elaborated demonstration are:" << nline;
+        //! - in addition:
+        // when declaring multiple pointers, each individual one needs an asterisk (*) in its declaration.
+        // spaces aren't matter and it is even better to declare each pointer in a different statement.
+        // to get familiar with the way to read each statement, pay attention to their following comments.
+        ColourCouter ( "A more elaborated demonstration on setting new values:\n", F_bYELLOW );
         firstValue = 5; secondValue = 15;
-        std::cout << "firstValue is:" << tab << firstValue << nline << "secondValue is:" << tab << secondValue << nline;
+        std::cout << "First value is:" << "\t\t" << firstValue << nline << "Second value is:" << tab << secondValue << nline << nline;
         int* p1, *p2; // asterisk (*) for each pointer -due to the precedence rules-
         p1 = &firstValue;  // address of
         p2 = &secondValue; // the same
         *p1 = 10;          // value pointed to by
         *p2 = *p1;         // the same
-        p1 = p2;           // value of pointers (the addresses)
+        p1 = p2;           // assignment of pointers values (the addresses)
         *p1 = 20;          // value pointed to by
-        std::cout << "Modifying values indirectly through the use of pointers." << nline;
-        std::cout << "firstValue is:" << tab << firstValue << nline << "secondValue is:" << tab << secondValue << nline;
+        std::cout << "Indirectly modified values through pointers are:" << nline;
+        std::cout << "First value is:" << "\t\t" << firstValue << nline << "Second value is:" << tab << secondValue << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -524,22 +521,30 @@ void _9_2_PointersAndTypes ()
 
         //! ####################################################################
         //! ----- pointers and arrays:
-        // the concepts of arrays and pointers are related. in fact, arrays work very much like pointers to their first elements.
-        // actually an array can always be implicitly converted to the pointer of the proper type.
-        // after the first assignment 'thePointer' and 'theArray' would be equivalent and would have very similar properties.
-        // the main difference being that 'thePointer' can be assigned a different address
+        // the concepts of arrays and pointers are related, and they work very much like each other to their first elements.
+        // implicitly the conversion of an array to a pointer of the proper type is possible.
         // whereas 'theArray' can never be assigned anything and will always represent the same block of 20 elements of type int.
-        // therefore, the second assignment would not be valid.
-        std::cout << nline << "----- Pointers and arrays:" << nline;
-        std::cout << "The concept of arrays are related to that of the pointers." << nline << nline;
+        ColourCouter ( "----- Pointers and arrays\n", F_bBLUE );
+        ColourCouter ( "Concepts of arrays and pointers are related.\n\n", F_YELLOW );
         int theArray [20];
         int* thePointer;
+        // after the next assignment, the array and the pointer are equivalent with very similar properties.
+        // main difference is the possibility of new assignment of a different address to the pointer.
         thePointer = theArray; // valid
         //theArray = thePointer; // not valid
 
-        // a demonstration that mixes arrays and pointers
-        // the same set of operations with the same meaning are supported with the pointers and arrays.
-        // the main difference is that pointers can be assigned new addresses.
+        //! - in addition:
+        // example: mixing arrays and pointers
+        // the same set of operations with the same meaning are supported with both pointers and arrays.
+        // as already explained brackets ([]) specify the index of an element of an array.
+        // these brackets known as offset operator are in fact a dereferencing operator,
+        // therefore they dereference the variable they follow like the operation of asterisk (*) to the variable it precedes,
+        // and in addition they add the number between the brackets to the address.
+        // for example:
+        //a[5]=0; // a [offset of 5]
+        //*(a+5)=0; // pointed to by (a+5)
+        // no matter 'a' is an array or a pointer, these two expressions are equivalent and valid.
+        // in case of an array, the array identifier refers to first element, just like a pointer.
         int numbers [10];
         int* p;
         p = numbers;
@@ -548,29 +553,25 @@ void _9_2_PointersAndTypes ()
         p = &numbers [2]; *p = 30;
         p = numbers + 3; *p = 40;
         p = numbers; *( p + 4 ) = 50;
-        std::cout << "The values set to the array with the use of pointers are:" << nline << tab;
+        std::cout << "The values set to the array using pointers are (array way print):" << nline << tab;
         for ( int i = 0; i < 5; i++ )
         {
-            std::cout << numbers [i] << tab;
+            std::cout << numbers [i] << tab; // array way
         }
-        // in the arrays section, the brackets ([]) have been explained as specifying the index of an element of the array.
-        // these brackets in fact are a dereferencing operator known as offset operator.
-        // they dereference the variable they follow just like what the operator (*) in pointers does to the variable it precedes.
-        // they also add the number between the brackets to the address being dereferenced.
-        // for example:
-        //a[5]=0; // a [offset of 5]
-        //*(a+5)=0; // pointed to by (a+5)
-        // no matter 'a' is an array or a pointer, these two expressions are equivalent and valid.
-        // if it is an array, its name can be used to its first element just like a pointer.
-        std::cout << nline;
+        std::cout << nline << "The values set to the array using pointers are (pointer way print):" << nline << tab;
+        for ( int i = 0; i < 5; i++ )
+        {
+            std::cout << *( p + i ) << tab; // pointer way
+        }
+        std::cout << nline << nline;
 
         //! ####################################################################
         //! ----- pointer initialization:
         // the initialization of pointers can be introduced at the very moment of their declaration.
         // what is going to be initialized is the address to be pointed to and never the value stored in memory.
         // pointers can be initialized not only to the address of a variable, but also to the value of another pointer or array.
-        std::cout << nline << "----- Pointer Initialization:" << nline;
-        std::cout << "To introduce the initialization of pointers which can be done at the moment of declaration." << nline << nline;
+        ColourCouter ( "----- Pointer Initialization:\n", F_bBLUE );
+        ColourCouter ( "Initialization of pointers like variables can be done at the moment of declaration.\n\n", F_YELLOW );
         int myVar;            // a variable
         int* myPtr1 = &myVar; // point to address of variable
         int myArr [31] {};     // an array
@@ -579,6 +580,14 @@ void _9_2_PointersAndTypes ()
         std::cout << "The value of myPtr1 is:" << tab << myPtr1 << nline;
         std::cout << "The value of myPtr2 is:" << tab << myPtr2 << nline;
         std::cout << "The value of myPtr3 is:" << tab << myPtr3 << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- pointer arithmetics:

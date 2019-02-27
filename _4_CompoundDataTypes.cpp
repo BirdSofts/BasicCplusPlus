@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,22.02.2019</changed>
+/// <changed>ʆϒʅ,28.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -571,82 +571,78 @@ void _9_2_PointersAndTypes ()
         // what is going to be initialized is the address to be pointed to and never the value stored in memory.
         // pointers can be initialized not only to the address of a variable, but also to the value of another pointer or array.
         ColourCouter ( "----- Pointer Initialization:\n", F_bBLUE );
-        ColourCouter ( "Initialization of pointers like variables can be done at the moment of declaration.\n\n", F_YELLOW );
-        int myVar;            // a variable
+        ColourCouter ( "Like variables initialization of pointers can be done at the moment of declaration.\n\n", F_YELLOW );
+        int myVar { 0 };            // a variable
         int* myPtr1 = &myVar; // point to address of variable
-        int myArr [31] {};     // an array
+        int myArr [31] { 0 };     // an array
         int* myPtr2 = myPtr1; // point to the value of a pointer
         int* myPtr3 = myArr;  // point to an array
-        std::cout << "The value of myPtr1 is:" << tab << myPtr1 << nline;
-        std::cout << "The value of myPtr2 is:" << tab << myPtr2 << nline;
-        std::cout << "The value of myPtr3 is:" << tab << myPtr3 << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << "First pointer's value and pointed value (points to a variable) are:" << nline << tab << myPtr1 << tab << *myPtr1 << nline;
+        std::cout << "Second pointer's value and pointed value (points to first pointer) are:" << nline << tab << myPtr2 << tab << *myPtr2 << nline;
+        std::cout << "First pointer's value and pointed value (points to an array) are:" << nline << tab << myPtr3 << tab << *myPtr3 << nline << nline;
 
         //! ####################################################################
         //! ----- pointer arithmetics:
-        // conduction of arithmetical operations on pointers are a little different to those of the regular integer types.
-        // to begin with there are just addition and subtraction are allowed.
-        // because of the fact that types have different sizes even the conductions of these two operations are going to have different  behaviours. (the size of the types is going to be added or subtracted to or from the stored address value in pointers)
-        // the exact size of data types is also dependent on the system.
-        std::cout << nline << "----- Pointer arithmetics:" << nline;
-        std::cout << "Arithmetical operations on pointers result in different behaviours and outputs than regular integer types." << nline << nline;
+        // when conduction arithmetical operations on pointers, there are these differences to pay attention to:
+        // first of all only addition and subtraction operations are allowed.
+        // even these two allowed operations have slightly different behaviours, since types have different sizes,
+        // and this size is going to be added or subtracted to the stored address value in pointers.
+        // on the other hand the exact size of data types is also dependent on the system.
+        ColourCouter ( "----- Pointer arithmetics:\n", F_bBLUE );
+        ColourCouter ( "Arithmetical operations on pointers result in different behaviours and outputs than regular integer types.\n\n", F_YELLOW );
         char Char { 'A' };
         char* ptrChar { &Char };
         short Short { 4454 };
         short* ptrShort { &Short };
         long Long { 44544454 };
         long* ptrLong { &Long };
-        std::cout << "The address values before the addition:" << nline;
-        std::cout << "myChar is:" << tab << ptrChar << nline;
-        std::cout << "myShort is:" << tab << ptrShort << nline;
-        std::cout << "myLong is:" << tab << ptrLong << nline << nline;
+        std::cout << "The address values and the values pointed to before the addition:" << nline;
+        std::cout << "myChar is:" << tab << ptrChar << tab << *ptrChar << nline;
+        std::cout << "myShort is:" << tab << ptrShort << "\t\t\t\t" << *ptrShort << nline;
+        std::cout << "myLong is:" << tab << ptrLong << "\t\t\t\t" << *ptrLong << nline;
         ++ptrChar;
         ++ptrShort;
         ++ptrLong;
-        std::cout << "The address values after the addition:" << nline;
-        std::cout << "myChar is:" << tab << ptrChar << nline;
-        std::cout << "myShort is:" << tab << ptrShort << nline;
-        std::cout << "myLong is:" << tab << ptrLong << nline << nline;
+        std::cout << "The address values and the values pointed to after the addition:" << nline;
+        std::cout << "myChar is:" << tab << ptrChar << tab << *ptrChar << nline;
+        std::cout << "myShort is:" << tab << ptrShort << "\t\t\t\t" << *ptrShort << nline;
+        std::cout << "myLong is:" << tab << ptrLong << "\t\t\t\t" << *ptrLong << nline << nline;
 
-        // possible combinations of dereference operator and prefix or postfix versions of the increment/decrement operator
+        // combinations: dereference operator with both prefix or postfix versions of increment or decrement operators
         // increment/decrement operator: higher priority (left-to-right)
         // reference/dereference operator: lower priority (right-to-left)
-        // like always parenthesis reduces confusion by adding legibility to expressions.
+        // as always parenthesis reduce confusion and add legibility to expressions.
         // postfix: *p++ = *q++;   is roughly equivalent to:   *p = *q; ++p; ++q;
-        std::cout << "Four possible combinations of dereference operator and prefix or postfix versions of the increment/decrement operator:" << nline;
+        ColourCouter ( "Four possible combinations of dereference operator with both prefix or postfix versions of increment or decrement operators:\n", F_bYELLOW );
         int ptrVar { 4454 };
         int* ptr;
         int temp;
         std::cout << "The stored value in the variable is:" << tab << ptrVar << nline;
-        std::cout << "The temp variable stores the value of each operation, so it could be shown." << nline << nline;
+        ColourCouter ( "The temp variable is storage of each operation, so it could be shown.\n\n", F_bCYAN );
         ptr = &ptrVar;
-        std::cout << "The value of ptr before incrementation *ptr++ is:" << tab << ptr << nline;
+        std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
         temp = *ptr++;   // same as *(ptr++): increment pointer, and dereference un-incremented address
-        std::cout << "ptr is:" << tab << ptr << nline;
-        std::cout << "temp is:" << tab << temp << nline << nline;
+        std::cout << "ptr after incrementation *ptr++ is:" << tab << ptr << nline;
+        std::cout << "result of incrementation *ptr++ is:" << tab << temp << nline << nline;
+        //
         ptr = &ptrVar;
-        std::cout << "The value of ptr before incrementation *++ptr is:" << tab << ptr << nline;
+        std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
         temp = *++ptr;   // same as *(++p): increment pointer, and dereference incremented address
-        std::cout << "ptr is:" << tab << ptr << nline;
-        std::cout << "temp is:" << tab << temp << nline << nline;
+        std::cout << "ptr after incrementation *++ptr is:" << tab << ptr << nline;
+        std::cout << "result of incrementation *++ptr is:" << tab << temp << nline << nline;
+        //
         ptr = &ptrVar;
-        std::cout << "The value of ptr before incrementation ++*ptr is:" << tab << ptr << nline;
+        std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
         temp = ++*ptr;   // same as ++(*p): dereference pointer, and increment the value it points to
-        std::cout << "ptr is:" << tab << ptr << nline;
-        std::cout << "temp is:" << tab << temp << nline << nline;
+        std::cout << "ptr after incrementation ++*ptr is:" << tab << ptr << nline;
+        std::cout << "result of incrementation ++*ptr is:" << tab << temp << nline << nline;
+        //
         ptr = &ptrVar;
-        std::cout << "The value of ptr before incrementation (*ptr)++ is:" << tab << ptr << nline;
+        std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
         temp = ( *ptr )++; // dereference pointer, and post-increment the value it points to.
                          // without parenthesis the incrementation happens to the pointer itself too.
-        std::cout << "ptr is:" << tab << ptr << nline;
-        std::cout << "temp is:" << tab << temp << nline;
+        std::cout << "ptr after incrementation (*ptr)++ is:" << tab << ptr << nline;
+        std::cout << "result of incrementation (*ptr)++ is:" << tab << temp << nline << nline;
 
     }
     catch ( const std::exception& )
@@ -688,8 +684,8 @@ void _9_3_PointersAndLiterals ()
         // to declare pointers that can access the pointed value to read it but not to modify it, it is enough to qualify the type pointed to by the pointer as constant.
         // a pointer to non-const can be implicitly converted to a pointer to const, but not the other way around.
         // as a safety features, pointers to const are not implicitly convertible to pointer to non-const.
-        std::cout << nline << "----- Pointers and Constants:" << nline;
-        std::cout << "To access a variable for just reading purposes, not modifying." << nline << nline;
+        ColourCouter ( "----- Pointers and Constants:\n", F_bBLUE );
+        ColourCouter ( "To access a variable for just reading purposes, not modifying.\n\n", F_YELLOW );
         int x;
         int y { 10 };
         const int* const_ptr { &y }; // points to a variable but in a const-qualified manner
@@ -712,8 +708,16 @@ void _9_3_PointersAndLiterals ()
         std::cout << "The array elements after execution of the functions are:" << nline;
         increment_all_PointersUsed ( numbers_array, numbers_array + 3 );
         print_all_ConstantPointersUsed ( numbers_array, numbers_array + 3 );
-
         //Todo add: passing a library array
+
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         // constant pointers:
         // a second dimension to constness added to pointers is that the pointers themselves can also be constant.

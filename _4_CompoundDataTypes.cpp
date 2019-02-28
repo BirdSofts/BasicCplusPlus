@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,28.02.2019</changed>
+/// <changed>ʆϒʅ,29.02.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -277,6 +277,13 @@ void _7_5_ArraysAsParameters ()
 }
 
 
+void print_library_array ( std::array<int, 3> arg )
+{
+    std::cout << tab;
+    for ( int element : arg )
+        std::cout << element << tab;
+    std::cout << Nline << Nline;
+}
 void _7_6_LibraryArrays ()
 {
     try
@@ -308,7 +315,9 @@ void _7_6_LibraryArrays ()
             ++library_array [i];
         for ( int element : library_array )
             std::cout << element << tab;
-        std::cout << nline << nline;
+        std::cout << nline;
+        std::cout << "The same library array passed as argument:" << nline;
+        print_library_array ( library_array );
     }
     catch ( const std::exception& )
     {
@@ -669,7 +678,7 @@ void print_all_ConstantPointersUsed ( const int* start, const int* stop )
         std::cout << *current << Tab;
         ++current;
     }
-    std::cout << Nline;
+    std::cout << Nline << Nline;
 }
 void _9_3_PointersAndLiterals ()
 {
@@ -680,65 +689,58 @@ void _9_3_PointersAndLiterals ()
 
         //! ####################################################################
         //! ----- pointers and constants:
-        // pointers can be used to access a variable by its address and this access may include modifying the value pointed.
-        // to declare pointers that can access the pointed value to read it but not to modify it, it is enough to qualify the type pointed to by the pointer as constant.
-        // a pointer to non-const can be implicitly converted to a pointer to const, but not the other way around.
-        // as a safety features, pointers to const are not implicitly convertible to pointer to non-const.
+        // to access variables by pointers read-only, it is enough to qualify the type pointed to as constant.
+        // pointers to non-const are implicitly convertible to pointers to constant, but as a safety feature, the other way around isn't possible.
         ColourCouter ( "----- Pointers and Constants:\n", F_bBLUE );
         ColourCouter ( "To access a variable for just reading purposes, not modifying.\n\n", F_YELLOW );
         int x;
         int y { 10 };
-        const int* const_ptr { &y }; // points to a variable but in a const-qualified manner
-                                     // allowed (non-const to const): the type of y is int* and is assigned to a pointer of type const int*.
+        const int* const_ptr { &y }; // points to a variable but in a constant-qualified manner
+                                     // allowed (non-const type (address of) to constant):
+                                     // the type of y is int* and is assigned to a pointer of type constant int*.
         x = *const_ptr; // ok: reading p
-        std::cout << "The value accessed by a const-qualified pointer is:" << tab << x << nline << nline;
-        //*const_ptr = x; // error: modifying const-qualified
+        //*const_ptr = x; // error: modifying constant-qualified
+        std::cout << "The value accessed by a constant-qualified pointer is:" << tab << x << nline << nline;
 
-        // on of the use cases of pointers to constant elements is as function parameters.
-        // a function that takes a pointer to constant element, can not modify the value passed as argument.
-        // pointers that point to constant content they can not modify, doesn't mean that the pointers themselves are constant, they can still increment and decrement the assigned address but they can't modify the content they point to.
-        std::cout << "Functions that use normal and const-qualified pointers:" << nline;
+        //! - in addition:
+        // one of the use cases: function parameters can include pointers to constant elements to prevent modifications on the passed arguments.
+        // to be more clear: pointers that are constant type qualified (point to constant content), can still point to new addresses, but they can not modify the pointed content.
+        ColourCouter ( "Two functions with normal and constant-qualified pointers as parameters:\n", F_bYELLOW );
         int numbers_array [] { 10,20,30 };
-        std::cout << "The elements of the array are:" << nline;
+        std::cout << "The array elements are:" << nline << tab;
         for ( int i = 0; i < 3; i++ )
         {
             std::cout << numbers_array [i] << tab;
         }
         std::cout << nline << nline;
-        std::cout << "The array elements after execution of the functions are:" << nline;
+        std::cout << "The array elements after execution of the functions are:" << nline << tab;
         increment_all_PointersUsed ( numbers_array, numbers_array + 3 );
         print_all_ConstantPointersUsed ( numbers_array, numbers_array + 3 );
-        //Todo add: passing a library array
 
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
         //! - in addition:
-
         // constant pointers:
-        // a second dimension to constness added to pointers is that the pointers themselves can also be constant.
-        // this is specified by appending const to the pointed type (after the asterisk).
-        // the syntax with const and pointer is definitly tricky.
-        // recognising the cases that best suit each use tends to require some experience
-        // in any case it is important to get constness with pointers (and references) right sooner rather than later.
-        std::cout << nline << "Pointers themselves can also be constant." << nline;
-        std::cout << "The source code contains the syntaxes and order needed for their definition." << nline;
-        std::cout << "The cases of their uses are going to be introduced in the further sections." << nline;
-        int x_var;
-        int* ptr1 { &x_var };
-        const int* ptr2 { &x_var }; // const int
-        int* const ptr3 { &x_var }; // const pointer
-        const int* const ptr4 { &x_var };
+        // a second dimension to the constness of pointers is that the pointers themselves can also be constant.
+        // to define a pointer as constant the 'const' keyword needs to be appended to the pointed type (after the asterisk).
+        // the syntaxes concerning pointers and their constant aspects are tricky,
+        // therefore it needs a grow experience to recognise best suited use cases.
+        // a sooner deep understanding of constness, pointers and references is of course better.
+        ColourCouter ( "Pointers themselves can also be constant.\n", F_bYELLOW );
+        int x_var { 0 };
+        int         *       ptr1 { &x_var }; // non-const pointer to non-const int
+        const int   *       ptr2 { &x_var }; // non-const pointer to constant int
+        int         * const ptr3 { &x_var }; // constant pointer to non-const int
+        const int   * const ptr4 { &x_var }; // constant pointer to constant int
+        std::cout << "The value of variable referenced four times:" << "\t\t" << *ptr1 << tab << *ptr2 << tab << *ptr3 << tab << *ptr4 << nline;
 
-        // the const qualifier can either precede or follow the pointed type
-        // as with the spaces surrounding the asterisk, the order of const in this case is simply a matter of style.
-        // the merits of each are still intensely debated on the internet.
-        const int* ptr5 { &x_var };
-        int const* ptr6 { &x_var }; // the exact same meaning and use as the expression above
+        //! - in addition:
+        // the above syntaxes get even more complex by considering,
+        // that the pointed type can either be preceded or followed by the constant qualifier and both exact same meaning.
+        // the order of constant qualifier like the surrounding spaces of asterisk is simply a matter of style.
+        // on the internet the discussion on the merits of each still goes on intensely.
+        const int* ptr5 { &x_var }; //      non-const pointer to constant int
+        int const* ptr6 { &x_var }; // also non-const pointer to constant int
+        std::cout << "The value of variable referenced again two times:" << tab << *ptr5 << tab << *ptr6 << nline << nline;
+
 
         //! ####################################################################
         //! ----- pointers and string literals:
@@ -746,8 +748,8 @@ void _9_3_PointersAndLiterals ()
         // They are arrays of the proper array type to contain all its character plus terminating null-character with each of the element being of type const char (as literals, they can never be modified).
         // pointers that point to character sequences can be used to access their characters in the same way null-terminated character sequences are.
         // this is because pointers and arrays behave essentially in the same way in expressions.
-        std::cout << nline << "----- Pointers and string literals:" << nline;
-        std::cout << "By using pointers string literals can be accessed directly." << nline << nline;
+        ColourCouter ( "----- Pointers and string literals:\n", F_bBLUE );
+        ColourCouter ( "By using pointers string literals can be accessed directly.\n\n", F_YELLOW );
         const char* Ptr_StrLit { "HELLO!" }; // an array with the respected literal representation and a pointer (identifier name) which points to its first element.
         std::cout << "A representation of the ways that the characters of a character sequence can be accessed directly:" << nline;
         for ( int i = 0; i <= 5; i++ )
@@ -760,6 +762,14 @@ void _9_3_PointersAndLiterals ()
             std::cout << *( Ptr_StrLit + i ) << ' '; // accessing in usual pointer way
         }
         std::cout << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
     }
     catch ( const std::exception& )
     {

@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,29.02.2019</changed>
+/// <changed>ʆϒʅ,02.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -744,32 +744,29 @@ void _9_3_PointersAndLiterals ()
 
         //! ####################################################################
         //! ----- pointers and string literals:
-        // by using pointers string literals can be accessed directly.
-        // They are arrays of the proper array type to contain all its character plus terminating null-character with each of the element being of type const char (as literals, they can never be modified).
-        // pointers that point to character sequences can be used to access their characters in the same way null-terminated character sequences are.
-        // this is because pointers and arrays behave essentially in the same way in expressions.
+        // additional to direct insertion into cout, initialization of strings and arrays of character,
+        // string literals can be accessed directly by pointers.
+        // another description: arrays of proper array type to contain all its character plus null-character and each element of type constant char.
+        // each element of a character sequence is accessible by a pointer that point to the sequence, exactly like it is accessible using the same array way.
+        // this is because of the before described fact, that arrays and pointers behave essentially the same way in expressions.
         ColourCouter ( "----- Pointers and string literals:\n", F_bBLUE );
         ColourCouter ( "By using pointers string literals can be accessed directly.\n\n", F_YELLOW );
-        const char* Ptr_StrLit { "HELLO!" }; // an array with the respected literal representation and a pointer (identifier name) which points to its first element.
-        std::cout << "A representation of the ways that the characters of a character sequence can be accessed directly:" << nline;
+        const char* Ptr_StrLit { "Hello!" }; // a pointer pointed to an array of respected literal representation
+        std::cout << "Accessing a character sequence directly in usual array and pointers way:" << nline << tab;
         for ( int i = 0; i <= 5; i++ )
         {
-            std::cout << Ptr_StrLit [i] << ' '; // accessing in usual array way
+            std::cout << Ptr_StrLit [i]; // accessing in usual array way
+            if ( Ptr_StrLit [i] != '!' )
+                std::cout << '_';
         }
-        std::cout << nline;
+        std::cout << "\t\t";
         for ( int i = 0; i <= 5; i++ )
         {
-            std::cout << *( Ptr_StrLit + i ) << ' '; // accessing in usual pointer way
+            std::cout << *( Ptr_StrLit + i ); // accessing in usual pointer way
+            if ( *( Ptr_StrLit + i ) != '!' )
+                std::cout << '_';
         }
-        std::cout << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -802,20 +799,22 @@ void _9_4_MoreOnPointers ()
 
         //! ####################################################################
         //! ----- pointers to pointers:
-        // the use of pointers that point to pointers is allowed in C++.
-        // these pointers, in its turn, point to data or even to other pointers.
-        // the syntax in declaration of pointers simply requires an asterisk for each level of indirection.
-        std::cout << nline << "----- Pointers to pointers:" << nline;
-        std::cout << "C++ allows the use of pointers that point to pointers." << nline << nline;
+        // C++ provides the use of pointers that point to pointers.
+        // the result is a defined pointer that in different levels of indirection points to data or even other pointers.
+        // the declaration syntax simply requires an additional asterisk for each level of indirection.
+        ColourCouter ( "----- Pointers to pointers:\n", F_bBLUE );
+        ColourCouter ( "In C++ pointers are allowed to point to pointers.\n\n", F_YELLOW );
         int int_var;
         int* int_ptr;
-        int** int_ptr_ptr; // a pointer to a pointer which can be used in three different levels of indirection and each one of them would correspond to a different value.
+        int** int_ptr_ptr; // a pointer to pointer
+                           // useable in three different levels of indirection and each one correspond to a different value.
         int_var = 89;
         int_ptr = &int_var;
         int_ptr_ptr = &int_ptr;
-        std::cout << int_ptr_ptr << nline; // first level, the address of the pointer to pointer itself
-        std::cout << *int_ptr_ptr << nline; // second level, the address of pointed pointer
-        std::cout << **int_ptr_ptr << nline; // third level, the value being pointed by pointer to pointer
+        std::cout << "Pointed values in three different levels of indirection are:" << nline << tab;
+        std::cout << int_ptr_ptr << tab; // first level, the address of the pointer to pointer
+        std::cout << *int_ptr_ptr << tab; // second level, the address of pointed pointer
+        std::cout << **int_ptr_ptr << nline << nline; // third level, the value being pointed by pointed pointer
 
         //! ####################################################################
         //! ----- void pointers: (a special type of pointer)
@@ -826,8 +825,8 @@ void _9_4_MoreOnPointers ()
         // one of its possible uses may be to pass generic arguments as parameters to a function.
         // sizeof is an integrated operator in C++ that returns the size of its argument in bytes.
         // for non-dynamic data types, this value is a constant.
-        std::cout << nline << "----- Void pointers:" << nline;
-        std::cout << "Void pointers are pointers that point to a value that has no type and this ability gives them a great flexibility and a great limitation." << nline << nline;
+        ColourCouter ( "----- Void pointers:\n", F_bBLUE );
+        ColourCouter ( "Void pointers are pointers that point to a value that has no type and this ability gives them not only a great flexibility but also a great limitation.\n\n", F_YELLOW );
         char a { 'A' };
         int b = 24;
         std::cout << "Values ready to be passed are:" << nline << tab << a << tab << b << nline;
@@ -835,6 +834,14 @@ void _9_4_MoreOnPointers ()
         increase ( &b, sizeof ( b ) );
         std::cout << "Increased values in the function that has void pointers as parameters are:" << nline;
         std::cout << tab << a << tab << b << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- invalid pointers and null pointers:

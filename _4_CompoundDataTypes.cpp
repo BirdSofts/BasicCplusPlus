@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,02.03.2019</changed>
+/// <changed>ʆϒʅ,04.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -818,59 +818,53 @@ void _9_4_MoreOnPointers ()
 
         //! ####################################################################
         //! ----- void pointers: (a special type of pointer)
-        // in C++ void represents the absence of type.
-        // therefore void pointers are pointers that point to a value that has no type, thus also an undetermined length and undetermined dereferencing properties.
-        // this gives void pointers a great flexibility, by being able to point to any data type, but also a great limitation, which is the data pointed to by them can not be directly dereferenced.
-        // any address in a void pointer needs to be transformed into some other date type that point to a concrete data type before being dereferenced.
-        // one of its possible uses may be to pass generic arguments as parameters to a function.
-        // sizeof is an integrated operator in C++ that returns the size of its argument in bytes.
-        // for non-dynamic data types, this value is a constant.
+        // as already pointed out void represents absence of type,
+        // therefore void pointers point to values without any infos about their exact type,
+        // therefore also an undetermined length and undetermined dereferencing properties.
+        // Note: void pointers great flexibility: being able to point to any type, additionally:
+        // void pointers great limitation: absence of direct dereference of pointed data (logical: no type to reference to)
+        // to be able to dereference void pointers, they need to be transformed into some other concrete data type.
+        // one of void pointers uses may be to pass generic argument as parameters to a function.
+        // already described sizeof operator is integrated in C++, returns the size of its argument in bytes,
+        // which for non-dynamic data types it is a constant value.
         ColourCouter ( "----- Void pointers:\n", F_bBLUE );
-        ColourCouter ( "Void pointers are pointers that point to a value that has no type and this ability gives them not only a great flexibility but also a great limitation.\n\n", F_YELLOW );
+        ColourCouter ( "Void pointers are able to point to values without any infos on their exact types.\n\n", F_YELLOW );
         char a { 'A' };
         int b = 24;
         std::cout << "Values ready to be passed are:" << nline << tab << a << tab << b << nline;
         increase ( &a, sizeof ( a ) );
         increase ( &b, sizeof ( b ) );
-        std::cout << "Increased values in the function that has void pointers as parameters are:" << nline;
-        std::cout << tab << a << tab << b << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << "Increased values in the function with a void pointer as parameter are:" << nline;
+        std::cout << tab << a << tab << b << nline << nline;
 
         //! ####################################################################
         //! ----- invalid pointers and null pointers:
-        // in principle, pointers are meant to point to valid addresses, such as the addresses that introduced and worked with till now.
-        // but pointers can actually point to an addresses, including addresses that do not refer to any valid element, such as uninitialized variables and non-existent elements of an array.
-        // in C++ pointers are allowed to take any address value, no matter whether there actually is something in that address or not.
-        // void (invalid) pointers: point to somewhere without a specific type (refers to the type of data it pints to)
-        std::cout << nline << "----- Invalid pointers and null pointers:" << nline;
-        std::cout << "Void pointers point to somewhere without a specific type" << nline;
-        std::cout << "A null pointer is a value that any pointer can take to represent that it points to nowhere" << nline << nline;
-        // the two statement below don't cause any error, while not pointing to any addresses known to contain a value.
-        // what can cause runtime errors or undefined behaviours (i.e. accessing some random value) is to dereference such pointers.
+        // while pointers are meant to point to valid addresses, they can actually point to any address,
+        // including addresses that refer to no valid element like uninitialized variables and non-existent elements of an array.
+        // this fact introduces invalid pointers in C++, which means that a pointer can take any address value,
+        // no matter whether there actually something is stored or not.
+        ColourCouter ( "----- Invalid pointers and null pointers:\n", F_bBLUE );
+        ColourCouter ( "In C++ pointers can point to any address values, no matter their storage state.\n\n", F_YELLOW );
+        // the two pointer definitions below, while not pointing to any address with value, aren't cause of any compile error.
+        // but dereferencing them is a different story and causes runtime error or undefined behaviours
         int* pp; // uninitialized pointer (local variable) (no error)
         int anArray [10];
         int* qq { &anArray [20] }; // element out of bound (no error)
         //std::cout << pp << nline; // error: used without initialization
-        std::cout << "The pointed out of bound address of the array addresses is:" << qq << nline << nline;
-        // the null pointer value:
-        // a value that any pointer can take to represent that it points to nowhere (refers to the value stored in the pointer)
-        // sometimes pointers really need to explicitly point to nowhere, and not just an invalid address.
-        // for such cases, there exists a special value that any pointer type can take, which is the null pointer value
-        // there are two ways for this value to be expressed in C++: either whit an integer value of zero or with the nullptr keyword;
-        // all null pointers compare equal to other null pointers
+        std::cout << "The pointed address is (out of bound of the array addresses):" << tab << qq << nline << nline;
+
+        //! - in addition:
+        // as in past sections somewhat described: null pointers: pointers can NULL, 0 or nullptr to represent that they point to nowhere.
+        // null pointers satisfy the need of explicit point to nowhere, and not just an invalid address.
+        // all null pointers compare equal to other null pointers.
+        // Note as already described: void pointers: point to somewhere without a specific type
         int* pp2 { 0 };
         int* qq2 { nullptr };
-        int* rr { NULL }; // quite usual in old cod to use constant NULL to refer to null pointer value
-                         // NULL is defined in several headers of the standard library, and is defined as an alias of some null pointer constant value such as 0 and nullpter.
-        std::cout << "FYI :) ==> the addresses of the defined null pointers are:" << nline;
-        std::cout << tab << pp2 << tab << qq2 << tab << rr << nline;
+        int* rr { NULL }; // quite usual in old codes: using the defined constant NULL to refer to null pointer value
+                         // NULL is defined in several headers of the standard library
+                         // it is also defined as an alias of some null pointer constant such as 0 or nullptr
+        std::cout << "The pointed addresses of defined null pointers are:" << nline;
+        std::cout << tab << pp2 << tab << qq2 << tab << rr << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -907,14 +901,22 @@ void _9_5_PointersToFunctions ()
         // typical uses: using pointers to call functions, passing a function as an argument to another function.
         // pointers arithmetic can not be performed on the pointers to function.
         // the same syntax as a regular function is to be used to declare pointers to function except that the name of the function is enclosed between parenthesis () and an asterisk * is inserted before the name.
-        std::cout << nline << "----- Pointers to functions:" << nline;
-        std::cout << "A pointer can also be used to call a function and to pass a function as an argument to another function." << nline << nline;
+        ColourCouter ( "----- Pointers to functions:\n", F_bBLUE );
+        ColourCouter ( "A pointer can also be used to call a function and to pass a function as an argument to another function.\n\n", F_YELLOW );
         int m, n;
         int ( *minus )( int, int ) = subtraction_PointerToFunction; // a pointer to function that has two parameter and is directly initialized
         m = operation_PointerToFunction ( 10, 7, addition_PointerToFunction ); // calling with the function itself
         n = operation_PointerToFunction ( 34, m, minus ); // calling with a pointer to function
         std::cout << "The result of the first call (passing the wished function itself):" << tab << m << nline;
         std::cout << "The result of the second call (passing the wished function by using pointers to functions):" << tab << n << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
     }
     catch ( const std::exception& )
     {

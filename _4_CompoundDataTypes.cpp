@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,04.03.2019</changed>
+/// <changed>ʆϒʅ,07.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -873,19 +873,19 @@ void _9_4_MoreOnPointers ()
 }
 
 
-int addition_PointerToFunction ( int a, int b )
+int addition_Function ( int a, int b )
 {
     return ( a + b );
 }
-int subtraction_PointerToFunction ( int a, int b )
+int subtraction_Function ( int a, int b )
 {
     return ( a - b );
 }
-int operation_PointerToFunction ( int x, int y, int ( *FuncToCall ) ( int, int ) )
+int operation_FunctionCaller ( int x, int y, int ( *FuncToCall ) ( int, int ) )
 {
-    // taking the function to be called as a pointer that points to the wished function
+    // calling the wished function using its stored executable address which is passed as argument
     int g;
-    g = ( *FuncToCall ) ( x, y ); // the call to the wished function
+    g = ( *FuncToCall ) ( x, y );
     return g;
 }
 void _9_5_PointersToFunctions ()
@@ -897,26 +897,24 @@ void _9_5_PointersToFunctions ()
 
         //! ####################################################################
         //! ----- pointers to functions:
-        // C++ allows operations with pointers to functions.
-        // typical uses: using pointers to call functions, passing a function as an argument to another function.
-        // pointers arithmetic can not be performed on the pointers to function.
-        // the same syntax as a regular function is to be used to declare pointers to function except that the name of the function is enclosed between parenthesis () and an asterisk * is inserted before the name.
+        // in C++ operations with pointers to function are allowed, they point to the executable function code,
+        // and their typical uses are to call a function and to pass a function as an argument to another function.
+        // pointers arithmetic aren't performable on the pointers to functions.
+        // regular function declaration is the source for declaring pointers to function,
+        // except that the pointer identifier is followed by an asterisk * and enclosed in parenthesis ().
+        // parenthesis are needed and alter the higher precedence of function parameters.
         ColourCouter ( "----- Pointers to functions:\n", F_bBLUE );
-        ColourCouter ( "A pointer can also be used to call a function and to pass a function as an argument to another function.\n\n", F_YELLOW );
-        int m, n;
-        int ( *minus )( int, int ) = subtraction_PointerToFunction; // a pointer to function that has two parameter and is directly initialized
-        m = operation_PointerToFunction ( 10, 7, addition_PointerToFunction ); // calling with the function itself
-        n = operation_PointerToFunction ( 34, m, minus ); // calling with a pointer to function
-        std::cout << "The result of the first call (passing the wished function itself):" << tab << m << nline;
-        std::cout << "The result of the second call (passing the wished function by using pointers to functions):" << tab << n << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        ColourCouter ( "Pointers to functions are introduced to call a function or to pass a function as argument to another function.\n\n", F_YELLOW );
+        int a, b, c, d;
+        int ( *minus )( int, int ) = subtraction_Function; // a pointer to function (two parameters and direct initialization)
+        a = subtraction_Function ( 10, 5 ); // calling the function itself
+        b = minus ( 15, 5 ); // calling the pointer to function
+        c = operation_FunctionCaller ( 10, 7, addition_Function ); // passing the function itself
+        d = operation_FunctionCaller ( 34, c, minus ); // passing the pointer to function
+        std::cout << "First result (function itself):" << "\t\t\t" << a << nline;
+        std::cout << "Second result (pointer to function):" << "\t\t" << b << nline;
+        std::cout << "Third result (passing the function itself):" << tab << c << nline;
+        std::cout << "Forth result (passing pointer to function):" << tab << d << nline << nline;
     }
     catch ( const std::exception& )
     {
@@ -925,13 +923,6 @@ void _9_5_PointersToFunctions ()
 }
 
 
-// ********************************************************************************
-/// <summary>
-/// Dynamic memory
-/// </summary>
-/// <created>ʆϒʅ,06.09.2018</created>
-/// <changed>ʆϒʅ,08.09.2018</changed>
-// ********************************************************************************
 void DynamicMemory ()
 {
     try
@@ -943,8 +934,16 @@ void DynamicMemory ()
         //! ~~~~~ dynamic memory:
         // up until now all demonstrations used memory that were determined before the execution of the program by defining the variables needed.
         // in cases that there is a need to determine the memory needed during runtime, such as when the memory needed depends on the user input, programs need to dynamically allocate memory, for which the C++ language integrates the operators 'new' and 'delete'.
-        std::cout << nline << "~~~~~ Dynamic memory:" << nline;
-        std::cout << "In cases that there is a need for programs to allocate the memory during runtime, C++ language introduces the concepts of dynamic memory." << nline;
+        ColourCouter ( "~~~~~ Dynamic memory:\n", F_bBLUE );
+        ColourCouter ( "In cases that there is a need for programs to allocate the memory during runtime, C++ language introduces the concepts of dynamic memory.\n\n", F_YELLOW );
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- operators new and new[]:

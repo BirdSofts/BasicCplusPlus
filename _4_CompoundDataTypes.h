@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.h
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,20.02.2019</changed>
+/// <changed>ʆϒʅ,09.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -13,22 +13,22 @@
 #define COMPOUNDDATATYPES_H
 
 
-void _7_1_Arrays ();
-void _7_2_InitializingArrays ();
-void _7_3_AccessingValues ();
-void _7_4_MultidimensionalArrays ();
-void _7_5_ArraysAsParameters ();
-void _7_6_LibraryArrays ();
+void _07_01_Arrays ();
+void _07_02_InitializingArrays ();
+void _07_03_AccessingValues ();
+void _07_04_MultidimensionalArrays ();
+void _07_05_ArraysAsParameters ();
+void _07_06_LibraryArrays ();
 
-void _8_1_CharacterSequences ();
+void _08_01_CharacterSequences ();
 
-void _9_1_PointersBasics ();
-void _9_2_PointersAndTypes ();
-void _9_3_PointersAndLiterals ();
-void _9_4_MoreOnPointers ();
-void _9_5_PointersToFunctions ();
+void _09_01_PointersBasics ();
+void _09_02_PointersAndTypes ();
+void _09_03_PointersAndLiterals ();
+void _09_04_MoreOnPointers ();
+void _09_05_PointersToFunctions ();
 
-void DynamicMemory ();
+void _10_01_DynamicMemory ();
 void DataStructures ();
 void OtherDataTypes ();
 

@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,07.03.2019</changed>
+/// <changed>ʆϒʅ,09.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -17,7 +17,7 @@ const char tab { '\t' };
 const char nline { '\n' };
 
 
-void _7_1_Arrays ()
+void _07_01_Arrays ()
 {
     // the functions used in this section are defined above it.
     try
@@ -56,7 +56,7 @@ void print_simple_array ( int arg [], int length )
     }
     std::cout << Nline << Nline;
 }
-void _7_2_InitializingArrays ()
+void _07_02_InitializingArrays ()
 {
     try
     {
@@ -103,7 +103,7 @@ void _7_2_InitializingArrays ()
 }
 
 
-void _7_3_AccessingValues ()
+void _07_03_AccessingValues ()
 {
     try
     {
@@ -183,7 +183,7 @@ void print_simple_array_bidimensional ( int arg [], int length, int depth = 0 )
     }
     std::cout << Nline << Nline;
 }
-void _7_4_MultidimensionalArrays ()
+void _07_04_MultidimensionalArrays ()
 {
     try
     {
@@ -235,7 +235,7 @@ void _7_4_MultidimensionalArrays ()
 }
 
 
-void _7_5_ArraysAsParameters ()
+void _07_05_ArraysAsParameters ()
 {
     try
     {
@@ -284,7 +284,7 @@ void print_library_array ( std::array<int, 3> arg )
         std::cout << element << tab;
     std::cout << Nline << Nline;
 }
-void _7_6_LibraryArrays ()
+void _07_06_LibraryArrays ()
 {
     try
     {
@@ -334,7 +334,7 @@ void print_simple_array_of_characters ( char arg [], int length )
     }
     std::cout << Nline << Nline;
 }
-void _8_1_CharacterSequences ()
+void _08_01_CharacterSequences ()
 {
     try
     {
@@ -421,7 +421,7 @@ void _8_1_CharacterSequences ()
 }
 
 
-void _9_1_PointersBasics ()
+void _09_01_PointersBasics ()
 {
     try
     {
@@ -521,7 +521,7 @@ void _9_1_PointersBasics ()
 }
 
 
-void _9_2_PointersAndTypes ()
+void _09_02_PointersAndTypes ()
 {
     try
     {
@@ -680,7 +680,7 @@ void print_all_ConstantPointersUsed ( const int* start, const int* stop )
     }
     std::cout << Nline << Nline;
 }
-void _9_3_PointersAndLiterals ()
+void _09_03_PointersAndLiterals ()
 {
     try
     {
@@ -790,7 +790,7 @@ void increase ( void* data, int p_size )
         ++( *p_int );
     }
 }
-void _9_4_MoreOnPointers ()
+void _09_04_MoreOnPointers ()
 {
     try
     {
@@ -888,7 +888,7 @@ int operation_FunctionCaller ( int x, int y, int ( *FuncToCall ) ( int, int ) )
     g = ( *FuncToCall ) ( x, y );
     return g;
 }
-void _9_5_PointersToFunctions ()
+void _09_05_PointersToFunctions ()
 {
     try
     {
@@ -923,7 +923,7 @@ void _9_5_PointersToFunctions ()
 }
 
 
-void DynamicMemory ()
+void _10_01_DynamicMemory ()
 {
     try
     {
@@ -932,48 +932,43 @@ void DynamicMemory ()
 
         //! ####################################################################
         //! ~~~~~ dynamic memory:
-        // up until now all demonstrations used memory that were determined before the execution of the program by defining the variables needed.
-        // in cases that there is a need to determine the memory needed during runtime, such as when the memory needed depends on the user input, programs need to dynamically allocate memory, for which the C++ language integrates the operators 'new' and 'delete'.
+        // to this point of tutorial all needed memory was determined by defining the variables before the program execution.
+        // there may be cases to determine the memory needs of a program on runtime, like when needed memory depends of user input.
+        // for these cases C++ integrates operators 'new' and 'delete' to dynamically allocate memory.
         ColourCouter ( "~~~~~ Dynamic memory:\n", F_bBLUE );
-        ColourCouter ( "In cases that there is a need for programs to allocate the memory during runtime, C++ language introduces the concepts of dynamic memory.\n\n", F_YELLOW );
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        ColourCouter ( "To allocate memory during runtime, C++ language integrates the operators 'new' and 'delete'.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- operators new and new[]:
-        // dynamic memory is allocated using the operator new.
-        // syntax:
+        // operator new is to be used to allocate dynamic memory.
+        // Note syntax:
         // pointer = new type
         // pointer = new type [number_of_elements]
-        // new is followed by a data type specifier, and if a sequence of more than one elements is required, the number of these within brackets (an integer value).
-        // it returns a pointer to the beginning of the new block of memory allocated.
-        std::cout << nline << "----- Operators new and new[]:" << nline;
-        std::cout << "Dynamic memory is allocated using the operator new." << nline << nline;
+        // declaring sequences of more than one elements required to use the second declaration syntax,
+        // where the number of elements (an integer value) is to specified within brackets.
+        // the result is a pointer to the beginning of the new allocated block of memory.
+        ColourCouter ( "----- Operators new and new[]:\n", F_bBLUE );
+        ColourCouter ( "The integrated operator new is to be used to allocate dynamic memory.\n\n", F_YELLOW );
         int* ptr1;
         ptr1 = new int; // allocate memory to contain one single element of type int
         *ptr1 = 555;
-        std::cout << "The address of allocated memory is:" << tab << ptr1 << nline;
-        std::cout << "The value stored in the allocated memory is:" << tab << *ptr1 << nline << nline;
-        // the most important difference between declaring normal arrays and allocating dynamic memory is that the allocation happens during runtime using any variable value as size
+        std::cout << "The address and value of dynamic allocated memory are:" << nline << tab << ptr1 << tab << *ptr1 << nline;
+        // the substantial difference between declaring normal arrays and allocating dynamic memory is,
+        // that allocation happens during runtime and the size is any variable value.
         char* ptr2;
-        ptr2 = new char [6]; // allocate a block (an array) of elements of type char
+        ptr2 = new char [6]; // allocate a block (an array) of char elements
         for ( int i = 0; i <= 5; i++ )
         {
             *( ptr2 + i ) = '$'; // accessing in usual pointer way
         }
-        std::cout << "The address of the first element is:" << tab << ptr2 << nline;
+        std::cout << "The address of the first element of dynamic allocated memory is:" << nline << tab << ptr2 << nline;
         std::cout << "The elements stored in the allocated memory are:" << nline << tab;
         for ( int i = 0; i <= 5; i++ )
         {
             std::cout << ptr2 [i] << tab; // accessing in usual array way
         } std::cout << nline << nline;
 
+        //! - in addition:
         // C++ standard mechanisms to check the success of allocation
         // the requested dynamic memory is going to be allocated by the system from the memory heap.
         // since the computer memory is a limited resource and can be exhausted, there are no guarantees that all request to allocate memory using operator new is going to be granted by the system.
@@ -992,6 +987,14 @@ void DynamicMemory ()
             std::cout << "Error assigning memory!" << nline;
         else
             std::cout << "The address of the first element is:" << tab << ptr3 << nline;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- operators delete and delete[]:

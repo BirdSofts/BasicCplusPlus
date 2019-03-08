@@ -3,14 +3,14 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,12.02.2019</changed>
+/// <changed>ʆϒʅ,09.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
 #include "ConsoleAdjustments.h"
 
 
-void _2_1_StructureOfaProgram ()
+void _02_01_StructureOfaProgram ()
 {
     try
     {
@@ -43,7 +43,7 @@ void _2_1_StructureOfaProgram ()
 }
 
 
-void _2_2_VariablesTypesAndIdentifiers ()
+void _02_02_VariablesTypesAndIdentifiers ()
 {
     try
     {
@@ -97,7 +97,7 @@ void _2_2_VariablesTypesAndIdentifiers ()
 }
 
 
-void _2_3_FundamentalTypesAndDeduction ()
+void _02_03_FundamentalTypesAndDeduction ()
 {
     try
     {
@@ -311,7 +311,7 @@ void _2_3_FundamentalTypesAndDeduction ()
 }
 
 
-void _2_4_ConstantNumerals ()
+void _02_04_ConstantNumerals ()
 {
     try
     {
@@ -387,7 +387,7 @@ void _2_4_ConstantNumerals ()
 }
 
 
-void _2_5_ConstantLiterals ()
+void _02_05_ConstantLiterals ()
 {
     try
     {
@@ -517,7 +517,7 @@ c0de"           " paRTed"  " And "
 }
 
 
-void _2_6_OtherConstantLiterals ()
+void _02_06_OtherConstantLiterals ()
 {
     try
     {
@@ -581,7 +581,7 @@ void _2_6_OtherConstantLiterals ()
 // scope start point of these constants
 const char tab { '\t' };
 const char nline { '\n' };
-void _2_7_ArithmeticOperators ()
+void _02_07_ArithmeticOperators ()
 {
     try
     {
@@ -668,7 +668,7 @@ void _2_7_ArithmeticOperators ()
 }
 
 
-void _2_8_LagicalOperators ()
+void _02_08_LagicalOperators ()
 {
     try
     {
@@ -772,7 +772,7 @@ void _2_8_LagicalOperators ()
 }
 
 
-void _2_9_OtherOperators ()
+void _02_09_OtherOperators ()
 {
     try
     {
@@ -842,7 +842,7 @@ void _2_9_OtherOperators ()
 }
 
 
-void _2_10_PrecedenceOfOperators ()
+void _02_10_PrecedenceOfOperators ()
 {
     try
     {
@@ -920,7 +920,7 @@ void _2_10_PrecedenceOfOperators ()
 }
 
 
-void _2_11_BasicInputOutput ()
+void _02_11_BasicInputOutput ()
 {
     try
     {

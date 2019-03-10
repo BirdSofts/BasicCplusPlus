@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,09.03.2019</changed>
+/// <changed>ʆϒʅ,11.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -961,7 +961,7 @@ void _10_01_DynamicMemory ()
         {
             *( ptr2 + i ) = '$'; // accessing in usual pointer way
         }
-        std::cout << "The address of the first element of dynamic allocated memory is:" << nline << tab << ptr2 << nline;
+        std::cout << "The address of first element of the dynamic allocated memory is:" << nline << tab << ptr2 << nline;
         std::cout << "The elements stored in the allocated memory are:" << nline << tab;
         for ( int i = 0; i <= 5; i++ )
         {
@@ -969,32 +969,33 @@ void _10_01_DynamicMemory ()
         } std::cout << nline << nline;
 
         //! - in addition:
-        // C++ standard mechanisms to check the success of allocation
-        // the requested dynamic memory is going to be allocated by the system from the memory heap.
-        // since the computer memory is a limited resource and can be exhausted, there are no guarantees that all request to allocate memory using operator new is going to be granted by the system.
-        //* first mechanism is by handling exceptions:
-        // an exception of type bad-alloc will be thrown when the allocation fails.
-        // introduction of exceptions is in the later sections but for now it is enough to know that if this exception is thrown and it is not handled by a specific handler, the program execution is terminated.
-        // by default this exception method is the one used by the operator new, so it may be thrown in the declaration line that request the allocation of memory.
-        //* the other method known as 'nothrow', assigns the 'nullptr' to the pointer, instead of throwing a bad_alloc exception and terminating the program, therefore the returned pointer will be a null pointer and the program continue its execution normally.
-        // this method can be specified by using a special object called 'nothrow', declared in header <new>, as argument for new.
-        // in this case, if the allocation of this block of memory fails, it can be detected by checking if the pointer pointed to it, is a null pointer.
-        //* the nothrow method despite simplicity is likely to produce less efficient code than the exceptions, since it implies explicitly checking the pointer value returned after each and every allocation.
-        // therefore, at least for critical allocations, the exception mechanism is preferred.
+        // the requested dynamic memory is going to be allocated by the system from memory heap.
+        // computer memory is a limited resource and can be exhausted,
+        // therefore system doesn't guarantee the success of any allocations using operator new.
+        // C++ standard mechanisms to check the success of allocation:
+        //! first mechanism: handling exceptions
+        // when allocation fails, an exception of type bad-alloc is thrown.
+        // if this exception isn't handled by a specific handler, the program execution is terminated.
+        // an exception of type bad-alloc (even at declaration line) will be thrown when the allocation fails,
+        // then this exception is the default one used by the operator new.
+        // more on exceptions and handling them is going to come in later sections.
+        //! second mechanism: known as 'nothrow'
+        // inclusion of the specific nothrow object at declaration line and handling the state of the result pointer,
+        // which, after its declaration with this object, when allocation fails, has nullpter as value,
+        // and as result program continues its normal execution. 'nothrow' is declared in header <new>.
+        // Note despite simplicity 'nothrow' is likely to produce less efficient code than exceptions,
+        // since it implies explicit check on pointer value after each and every allocation,
+        // thus, unless it is a critical allocation, the exception mechanism is preferred.
         int* ptr3;
-        ptr3 = new ( std::nothrow ) int [5];
+        ptr3 = new ( std::nothrow ) int [5] { 0 };
         if ( ptr3 == nullptr )
             std::cout << "Error assigning memory!" << nline;
         else
-            std::cout << "The address of the first element is:" << tab << ptr3 << nline;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        {
+            std::cout << "The address of first element of the dynamic allocated memory is:" << nline << tab << ptr3 << nline;
+            std::cout << "The elements stored in the allocated memory are:" << nline << tab;
+            for ( int i = 0; i <= 4; i++ ) { std::cout << ptr3 [i] << tab; } std::cout << nline << nline;
+        }
 
         //! ####################################################################
         //! ----- operators delete and delete[]:
@@ -1004,8 +1005,8 @@ void _10_01_DynamicMemory ()
         // delete[] pointer; (there is no need to introduce the number of elements, the brackets are enough)
         // the second statement releases the memory allocated for the arrays of elements using new and a size in brackets.
         // the value passed as argument to delete shall be a pointer to a memory block previously allocated with new or a null pointer (in case of a null pointer, delete produces no effect).
-        std::cout << nline << "----- Operators delete and delete[]:" << nline;
-        std::cout << "To introduce the practice of freeing the allocated memory, which there is no need of any more to make it available for other requests of dynamic memory." << nline << nline;
+        ColourCouter ( "----- Operators delete and delete[]:\n", F_bBLUE );
+        ColourCouter ( "The integrated operator delete is to be used to free the allocated dynamic memory.\n\n", F_YELLOW );
         std::string _instring;
         int _number, _index;
         int* _pointer;
@@ -1037,6 +1038,14 @@ void _10_01_DynamicMemory ()
             std::cout << nline;
             delete [] _pointer;
         }
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         // working with memory and allocating it during runtime, does always require great attention, specially when there is a need that the user introduces the inputs for it, since there is always a great chance that one user out there do bring not only the program also the running platform of the program in an unstable state.
         // it is always considered a good practice for programs to be able to handle the failures to allocate memory, not only by catching the proper exception, but also by controlling the user input and checking the pointer value (nothrow).

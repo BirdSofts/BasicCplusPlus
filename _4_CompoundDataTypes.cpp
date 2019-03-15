@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,11.03.2019</changed>
+/// <changed>ʆϒʅ,16.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -999,31 +999,38 @@ void _10_01_DynamicMemory ()
 
         //! ####################################################################
         //! ----- operators delete and delete[]:
-        // since the allocated memory in most cases is only needed during specific periods of time within a program, with the operator delete, it can be freed once it is no longer needed, so that the memory become available for other requests of dynamic memory.
-        // syntax:
-        // delete pointer; (releases the memory of a single element allocated with new)
-        // delete[] pointer; (there is no need to introduce the number of elements, the brackets are enough)
-        // the second statement releases the memory allocated for the arrays of elements using new and a size in brackets.
-        // the value passed as argument to delete shall be a pointer to a memory block previously allocated with new or a null pointer (in case of a null pointer, delete produces no effect).
+        // since in most cases the allocated memory within a program is only needed during specific periods of time,
+        // using operator delete, it can be freed once it is no longer needed, making it available for other requests of dynamic memory.
+        // Note syntax:
+        // delete pointer;
+        // delete[] pointer; (introduction of the number of elements isn't needed and the brackets are enough)
+        // second statement is to release the memory allocated for the arrays of elements using new and a size in brackets.
+        // argument taken by operator delete is to be a pointer to a dynamic memory block,
+        // previously allocated with operator new or a null pointer.
+        // if a null pointer is passed as argument, operator delete produces no effect.
+        // allocation during runtime is always considered a practice of attention,
+        // specially when there is a need that user provides its input amount,
+        // therefore a program must be able to handle failures of allocation,
+        // not only by catching the proper exception, but also controlling the user input and checking the pointer value.
         ColourCouter ( "----- Operators delete and delete[]:\n", F_bBLUE );
         ColourCouter ( "The integrated operator delete is to be used to free the allocated dynamic memory.\n\n", F_YELLOW );
-        std::string _instring;
+        std::string _inStr;
         int _number, _index;
         int* _pointer;
         std::cout << "How many numbers would you like to type?" << tab;
-        std::getline ( std::cin, _instring );
-        std::stringstream ( _instring ) >> _number;
-        while ( _number > 2500 )
+        std::getline ( std::cin, _inStr );
+        std::stringstream ( _inStr ) >> _number;
+        while ( _number > 10 )
         {
-            std::cout << "Come on! You don't want to enter so many numbers! Think and try again." << tab;
-            std::getline ( std::cin, _instring );
-            std::stringstream ( _instring ) >> _number;
+            std::cout << "Come on! You don't want to enter so many numbers! Think and try again. :)" << tab;
+            std::getline ( std::cin, _inStr );
+            std::stringstream ( _inStr ) >> _number;
         }
-        if ( _number > 25 )
+        if ( _number > 5 )
             std::cout << "Really? You do want to enter so many numbers? :| OK!" << nline;
         _pointer = new( std::nothrow ) int [_number]; // entered by the user and not a constant
         if ( _pointer == nullptr )
-            std::cout << nline << "Error: memory could not be allocated!" << nline;
+            std::cout << nline << "Error: memory couldn't be allocated!" << nline;
         else
         {
             std::cout << nline;
@@ -1032,30 +1039,22 @@ void _10_01_DynamicMemory ()
                 std::cout << "Enter number:" << tab;
                 std::cin >> _pointer [_index]; // pointer way: *(_pointer + _index)
             }
-            std::cout << nline << "You have entered:" << nline;
+            std::cout << nline << "You have entered:" << nline << tab;
             for ( _index = 0; _index < _number; _index++ )
                 std::cout << _pointer [_index] << tab; // pointer way: *(_pointer + _index)
-            std::cout << nline;
+            std::cout << nline << nline;
             delete [] _pointer;
         }
-        /*
 
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
         //! - in addition:
-
-        // working with memory and allocating it during runtime, does always require great attention, specially when there is a need that the user introduces the inputs for it, since there is always a great chance that one user out there do bring not only the program also the running platform of the program in an unstable state.
-        // it is always considered a good practice for programs to be able to handle the failures to allocate memory, not only by catching the proper exception, but also by controlling the user input and checking the pointer value (nothrow).
-
-
         // dynamic memory in C language
-        // C++ integrates the operators new and delete for allocating dynamic memory, but these were not available in C language.
-        // instead, C language, used library solution with the functions malloc, calloc, realloc, and free, defined in the header <cstdlib> (known as <stdlib.h> in C language).
-        // these functions are also available and can be used to allocate and deallocate dynamic memory.
-        // note, though, that the memory blocks allocated with these functions aren't necessarily compatible with those returned with new operator, thus they should not be mixed and each one should be handled with its own set of functions and operators.
+        // operators new and delete are integrated in C++,
+        // on the other hand C language uses library solution with the functions malloc, calloc, realloc and free,
+        // defined in header <cstdlib> known as <srdlib.h> in C language,
+        // and they are also available and usable to allocate and deallocate dynamic memory in C++.
+        // Note, mixing blocks allocated with these functions and those of integrated C++ operators isn't possible,
+        // since their results aren't necessarily compatible,
+        // so each result should be handled with the suitable set of functions and operators.
     }
     catch ( const std::exception& )
     {
@@ -1073,16 +1072,8 @@ void printMovie ( movies_t movie )
 {
     std::cout << movie.title << " (" << movie.year << ")" << Nline;
 }
-// ********************************************************************************
-/// <summary>
-/// Data structures
-/// </summary>
-/// <created>ʆϒʅ,08.09.2018</created>
-/// <changed>ʆϒʅ,11.09.2018</changed>
-// ********************************************************************************
-void DataStructures ()
+void _11_01_DataStructures ()
 {
-    // the functions and structures used in this section are defined above it.
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
@@ -1106,8 +1097,8 @@ void DataStructures ()
         // the structures can be passed to functions like standard variables.
         // one of the features of data structures is the ability to refer to both their members individually or to the entire structure as whole. in both cases using the same identifier: the name of the structure.
         // each member of a defined object has the data type corresponding to the member it refers to in the data structure.
-        std::cout << nline << "~~~~~ Data structures:" << nline;
-        std::cout << "A group of data elements which can have different types and different lengths, grouped together under one name is called a data structure." << nline << nline;
+        ColourCouter ( "~~~~~ Data structures:\n", F_bBLUE );
+        ColourCouter ( "To introduce grouped data elements with different types and different lengths under one name.\n\n", F_YELLOW );
         struct product
         {
             int weight;
@@ -1146,6 +1137,14 @@ void DataStructures ()
         std::cout << nline << "You have entered these movies:" << nline;
         for ( int i = 0; i < 3; i++ )
             printMovie ( films [i] );
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- pointers to structures:

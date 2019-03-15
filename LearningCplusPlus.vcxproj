@@ -23,7 +23,7 @@
     <ProjectGuid>{F166D021-F1E2-4DCA-95D6-2AB527E748FB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>LearningCplusPlus</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

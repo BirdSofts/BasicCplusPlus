@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,16.03.2019</changed>
+/// <changed>ʆϒʅ,23.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -1037,7 +1037,9 @@ void _10_01_DynamicMemory ()
             for ( _index = 0; _index < _number; _index++ )
             {
                 std::cout << "Enter number:" << tab;
-                std::cin >> _pointer [_index]; // pointer way: *(_pointer + _index)
+                //std::cin >> _pointer [_index]; // pointer way: *(_pointer + _index)
+                std::getline ( std::cin, _inStr );
+                std::stringstream ( _inStr ) >> _pointer [_index]; // pointer way: *(_pointer + _index)
             }
             std::cout << nline << "You have entered:" << nline << tab;
             for ( _index = 0; _index < _number; _index++ )
@@ -1067,7 +1069,7 @@ struct movies_t
 {
     std::string title;
     int year;
-} mine, yours;
+} mine; // optional field object_names in practice
 void printMovie ( movies_t movie )
 {
     std::cout << movie.title << " (" << movie.year << ")" << Nline;
@@ -1081,36 +1083,28 @@ void _11_01_DataStructures ()
 
         //! ####################################################################
         //! ~~~~~ data structures:
-        // a data structure is a group of data elements grouped together under one name.
-        // these data elements, known as members, can have different types and different lengths.
-        // syntax:
+        // groups of data elements known as members with different types and different lengths under defined names.
+        // Note syntax:
         // struct type_name {
         // member_type1 member_name1;
         // member_type2 member_name2;
         // .
         // .
         // } object_names;
-        // where optional field object_names can be a set of valid identifiers for objects that have the type of this structure.
-        // in cases that the optional field object_names is specified, the field type_name becomes optional: struct requires either a type_name or at least on name in object_names, but not necessarily both.
-        // after declaration of an object using the determined structure type, its members can be accessed directly by using a dot (.) between the object name and the member name.
-        // subsequently the members can be operated with like standard variables of their respective types.
-        // the structures can be passed to functions like standard variables.
-        // one of the features of data structures is the ability to refer to both their members individually or to the entire structure as whole. in both cases using the same identifier: the name of the structure.
-        // each member of a defined object has the data type corresponding to the member it refers to in the data structure.
+        // 
+        // optional object_names field: a set of valid identifiers (objects) to have the type of this structure.
+        // after specifying object_names field, the field type_name becomes optional,
+        // that is, in declaration either a type_name or at least one object_name is needed, not necessarily both.
+        // corresponding members in a data type is the reference type of the members of the object defined using it.
+        // declared objects' members using determined structure type can be accessed directly using a dot (.).
+        // Note syntax:     object_name.member_name
+        // subsequently:    objects' members can be operated with like standard variables of their respective types,
+        //                  and the objects of structures can be passed to functions like standard variables.
+        // this brings it to one of the features of the data structures, which is the ability to refer to both
+        // objects declared of them as whole and to the object members individually using the same identifier.
         ColourCouter ( "~~~~~ Data structures:\n", F_bBLUE );
         ColourCouter ( "To introduce grouped data elements with different types and different lengths under one name.\n\n", F_YELLOW );
-        struct product
-        {
-            int weight;
-            double price;
-        } pear, grape; // demonstration of how to use the optional field object_names
-        product apple; // after declaration used just like any other type
-        product banana, melon;
-        apple.price = 2.5;
-        grape.weight = 4;
-        melon.price = 4.3;
-        pear.weight = 3;
-        // a demonstration with structure types in action
+        movies_t yours; // after declaration used just like any other type
         std::string strTemp;
         mine.title = "2001 A Space Odyssey";
         mine.year = 1968;
@@ -1123,8 +1117,11 @@ void _11_01_DataStructures ()
         printMovie ( mine );
         std::cout << "And yours is:" << nline << tab;
         printMovie ( yours );
-        // structures are types, therefore using them as the type of arrays to construct tables or databases is another feature.
-        std::cout << nline << "Filling and using an array which has an data structure as its type:" << nline;
+        std::cout << nline;
+
+        //! - in addition:
+        // using structures as type of arrays to construct tables or databases.
+        ColourCouter ( "An array with data structure as its type:\n", F_bYELLOW );
         movies_t films [3];
         for ( int i = 0; i < 3; i++ )
         {
@@ -1137,14 +1134,7 @@ void _11_01_DataStructures ()
         std::cout << nline << "You have entered these movies:" << nline;
         for ( int i = 0; i < 3; i++ )
             printMovie ( films [i] );
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::cout << nline;
 
         //! ####################################################################
         //! ----- pointers to structures:
@@ -1162,8 +1152,8 @@ void _11_01_DataStructures ()
         // ------------------------------------------------------------------
         // *a.b       | value pointed to by member b of object a | *(a.b)
         // ------------------------------------------------------------------
-        std::cout << nline << "----- Pointers to structures:" << nline;
-        std::cout << "Structures can be pointed to by their own type of pointers." << nline << nline;
+        ColourCouter ( "----- Pointers to structures:\n", F_bBLUE );
+        ColourCouter ( "Structures can be pointed to by their own type of pointers.\n\n", F_YELLOW );
         movies_t aMovie;
         movies_t* ptrMovie; // a pointer to point to objects of structure type movies_t
         ptrMovie = &aMovie;
@@ -1177,6 +1167,14 @@ void _11_01_DataStructures ()
         std::cout << ptrMovie->title << " (" << ptrMovie->year << " )" << nline;
         // note that:
         // *ptrMovie.title which is rather equivalent to *(ptrMovie.title) in the case above, would access the value pointed by a hypothetical pointer member called 'title' of the structure object 'ptrMovie', which is not the case, since 'title' is not a pointer type.
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- nesting structures:

@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.h
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,16.03.2019</changed>
+/// <changed>ʆϒʅ,24.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -30,7 +30,7 @@ void _09_05_PointersToFunctions ();
 
 void _10_01_DynamicMemory ();
 void _11_01_DataStructures ();
-void OtherDataTypes ();
+void _12_01_OtherDataTypes ();
 
 
 #endif // !COMPOUNDDATATYPES_H

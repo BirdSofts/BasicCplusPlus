@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,23.03.2019</changed>
+/// <changed>ʆϒʅ,24.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -1139,69 +1139,65 @@ void _11_01_DataStructures ()
         //! ####################################################################
         //! ----- pointers to structures:
         // structures can be pointed to by their own type of pointers just like any other type.
-        // the arrow operator (->):
-        // the arrow operator is a dereference operator that is used exclusively with pointers to objects that have members.
-        // this operator serves to access the member of an object directly form its address.
+        // Note the arrow operator (->): exclusive dereference operator of pointers to objects that have members.
+        // with other words, this operator create direct access to members of an object using the address.
         // a summarization of possible combinations of operators for pointers and for structure members:
-        // ------------------------------------------------------------------
-        // Expression | What is evaluated                        | Equivalent
-        // ------------------------------------------------------------------
-        // a.b        | member b of object a                     |
-        // ------------------------------------------------------------------
-        // a->b       | member b of object pointed to by a       | (*a).b 
-        // ------------------------------------------------------------------
-        // *a.b       | value pointed to by member b of object a | *(a.b)
-        // ------------------------------------------------------------------
+        // --------------------------------------------------------------------------------
+        // Expression   What is evaluated                                       Equivalent
+        // --------------------------------------------------------------------------------
+        // a.b          member b of object a
+        // --------------------------------------------------------------------------------
+        // a->b         member b of object pointed to by a                      (*a).b
+        // --------------------------------------------------------------------------------
+        // *a.b         value pointed to by member b (a pointer) of object a    *(a.b)
+        // --------------------------------------------------------------------------------
+        // Note in case *a.b equivalent to *(a.b) the object member is a pointer type,
+        // if not, the evaluation results in accessing a hypothetical pointer member called 'b', which isn't the case.
         ColourCouter ( "----- Pointers to structures:\n", F_bBLUE );
         ColourCouter ( "Structures can be pointed to by their own type of pointers.\n\n", F_YELLOW );
-        movies_t aMovie;
-        movies_t* ptrMovie; // a pointer to point to objects of structure type movies_t
-        ptrMovie = &aMovie;
-        std::cout << "Pointing to and accessing an object which has structure as type:" << nline;
+        movies_t aMovie_t;
+        movies_t* ptrMovie_t;
+        ptrMovie_t = &aMovie_t;
+        std::cout << "Accessing movie structure using pointers:" << nline;
         std::cout << "Enter title: " << tab;
-        std::getline ( std::cin, ptrMovie->title ); // for all purposes, equivalent to: (*ptrMovie).title
+        std::getline ( std::cin, ptrMovie_t->title ); // for all purposes, equivalent to: (*ptrMovie_t).title
         std::cout << "Enter year: " << tab;
         std::getline ( std::cin, strTemp );
-        std::stringstream ( strTemp ) >> ptrMovie->year;
-        std::cout << nline << "You have entered:" << nline;
-        std::cout << ptrMovie->title << " (" << ptrMovie->year << " )" << nline;
-        // note that:
-        // *ptrMovie.title which is rather equivalent to *(ptrMovie.title) in the case above, would access the value pointed by a hypothetical pointer member called 'title' of the structure object 'ptrMovie', which is not the case, since 'title' is not a pointer type.
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        std::stringstream ( strTemp ) >> ptrMovie_t->year;
+        std::cout << nline << "You have entered:" << tab;
+        std::cout << ptrMovie_t->title << " (" << ptrMovie_t->year << " )" << nline << nline;
 
         //! ####################################################################
         //! ----- nesting structures:
-        // structures can also be nested, so an element of an structure is itself another structure.
-        std::cout << nline << "----- Nesting structures:" << nline;
-        std::cout << "To introduce elements in a structure that themselves are also structures." << nline << nline;
+        // elements of a structure can also be of structure type, the result is then a nested structure.
+        ColourCouter ( "----- Nesting structures:\n", F_bBLUE );
+        ColourCouter ( "To introduce elements in a structure that themselves are also structures.\n\n", F_YELLOW );
         struct friends_t
         {
             std::string name;
             std::string email;
             movies_t favorite_movie;
         } maria, charlie;
-        friends_t* ptrFriends = &charlie;
+        friends_t* ptrFriend_t = &charlie;
         maria.name = "Marie";
         maria.email = "maria@gmail.com";
         maria.favorite_movie.title = "The Matrix";
         maria.favorite_movie.year = 1999;
         charlie.name = "Charlie";
-        ptrFriends->email = "charlie@gmail.com";
+        ptrFriend_t->email = "charlie@gmail.com";
         charlie.favorite_movie.title = "Blade Runner";
-        charlie.favorite_movie.year = 1982; // refer to the same member as the next expression
-        ptrFriends->favorite_movie.year = 1982; // refer to the same member as the next expression
-        ( *ptrFriends ).favorite_movie.year = 1982;
-        std::cout << "A demonstration of nesting structures:" << nline;
+        charlie.favorite_movie.year = 1982; // equivalent to next expression
+        ptrFriend_t->favorite_movie.year = 1982; // equivalent to next expression
+        ( *ptrFriend_t ).favorite_movie.year = 1982;
+        ColourCouter ( "A demonstration of a nested structure:\n", F_bYELLOW );
+        std::cout << "Maria and Charlie's favourite movies are:" << nline;
         std::cout << maria.name << nline;
-        std::cout << maria.email << nline;
+        std::cout << tab << maria.email << nline << tab;
         printMovie ( maria.favorite_movie );
+        std::cout << charlie.name << nline;
+        std::cout << tab << ptrFriend_t->email << nline << tab;
+        printMovie ( ( *ptrFriend_t ).favorite_movie );
+        std::cout << nline;
     }
     catch ( const std::exception& )
     {
@@ -1210,14 +1206,7 @@ void _11_01_DataStructures ()
 }
 
 
-// ********************************************************************************
-/// <summary>
-/// Other data types
-/// </summary>
-/// <created>ʆϒʅ,11.09.2018</created>
-/// <changed>ʆϒʅ,18.09.2018</changed>
-// ********************************************************************************
-void OtherDataTypes ()
+void _12_01_OtherDataTypes ()
 {
     try
     {
@@ -1227,8 +1216,8 @@ void OtherDataTypes ()
         //! ####################################################################
         //! ~~~~~ other data types:
         // 
-        std::cout << nline << "~~~~~ Other data types:" << nline;
-        std::cout << "In the past sections, a lot of types have been introduced and there is even more about them." << nline;
+        ColourCouter ( "~~~~~ Other data types:\n", F_bBLUE );
+        ColourCouter ( "This section introduces some expansions on compound data types.\n\n", F_YELLOW );
 
         //! ####################################################################
         //! ----- type aliases (typedef / using):
@@ -1238,8 +1227,8 @@ void OtherDataTypes ()
         // typedef existing_type new_type_name;
         //- second syntax introduced in C++:
         // using new_type_name = exising_type;
-        std::cout << nline << "----- Type aliases (typedef / using):" << nline;
-        std::cout << "To introduce different names for any valid type, so they could be used as another identifier for them." << nline;
+        ColourCouter ( "----- Type aliases (typedef / using):\n", F_bBLUE );
+        ColourCouter ( "To introduce different identifiers as alias for any valid type.\n\n", F_YELLOW );
         typedef char C; // obvious
         typedef unsigned int WORD; // alias WORD as unsigned int
         typedef char* pChar; // alias pChar as char*
@@ -1256,6 +1245,14 @@ void OtherDataTypes ()
         // the purposes:
         // reducing the length of long or confusing type names
         // most useful as tools to abstract programs from the underlying types they use (i.e. to easily replace the types used in a program in a later version)
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- unions:

@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,24.03.2019</changed>
+/// <changed>ʆϒʅ,25.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -1221,54 +1221,50 @@ void _12_01_OtherDataTypes ()
 
         //! ####################################################################
         //! ----- type aliases (typedef / using):
-        // in C++ any valid type either fundamental or compound can be aliased, which is a different name and then it can be referred to by it, which is its another identifier.
-        // once the aliases are defined, they can be used in any declaration like any other valid type.
-        //- the first syntax (inherited from the C language):
+        // in C++ valid fundamental or compound types can be aliased.
+        // that is to provide the ability to refer to them with another identifier.
+        // after definition, aliases can be used in any declaration like any other valid type.
+        // Note first syntax (inherited from C language):
         // typedef existing_type new_type_name;
-        //- second syntax introduced in C++:
+        // Note second syntax (introduced in C++):
         // using new_type_name = exising_type;
+        // both definition syntaxes are semantically equivalent, but typedef has certain limitation in sphere of templates,
+        // and also has a longer history, therefore probably more common in existing code.
+        // Note type aliases most useful purpose is as tools to separate programs from their underlying types,
+        // for example to easily replace the program types in a later version.
+        // another purpose is to reduce the length of long or confusing type names.
         ColourCouter ( "----- Type aliases (typedef / using):\n", F_bBLUE );
         ColourCouter ( "To introduce different identifiers as alias for any valid type.\n\n", F_YELLOW );
         typedef char C; // obvious
-        typedef unsigned int WORD; // alias WORD as unsigned int
-        typedef char* pChar; // alias pChar as char*
-        typedef char field [50]; // alias field as char[50]
-        C myChar, anotherChar, *pTc1;
-        WORD myWord;
-        pChar ptc2;
-        field name;
+        typedef unsigned int WORD; // WORD is alias for unsigned int
+        typedef char* pChar; // pChar is alias for char*
+        typedef char field [50]; // Note field is alias for char [50]
+        C myChar { 'A' }, anotherChar { 'B' }, *pTc1 { &myChar };
+        WORD myWord { 111 };
+        pChar ptc2 { &anotherChar };
+        field name { "Mehrdad" };
         using C2 = char;
         using WORD2 = unsigned int;
         using pChar2 = char*;
-        using field = char [50];
-        // both ways of definition define semantically equivalent aliases, the only difference being that typedef has certain limitation in the realm of templates, which means that using is more generic but typedef has longer history and probably more common in the existing code.
-        // the purposes:
-        // reducing the length of long or confusing type names
-        // most useful as tools to abstract programs from the underlying types they use (i.e. to easily replace the types used in a program in a later version)
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+        using field2 = char [50];
 
         //! ####################################################################
         //! ----- unions:
-        // unions allow one portion of memory to be accessed as different date types. while its declaration is similar to the one of structures, its functionality is totally different.
-        // syntax:
+        // C++ introduce unions to access one portion of memory shared between different data types.
+        // while similar declaration to structures, the functionality of unions is totally different.
+        // Note syntax:
         // union type_name {
         // member_type1 member_name1;
         // member_type2 member_name2;
         // .
         // .
         // } object_names;
-        // this creates a new union type, identified by type_name, in which all its members occupy the same physical space in the memory, and the size of this type is the size of the largest member element.
-        // this means that the modification of one member in an union is going to affect all of its member,
-        // therefore it is not possible to store different values for each member in an union in a way that each member is independent of the others.
-        std::cout << nline << "----- Unions:" << nline;
-        std::cout << "To introduce one portion of memory to be occupied by all members with different data types." << nline;
+        // all members of new union type, declared by the syntax above and identified by its type_name,
+        // occupy the same physical space in memory, which size is the size of the largest member element.
+        // repeating it with other words, modification of one union member affects all the members
+        // therefore no member of an union has an independent space for storing different values.
+        ColourCouter ( "----- Unions:\n", F_bBLUE );
+        ColourCouter ( "To share one portion of memory between members with different date types.\n\n", F_YELLOW );
         union myTypes_t
         {
             char c;
@@ -1277,25 +1273,39 @@ void _12_01_OtherDataTypes ()
         } myTypes;
         myTypes.c = 'A';
 
-        // one of the uses of a union is to be able to access a value either in its entirety or as an array or structure of similar elements.
-        // the exact alignment and order of the members of a union in memory depends on the system, with the possibility of creating portability issues.
+        //! - in addition:
+        // one interesting purpose of unions is to access a value both ways,
+        // that is, in its entirety or as an array or structure of similar elements.
+        // the example below explains it more precise.
+        // Note this feature is likely to create portability issues,
+        // since the exact alignment and order of union members in memory is system dependent.
+        ColourCouter ( "Accessing an union in its entirety, as structure and as array:\n", F_bYELLOW );
         union mix_t
-        { // assumptions:
-            int l;      // 4 byte (entirety access)
+        {                               // assumptions (as already explained fundamental type sizes are system dependent):
+            int int_allBytes;           // 4 byte (entirety access)
             struct
             {
-                short hi; // 2 byte (access in structure form)
-                short lo; // 2 byte
-            } s;
-            char c [4];  // 4*1 byte (access in array form)
+                short short_highBytes;  // 2 byte (access in structure form)
+                short short_lowBytes;   // 2 byte
+            } struct_highLow;
+            char char_Bytes [4];        // 4*1 byte (access in array form)
         } mix;
+        mix.int_allBytes = 0x11111111;
+        std::cout << "In entirety:" << "\t\t\t" << mix.int_allBytes << nline;
+        std::cout << "Low and high bytes (structure):" << tab << mix.struct_highLow.short_highBytes << tab << mix.struct_highLow.short_lowBytes << nline;
+        std::cout << "Byte by Byte (array):" << "\t\t";
+        for ( unsigned char i = 0; i < 4; i++ )
+        {
+            std::cout << mix.char_Bytes [i] << tab;
+        }
+        std::cout << nline << nline;
 
         //! ####################################################################
         //! ----- anonymous unions:
         // when unions are members of a class or structure, they can be declared with no names, with which they become anonymous unions, and their members are directly accessible from objects by their member name.
         // remember that the members of an union share a space in the memory so they can never have different values simultaneously.
-        std::cout << nline << "----- Anonymous unions:" << nline;
-        std::cout << "By declaring an union without any name in a class or structure, they become anonymous unions." << nline;
+        ColourCouter ( "----- Anonymous unions:\n", F_bBLUE );
+        ColourCouter ( "By declaring an union without any name in a class or structure, they become anonymous unions.\n\n", F_YELLOW );
         struct book1_t
         {
             char title [50];
@@ -1319,6 +1329,14 @@ void _12_01_OtherDataTypes ()
         // accesses:
         book1.price.dollar = 3.4;
         book2.dollar = 3.4;
+        /*
+
+        */
+        //ColourCouter ( "\n", F_bBLUE );
+        //ColourCouter ( "\n\n", F_YELLOW );
+        //ColourCouter ( "\n", F_bYELLOW );
+        //ColourCouter ( "\n", F_bCYAN );
+        //! - in addition:
 
         //! ####################################################################
         //! ----- enumerated types (enum):

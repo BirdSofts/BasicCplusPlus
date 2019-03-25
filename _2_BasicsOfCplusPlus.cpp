@@ -3,15 +3,27 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,09.03.2019</changed>
+/// <changed>ʆϒʅ,26.03.2019</changed>
 // --------------------------------------------------------------------------------
 
+//! preprocessor directives:
+// directives are special lines interpreted by what is known as preprocessor before the compilation of the program begins.
+// example: #include <iostream>
+// this directive instruct the preprocessor to include header iostream, which is a section of standard C++ code.
+// header iostream after inclusion allow the program to perform standard input and output operations.
 #include "pch.h"
 #include "ConsoleAdjustments.h"
 
 
-void _02_01_StructureOfaProgram ()
-{
+//using namespace std; // to replace, for example explicit qualified std::cout with unqualified name cout.
+// std is the namespace of standard C++ library and cout is one of its elements.
+// make writing code simple by introducing visibility of components of the standard C++ library,
+// but by qualifying each and every use of the elements, name collision can be avoided.
+// the examples in this tutorial are written using the explicit qualification.
+
+
+void _02_01_StructureOfaProgram () // declaration of the function, explanation in function section
+{ // braces {} indicate begin and end of a block of code, in this case the body code of the function
     try
     {
         ColourCouter ( "--------------------------------------------------", F_bRED );
@@ -26,15 +38,23 @@ void _02_01_StructureOfaProgram ()
         ColourCouter ( "~~~~~ Structure of a program:\n", F_bBLUE );
         ColourCouter ( "Although C++ language doesn't have any strict rules on structure and indention in source code, it is better for human understanding, that it be properly structured and indented.\n\n", F_YELLOW );
 
-        // line comment
-
+        // comment is the important tool, which provides direct documentation within source code
+        // a line comment
+        /// a documentation comment
         /* block
         comment*/
 
-        std::cout << "Hello World! "; // inserting an output, '/n' is the newline character.
-        std::cout << "I'm a C++ program.\n\n";
+        // inserting an output
+        std::cout << "Hello World! ";
+        // std::cout is standard character output
+        // << is insertion operator
 
-        //using namespace std; // make writing code simple but by not using it name collision can be avoided.
+        // '/n' is the newline character.
+        std::cout << "I'm the first C++ example of this tutorial.\n\n";
+
+        // semicolon (;): all statements in C++ must ends with semicolons.
+        // preprocessor directives are not statements.
+
     }
     catch ( const std::exception& )
     {

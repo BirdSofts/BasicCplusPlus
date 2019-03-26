@@ -15,10 +15,12 @@
 #include "ConsoleAdjustments.h"
 
 
-//using namespace std; // to replace, for example explicit qualified std::cout with unqualified name cout.
+//! using namespace std:
+//using namespace std;
+// to write code simply by introducing visibility of components of the standard C++ library,
+// on the other hand by qualifying each and every use of the elements, name collision can be avoided.
+// after this declaration, explicit qualified std::cout is going to be replaced with unqualified name cout.
 // std is the namespace of standard C++ library and cout is one of its elements.
-// make writing code simple by introducing visibility of components of the standard C++ library,
-// but by qualifying each and every use of the elements, name collision can be avoided.
 // the examples in this tutorial are written using the explicit qualification.
 
 

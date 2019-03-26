@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,25.03.2019</changed>
+/// <changed>ʆϒʅ,27.03.2019</changed>
 // --------------------------------------------------------------------------------
 
 #include "pch.h"
@@ -1121,7 +1121,7 @@ void _11_01_DataStructures ()
 
         //! - in addition:
         // using structures as type of arrays to construct tables or databases.
-        ColourCouter ( "An array with data structure as its type:\n", F_bYELLOW );
+        std::cout << "An array with data structure as its type:" << nline;
         movies_t films [3];
         for ( int i = 0; i < 3; i++ )
         {
@@ -1279,7 +1279,7 @@ void _12_01_OtherDataTypes ()
         // the example below explains it more precise.
         // Note this feature is likely to create portability issues,
         // since the exact alignment and order of union members in memory is system dependent.
-        ColourCouter ( "Accessing an union in its entirety, as structure and as array:\n", F_bYELLOW );
+        std::cout << "Accessing an union in its entirety, as structure and as array:" << nline;
         union mix_t
         {                               // assumptions (as already explained fundamental type sizes are system dependent):
             int int_allBytes;           // 4 byte (entirety access)
@@ -1302,11 +1302,12 @@ void _12_01_OtherDataTypes ()
 
         //! ####################################################################
         //! ----- anonymous unions:
-        // when unions are members of a class or structure, they can be declared with no names, with which they become anonymous unions, and their members are directly accessible from objects by their member name.
-        // remember that the members of an union share a space in the memory so they can never have different values simultaneously.
+        // an union can be defined with no name, if its declaration happens within a class or structure.
+        // after declaring an union anonymous, its members are accessible from objects by member names.
+        // as already explained, an union share a space between its members.
         ColourCouter ( "----- Anonymous unions:\n", F_bBLUE );
         ColourCouter ( "By declaring an union without any name in a class or structure, they become anonymous unions.\n\n", F_YELLOW );
-        struct book1_t
+        struct book_t
         {
             char title [50];
             char author [50];
@@ -1314,56 +1315,45 @@ void _12_01_OtherDataTypes ()
             {
                 float dollar;
                 int yen;
-            } price; // a regular union in a structure
-        } book1;
-        struct book2_t
-        {
-            char title [50];
-            char author [50];
+            } price; // a normal union
             union
             {
                 float dollar;
                 int yen;
-            }; // an anonymous union in a structure
-        } book2;
-        // accesses:
-        book1.price.dollar = 3.4;
-        book2.dollar = 3.4;
-        /*
-
-        */
-        //ColourCouter ( "\n", F_bBLUE );
-        //ColourCouter ( "\n\n", F_YELLOW );
-        //ColourCouter ( "\n", F_bYELLOW );
-        //ColourCouter ( "\n", F_bCYAN );
-        //! - in addition:
+            }; // an anonymous union
+        } book;
+        book.price.dollar = 3.4;
+        book.dollar = 3.4;
+        std::cout << "The value is (normal union):" << tab << book.price.dollar << nline;
+        std::cout << "The value is (anonymous union):" << tab << book.dollar << nline << nline;
 
         //! ####################################################################
         //! ----- enumerated types (enum):
-        // enumerated types are types that are defined with a set of custom identifiers, known as enumerators, as possible values.
-        // objects of these enumerated types can take any of these enumerators as value.
-        // syntax:
+        // a set of custom identifiers, known as enumerators, can be used to define an enumerated type.
+        // objects defined using an enumerated type, take its enumerators as possible values.
+        // Note syntax:
         // enum type_name {
         // value1
         // value2
         // .
         // .
         // } object_names;
-        // objects (variables) of this type can directly be instantiated as object_names.
-        std::cout << nline << "----- Enumerated types (enum):" << nline;
-        std::cout << "To introduce a set of custom identifiers, known as enumerators, as possible values." << nline << nline;
-        // a new data type from scratch without any base on the existing data types:
-        enum colours_t { black, blue, green, cyan, red, purple, yellow, white };
+        // the field object_names can be used to directly instantiate objects (variables) of this type
+        ColourCouter ( "----- Enumerated types (enum):\n", F_bBLUE );
+        ColourCouter ( "To introduce a set of custom identifiers, known as enumerators, as possible values.\n\n", F_YELLOW );
+        enum colours_t { black, blue, green, cyan, red, purple, yellow, white }; // a total new data type
         colours_t myColour;
         myColour = blue;
         if ( myColour = green )
             myColour = red;
-        std::cout << "The value stored in the 'myColour' variable is:" << nline << tab << myColour << nline;
+        std::cout << "The value of 'myColour' variable is:" << nline << tab << myColour << nline;
 
-        // values of enumerated types declared with enum are implicitly convertible to an integer type and vice versa.
-        // in fact, these values are always assigned an integer value internally, to or from which they can be implicitly converted.
-        // if it is not specified the equivalent integer value to the first possible value is zero (0), the equivalent to the second is one (1) and so on.
-        // any of the possible values in the enumerated type can be specified an integer value, and if the constant value that follows it, itself isn't given an integer value, it is automatically assumed to be the same value plus one.
+        //! - in addition:
+        // enumerators of an enumerated type declared with enum are always assigned integer values internally,
+        // which make it possible to implicitly convert the enumerators to and from these integer values.
+        // if not explicitly specified, the first enumerator's internal integer value is zero (0).
+        // the following values then get plus one, each one after another.
+        // it is also possible to assign arbitrary integer values to enumerators.
         enum months_t
         {
             January = 1, February, March, April,
@@ -1371,26 +1361,36 @@ void _12_01_OtherDataTypes ()
             September, October, November, December
         } y2k;
         y2k = January;
-        std::cout << "The value stored in the 'y2k' variable is:" << nline << tab << y2k << nline;
-        // the implicit conversation works both ways:
-        // a value of type months_t can be assigned a value of 1 (equivalent to January)
-        // or an integer variable can be assigned a value of January (equivalent to 1)
+        int val { y2k };
+        std::cout << "The values of variables are:" << nline << tab << y2k << tab << val << nline << nline;
 
         //! ####################################################################
         //! ----- enumerated types with enum class:
-        // in C++, real enum types can be created with enum class (or enum struct), which are then neither convertible to int and neither have enumerator values of type int, but of the enum type itself, thus preserving the type safety.
-        // each of the enumerator values of an enum class needs to be scoped into its type (this is also possible with enum type, but it is only optional).
-        // enumerated types declared with the enum class have also more control over their underlying type;
-        // it may be any integral data type such as char, short, unsigned int, which essentially serve to determine the size of the type, which is specified with an colon and the underlying type following the enumerated type.
-        std::cout << nline << "----- Enumerated types with enum class:" << nline;
-        std::cout << "To introduce real enum types that preserve safety." << nline << nline;
+        // in C++, real enum types can be created with enum class (or enum struct),
+        // to preserve safety, the enumerator values are of the enum type itself,
+        // therefore lacking enumerator values of type int, the conversion to int isn't possible.
+        // each enumerator value of an enum class is accessible only with scoping into its type,
+        // this way of access is also available in normal enum types, but it is just optional.
+        // enum class declared enumerated types have more control over their underlying type,
+        // which can be any integral data type such as char, short, unsigned int,
+        // and essentially serves to determine the size of the enumerated type.
+        // Note full syntax:
+        // enum class type_name : underlying_type {
+        // value1
+        // value2
+        // .
+        // .
+        // } object_names;
+        ColourCouter ( "----- Enumerated types with enum class:\n", F_bBLUE );
+        ColourCouter ( "To introduce real enum types that preserve safety.\n\n", F_YELLOW );
         enum class Colours { black, blue, green, cyan, red, purple, yellow, white };
         Colours myColour2;
-        myColour2 = Colours::blue; // needed scoping into the type
+        myColour2 = Colours::blue; // the needed scoping into the type
         if ( myColour2 == Colours::green )
             myColour2 = Colours::red;
-        std::cout << "The value stored in the 'myColour2' variable is:" << nline << tab << static_cast<int>( myColour2 ) << nline;
-        enum class EyeColour :char { blue, green, brown }; // + underlying type (a distinct type with the size of a char)
+        std::cout << "The value of 'myColour2' variable is:" << nline << tab << static_cast<int>( myColour2 ) << nline;
+        enum class EyeColour : long { blue, green, brown }; // + underlying type (a distinct type of the 'char' size)
+        std::cout << "The size of 'EyeColour' type is:" << nline << tab << sizeof ( EyeColour ) << nline << nline;
     }
     catch ( const std::exception& )
     {

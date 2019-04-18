@@ -68,4 +68,13 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="LearningCplusPlus.aps" />
+    <None Include=".gitignore" />
+    <None Include=".gitattributes" />
+  </ItemGroup>
 </Project>

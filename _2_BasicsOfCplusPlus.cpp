@@ -293,9 +293,9 @@ void _02_03_FundamentalTypesAndDeduction ()
     // more on void and nullptr will be mentioned in further sections.
     ColourCouter ( "The lack of type is identified with 'void' keyword.\n", F_YELLOW );
     ColourCouter ( "Any pointer can point to nowhere by taking nullptr as its value.\n\n", F_YELLOW );
-    void *void_poi; // uninitialized: can not be used
-    int *int_poi; // uninitialized: can not be used
-    int *nullptr_poi { nullptr }; // initialized to point to nowhere! :)
+    void* void_poi; // uninitialized: can not be used
+    int* int_poi; // uninitialized: can not be used
+    int* nullptr_poi { nullptr }; // initialized to point to nowhere! :)
     std::cout << "The address of a pointer initialized with nullptr:\t\t\t\t" << nullptr_poi << "\n";
     int int_i { 22 };
     void_poi = &int_i;
@@ -561,8 +561,8 @@ void _02_06_OtherConstantLiterals ()
     ColourCouter ( "In C++ language there are three other keyword literals which are 'true', 'false' and 'nullptr'.\n\n", F_YELLOW );
     const bool con24 { false };
     std::cout << "Boolean constant keyword literal 'false':\t" << con24 << "\n";
-    const int *p { nullptr };
-    std::cout << "Pointer constant keyword literal 'nullptr':\t" << p << "\n\n";
+    const int* ptr { nullptr };
+    std::cout << "Pointer constant keyword literal 'nullptr':\t" << ptr << "\n\n";
 
     //! ####################################################################
     //! ----- typed constant expressions (programmer defined):
@@ -573,10 +573,10 @@ void _02_06_OtherConstantLiterals ()
     const char tab { '\t' };
     const char nline { '\n' };
     const double pi { 3.1415926 };
-    double r { 5.0 }, circle;
-    circle = 2 * r * pi;
+    double radius { 5.0 }, circle;
+    circle = radius * radius * pi;
     ColourCouter ( "Using typed constants:\n", F_bYELLOW );
-    std::cout << "The circle circumference:" << tab << "2 * " << r << " * " << pi << " =  " << circle << nline << nline;
+    std::cout << "The circle area:" << tab << radius << " * " << radius << " * " << pi << " =  " << circle << nline << nline;
 
 
     //! ####################################################################
@@ -597,9 +597,9 @@ void _02_06_OtherConstantLiterals ()
 #define Tab '\t'
 #define Nline '\n'
 #define Pi 3.1415926
-    circle = 2 * r * Pi;
+    circle = radius * radius * Pi;
     ColourCouter ( "Using preprocessor definitions:\n", F_bYELLOW );
-    std::cout << "The circle circumference:" << Tab << "2 * " << r << " * " << Pi << " =  " << circle << Nline << Nline;
+    std::cout << "The circle area:" << Tab << radius << " * " << radius << " * " << Pi << " =  " << circle << Nline << Nline;
   }
   catch ( const std::exception& )
   {
@@ -618,8 +618,6 @@ void _02_07_ArithmeticOperators ()
     ColourCouter ( "--------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
-    int x { 0 }, y { 2 }, z { 4 };
-
     //! ####################################################################
     //! ~~~~~ mathematical operators:
     // mathematical operators will be used to have mathematical operations on operands.
@@ -631,6 +629,7 @@ void _02_07_ArithmeticOperators ()
     // the assignment operations always takes place from right to left.
     ColourCouter ( "----- Assignment operator (=):\n", F_bBLUE );
     ColourCouter ( "The most simple mathematical operation in C++ is represented by assignment.\n\n", F_YELLOW );
+    int x { 0 }, y { 2 };
     std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
     x = 5;
     std::cout << "The values after first assignment:" << tab << "x: " << x << tab << "y: " << y << nline;
@@ -652,44 +651,48 @@ void _02_07_ArithmeticOperators ()
     // percentage sign represent modulo which is the remainder of a division.
     ColourCouter ( "----- Arithmetic operator (+, -, *, /, %):\n", F_bBLUE );
     ColourCouter ( "The most simple arithmetic operators with the most use.\n\n", F_YELLOW );
-    x = 40 % 9;
-    std::cout << "The result of modulo operator ( 40 % 9 ):" << tab << "x: " << x << nline << nline;
+    int q { 0 };
+    q = 40 % 9;
+    std::cout << "The result of modulo operator ( 40 % 9 ):" << tab << "q: " << q << nline << nline;
 
     //! ####################################################################
     //! ----- compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):
     // modification of the current value of the variable by performing an operation on it.
     ColourCouter ( "----- Compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):\n", F_bBLUE );
     ColourCouter ( "To introduce expressions that modify the current value while assigning.\n\n", F_YELLOW );
-    std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
-    y *= x + 1; // equivalent to y=y*(x+1)
-    std::cout << "Result of expression ( y *= x + 1 ):" << tab << "x: " << x << tab << "y: " << y << nline << nline;
+    int a { 0 }, b { 2 };
+    std::cout << "Current values are:" << "\t\t\t" << "a: " << a << tab << "b: " << b << nline;
+    b *= a + 1; // equivalent to b=b*(a+1)
+    std::cout << "Result of expression ( b *= a + 1 ):" << tab << "a: " << a << tab << "b: " << b << nline << nline;
 
     //! ####################################################################
     //! ----- increment and decrement (++, --):
     // these operators increase or decrease the value stored in a variable by one.
     ColourCouter ( "----- Increment and decrement (++, --):\n", F_bBLUE );
     ColourCouter ( "Increment and decrement of the value by one.\n\n", F_YELLOW );
-    std::cout << "Current values are:" << "\t\t" << "x: " << x << tab << "y: " << y << nline;
-    x++;// equivalent to x+=1 or x=x+1
-    --y;
-    std::cout << "Result of expression ( x++ ):" << tab << "x: " << x << nline;
-    std::cout << "Result of expression ( --y ):" << tab << "y: " << y << nline << nline;
+    int c { 0 }, d { 2 };
+    std::cout << "Current values are:" << "\t\t" << "c: " << c << tab << "d: " << d << nline;
+    c++;// equivalent to c+=1 or c=c+1
+    --d;
+    std::cout << "Result of expression ( c++ ):" << tab << "c: " << c << nline;
+    std::cout << "Result of expression ( --d ):" << tab << "d: " << d << nline << nline;
 
     //! - in addition:
     // these operators can be used both as prefix and as suffix.
-    // although simple expressions like ++x and x++ have the same meaning,
-    // they result a different value in different expressions.
-    ColourCouter ( "Difference between the expressions ( y = ++x ) and ( y = x++ ):\n", F_bYELLOW );
-    x = 3;
-    y = 0;
-    std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
-    y = ++x; // y = x after the increment
-    std::cout << "Result of expression ( y = ++x ):" << tab << "y: " << y << nline << nline;
-    x = 3;
-    y = 0;
-    std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
-    y = x++; // y = x before the increment
-    std::cout << "Result of expression ( y = x++ ):" << tab << "y: " << y << nline << nline;
+    // although simple expressions like ++d and d++ have the same meaning,
+    // they may result different values in different expressions and different compilers.
+    ColourCouter ( "Difference between the expressions ( d = ++c ) and ( d = c++ ):\n", F_bYELLOW );
+    ColourCouter ( "Results are compiler dependent!\n", F_bCYAN );
+    c = 1;
+    d = 0;
+    std::cout << "Current values are:" << "\t\t\t" << "c: " << c << tab << "d: " << d << nline;
+    d = ++c; // d = c after the increment (c = d = 2)
+    std::cout << "Result of expression ( d = ++c ):" << tab << "d: " << d << nline << nline;
+    c = 1;
+    d = 0;
+    std::cout << "Current values are:" << "\t\t\t" << "c: " << c << tab << "d: " << d << nline;
+    d = c++; // d = c before the increment (c = 2, d = 1)
+    std::cout << "Result of expression ( d = c++ ):" << tab << "d: " << c << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -705,8 +708,6 @@ void _02_08_LagicalOperators ()
     ColourCouter ( "--------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
-    int x { 0 }, y { 2 }, z { 4 };
-
     //! ####################################################################
     //! ~~~~~ boolean operators:
     // boolean operators will be used to have logical operations on operands.
@@ -718,8 +719,9 @@ void _02_08_LagicalOperators ()
     // the results of comparison are going be boolean. any value can be compared.
     ColourCouter ( "----- Relational and comparison operators (==, !=, <, > ,<=, >=):\n", F_bBLUE );
     ColourCouter ( "To introduce the comparison of expressions.\n\n", F_YELLOW );
+    int x { 0 }, y { 2 }, z { 4 };
     std::cout << "To be compared values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
-    if ( ( x + 6 ) >= ( y*x ) )
+    if ( ( x + 6 ) >= ( y * x ) )
     {
       if ( ( z - x ) >= y )
       {

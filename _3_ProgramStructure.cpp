@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,16.04.2019</changed>
+/// <changed>ʆϒʅ,09.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -59,30 +59,31 @@ void _03_02_SelectionStatements ()
     ColourCouter ( "Can be used to introduce conditioned execution of statements.\n\n", F_YELLOW );
     int x { 99 };
     std::cout << "Current value of x is:" << tab << x << nline;
-    if ( x == 80 )
-      std::cout << "x is 80." << nline; // a statement
+    if ( ( x % 3 ) == 0 )
+      std::cout << "Three is a devisor of x" << nline; // a statement
   // a block statement without usual indentation and line breaks:
-    if ( x != 80 ) { std::cout << "x is "; std::cout << "greater than 80." << nline << nline; }
+    if ( true ) { std::cout << "x is "; std::cout << x << nline << nline; }
 
     // Note syntax: if (condition) statement1 else statement2
     // the introduced statement2 by 'else' keyword will be executed, when the condition is not fulfilled.
-    x = 46;
+    bool flag { false };
     std::cout << "Current value of x is:" << tab << x << nline;
-    if ( x == 80 )
-      std::cout << "x is 80." << nline;
+    if ( flag == true )
+      std::cout << "x divided by 3 is:" << tab << x / 3 << nline;
     else // introduction of an alternative statement
-      std::cout << "x is not 80." << nline << nline;
+      std::cout << "x divided by 9 is:" << tab << x / 9 << nline << nline;
 
     // concatenated several if + else structure
     // for example it can be introduced to fulfil the intention of checking a range of values
-    x = -2;
+    x = 10;
     std::cout << "Current value of x is:" << tab << x << nline;
-    if ( x > 0 )
-      std::cout << "x is positive." << nline << nline;
-    else if ( x < 0 ) // alternative statement is concatenated with another if-else structure
-      std::cout << "x is negative." << nline << nline;
+    if ( ( x % 3 ) == 0 )
+      std::cout << "Three is a devisor of x" << nline << nline;
     else
-      std::cout << "x is zero." << nline << nline;
+      if ( ( x % 5 ) == 0 ) // alternative statement is concatenated with another if-else structure
+        std::cout << "Five is a devisor of x" << nline << nline;
+      else
+        std::cout << "The value of x is: " << x << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -114,15 +115,18 @@ void _03_03_IterationStatements ()
     // so it will be performed instantly without any practical delay
     ColourCouter ( "----- The while loop:\n", F_bBLUE );
     ColourCouter ( "While the expression is true, this loop continue to iterate.\n\n", F_YELLOW );
-    std::cout << "Countdown example using a while loop:" << tab;
-    int n { 10 };
-    while ( n > 0 )
+    std::cout << "Between numbers one to twenty, three is the divisors of:" << tab << "{ ";
+    int n { 1 };
+    while ( n <= 20 )
     {
-      std::cout << n << ", ";
-      --n; // alter the value checked in condition.
-      std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );; // add delays to the countdown
+      if ( ( n % 3 ) == 0 )
+      {
+        std::cout << n << ' ';
+        std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) ); // add delays for some dramatic effect! :)
+      }
+      ++n; // alter the value checked in condition.
     }
-    std::cout << "lift-off!" << nline << nline;
+    std::cout << "}" << nline << nline;
 
     //! ####################################################################
     //! ----- the do-while loop:
@@ -133,15 +137,18 @@ void _03_03_IterationStatements ()
     // Note syntax: do statement while (condition);
     ColourCouter ( "----- The do-while loop:\n", F_bBLUE );
     ColourCouter ( "Same behaviour like while loop, but with guarantee of one time statement execution.\n\n", F_YELLOW );
-    ColourCouter ( "Echoing the user inputted text with do-while loop.\n", F_bYELLOW );
-    ColourCouter ( "Enter 'bye' to exit the loop.\n", F_bCYAN );
-    std::string user_input;
+    std::cout << "Between numbers one to ten, two is the divisors of:" << tab << "{ ";
+    int o { 1 };
     do
     {
-      std::cout << "-- Enter something:" << tab;
-      std::getline ( std::cin, user_input );
-      std::cout << "You have entered:" << tab << user_input << nline << nline;
-    } while ( user_input != "bye" );
+      if ( ( o % 2 ) == 0 )
+      {
+        std::cout << o << ' ';
+        std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
+      }
+      ++o;
+    } while ( o <= 10 );
+    std::cout << "}" << nline << nline;
 
     //! ####################################################################
     //! ----- the for loop:

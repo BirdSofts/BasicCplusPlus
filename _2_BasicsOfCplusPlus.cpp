@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,16.04.2019</changed>
+/// <changed>ʆϒʅ,09.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //! preprocessor directives:
@@ -1079,7 +1079,7 @@ void _02_11_BasicInputOutput ()
     // a demonstration of extracting in the user-expected behaviour of console programs and in the same time gaining more control over the transformation of inputs into more useful data.
     ColourCouter ( "Separating input process from its interpretation:\n", F_bYELLOW );
     std::string str_var2;
-    float radius { 0 };;
+    float radius { 0 };
     std::cout << "Enter circle radius (floating point numbers are accepted):" << nline << " - ";
     //std::getline (std::cin, str_var2); //clear
     std::getline ( std::cin, str_var2 );

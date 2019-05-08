@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,16.04.2019</changed>
+/// <changed>ʆϒʅ,05.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"

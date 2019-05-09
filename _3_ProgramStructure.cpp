@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,09.05.2019</changed>
+/// <changed>ʆϒʅ,10.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -22,7 +22,7 @@ void _03_01_ControlStructures ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -46,7 +46,7 @@ void _03_02_SelectionStatements ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -96,7 +96,7 @@ void _03_03_IterationStatements ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -115,7 +115,7 @@ void _03_03_IterationStatements ()
     // so it will be performed instantly without any practical delay
     ColourCouter ( "----- The while loop:\n", F_bBLUE );
     ColourCouter ( "While the expression is true, this loop continue to iterate.\n\n", F_YELLOW );
-    std::cout << "Between numbers one to twenty, three is the divisors of:" << tab << "{ ";
+    std::cout << "Between numbers one to twenty, three is the divisors of (while loop):" << tab << "{ ";
     int n { 1 };
     while ( n <= 20 )
     {
@@ -137,7 +137,7 @@ void _03_03_IterationStatements ()
     // Note syntax: do statement while (condition);
     ColourCouter ( "----- The do-while loop:\n", F_bBLUE );
     ColourCouter ( "Same behaviour like while loop, but with guarantee of one time statement execution.\n\n", F_YELLOW );
-    std::cout << "Between numbers one to ten, two is the divisors of:" << tab << "{ ";
+    std::cout << "Between numbers one to ten, two is the divisors of (do-while loop):" << tab << "{ ";
     int o { 1 };
     do
     {
@@ -158,13 +158,16 @@ void _03_03_IterationStatements ()
     // Note syntax: for (initialization; condition; increase) statement;
     ColourCouter ( "----- The for loop:\n", F_bBLUE );
     ColourCouter ( "To introduce loops that iterate a certain number of times.\n\n", F_YELLOW );
-    std::cout << "Countdown example using a for loop:" << tab;
-    for ( int n { 10 }; n > 0; n-- )
+    std::cout << "Between numbers one to ten, three is the divisors of (for loop):" << tab << "{ ";
+    for ( int i { 1 }; i < 10; i++ )
     {
-      std::cout << n << ", ";
-      std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
+      if ( ( i % 3 ) == 0 )
+      {
+        std::cout << i << ' ';
+        std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
+      }
     }
-    std::cout << "lift-off!" << nline << nline;
+    std::cout << "}" << nline << nline;
 
     //! - in addition:
     // more on for loops plus some other features:
@@ -200,8 +203,10 @@ void _03_03_IterationStatements ()
       for ( int j = 1; j < 54; j++ )
       {
         if ( ( i == ( j % 6 ) ) || ( ( ( i - 1 ) + ( j % 6 ) ) == 5 ) ) // 6 to divide the patterns (try 5 too)
+        {
           ColourCouter ( "*", F_bBLUE );
-        else
+          std::this_thread::sleep_for ( std::chrono::milliseconds ( 20 ) );
+        } else
           std::cout << ' ';
       }
       std::cout << nline;
@@ -218,20 +223,31 @@ void _03_03_IterationStatements ()
     ColourCouter ( "----- Rang-based for loops:\n", F_bBLUE );
     ColourCouter ( "Iteration over all the elements in a range.\n\n", F_YELLOW );
     std::string for_range { "SequenceOfCharacters" };
+    std::string temp { "" };
     std::cout << "The stored string in the variable is:" << tab << for_range << nline;
     for ( char c : for_range )
     {
-      std::cout << "-" << c << " "; // representing the value of each element in the range using the variable c
+      // each element in the range is passed through a selection statement using the variable c
+      if ( c == 'e' )
+        temp += c;
     }
-    std::cout << nline << nline;
+    std::cout << "Reusing all 'e' characters in the sequence:" << tab << temp + "ROR! ^.^" << nline << nline;
     // using type deduction (auto):
     // to automatically deduct the type of elements in a range
     ColourCouter ( "Type deduction in range-based for loops:\n", F_bYELLOW );
-    for ( auto c : for_range )
+    std::string the_range { "*****" };
+    int count { 1 };
+    for ( auto c : the_range )
     {
-      std::cout << "-" << c << " ";
+      for ( int i = 0; i < count; i++ )
+      {
+        std::cout << c;
+        std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
+      }
+      std::cout << nline;
+      count++;
     }
-    std::cout << nline << nline;
+    std::cout << nline;
   }
   catch ( const std::exception& )
   {
@@ -244,7 +260,7 @@ void _03_04_JumpStatements ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -259,16 +275,27 @@ void _03_04_JumpStatements ()
     // purposes: to end an infinite loop, to leave a loop before its natural end
     ColourCouter ( "----- The break statement:\n", F_bBLUE );
     ColourCouter ( "To leave a loop before its natural end.\n\n", F_YELLOW );
-    std::cout << "Countdown example and breaking its loop:" << tab;
-    for ( int n { 10 }; n > 0; n-- )
+    std::cout << "Breaking the loop at word 'break':" << nline;
+    std::string another_range { "-loop-while-do-for-break-iterate-" };
+    std::cout << "The string is:" << tab << another_range << nline << nline;
+    std::string word { "" };
+    int count { 0 };
+    for ( auto c : another_range )
     {
-      std::cout << n << ", ";
-      std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
-      if ( n == 3 )
+      if ( c == '-' )
       {
-        std::cout << "Countdown aborted!" << nline << nline;
-        break;
-      }
+        if ( word == "break" )
+        {
+          std::cout << tab << count << " neutral words are counted before 'break'." << nline << nline;
+          break;
+        }
+        if ( word != "" )
+        {
+          count++;
+          word = "";
+        }
+      } else
+        word += c;
     }
 
     //! ####################################################################
@@ -276,17 +303,26 @@ void _03_04_JumpStatements ()
     // to skip the current iteration and jumping to the next one.
     ColourCouter ( "----- The continue statement:\n", F_bBLUE );
     ColourCouter ( "To introduce skipping the iterations of a loop.\n\n", F_YELLOW );
-    std::cout << "Skipping some of iterations in countdown example with for loop:" << nline << "--\t";
-    for ( int n { 10 }; n > 0; n-- )
+    std::cout << "Continuing the loop at word 'break':" << nline;
+    std::string a_range { "-loop-while-do-for-break-iterate-" };
+    std::cout << "The string is:" << tab << a_range << nline << nline;
+    std::string a_word { "" };
+    int counter { 0 };
+    for ( auto c : a_range )
     {
-      if ( n == 8 || n == 5 || n == 2 )
+      if ( c == '-' )
       {
-        continue;
-      }
-      std::cout << n << ", ";
-      std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
+        if ( a_word == "break" )
+          continue;
+        if ( a_word != "" )
+        {
+          counter++;
+          a_word = "";
+        }
+      } else
+        a_word += c;
     }
-    std::cout << "The steps 8, 5 and 2 are skipped!" << nline << nline;
+    std::cout << tab << "There are " << counter << " neutral words in string." << nline << nline;
 
     //! ####################################################################
     //! ----- the goto statement: provides absolute jump to another point in the program
@@ -296,14 +332,14 @@ void _03_04_JumpStatements ()
     // goto is deemed a low-level feature with no particular use in modern higher-level C++ programming paradigms.
     ColourCouter ( "----- The goto statement:\n", F_bBLUE );
     ColourCouter ( "To introduce absolute and unconditional jump to another point in the program.\n\n", F_YELLOW );
-    std::cout << "Countdown example using goto statement:" << "\t\t";
-    int n2 { 10 };
+    std::cout << "Repeated smilies using goto statement:" << nline << tab;
+    int n { 10 };
   a_loop_with_goto:
-    std::cout << n2 << ", ";
-    --n2;
+    std::cout << "^,^" << tab;
+    --n;
     std::this_thread::sleep_for ( std::chrono::milliseconds ( 100 ) );
-    if ( n2 > 0 ) goto a_loop_with_goto;
-    std::cout << "lift-off!" << nline << nline;
+    if ( n > 0 ) goto a_loop_with_goto;
+    std::cout << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -316,7 +352,7 @@ void _03_05_AnotherSelectionStatement ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -339,20 +375,25 @@ void _03_05_AnotherSelectionStatement ()
     //      break;
     // }
     ColourCouter ( "~~~~~ Another selection statement (switch):\n", F_bBLUE );
-    ColourCouter ( "Switching and checking for a value among the possible constant expressions.\n\n", F_YELLOW );
-    int x2 { 1 };
-    switch ( x2 )
+    ColourCouter ( "Expressing a binary value (switch):\n\n", F_YELLOW );
+    std::string x { "1010110110" };
+    std::cout << "The binary number is:" << tab << x << nline << tab;
+    for ( char c : x )
     {
-      case 1:
-        std::cout << "The value of variable is one" << nline << nline;
-        break;
-      case 2:
-        std::cout << "The value of variable is two" << nline << nline;
-        break;
-      default:
-        std::cout << "The value of variable is not among the cases" << nline << nline;
-        break;
+      switch ( c )
+      {
+        case 48: // ASCII code of zero
+          std::cout << "-Zero-";
+          break;
+        case 49: // ASCII code of one
+          std::cout << "-One-";
+          break;
+        default:
+          std::cout << "-Not zero or one-";
+          break;
+      }
     }
+    std::cout << nline << nline;
 
     //! - in addition:
     // the syntax of switch is inherited from the early versions of C language. switch uses labels in place of blocks.
@@ -360,15 +401,30 @@ void _03_05_AnotherSelectionStatement ()
     // this makes enclosing a group statement in braces unnecessary,
     // and can be useful for execution of same group of statement for more than one case.
     ColourCouter ( "Execution of same group of statement for more than one case.\n", F_bYELLOW );
-    switch ( x2 )
+    int number { 0 };
+    unsigned short count { 0 };
+    std::string str_in;
+    std::cout << "Enter a number between 1 and 20:" << nline << tab << " -";
+    std::getline ( std::cin, str_in );
+    std::stringstream ( str_in ) >> number;
+    for ( int i = 1; i <= number; i++ )
+    {
+      if ( number % i == 0 )
+      {
+        count++;
+      }
+    }
+    switch ( count )
     {
       case 1:
       case 2:
-      case 3:
-        std::cout << "The value of variable is either one, two or tree" << nline << nline;
+        std::cout << number << " is a prime number." << nline << nline;
         break;
+      case 3:
+      case 4:
+      case 5:
       default:
-        std::cout << "The value of variable is not one, two nor tree" << nline << nline;
+        std::cout << number << " is not a prime number and has " << count << " divisors." << nline << nline;
         break;
     }
   }
@@ -391,7 +447,7 @@ void _04_01_Functions ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -439,7 +495,7 @@ void _04_02_VoidFunctions ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -464,7 +520,7 @@ void _04_03_MainFunctionReturnValue ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -507,7 +563,7 @@ void _04_04_PassedArgumentsTypes ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -561,7 +617,7 @@ void _04_05_Efficiency ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -604,7 +660,7 @@ void _04_06_InlineFunctions ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -639,7 +695,7 @@ void _04_07_ParametersDefaultValues ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -668,7 +724,7 @@ void _04_08_FunctionsDeclaration ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -726,7 +782,7 @@ void _04_09_Recursivity ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -751,7 +807,7 @@ void _05_01_OverloadsAndTemplates ()
   // the body code of functions used in this section are defined above it
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -780,7 +836,7 @@ void _05_02_OverloadedFunctions ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -835,7 +891,7 @@ void _05_03_FunctionTemplates ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -906,7 +962,7 @@ void _05_04_NonTypeTemplateArguments ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -938,7 +994,7 @@ void _06_01_NameVisibility ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -974,7 +1030,7 @@ void _06_02_Scopes ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -1045,7 +1101,7 @@ void _06_03_Namespaces ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -1093,7 +1149,7 @@ void _06_04_UsingKeyword ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -1151,7 +1207,7 @@ void _06_05_NamespaceAliasing ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
@@ -1187,7 +1243,7 @@ void _06_06_StorageClasses ()
 {
   try
   {
-    ColourCouter ( "--------------------------------------------------", F_bRED );
+    ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################

@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,10.05.2019</changed>
+/// <changed>ʆϒʅ,11.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -421,8 +421,6 @@ void _03_05_AnotherSelectionStatement ()
         std::cout << number << " is a prime number." << nline << nline;
         break;
       case 3:
-      case 4:
-      case 5:
       default:
         std::cout << number << " is not a prime number and has " << count << " divisors." << nline << nline;
         break;
@@ -435,13 +433,13 @@ void _03_05_AnotherSelectionStatement ()
 }
 
 
-int addition ( int a, int b )
+int modulo ( int a, int b )
 {
-  int r; r = a + b; return r;
+  int r; r = a % b; return r;
 }
-int subtraction ( int a, int b )
+int division ( int a, int b )
 {
-  int r; r = a - b; return r;
+  float r; r = a / b; return r;
 }
 void _04_01_Functions ()
 {
@@ -462,23 +460,22 @@ void _04_01_Functions ()
     // a function can be called multiple times and its parameter aren't limited to literals.
     ColourCouter ( "~~~~~ Functions:\n", F_bBLUE );
     ColourCouter ( "To introduce structures that can be used to perform individual tasks in segment of code.\n\n", F_YELLOW );
-    int result;
-    ColourCouter ( "Two function to perform addition and subtraction operations:\n", F_bYELLOW );
-    std::cout << "Passed literal values as parameters to be added:\t" << "2 and 7" << nline;
-    result = addition ( 2, 7 ); // passing literals
-    std::cout << "The result of addition function:" << "\t\t\t" << result << nline;
-    std::cout << "Result of function without any additional variable:" << tab << addition ( 2, 7 ) << nline << nline; // direct function calling in insertion stream
+    float result;
+    ColourCouter ( "Two function to perform modulo and division operations:\n", F_bYELLOW );
+    std::cout << "Passed literal values as parameters:" << tab << "7 and 2" << nline;
+    result = modulo ( 7, 2 ); // passing literals
+    std::cout << "The result of modulo function:" << "\t\t" << result << nline;
+    std::cout << "Result (no additional variable):" << tab << modulo ( 7, 2 ) << nline << nline; // direct function calling in insertion stream
     int x { 4 }; int y { 3 };
-    std::cout << "Passed variables as parameters to be subtracted:" << tab << "x = " << x << tab << "y = " << y << nline;
-    result = subtraction ( x, y ); // passing variables
-    std::cout << "The result of subtraction function:" << "\t\t\t" << result << nline << nline;
+    std::cout << "Passed variables as parameters:" << "\t\t" << "x = " << x << tab << "y = " << y << nline;
+    result = division ( x, y ); // passing variables
+    std::cout << "The result of subtraction function:" << tab << result << nline << nline;
 
-    ColourCouter ( "Subtraction function called as an operand of addition operation:\n", F_bYELLOW );
-    std::cout << "So the expression is: \t\t subtraction ( x, y ) + 6:" << nline;
-    std::cout << "Passed variables as parameters to be subtracted:" << tab << "x = " << x << tab << "y = " << y << nline;
-    result = 6 + subtraction ( x, y ); // the function call is operand of addition operation.
-    result = subtraction ( x, y ) + 6; // same as above: commutative property of addition operation
-    std::cout << "The result of both expressions is:" << "\t\t\t" << result << nline << nline;
+    ColourCouter ( "Division function called as an operand of addition operation:\n", F_bYELLOW );
+    std::cout << "Passed variables as parameters:" << "\t\t" << "x = " << x << tab << "y = " << y << nline;
+    result = 6 + division ( x, y ); // the function call is operand of addition operation.
+    result = division ( x, y ) + 6; // same as above: commutative property of addition operation
+    std::cout << "The result of both expressions is:" << tab << result << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -487,9 +484,12 @@ void _04_01_Functions ()
 }
 
 
-void print_message ( void )
+void interaction ( void )
 {
-  std::cout << "\t\t Hi, I'm a Function. ^_^ \n\n";
+  std::cout << "Hi, please tell me your name!\n\t-";
+  std::string str_in { "" };
+  std::getline ( std::cin, str_in );
+  std::cout << "\nHowdy " << str_in << ", I'm a Function. ^_^ \n\n";
 }
 void _04_02_VoidFunctions ()
 {
@@ -506,8 +506,8 @@ void _04_02_VoidFunctions ()
     // void keyword in parameter's list: in C++ optional, in C language required
     ColourCouter ( "----- Functions with no type (The use of void):\n", F_bBLUE );
     ColourCouter ( "Void functions are those that don't have any returned value.\n\n", F_YELLOW );
-    std::cout << "Following message is inserted by calling a void function with no parameters:" << nline << nline;
-    print_message ();
+    std::cout << "Some interactions integrated in a void function with no parameters:" << nline << nline;
+    interaction ();
   }
   catch ( const std::exception& )
   {
@@ -555,9 +555,9 @@ void _04_03_MainFunctionReturnValue ()
 
 
 // ampersand signs '&' indicate, that the arguments are passed as reference
-void duplication ( int& a, int& b, int& c )
+void exponent_two ( int& d, int& e, int& f )
 {
-  a *= 2, b *= 2, c *= 2;
+  d *= d, e *= e, f *= f;
 }
 void _04_04_PassedArgumentsTypes ()
 {
@@ -578,9 +578,9 @@ void _04_04_PassedArgumentsTypes ()
     int x { 3 }; int y { 4 };
     int result { 0 };
     ColourCouter ( "Passing arguments by value:\n", F_bYELLOW );
-    std::cout << "The passed arguments are:" << "\t\t" << "x = " << x << tab << "y = " << y << nline;
-    result = addition ( x, y );
-    std::cout << "Result of addition function:" << "\t\t" << result << nline << nline;
+    std::cout << "The passed arguments are:" << tab << "x = " << x << tab << "y = " << y << nline;
+    result = modulo ( x, y );
+    std::cout << "Result of modulo function:" << tab << result << nline << nline;
     //? by reference:
     // to make access to variables outside of function passible.
     // to actually modify the value of variables used as arguments to call a function, arguments need to be passed by reference.
@@ -591,11 +591,10 @@ void _04_04_PassedArgumentsTypes ()
     // that the modification of arguments on their corresponding local variables within function becomes possible,
     // and in the end its reflection is on the variables passed as arguments.
     ColourCouter ( "Passing arguments by reference:\n", F_bYELLOW );
-    x = 2, y = 3;
-    int z { 4 };
-    std::cout << "The passed arguments are:" << "\t\t" << "x = " << x << tab << "y = " << y << tab << "z = " << z << nline;
-    duplication ( x, y, z );
-    std::cout << "Result of duplication function:" << "\t\t" << "x = " << x << tab << "y = " << y << tab << "z = " << z << nline << nline;
+    int a { 2 }; int b { 3 }; int c { 4 };
+    std::cout << "The passed arguments are:" << tab << "a = " << a << tab << "b = " << b << tab << "c = " << c << nline;
+    exponent_two ( a, b, c );
+    std::cout << "Result (exponent two):" << "\t\t" << "a = " << a << tab << "b = " << b << tab << "c = " << c << nline << nline;
   }
   catch ( const std::exception& )
   {

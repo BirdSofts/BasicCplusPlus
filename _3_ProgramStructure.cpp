@@ -603,14 +603,27 @@ void _04_04_PassedArgumentsTypes ()
 }
 
 
-std::string concatenate ( std::string & a, std::string & b )
+int search_ref ( std::string & a, char& b )
 {
-  return a + b;
+  int count { 0 };
+  if ( b < 97 )
+    b += 32;
+  for ( auto c : a )
+    if ( c == b )
+      count++;
+  return count;
 }
 // constant arguments passed as reference
-std::string constant_concatenate ( const std::string & a, const std::string & b )
+int search_ref_const ( const std::string & a, const char& b )
 {
-  return a + b;
+  int count { 0 };
+  char temp { b }; // unmodifiable argument
+  if ( b < 97 )
+    temp += 32;
+  for ( auto c : a )
+    if ( c == temp )
+      count++;
+  return count;
 }
 void _04_05_Efficiency ()
 {
@@ -627,22 +640,21 @@ void _04_05_Efficiency ()
     // the function operates directly on aliases of passed arguments and at utter most, it might mean the transfer of certain pointer to the function.
     ColourCouter ( "----- Efficiency consideration and constant reference:\n", F_bBLUE );
     ColourCouter ( "Passing arguments by reference to avoid certain overhead.\n\n", F_YELLOW );
-    std::string a, b, c;
-    std::cout << "Enter two long string to be concatenated:" << nline;
-    std::cout << "- The first one is:" << "\t\t";
-    std::getline ( std::cin, a );
-    std::cout << "- And the second one is:" << tab;
-    std::getline ( std::cin, b );
-    c = concatenate ( a, b );
-    std::cout << nline << "The concatenated result is:" << tab << c << nline << nline;
+    std::string line { "A line containing some word to be passed as argument by reference and searched within." };
+    char character;
+    int count;
+    std::cout << "Enter the character you are searching (A-Z):" << nline << "\t-";
+    std::cin >> character;
+    count = search_ref ( line, character );
+    std::cout << nline << "\t" << count << " characters could be counted." << nline << nline;
 
     //! - in addition:
     // functions with reference parameters are generally perceived as functions that modify the arguments passed.
     // by qualifying the parameters as constant, it can be guaranteed that the function doesn't modify the arguments 
     ColourCouter ( "The use of constant parameters in passing arguments by reference:\n", F_bYELLOW );
-    std::cout << "Above entered strings will be used:" << nline << nline;
-    c = constant_concatenate ( a, b );
-    std::cout << "The concatenated result is:" << tab << c << nline << nline;
+    std::cout << "Above entered character will be used:" << nline;
+    count = search_ref_const ( line, character );
+    std::cout << nline << "\t" << count << " characters could be counted." << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -651,9 +663,16 @@ void _04_05_Efficiency ()
 }
 
 
-inline std::string inline_constant_concatenate ( const std::string & a, const std::string & b )
+inline int search_inline ( const std::string& a, const char& b )
 {
-  return a + b;
+  int count { 0 };
+  char temp { b };
+  if ( b < 97 )
+    temp += 32;
+  for ( auto c : a )
+    if ( c == temp )
+      count++;
+  return count;
 }
 void _04_06_InlineFunctions ()
 {
@@ -669,11 +688,14 @@ void _04_06_InlineFunctions ()
     // behaviour of a function won't be changed but the function body will be inserted at each point of the function call, so the regular invocation will be avoided.
     ColourCouter ( "----- Inline functions:\n", F_bBLUE );
     ColourCouter ( "To introduce the inline expansion of a function body and replace the regular invocation with it.\n\n", F_YELLOW );
-    ColourCouter ( "Concatenate function with inline specifier declaration:\n", F_bYELLOW );
-    std::string a { "AAA" }, b { "BBB" }, c { "" };
-    std::cout << "The strings to be concatenated are:" << tab << a << tab << b << nline;
-    c = inline_constant_concatenate ( a, b );
-    std::cout << "The concatenated result is:" << "\t\t" << c << nline << nline;
+    ColourCouter ( "Search function with inline specifier declaration:\n", F_bYELLOW );
+    std::string line { "A line containing some word to be passed as argument by reference and searched within." };
+    char character;
+    int count;
+    std::cout << "Enter the character you are searching (A-Z):" << nline << "\t-";
+    std::cin >> character;
+    count = search_inline ( line, character );
+    std::cout << nline << "\t" << count << " characters could be counted." << nline << nline;
     // note that in C++ the optimization task is delegated to the compiler.
     // most compiler already optimize code to generate inline functions whenever there is an opportunity, even not explicitly marked with inline specifier.
     // Therefore using it in the declaration of a function is merely a suggestion and the compiler is free to not inline it and optimize otherwise, as long as the resulting behaviour is the one specified by the code.

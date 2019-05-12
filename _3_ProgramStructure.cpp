@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,11.05.2019</changed>
+/// <changed>ʆϒʅ,13.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -555,7 +555,7 @@ void _04_03_MainFunctionReturnValue ()
 
 
 // ampersand signs '&' indicate, that the arguments are passed as reference
-void exponent_two ( int& d, int& e, int& f )
+void square ( int& d, int& e, int& f )
 {
   d *= d, e *= e, f *= f;
 }
@@ -593,7 +593,7 @@ void _04_04_PassedArgumentsTypes ()
     ColourCouter ( "Passing arguments by reference:\n", F_bYELLOW );
     int a { 2 }; int b { 3 }; int c { 4 };
     std::cout << "The passed arguments are:" << tab << "a = " << a << tab << "b = " << b << tab << "c = " << c << nline;
-    exponent_two ( a, b, c );
+    square ( a, b, c );
     std::cout << "Result (exponent two):" << "\t\t" << "a = " << a << tab << "b = " << b << tab << "c = " << c << nline << nline;
   }
   catch ( const std::exception& )
@@ -663,7 +663,7 @@ void _04_05_Efficiency ()
 }
 
 
-inline int search_inline ( const std::string& a, const char& b )
+inline int search_inline ( const std::string & a, const char& b )
 {
   int count { 0 };
   char temp { b };
@@ -708,9 +708,11 @@ void _04_06_InlineFunctions ()
 
 
 // a default value in function's declaration (optional parameters)
-int divide ( int a, int b = 2 )
+long long exponent ( long long a, int b = 2 )
 {
-  int r; r = a / b; return r;
+  for ( int i = 1; i <= b; i++ )
+    a *= a;
+  return a;
 }
 void _04_07_ParametersDefaultValues ()
 {
@@ -725,12 +727,12 @@ void _04_07_ParametersDefaultValues ()
     // which will be used when a function is needed to be called with fewer arguments.
     ColourCouter ( "----- Default values in Parameters:\n", F_bBLUE );
     ColourCouter ( "To declare functions with optional parameters.\n\n", F_YELLOW );
-    std::cout << "Two call to divide function with two parameters of which the last one is optional:" << nline;
+    std::cout << "Two call to exponent function with two parameters of which the last one is optional:" << nline;
     int result;
-    result = divide ( 12 );
-    std::cout << "-- divide (12):" << "\t\t" << result << nline;
-    result = divide ( 20, 4 ); // optional parameter is used in the call, therefore the default value will be ignored
-    std::cout << "-- divide (20, 4):" << tab << result << nline << nline;
+    result = exponent ( 12 );
+    std::cout << "-- exponent (12):" << tab << result << nline;
+    result = exponent ( 10, 4 ); // optional parameter is used in the call, therefore the default value will be ignored
+    std::cout << "-- exponent (10, 4):" << tab << result << nline << nline;
   }
   catch ( const std::exception& )
   {

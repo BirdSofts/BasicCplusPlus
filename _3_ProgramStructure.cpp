@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,13.05.2019</changed>
+/// <changed>ʆϒʅ,14.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -741,8 +741,8 @@ void _04_07_ParametersDefaultValues ()
 }
 
 
-void odd ( int x ); // function prototype
-void even ( int x ); // the same
+void negative ( int x ); // function prototype
+void positive ( int x ); // the same
 void _04_08_FunctionsDeclaration ()
 {
   try
@@ -767,39 +767,35 @@ void _04_08_FunctionsDeclaration ()
     // possibility to call another function from within the already called function. (example below)
     ColourCouter ( "----- Declaring functions:\n", F_bBLUE );
     ColourCouter ( "To introduce the declaration of a function and place its definition elsewhere.\n\n", F_YELLOW );
-    ColourCouter ( "Working with the functions odd and even:\n", F_bYELLOW );
+    ColourCouter ( "Working with the functions negative and positive:\n", F_bYELLOW );
     int number;
-    do
-    {
-      std::cout << "Please enter a number (enter zero to exit):" << tab;
-      std::cin >> number;
-      if ( number == 0 ) { std::cout << nline; break; }
-      odd ( number );
-    } while ( number != 0 );
+    std::cout << "Please enter an integer number:\t\t";
+    std::cin >> number;
+    negative ( number );
   }
   catch ( const std::exception& )
   {
 
   }
 }
-void odd ( int x )
+void negative ( int x )
 {
-  if ( ( x % 2 ) != 0 ) std::cout << "The entered number is odd.\n\n";
-  else even ( x );
+  if ( x < 0 ) std::cout << "The entered number is negative.\n\n";
+  else positive ( x );
 }
-void even ( int x )
+void positive ( int x )
 {
-  if ( ( x % 2 ) == 0 ) std::cout << "The entered number is even.\n\n";
-  else odd ( x );
+  if ( x > 0 ) std::cout << "The entered number is positive.\n\n";
+  else negative ( x );
 }
 
 
-long factorial ( long a )
+long exponent ( int a, int b )
 {
-  if ( a > 1 )
-    return ( a * factorial ( a - 1 ) );
+  if ( b > 1 )
+    return ( a * exponent ( a, b - 1 ) );
   else
-    return 1;
+    return a;
 }
 void _04_09_Recursivity ()
 {
@@ -814,9 +810,13 @@ void _04_09_Recursivity ()
     // usual for some task like sorting elements or factorial (n!)
     ColourCouter ( "----- Recursivity:\n", F_bBLUE );
     ColourCouter ( "The call that a function can make to itself.\n\n", F_YELLOW );
-    std::cout << "A recursive function to calculate factorial:" << nline;
-    long number2 { 9 };
-    std::cout << "-- " << number2 << "! =" << tab << factorial ( number2 ) << nline << nline;
+    std::cout << "A recursive function to calculate exponent:" << nline;
+    int number { 0 }, power { 0 };
+    std::cout << "Please enter the number:\t\t";
+    std::cin >> number;
+    std::cout << "Please enter the exponent:\t\t";
+    std::cin >> power;
+    std::cout << "\t\t\t\t-- " << number << " ^ " << power << " = " << exponent ( number, power ) << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -827,7 +827,6 @@ void _04_09_Recursivity ()
 
 void _05_01_OverloadsAndTemplates ()
 {
-  // the body code of functions used in this section are defined above it
   try
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
@@ -846,14 +845,17 @@ void _05_01_OverloadsAndTemplates ()
 }
 
 
-int operate ( int a, int b )
+int operation ( int a, int b )
 {
-  return ( a + b );
+  return ( a % b );
 }
 // different declaration and definition
-double operate ( double a, double b )
+double operation ( double a, double b )
 {
-  return ( a / b );
+  if ( a > b )
+    return a;
+  else
+    return b;
 }
 void _05_02_OverloadedFunctions ()
 {
@@ -872,13 +874,13 @@ void _05_02_OverloadedFunctions ()
     // the functions in this example have entirely different behaviours, declarations and definitions and the only similarity is their name.
     ColourCouter ( "----- Overloaded functions:\n", F_bBLUE );
     ColourCouter ( "C++ ability to define multiple instances of a function.\n\n", F_YELLOW );
-    ColourCouter ( "Operations addition and division performed by overloads of the function operate:\n", F_bYELLOW );
-    int x { 2 }, y { 3 };
-    double n { 2.4 }, m { 3.7 };
-    std::cout << "x = " << x << tab << "y = " << y << nline;
-    std::cout << "Result of overload addition is:" << tab << operate ( x, y ) << nline;
-    std::cout << "n = " << n << tab << "m = " << m << nline;
-    std::cout << "Result of overload division is:" << tab << operate ( n, m ) << nline << nline;
+    ColourCouter ( "Operations modulo and maximum performed by overloads of the function operation:\n", F_bYELLOW );
+    int number_1 { 5 }, number_2 { 4 };
+    double number_3 { 2.4 }, number_4 { 3.7 };
+    std::cout << "Passed numbers are:" << "\t\t" << number_1 << tab << number_2 << nline;
+    std::cout << "Result of overload modulo is:" << tab << operation ( number_1, number_2 ) << nline;
+    std::cout << "Passed numbers are:" << "\t\t" << number_3 << tab << number_4 << nline;
+    std::cout << "Result of overload maximum is:" << tab << operation ( number_3, number_4 ) << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -887,28 +889,29 @@ void _05_02_OverloadedFunctions ()
 }
 
 
-int sum ( int a, int b )
+int multiply ( int m, int n )
 {
-  return ( a + b );
+  return ( m * n );
 }
 // different declaration with same definition
-double sum ( double a, double b )
+double multiply ( double m, double n )
 {
-  return ( a + b );
+  return ( m * n );
 }
 // a generic sum function. the appropriate version of function will be instantiated and called by compiler each time.
-template <class SomeType>
-SomeType sum2 ( SomeType a, SomeType b )
+template <class tType>
+tType multiply_generic ( tType m, tType n )
 {
-  SomeType result;
-  result = ( a + b );
-  return result;
+  tType r;
+  r = ( m * n );
+  return r;
 }
 // multiple template parameters
-template <class T, class U>
-bool equality_check ( T a, U b )
+template <class tParamOne, class tParamTwo>
+// the use of regular non-template type
+bool minimum_check ( tParamOne a, tParamTwo b )
 {
-  return ( a == b );
+  return ( a < b );
 }
 void _05_03_FunctionTemplates ()
 {
@@ -919,41 +922,39 @@ void _05_03_FunctionTemplates ()
 
     //! ####################################################################
     //! ----- function templates:
-    // a function (the function sum for example) could be overloaded for many types and all of them having the same body or definition.
+    // a function (multiply for example) could be overloaded for many types and all of them having the same body or definition.
     ColourCouter ( "----- Function templates:\n", F_bBLUE );
     ColourCouter ( "The ability of C++ to define generic functions known as function templates.\n\n", F_YELLOW );
     ColourCouter ( "A function could be overloaded for different types while all of them having the same definition:\n", F_bYELLOW );
-    std::cout << "Sum of 10 and 20 (overload for int type):" << tab << sum ( 10, 20 ) << nline;
-    std::cout << "Sum of 1.2 and 1.5 (overload for double type):" << tab << sum ( 1.2, 1.5 ) << nline << nline;
-    // for such a case (above),
-    // C++ has the ability to define generic functions known as function templates.
+    std::cout << "Multiply 2 by 2 (overload for int type):" << tab << multiply ( 2, 2 ) << nline;
+    std::cout << "Multiply 0.3 by 0.3 (overload for double type):" << tab << multiply ( 0.3, 0.3 ) << nline << nline;
+    // for above case, C++ has the ability to define generic functions known as function templates.
     // Note syntax: template <template-parameters> function-declaration
     // it is like regular function, preceded with template keyword and a series of template parameters enclosed in angle-brackets <> and separated with comma
     // the template parameters can be generic template types by specifying either the class or typename keyword (both are 100% synonym in template declaration) followed by an identifier.
-    // this identifier can then be used in the function definition like regular types. (see generic function sum2)
+    // this identifier can then be used in the function definition like regular types. (see generic function multiply_generic)
     // no matter how a generic type would be used (parameter, return or variable), it will be determined on the moment the template is instantiated.
     // a template can be instantiated by applying it to create a function using particular types or values for its template parameters.
     // the instantiation will be done when a template function called.
-    // call statement syntax is like function but the template arguments, enclosed in angle-brackets shall to be specified.
+    // call statement syntax is like function but the template arguments, enclosed in angle-brackets must be specified.
     // Note syntax: name <tamplate-arguments> (function-arguments)
     ColourCouter ( "Multiple instances of a function (the use of generic function or function template):\n", F_bYELLOW );
     int result1;
-    result1 = sum2<int> ( 10, 20 ); // using int type to make an instance
-    std::cout << "Result of the instance for int type:" << "\t\t" << result1 << nline;
+    result1 = multiply_generic<int> ( 2, 2 ); // using int type to make an instance
+    std::cout << "Result of first instance (int type):" << "\t\t" << result1 << nline;
     double result2;
-    result2 = sum2<double> ( 1.2, 1.5 ); // making another instance with double type
-    std::cout << "Result of another instance for double type:" << tab << result2 << nline << nline;
+    result2 = multiply_generic<double> ( 0.3, 0.3 ); // making another instance with double type
+    std::cout << "Result of another instance (double type):" << tab << result2 << nline << nline;
 
     //! - in addition:
+    // type deduction in generic types
     // since the generic type SomeType is also used as parameters of the function, the compiler is able to deduce the data type automatically.
     // therefore there is no need to explicitly specify the type within angle-brackets when calling the function.
     // for this, the type shall be unambiguous so the compiler could perform the deduction.
     // if the function is called with arguments of different types, the compiler may not be able to deduct the type of the generic type.
     // take the following call for instance:
     ColourCouter ( "Instantiating another instance while using deduction of type:\n", F_bYELLOW );
-    long long result3;
-    result3 = sum2 ( 21355479374, 21370547592 ); // type deduction in generic types
-    std::cout << "Result of another instance (deduction for type long long):" << tab << result3 << nline << nline;
+    std::cout << "Result of another instance (deduction):" << "\t\t" << multiply_generic ( 0.3, 0.3 ) << nline << nline;
 
     //! - in addition:
     // templates are a powerful and versatile feature.
@@ -962,11 +963,10 @@ void _05_03_FunctionTemplates ()
     // this means integer literals always produce values of type int and floating-point literals always produce values of type double.
     // so there is no ambiguity possible in the example below.
     ColourCouter ( "Multiple template parameters plus using non-templated types:\n", F_bYELLOW );
-    if ( equality_check ( 10, 10.0 ) ) // the use of regular non-template type
-                                       // automatic template parameter deduction
-      std::cout << "The numbers 10 and 10.0 are equal" << nline << nline;
+    if ( minimum_check ( 10, 10.1 ) ) // automatic template parameter deduction
+      std::cout << "The number 10 is smaller than 10.1" << nline << nline;
     else
-      std::cout << "The numbers 10 and 10.0 are not equal" << nline << nline;
+      std::cout << "The number 10 is greater than 10.1" << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -975,13 +975,14 @@ void _05_03_FunctionTemplates ()
 }
 
 
-// non-type template arguments: expressions of particular type
-template <class T, int N>
-T fixed_multiply ( T val )
+template <class tParam, int N>
+tParam fixed_exponent ( tParam val )
 {
-  return val * N;
+  for ( int i = 0; i < N; i++ )
+    val *= val;
+  return val;
 }
-void _05_04_NonTypeTemplateArguments ()
+void _05_04_ParticularTypeTemplateArguments ()
 {
   try
   {
@@ -989,7 +990,7 @@ void _05_04_NonTypeTemplateArguments ()
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
-    //! ----- non-type template arguments:
+    //! ----- particular type template arguments:
     // the template parameter can also include expression of a particular type additionally to types introduced with class and typename.
     // when a particular type is used, the parameter looks like regular function parameter and can actually be used just like one.
     // the major difference:
@@ -997,14 +998,14 @@ void _05_04_NonTypeTemplateArguments ()
     // the values of arguments of particular types are never passed during runtime.
     // this means that every call to such a template generates a different version of the function template,
     // therefore the values of argument of particular types need to be constant expressions and the template can not be instantiated with variables.
-    ColourCouter ( "----- Non-type template arguments:\n", F_bBLUE );
-    ColourCouter ( "To include expression of particular types in the template parameter.\n\n", F_YELLOW );
-    ColourCouter ( "A function template and its second template parameter of particular type int:\n", F_bYELLOW );
-    int result4;
-    result4 = fixed_multiply<int, 2> ( 10 );
-    std::cout << "First instance (always multiply with 2):" << tab << result4 << nline;
-    result4 = fixed_multiply<int, 3> ( 10 );
-    std::cout << "Second instance (always multiply with 3):" << tab << result4 << nline << nline;
+    ColourCouter ( "----- Particular type template arguments:\n", F_bBLUE );
+    ColourCouter ( "To introduce expressions of particular types as template parameter.\n\n", F_YELLOW );
+    ColourCouter ( "A function template with parameter of particular type int:\n", F_bYELLOW );
+    int result;
+    result = fixed_exponent<int, 2> ( 2 );
+    std::cout << "First instance (always square):" << "\t\t\t" << result << nline;
+    result = fixed_exponent<int, 3> ( 2 );
+    std::cout << "Second instance (always exponent three):" << tab << result << nline << nline;
   }
   catch ( const std::exception& )
   {

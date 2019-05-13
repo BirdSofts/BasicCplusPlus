@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.h
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,16.04.2019</changed>
+/// <changed>ʆϒʅ,14.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -32,7 +32,7 @@ void _04_09_Recursivity ();
 void _05_01_OverloadsAndTemplates ();
 void _05_02_OverloadedFunctions ();
 void _05_03_FunctionTemplates ();
-void _05_04_NonTypeTemplateArguments ();
+void _05_04_ParticularTypeTemplateArguments ();
 
 void _06_01_NameVisibility ();
 void _06_02_Scopes ();

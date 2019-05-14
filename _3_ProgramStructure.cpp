@@ -3,7 +3,7 @@
 /// _3_ProgramStructures.cpp
 /// </summary>
 /// <created>ʆϒʅ,09.05.2018</created>
-/// <changed>ʆϒʅ,14.05.2019</changed>
+/// <changed>ʆϒʅ,15.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -437,9 +437,9 @@ int modulo ( int a, int b )
 {
   int r; r = a % b; return r;
 }
-int division ( int a, int b )
+float division ( int a, int b )
 {
-  float r; r = a / b; return r;
+  float r; r = static_cast<float> ( a / b ); return r;
 }
 void _04_01_Functions ()
 {
@@ -460,11 +460,12 @@ void _04_01_Functions ()
     // a function can be called multiple times and its parameter aren't limited to literals.
     ColourCouter ( "~~~~~ Functions:\n", F_bBLUE );
     ColourCouter ( "To introduce structures that can be used to perform individual tasks in segment of code.\n\n", F_YELLOW );
+    int r;
     float result;
     ColourCouter ( "Two function to perform modulo and division operations:\n", F_bYELLOW );
     std::cout << "Passed literal values as parameters:" << tab << "7 and 2" << nline;
-    result = modulo ( 7, 2 ); // passing literals
-    std::cout << "The result of modulo function:" << "\t\t" << result << nline;
+    r = modulo ( 7, 2 ); // passing literals
+    std::cout << "The result of modulo function:" << "\t\t" << r << nline;
     std::cout << "Result (no additional variable):" << tab << modulo ( 7, 2 ) << nline << nline; // direct function calling in insertion stream
     int x { 4 }; int y { 3 };
     std::cout << "Passed variables as parameters:" << "\t\t" << "x = " << x << tab << "y = " << y << nline;
@@ -708,7 +709,7 @@ void _04_06_InlineFunctions ()
 
 
 // a default value in function's declaration (optional parameters)
-long long exponent ( long long a, int b = 2 )
+long exponent ( long a, int b = 2 )
 {
   for ( int i = 1; i <= b; i++ )
     a *= a;
@@ -728,7 +729,7 @@ void _04_07_ParametersDefaultValues ()
     ColourCouter ( "----- Default values in Parameters:\n", F_bBLUE );
     ColourCouter ( "To declare functions with optional parameters.\n\n", F_YELLOW );
     std::cout << "Two call to exponent function with two parameters of which the last one is optional:" << nline;
-    int result;
+    long result;
     result = exponent ( 12 );
     std::cout << "-- exponent (12):" << tab << result << nline;
     result = exponent ( 10, 4 ); // optional parameter is used in the call, therefore the default value will be ignored
@@ -1036,18 +1037,18 @@ void _06_01_NameVisibility ()
 }
 
 
-int global_variable { 22 }; // global scope from this point of code (not in other .cpp files)
+int global_variable { 0 }; // global scope from this point of code (not in other .cpp files)
 int first_function ()
 {
-  int local_variable; // local scope within this block
-  local_variable = 0;
+  int local_variable { 0 }; // local scope within this block
+  local_variable = 10;
   return local_variable;
 }
 int second_function ()
 {
-  global_variable = 1;
-  int local_variable; // no redefinition (another local variable)
-  local_variable = 2;
+  global_variable = 20;
+  int local_variable { 0 }; // no redefinition (another local variable)
+  local_variable = 30;
   return local_variable;
 }
 void _06_02_Scopes ()
@@ -1061,15 +1062,14 @@ void _06_02_Scopes ()
     //! ----- scopes:
     // global scope: the entity is defined outside all blocks and is visible to them all.
     // Note real global scope in all translation units (i.e. files of source code):
-    // -------- definition with 'extern' keyword in pch.h or whichever file that is foreseen for pre-compiled header,
-    // -------- then its initialization in one of the translation units
+    // -------- definition with 'extern' keyword the file that is foreseen to introduce standard or none standard headers, then its initialization in one of the translation units
     // Note another global scope in all translation units:
-    // -------- definition inside pch.cpp or whichever file that is foreseen for pre-compiled header,
+    // -------- definition inside the file that is foreseen to introduce standard or none standard headers,
     // local scope: the entity is defined inside a block and is visible inside of it.
     // a name can represents only one entity, therefore two variables can't have same name within the same scope.
     ColourCouter ( "----- Scopes:\n", F_bBLUE );
     ColourCouter ( "The scope of every entity is dependent on the point of its declaration.\n\n", F_YELLOW );
-    std::cout << "Global variable's value:" << "\t\t\t\t" << global_variable << nline;
+    std::cout << "Global variable's value before change:" << "\t\t\t" << global_variable << nline;
     std::cout << "Local variable's value (first function scope):" << "\t\t" << first_function () << nline;
     std::cout << "Local variable's value (second function scope):" << "\t\t" << second_function () << nline;
     std::cout << "Global variable's value after change:" << "\t\t\t" << global_variable << nline << nline;
@@ -1080,22 +1080,22 @@ void _06_02_Scopes ()
     // this re-utilization hides the outer block entity name in the inner block and refers to a different entity.
     // declarations that introduce a block such as functions, for, if etc... are local to the block they introduce.
     ColourCouter ( "Inner blocks and their scopes:\n", F_bYELLOW );
-    int x { 10 };
-    int y { 20 };
+    int a { 1001 };
+    int b { 2002 };
     std::cout << "Inserted from outer block:" << nline;
-    std::cout << tab << "The initialized value of x:" << tab << x << nline;
-    std::cout << tab << "The initialized value of y:" << tab << y << nline << nline;
+    std::cout << tab << "The initialized value of a:" << tab << a << nline;
+    std::cout << tab << "The initialized value of b:" << tab << b << nline << nline;
     {
-      int x; // OK, inner scope.
-      x = 30; // assigns a value to the inner block x variable; outer block x variable is hidden.
-      y = 30; // assigns a value to the outer block y variable; outer block y variable is not hidden.
+      int a; // OK, inner scope.
+      a = 3003; // assigns a value to the inner block x variable; outer block x variable is hidden.
+      b = 3003; // assigns a value to the outer block y variable; outer block y variable is not hidden.
       std::cout << "Inserted from inner block:" << nline;
-      std::cout << tab << "x (the inner block x entity):" << tab << x << nline;
-      std::cout << tab << "y (the outer block y entity):" << tab << y << nline << nline;
+      std::cout << tab << "a (the inner block a entity):" << tab << a << nline;
+      std::cout << tab << "b (the outer block b entity):" << tab << b << nline << nline;
     }
     std::cout << "Inserted from outer block:" << nline;
-    std::cout << tab << "x (the outer block x entity) :" << tab << x << nline;
-    std::cout << tab << "y (the outer block y entity) :" << tab << y << nline << nline;
+    std::cout << tab << "a (the outer block a entity) :" << tab << a << nline;
+    std::cout << tab << "b (the outer block b entity) :" << tab << b << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -1106,20 +1106,20 @@ void _06_02_Scopes ()
 
 namespace firstNamespace
 {
-  int a { 2 };
-  int b { 3 };
-  int value () { return ( a * b ); }
+  int a { 10 };
+  int b { 20 };
+  int task () { return ( a * b ); }
 }
 namespace secondNamespace
 {
-  double pi { 3.1416 };
-  double value () { return ( 2 * pi ); }
+  const double pi { 3.1415926 };
+  double task ( double r ) { return ( r * r * pi ); }
 }
 // namespaces can be split
 namespace firstNamespace
 {
-  int c { 4 };
-  int d { 5 };
+  int c { 40 };
+  int d { 50 };
 }
 void _06_03_Namespaces ()
 {
@@ -1137,10 +1137,10 @@ void _06_03_Namespaces ()
     // syntax: namespace identifier { name-entities }
     // the elements of namespaces can be accessed normally with their own identifier from within their scope.
     // the elements of namespaces have to be properly qualified with the scope operator (::) and the identifier of their namespace to be reached from outside.
-    // namespaces can be split: first segment of a code can be extended to the second segment in the same namespace
+    // namespaces can be split: first segment of a code can be extended to the second segment of the same namespace
     // namespaces can even get extend across different translation units (i.e.: across different files of source code)
     ColourCouter ( "----- Namespaces:\n", F_bBLUE );
-    ColourCouter ( "To introduce the organization of named entities with global scope into narrower namespaces scope.\n\n", F_YELLOW );
+    ColourCouter ( "To introduce the organization of named entities with global scope into narrower namespace scope.\n\n", F_YELLOW );
     std::cout << "The elements of first namespace before change:" << nline;
     std::cout << tab << "a: " << firstNamespace::a << "\t\t" << "b: " << firstNamespace::b << nline;
     firstNamespace::a = 55; // an element of namespace, accessed from outside
@@ -1148,9 +1148,11 @@ void _06_03_Namespaces ()
     std::cout << "The elements of first namespace after change:" << nline;
     std::cout << tab << "a: " << firstNamespace::a << "\t\t" << "b: " << firstNamespace::b << nline << nline;
     ColourCouter ( "Two function with the same name defined in two namespaces:\n", F_bYELLOW );
-    std::cout << "Result of the function (first namespace):" << tab << firstNamespace::value () << nline;
-    std::cout << "Result of the function (second namespace):" << tab << secondNamespace::value () << nline;
+    std::cout << "Result of the function (first namespace):" << tab << firstNamespace::task () << nline;
+    std::cout << "Result of the function (second namespace):" << tab << secondNamespace::task ( 3.3 ) << nline;
     std::cout << "Defined pi variable (second namespace):" << "\t\t" << secondNamespace::pi << nline << nline;
+    std::cout << "Defined elements in extended segment of first namespace:" << nline;
+    std::cout << tab << "c: " << firstNamespace::c << "\t\t" << "d: " << firstNamespace::d << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -1159,15 +1161,10 @@ void _06_03_Namespaces ()
 }
 
 
-namespace first
+namespace name_space
 {
-  int xx { 5 };
-  int yy { 10 };
-}
-namespace second
-{
-  double xx { 3.1416 };
-  double yy { 2.7183 };
+  int a { 50 };
+  double b { 6.6 };
 }
 void _06_04_UsingKeyword ()
 {
@@ -1181,16 +1178,13 @@ void _06_04_UsingKeyword ()
     // to introduce a name into the current declarative region (such as a block), to avoid name qualification need.
     ColourCouter ( "----- The using keyword:\n", F_bBLUE );
     ColourCouter ( "To avoid the need to qualify a name in the current declarative region.\n\n", F_YELLOW );
-    ColourCouter ( "Accessing variables in the first and second namespace with and without qualification:\n", F_bYELLOW );
+    ColourCouter ( "Accessing variables in the namespace with and without qualification:\n", F_bYELLOW );
     {
-      using first::xx; // avoid the need of name qualifier
-      using second::yy; // the same
+      using name_space::a; // avoid the need of name qualifier
       std::cout << "No need to qualify the name:" << nline;
-      std::cout << tab << "The value of xx (first namespace):" << tab << xx << nline;
-      std::cout << tab << "The value of yy (second namespace):" << tab << yy << nline;
+      std::cout << tab << "The value of a:" << tab << a << nline;
       std::cout << "Need to qualify the name:" << nline;
-      std::cout << tab << "The value of xx (second namespace):" << tab << second::xx << nline;
-      std::cout << tab << "The value of yy (first namespace):" << tab << first::yy << nline << nline;
+      std::cout << tab << "The value of b:" << tab << name_space::b << nline << nline;
     }
 
     // using as a directive to introduce an entire namespace:
@@ -1199,20 +1193,17 @@ void _06_04_UsingKeyword ()
     // therefore the possibility is there to split the code in different blocks and use the objects of different namespaces.
     ColourCouter ( "Introducing an entire namespace by the keyword 'using' as a directive:\n", F_bYELLOW );
     {
-      using namespace first;
-      std::cout << tab << "The value of xx (first namespace):" << tab << xx << nline;
-      std::cout << tab << "The value of yy (first namespace):" << tab << yy << nline;
-      std::cout << tab << "The value of xx (second namespace):" << tab << second::xx << nline;
-      std::cout << tab << "The value of yy (second namespace):" << tab << second::yy << nline << nline;
+      using namespace name_space;
+      std::cout << tab << "The value of a:" << tab << a << nline;
+      std::cout << tab << "The value of b:" << tab << b << nline;
     }
-    ColourCouter ( "Splitting the code in different blocks and using different namespaces:\n", F_bYELLOW );
+    ColourCouter ( "Splitting the code in different blocks and exhibiting qualification choices:\n", F_bYELLOW );
     {
-      using namespace first;
-      std::cout << "The value of xx (first block - first namespace):" << tab << xx << nline;
+      using namespace name_space;
+      std::cout << "The value of a (first block - no need to qualify):" << tab << a << nline;
     }
     {
-      using namespace second;
-      std::cout << "The value of xx (second block - second namespace):" << tab << xx << nline << nline;
+      std::cout << "The value of a (second block - need to qualify):" << tab << name_space::a << nline << nline;
     }
   }
   catch ( const std::exception& )
@@ -1222,10 +1213,9 @@ void _06_04_UsingKeyword ()
 }
 
 
-namespace third
+namespace identifier
 {
-  int xx { 5 };
-  int yy { 10 };
+  int a { 10 };
 }
 void _06_05_NamespaceAliasing ()
 {
@@ -1241,10 +1231,13 @@ void _06_05_NamespaceAliasing ()
     ColourCouter ( "----- Namespace aliasing:\n", F_bBLUE );
     ColourCouter ( "New names can be used as alias to have a different name for a defined namespace in a project.\n\n", F_YELLOW );
     ColourCouter ( "Using the alias of the namespace 'third':\n", F_bYELLOW );
-    namespace firstNewName = third;
+    namespace alias = identifier;
     {
-      using namespace firstNewName;
-      std::cout << "The value of xx (third namespace):" << tab << xx << nline << nline;
+      using namespace alias;
+      std::cout << "The value of a (namespace alias, respectively identifier):" << tab << a << nline << nline;
+      ColourCouter ( "Despite no need for qualification, the elements of namespace can still get qualified:\n", F_bYELLOW );
+      std::cout << "The value of a (namespace alias, respectively identifier):" << tab << identifier::a << nline;
+      std::cout << "The value of a (namespace alias, respectively identifier):" << tab << alias::a << nline << nline;
     }
 
     //! ####################################################################
@@ -1272,16 +1265,16 @@ void _06_06_StorageClasses ()
 
     //! ####################################################################
     //! ----- storage classes:
-    //# static storage: variables with global or namespace scope
+    //-- static storage: variables with global or namespace scope
     // their storage is allocated for the entire duration of the program
     // if they aren't explicitly initialized, they will be initialized automatically with zeroes
-    //# automatic storage: local variables
+    //-- automatic storage: local variables
     // their storage is only available during their declaration block
     // if they aren't explicitly initialized, they will be left uninitialized, and thus have undetermined values
     ColourCouter ( "----- Storage classes:\n", F_bBLUE );
     ColourCouter ( "The difference between static and automatic storage.\n\n", F_YELLOW );
     int aLocalVariable; // automatic storage, not automatically initialized, can't be used without initialization
-    int anotherLocalVariable { 235 }; // automatic storage, explicitly initialized
+    int anotherLocalVariable { 555 }; // automatic storage, explicitly initialized
     std::cout << "Value of a global variable (static storage, uninitialized):" << tab << aGlobalVariable << nline;
     // std::cout << aLocalVariable; // not valid, uninitialized
     std::cout << "Value of a local variable (automatic storage, initialized):" << tab << anotherLocalVariable << nline << nline;

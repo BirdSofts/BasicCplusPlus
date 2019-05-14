@@ -3,7 +3,7 @@
 /// _2_Basics.cpp
 /// </summary>
 /// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,10.05.2019</changed>
+/// <changed>ʆϒʅ,15.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //! preprocessor directives:
@@ -1078,16 +1078,17 @@ void _02_11_BasicInputOutput ()
     // the goal is to separate the input process from its interpretation as data.
     // a demonstration of extracting in the user-expected behaviour of console programs and in the same time gaining more control over the transformation of inputs into more useful data.
     ColourCouter ( "Separating input process from its interpretation:\n", F_bYELLOW );
+    const double pi { 3.14159 };
     std::string str_var2;
-    float radius { 0 };
+    double radius { 0 };
     std::cout << "Enter circle radius (floating point numbers are accepted):" << nline << " - ";
     //std::getline (std::cin, str_var2); //clear
     std::getline ( std::cin, str_var2 );
     std::cout << "The entered string is:" << "\t\t" << str_var2 << nline;
     std::stringstream ( str_var2 ) >> radius;
     std::cout << "The interpreted value is:" << "\t" << radius << nline << nline;
-    std::cout << "Circle circumference:" << "\t\t" << 2 * radius * Pi << nline;
-    std::cout << "Circle area:" << "\t\t\t" << radius * radius * Pi << nline << nline;
+    std::cout << "Circle circumference:" << "\t\t" << 2 * radius * pi << nline;
+    std::cout << "Circle area:" << "\t\t\t" << radius * radius * pi << nline << nline;
   }
   catch ( const std::exception& )
   {

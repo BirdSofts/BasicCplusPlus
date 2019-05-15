@@ -18,7 +18,7 @@ const char tab { '\t' };
 const char nline { '\n' };
 
 
-void _03_01_ControlStructures ()
+void _07_01_ControlStructures ()
 {
   try
   {
@@ -42,13 +42,10 @@ void _03_01_ControlStructures ()
 }
 
 
-void _03_02_SelectionStatements ()
+void _07_02_SelectionStatements ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ~~~~~ selection statements (if and else):
     // execution of a statement or block if the condition is fulfilled.
@@ -92,13 +89,10 @@ void _03_02_SelectionStatements ()
 }
 
 
-void _03_03_IterationStatements ()
+void _07_03_IterationStatements ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ~~~~~ iteration statements (loops):
     // repetition of statements a certain times or till a condition is fulfilled.
@@ -256,13 +250,10 @@ void _03_03_IterationStatements ()
 }
 
 
-void _03_04_JumpStatements ()
+void _07_04_JumpStatements ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ~~~~~ jump statements:
     // they can be used to alter the flow of a program by jumping to specific locations
@@ -348,13 +339,10 @@ void _03_04_JumpStatements ()
 }
 
 
-void _03_05_AnotherSelectionStatement ()
+void _07_05_AnotherSelectionStatement ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ~~~~~ another selection statement (switch):
     // to compare the evaluated expression against labels that are constant expressions.
@@ -441,7 +429,7 @@ float division ( int a, int b )
 {
   float r; r = static_cast<float> ( a / b ); return r;
 }
-void _04_01_Functions ()
+void _08_01_Functions ()
 {
   try
   {
@@ -492,13 +480,10 @@ void interaction ( void )
   std::getline ( std::cin, str_in );
   std::cout << "\nHowdy " << str_in << ", I'm a Function. ^_^ \n\n";
 }
-void _04_02_VoidFunctions ()
+void _08_02_VoidFunctions ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- functions with no type (the use of void):
     // if the function doesn't need to return a value it shall be defined as a void function.
@@ -517,13 +502,10 @@ void _04_02_VoidFunctions ()
 }
 
 
-void _04_03_MainFunctionReturnValue ()
+void _08_03_MainFunctionReturnValue ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- the return value of main function:
     // the type of return value of main is int.
@@ -560,13 +542,10 @@ void square ( int& d, int& e, int& f )
 {
   d *= d, e *= e, f *= f;
 }
-void _04_04_PassedArgumentsTypes ()
+void _08_04_PassedArgumentsTypes ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- arguments passed by value and by reference:
     //? by value:
@@ -626,13 +605,10 @@ int search_ref_const ( const std::string & a, const char& b )
       count++;
   return count;
 }
-void _04_05_Efficiency ()
+void _08_05_Efficiency ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- efficiency consideration and constant reference:
     // passing arguments by value causes the arguments to be copied which it may be relatively inexpensive for fundamental types like int,
@@ -675,13 +651,10 @@ inline int search_inline ( const std::string & a, const char& b )
       count++;
   return count;
 }
-void _04_06_InlineFunctions ()
+void _08_06_InlineFunctions ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- inline functions:
     // since calling a function has a certain overhead (stacking arguments, jumps etc...) it isn't efficient for short functions.
@@ -715,13 +688,10 @@ long exponent ( long a, int b = 2 )
     a *= a;
   return a;
 }
-void _04_07_ParametersDefaultValues ()
+void _08_07_ParametersDefaultValues ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- default values in parameters:
     // optional parameters in C++ functions that doesn't require any arguments in the call shall have default values in the definition,
@@ -744,13 +714,10 @@ void _04_07_ParametersDefaultValues ()
 
 void negative ( int x ); // function prototype
 void positive ( int x ); // the same
-void _04_08_FunctionsDeclaration ()
+void _08_08_FunctionsDeclaration ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- declaring functions:
     // in C++ language, like identifiers, functions can not be used before declaration.
@@ -798,13 +765,10 @@ long exponent ( int a, int b )
   else
     return a;
 }
-void _04_09_Recursivity ()
+void _08_09_Recursivity ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- recursivity:
     // the property with which functions can call themselves.
@@ -826,7 +790,7 @@ void _04_09_Recursivity ()
 }
 
 
-void _05_01_OverloadsAndTemplates ()
+void _09_01_OverloadsAndTemplates ()
 {
   try
   {
@@ -858,13 +822,10 @@ double operation ( double a, double b )
   else
     return b;
 }
-void _05_02_OverloadedFunctions ()
+void _09_02_OverloadedFunctions ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- overloaded functions:
     // in C++, two or more different functions can have the same name if their parameters are different (number, type).
@@ -914,13 +875,10 @@ bool minimum_check ( tParamOne a, tParamTwo b )
 {
   return ( a < b );
 }
-void _05_03_FunctionTemplates ()
+void _09_03_FunctionTemplates ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- function templates:
     // a function (multiply for example) could be overloaded for many types and all of them having the same body or definition.
@@ -983,13 +941,10 @@ tParam fixed_exponent ( tParam val )
     val *= val;
   return val;
 }
-void _05_04_ParticularTypeTemplateArguments ()
+void _09_04_ParticularTypeTemplateArguments ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- particular type template arguments:
     // the template parameter can also include expression of a particular type additionally to types introduced with class and typename.
@@ -1015,7 +970,7 @@ void _05_04_ParticularTypeTemplateArguments ()
 }
 
 
-void _06_01_NameVisibility ()
+void _10_01_NameVisibility ()
 {
   try
   {
@@ -1051,13 +1006,10 @@ int second_function ()
   local_variable = 30;
   return local_variable;
 }
-void _06_02_Scopes ()
+void _10_02_Scopes ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- scopes:
     // global scope: the entity is defined outside all blocks and is visible to them all.
@@ -1121,13 +1073,10 @@ namespace firstNamespace
   int c { 40 };
   int d { 50 };
 }
-void _06_03_Namespaces ()
+void _10_03_Namespaces ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- namespaces:
     // organization of named entities with global scope into narrower namespace scope to avoid name collision
@@ -1166,13 +1115,10 @@ namespace name_space
   int a { 50 };
   double b { 6.6 };
 }
-void _06_04_UsingKeyword ()
+void _10_04_UsingKeyword ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- the using keyword:
     // to introduce a name into the current declarative region (such as a block), to avoid name qualification need.
@@ -1217,13 +1163,10 @@ namespace identifier
 {
   int a { 10 };
 }
-void _06_05_NamespaceAliasing ()
+void _10_05_NamespaceAliasing ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- : namespace aliasing
     // existing namespaces can be aliased with new names
@@ -1256,13 +1199,10 @@ void _06_05_NamespaceAliasing ()
 
 
 int aGlobalVariable; // static storage, is automatic initialized
-void _06_06_StorageClasses ()
+void _10_06_StorageClasses ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- storage classes:
     //-- static storage: variables with global or namespace scope

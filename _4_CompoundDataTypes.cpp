@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,10.05.2019</changed>
+/// <changed>ʆϒʅ,15.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -18,7 +18,7 @@ const char tab { '\t' };
 const char nline { '\n' };
 
 
-void _07_01_Arrays ()
+void _11_01_Arrays ()
 {
   // the functions used in this section are defined above it.
   try
@@ -57,13 +57,10 @@ void print_simple_array ( int arg [], int length )
   }
   std::cout << Nline << Nline;
 }
-void _07_02_InitializingArrays ()
+void _11_02_InitializingArrays ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- initializing arrays:
     // arrays of local scope like variables are uninitialized by default
@@ -104,13 +101,10 @@ void _07_02_InitializingArrays ()
 }
 
 
-void _07_03_AccessingValues ()
+void _11_03_AccessingValues ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- accessing the values of an array:
     // the value of any element in an array can be accessed just like the value of regular variable of the same type.
@@ -184,13 +178,10 @@ void print_simple_array_bidimensional ( int arg [], int length, int depth = 0 )
   }
   std::cout << Nline << Nline;
 }
-void _07_04_MultidimensionalArrays ()
+void _11_04_MultidimensionalArrays ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- multidimensional arrays:
     // arrays with more than one dimension can be described as 'arrays of arrays'.
@@ -236,13 +227,10 @@ void _07_04_MultidimensionalArrays ()
 }
 
 
-void _07_05_ArraysAsParameters ()
+void _11_05_ArraysAsParameters ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- arrays as parameters:
     // C++ language passes the address of an array to a function.
@@ -285,13 +273,10 @@ void print_library_array ( std::array<int, 3> arg )
     std::cout << element << tab;
   std::cout << Nline << Nline;
 }
-void _07_06_LibraryArrays ()
+void _11_06_LibraryArrays ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- library arrays:
     // all the arrays up until now were directly implemented as language features and inherited from C Language.
@@ -335,7 +320,7 @@ void print_simple_array_of_characters ( char arg [], int length )
   }
   std::cout << Nline << Nline;
 }
-void _08_01_CharacterSequences ()
+void _12_01_CharacterSequences ()
 {
   try
   {
@@ -422,7 +407,7 @@ void _08_01_CharacterSequences ()
 }
 
 
-void _09_01_PointersBasics ()
+void _13_01_PointersBasics ()
 {
   try
   {
@@ -522,13 +507,10 @@ void _09_01_PointersBasics ()
 }
 
 
-void _09_02_PointersAndTypes ()
+void _13_02_PointersAndTypes ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- pointers and arrays:
     // the concepts of arrays and pointers are related, and they work very much like each other to their first elements.
@@ -681,13 +663,10 @@ void print_all_ConstantPointersUsed ( const int* start, const int* stop )
   }
   std::cout << Nline << Nline;
 }
-void _09_03_PointersAndLiterals ()
+void _13_03_PointersAndLiterals ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- pointers and constants:
     // to access variables by pointers read-only, it is enough to qualify the type pointed to as constant.
@@ -791,13 +770,10 @@ void increase ( void* data, int p_size )
     ++( *p_int );
   }
 }
-void _09_04_MoreOnPointers ()
+void _13_04_MoreOnPointers ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- pointers to pointers:
     // C++ provides the use of pointers that point to pointers.
@@ -889,13 +865,10 @@ int operation_FunctionCaller ( int x, int y, int ( *FuncToCall ) ( int, int ) )
   g = ( *FuncToCall ) ( x, y );
   return g;
 }
-void _09_05_PointersToFunctions ()
+void _13_05_PointersToFunctions ()
 {
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
     //! ####################################################################
     //! ----- pointers to functions:
     // in C++ operations with pointers to function are allowed, they point to the executable function code,
@@ -924,7 +897,7 @@ void _09_05_PointersToFunctions ()
 }
 
 
-void _10_01_DynamicMemory ()
+void _14_01_DynamicMemory ()
 {
   try
   {
@@ -1075,7 +1048,7 @@ void printMovie ( movies_t movie )
 {
   std::cout << movie.title << " (" << movie.year << ")" << Nline;
 }
-void _11_01_DataStructures ()
+void _15_01_DataStructures ()
 {
   try
   {
@@ -1207,7 +1180,7 @@ void _11_01_DataStructures ()
 }
 
 
-void _12_01_OtherDataTypes ()
+void _16_01_OtherDataTypes ()
 {
   try
   {

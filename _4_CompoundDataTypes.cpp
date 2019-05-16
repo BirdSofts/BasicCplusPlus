@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,15.05.2019</changed>
+/// <changed>ʆϒʅ,17.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -20,7 +20,6 @@ const char nline { '\n' };
 
 void _11_01_Arrays ()
 {
-  // the functions used in this section are defined above it.
   try
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
@@ -64,9 +63,10 @@ void _11_02_InitializingArrays ()
     //! ####################################################################
     //! ----- initializing arrays:
     // arrays of local scope like variables are uninitialized by default
+    // global scope and in namespaces (outside any function) declared arrays are initialized by default.
     // to explicitly initialize an array, the values must be enclosed in curly braces.
     // the number of values must not be grater than the exact number of elements in the array.
-    // if the array is initialized with less, the remaining elements will be set to their default values.
+    // if the array is initialized with less, the remaining elements will be set to its type default value.
     // the default value for fundamental types is zero.
     // empty curly braces are to be used to initial an array with default values.
     // with leaving square braces empty for an initialization-provided array,
@@ -76,11 +76,11 @@ void _11_02_InitializingArrays ()
     ColourCouter ( "----- Initialization of Arrays:\n", F_bBLUE );
     ColourCouter ( "Uninitialized arrays of local scope have undetermined values.\n\n", F_YELLOW );
     int array1 [5]; // uninitialized
-    int array2 [5] = { 0,10,20,30,40 }; // explicitly initialized
-    int array3 [5] = { 0,10,20 }; // remaining elements will be initialized with array's type default value
+    int array2 [5] = { 0,1,2,3,4 }; // explicitly initialized
+    int array3 [5] = { 0,1,2 }; // remaining elements will be initialized with array's type default value
     int array4 [5] = {}; // all elements are initialized with array's type default value
-    int array5 [] = { 0,10,20,30,40 }; // compiler of C++ assumes the size of array automatically
-    int array6 [5] { 0,10,20,30,40 }; // universal initialization
+    int array5 [] = { 0,1,2,3,4 }; // compiler of C++ assumes the size of array automatically
+    int array6 [5] { 0,1,2,3,4 }; // universal initialization
     std::cout << "The elements of an uninitialized array (it can be inserted):" << nline;
     print_simple_array ( array1, 5 );
     std::cout << "The elements of an array with explicit initialization:" << "\t\t";
@@ -126,21 +126,29 @@ void _11_03_AccessingValues ()
     // giving heed to the different uses that brackets [] have concerning arrays is also important. (define and access time)
     // following comes some expansion on valid operations with arrays.
     ColourCouter ( "More on arrays, their indices and some other valid operations:\n", F_bYELLOW );
-    int b_array [5] {}; // first use of brackets: in declaration to specify the size
-    b_array [1] = 22; // second use of brackets: to access an element of the array
+    int b_array [5] { 0 }; // first use of brackets: in declaration to specify the size
+    b_array [1] = -3; // second use of brackets: to access an element of the array
     int a { 3 };
     b_array [0] = a;
     b_array [a] = 33;
     int b { b_array [a + 1] }; // equivalent: int b {0};
     b_array [b_array [a] / 11] = b_array [2] + 5; // equivalent: b_array[3] = 5;
-    std::cout << "The array's elements are (after some valid operation):" << "\t\t";
-    print_simple_array ( b_array, 5 );
-    int result {};
+    std::cout << "The array's elements after some valid operations are:" << nline;
+    std::string str { "" };
+    int sum { 0 };
     for ( int n = 0; n < 5; n++ )
     {
-      result += b_array [n];
+      if ( b_array [n] < 0 )
+        str = "-negative";
+      else
+        if ( b_array [n] == 0 )
+          str = "-zero";
+        else
+          str = "-positive";
+      std::cout << tab << "Element " << n + 1 << ":\t" << b_array [n] << tab << str << nline;
+      sum += b_array [n];
     }
-    std::cout << "Subtraction of all the array's elements are:" << "\t\t\t\t" << result << nline << nline;
+    std::cout << "Subtraction result:" << tab << sum << nline << nline;
   }
   catch ( const std::exception& )
   {

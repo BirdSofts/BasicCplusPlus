@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,17.05.2019</changed>
+/// <changed>ʆϒʅ,18.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -46,13 +46,13 @@ void _11_01_Arrays ()
 }
 
 
-void print_simple_array ( int arg [], int length )
+void print_simple_array ( int array_arg [], int length )
 {
   std::cout << tab;
   for ( int n = 0; n < length; n++ )
   {
-    std::cout << arg [n];
-    if ( arg [n] < 9 ) std::cout << "   "; else std::cout << "  ";
+    std::cout << array_arg [n];
+    if ( array_arg [n] <= 9 ) std::cout << "   "; else std::cout << "  ";
   }
   std::cout << Nline << Nline;
 }
@@ -157,15 +157,15 @@ void _11_03_AccessingValues ()
 }
 
 
-void print_bidimensional_array ( int arg [][5], int width, int height )
+void print_bidimensional_array ( int array_arg [][5], int width, int height )
 {
   std::cout << tab;
   for ( int n = 0; n < width; n++ )
   {
     for ( int m = 0; m < height; m++ )
     {
-      std::cout << arg [n][m];
-      if ( arg [n][m] < 9 ) std::cout << "   "; else std::cout << "  ";
+      std::cout << array_arg [n][m];
+      if ( array_arg [n][m] <= 9 ) std::cout << "   "; else std::cout << "  ";
     }
     std::cout << Nline << tab;
   }
@@ -173,7 +173,7 @@ void print_bidimensional_array ( int arg [][5], int width, int height )
 }
 // depth parameter: to represent a simple array in a table (bidimensional):
 // explanation in multidimensional arrays section
-void print_simple_array_bidimensional ( int arg [], int length, int depth = 0 )
+void print_simple_array_bidimensional ( int array_arg [], int length, int depth = 0 )
 {
   std::cout << tab;
   for ( int n = 0; n < length; n++ )
@@ -181,8 +181,8 @@ void print_simple_array_bidimensional ( int arg [], int length, int depth = 0 )
     if ( depth != 0 )
       if ( ( n != 0 ) && ( n % ( length / depth ) ) == 0 )
         std::cout << nline << tab;
-    std::cout << arg [n];
-    if ( arg [n] < 9 ) std::cout << "   "; else std::cout << "  ";
+    std::cout << array_arg [n];
+    if ( array_arg [n] <= 9 ) std::cout << "   "; else std::cout << "  ";
   }
   std::cout << Nline << Nline;
 }
@@ -250,11 +250,11 @@ void _11_05_ArraysAsParameters ()
     // Note calling format: function_identifier ( array_identifier ) --without brackets
     ColourCouter ( "----- Arrays as parameters:\n", F_bBLUE );
     ColourCouter ( "In C++ the address of an array can be passed to a function.\n\n", F_YELLOW );
-    int first_array [] { 5, 10, 15 };
-    int second_array [] { 2, 4, 6, 8, 10 };
-    std::cout << "Passing two simple arrays as argument to an earlier defined function:" << nline;
-    print_simple_array ( first_array, 3 );
-    print_simple_array ( second_array, 5 );
+    int an_array [] { 1, 2, 3 };
+    int another_array [] { 10, 20, 30, 40, 50 };
+    std::cout << "Passing two simple arrays as argument (earlier defined function):" << nline;
+    print_simple_array ( an_array, 3 );
+    print_simple_array ( another_array, 5 );
 
     //! - in addition:
     // a function can also have a multidimensional array as parameter.
@@ -263,9 +263,9 @@ void _11_05_ArraysAsParameters ()
     // for the compiler to determines the depth of each additional dimension, the size of all dimensions after the first one is necessary. (just first twin brackets stays empty)
     // explanation behind is, that for historical reasons, arrays can't be directly copied, therefore all arrays after passing as arguments lose one dimension, and the actual passed is just a pointer.
     // for this to be really understood, a clear understanding in pointer section helps a lot.
-    int another_array [2][5] { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
-    std::cout << "Passing a bidimensional array as argument of an earlier defined function:" << nline;
-    print_bidimensional_array ( another_array, 2, 5 );
+    int the_array [2][5] { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+    std::cout << "Passing a bidimensional array as argument (earlier defined function):" << nline;
+    print_bidimensional_array ( the_array, 2, 5 );
   }
   catch ( const std::exception& )
   {
@@ -274,10 +274,10 @@ void _11_05_ArraysAsParameters ()
 }
 
 
-void print_library_array ( std::array<int, 3> arg )
+void print_library_array ( std::array<int, 3> array_arg )
 {
   std::cout << tab;
-  for ( int element : arg )
+  for ( int element : array_arg )
     std::cout << element << tab;
   std::cout << Nline << Nline;
 }
@@ -295,16 +295,16 @@ void _11_06_LibraryArrays ()
     // classes and containers will be explained later.
     ColourCouter ( "----- Library arrays:\n", F_bBLUE );
     ColourCouter ( "To introduce an alternative for overcoming the issues with built-in C++ language arrays.\n\n", F_YELLOW );
-    std::cout << "A built in array in practice:" << nline << tab;
-    int built_in_array [] { 10, 20, 30 };
+    std::cout << "A language built in array in practice:" << nline << tab;
+    int built_in_array [] { 10, 110, 1110 };
     for ( int i = 0; i < 3; i++ )
       ++built_in_array [i];
     for ( int element : built_in_array ) // range-based for loop
       std::cout << element << tab;
     std::cout << nline;
     //
-    std::cout << "A library array in practice:" << nline << tab;
-    std::array<int, 3> library_array { 10, 20, 30 };
+    std::cout << "A container library array in practice:" << nline << tab;
+    std::array<int, 3> library_array { 10, 110, 1110 };
     for ( int i = 0; i < library_array.size (); i++ ) // Note the easiness of accessing the size of the library array
       ++library_array [i];
     for ( int element : library_array )

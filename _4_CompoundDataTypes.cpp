@@ -357,19 +357,18 @@ void _12_01_CharacterSequences ()
     ColourCouter ( "----- Initialization of null-terminated character sequences:\n", F_bBLUE );
     ColourCouter ( "Arrays of characters and their different initializations.\n\n", F_YELLOW );
     // normal initialization of a null-terminated character sequence using an array (needs null character at the end)
-    char the_word_hello_1 [] { 'H','e','l','l','o','\0' };
+    char a_word [] { 'W','o','r','d','\0' };
     // initialization of a null-terminated character sequence with a string literal using an array
-    char the_word_hello_2 [] { "How are you?" };
+    char two_words [] { "the word" };
     std::cout << "First array's string (initialized normally):" << nline << tab;
-    print_simple_array_of_characters ( the_word_hello_1, 6 );
+    print_simple_array_of_characters ( a_word, 5 );
     std::cout << "Second array's string (initialized by string literals):" << nline << tab;
-    print_simple_array_of_characters ( the_word_hello_2, 13 );
-    the_word_hello_1 [0] = 'B';
-    the_word_hello_1 [1] = 'y';
-    the_word_hello_1 [2] = 'e';
-    the_word_hello_1 [3] = '\0';
-    std::cout << "New string assigned to each elements of first array is:" << nline << tab;
-    print_simple_array_of_characters ( the_word_hello_1, 4 );
+    print_simple_array_of_characters ( two_words, 9 );
+    a_word [0] = 'H';
+    a_word [1] = 'i';
+    a_word [2] = '\0';
+    std::cout << "New string assigned to some elements of first array is:" << nline << tab;
+    print_simple_array_of_characters ( a_word, 3 );
 
     //! ####################################################################
     //! ----- strings and null-terminated character sequences:
@@ -384,29 +383,31 @@ void _12_01_CharacterSequences ()
     ColourCouter ( "----- Strings and null-terminated character sequences:\n", F_bBLUE );
     ColourCouter ( "In standard library both representations of strings (C-string and library string) coexist.\n\n", F_YELLOW );
     ColourCouter ( "A demonstration that use both representations:\n", F_bYELLOW );
-    char question_1 [] { "What is your name?" };
-    std::string question_2 { "Where do you live?" };
-    char answer_1 [80];
-    std::string answer_2;
-    std::cout << question_1 << nline << tab << "- ";
-    std::cin >> answer_1;
-    std::cout << question_2 << nline << tab << "- ";
-    std::cin >> answer_2;
-    std::cout << nline << "Hello, " << answer_1 << " from " << answer_2 << "!" << nline << nline;
+    char cString_1 [] { "Type your name to get stored to an array (C-string representation):" };
+    std::string libString_1 { "Type your home country name to get stored to a library string variable:" };
+    char cString_2 [100];
+    std::string libString_2;
+    std::cout << cString_1 << nline << tab << "- ";
+    std::cin >> cString_2;
+    std::cout << libString_1 << nline << tab << "- ";
+    std::cin >> libString_2;
+    std::cout << nline << "Howdy, " << cString_2 << " from " << libString_2 << "!" << nline << nline;
 
     //! - in addition:
     // in any case, null- terminated character sequences and strings are easily transformed from and to one another.
     // null-terminated character sequences can be transformed into strings implicitly.
     // transformation of strings into null-terminated character sequences can happen with string's member functions c_str or data and both are equivalent.
     ColourCouter ( "Null-terminated character sequences and strings are easily transformed from or to one another.\n", F_bYELLOW );
-    char a_c_string [] { "some text" };
+    char a_c_string [] { "-.^;^. a String .^;^.-" };
     std::string a_string = a_c_string; // implicit transformation into library string
-    std::cout << "A string in C-string representation:" << "\t\t\t\t\t" << a_c_string << nline;
-    std::cout << "The same string transformed into library string representation:" << "\t\t" << a_string << nline;
-    std::cout << "The same string inserted as C-string representation by using c_str:" << tab;
-    std::cout << a_string.c_str () << nline; // print as a C-string
-    std::cout << "The same string inserted as C-string representation by using data:" << tab;
-    std::cout << a_string.data () << nline << nline; // print as a C-string
+    std::cout << "A string in C-string representation:" << nline;
+    std::cout << tab << "- " << a_c_string << nline;
+    std::cout << "The transformed string into library string representation:" << nline;
+    std::cout << tab << "- " << a_string << nline;
+    std::cout << "Inserting the string as C-string representation (c_str):" << nline;
+    std::cout << tab << "- " << a_string.c_str () << nline; // print as a C-string
+    std::cout << "Inserting the string as C-string representation (data):" << nline;
+    std::cout << tab << "- " << a_string.data () << nline << nline; // print as a C-string
   }
   catch ( const std::exception& )
   {

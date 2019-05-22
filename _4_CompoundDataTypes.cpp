@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,18.05.2019</changed>
+/// <changed>ʆϒʅ,23.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -443,9 +443,8 @@ void _13_01_PointersBasics ()
     // Note reference operator (&) itself can be read as "address of"
     ColourCouter ( "----- Reference operator:\n", F_bBLUE );
     ColourCouter ( "The reference operator (&) can be used to obtain the address of the variable identifier.\n\n", F_YELLOW );
-    int variable { 25 };
+    int variable { 30 };
     int* pointer { &variable }; // declaring and assigning the address of a variable to a pointer
-    int variable2 = variable; // normal assignment
     std::cout << "Stored address of the variable in the pointer is:" << tab << pointer << nline << nline;
 
     //! ####################################################################
@@ -458,8 +457,11 @@ void _13_01_PointersBasics ()
     // an address obtained with ampersand (&) can be dereferenced with asterisk (*)
     ColourCouter ( "----- Dereference Operator (*):\n", F_bBLUE );
     ColourCouter ( "The dereference operator can be used to access the variable directly which the pointers point to.\n\n", F_YELLOW );
-    variable2 = *pointer; // 'variable2' equal to value pointed to by 'pointer'
-    std::cout << "The value pointed to by the pointer and accessed directly by the dereference operator is: " << variable2 << nline << nline;
+    int var_1 { 40 };
+    int* ptr { &var_1 };
+    int var_2 = var_1; // normal assignment
+    var_2 = *ptr; // 'variable2' equal to value pointed to by 'ptr'
+    std::cout << "The value pointed to by pointer and accessed directly by dereference operator is: " << var_2 << nline << nline;
 
     //! ####################################################################
     //! ----- declaring pointers:
@@ -474,40 +476,44 @@ void _13_01_PointersBasics ()
     ColourCouter ( "----- Declaring Pointers:\n", F_bBLUE );
     ColourCouter ( "Different properties of the pointers when they directly refer to the values of variables justify the need to declare them with the needed specified data type.\n\n", F_YELLOW );
 
-    int* number;
-    char* character;
-    double* decimal;
+    int* anInteger;
+    char* aCharacter;
+    double* aDecimalValue;
 
     //! - in addition:
     // an example:
     // setting values to variables indirectly through pointers (using the memory location addresses of variables)
     // a pointer can point to different variables during its life time.
-    int firstValue, secondValue;
-    int* myPointer;
-    myPointer = &firstValue;
-    *myPointer = 10; // assigning a value to the variable pointed by the pointer
-    myPointer = &secondValue;
-    *myPointer = 20; // the same
     ColourCouter ( "Indirectly setting values to variables through pointers.\n", F_bYELLOW );
-    std::cout << "The value of firstValue is:" << tab << firstValue << nline;
-    std::cout << "The value of secondValue is:" << tab << secondValue << nline << nline;
+    std::cout << "Look! a smily:" << tab;
+    char a, b;
+    char* thePointer;
+    thePointer = &a;
+    *thePointer = { '^' }; // assigning a character to the variable pointed by the pointer
+    thePointer = &b;
+    *thePointer = { ';' }; // the same
+    std::cout << a << b << a << nline << nline;
 
     //! - in addition:
     // when declaring multiple pointers, each individual one needs an asterisk (*) in its declaration.
     // spaces aren't matter and it is even better to declare each pointer in a different statement.
     // to get familiar with the way to read each statement, pay attention to their following comments.
     ColourCouter ( "A more elaborated demonstration on setting new values:\n", F_bYELLOW );
-    firstValue = 5; secondValue = 15;
-    std::cout << "First value is:" << "\t\t" << firstValue << nline << "Second value is:" << tab << secondValue << nline << nline;
-    int* p1, * p2; // asterisk (*) for each pointer -due to the precedence rules-
-    p1 = &firstValue;  // address of
-    p2 = &secondValue; // the same
-    *p1 = 10;          // value pointed to by
-    *p2 = *p1;         // the same
-    p1 = p2;           // assignment of pointers values (the addresses)
-    *p1 = 20;          // value pointed to by
-    std::cout << "Indirectly modified values through pointers are:" << nline;
-    std::cout << "First value is:" << "\t\t" << firstValue << nline << "Second value is:" << tab << secondValue << nline << nline;
+    char c { '^' }, d { '_' }, e { '\0' };
+    char* ptr_1, * ptr_2, * ptr_3; // asterisk (*) for each pointer -due to the precedence rules-
+    ptr_1 = &c; // address of
+    ptr_2 = &d; // the same
+    ptr_3 = &e; // "
+    *ptr_3 = c; // value pointed to by
+    *ptr_1 = *ptr_2; // pointed values
+    ptr_2 = ptr_3; // pointer's values (the addresses)
+    d = *ptr_2; // value pointed to by
+    std::cout << "Look! another smily:" << tab;
+    std::string smily { "" };
+    smily += d;
+    smily += c;
+    smily += d;
+    std::cout << smily << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -1139,7 +1145,7 @@ void _15_01_DataStructures ()
     ColourCouter ( "----- Pointers to structures:\n", F_bBLUE );
     ColourCouter ( "Structures can be pointed to by their own type of pointers.\n\n", F_YELLOW );
     movies_t aMovie_t;
-    movies_t * ptrMovie_t;
+    movies_t* ptrMovie_t;
     ptrMovie_t = &aMovie_t;
     std::cout << "Accessing movie structure using pointers:" << nline;
     std::cout << "Enter title: " << tab;

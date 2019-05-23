@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,23.05.2019</changed>
+/// <changed>ʆϒʅ,24.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -522,7 +522,7 @@ void _13_01_PointersBasics ()
 }
 
 
-void _13_02_PointersAndTypes ()
+void _13_02_PointersAndDataTypes ()
 {
   try
   {
@@ -533,7 +533,7 @@ void _13_02_PointersAndTypes ()
     // whereas 'theArray' can never be assigned anything and will always represent the same block of 20 elements of type int.
     ColourCouter ( "----- Pointers and arrays\n", F_bBLUE );
     ColourCouter ( "Concepts of arrays and pointers are related.\n\n", F_YELLOW );
-    int theArray [20];
+    int theArray [10];
     int* thePointer;
     // after the next assignment, the array and the pointer are equivalent with very similar properties.
     // main difference is the possibility of new assignment of a different address to the pointer.
@@ -548,27 +548,33 @@ void _13_02_PointersAndTypes ()
     // therefore they dereference the variable they follow like the operation of asterisk (*) to the variable it precedes,
     // and in addition they add the number between the brackets to the address.
     // for example:
-    //a[5]=0; // a [offset of 5]
-    //*(a+5)=0; // pointed to by (a+5)
+    //a[3]=0; // a [offset of 3]
+    //*(a+3)=0; // pointed to by (a+3)
     // no matter 'a' is an array or a pointer, these two expressions are equivalent and valid.
     // in case of an array, the array identifier refers to first element, just like a pointer.
-    int numbers [10];
-    int* p;
-    p = numbers;
-    *p = 10;
-    p++; *p = 20;
-    p = &numbers [2]; *p = 30;
-    p = numbers + 3; *p = 40;
-    p = numbers; *( p + 4 ) = 50;
-    std::cout << "The values set to the array using pointers are (array way print):" << nline << tab;
-    for ( int i = 0; i < 5; i++ )
+    ColourCouter ( "Filling an array using pointers:\n", F_bYELLOW );
+    char smilies [6];
+    char* ptr;
+    ptr = smilies;
+    *ptr = '^';
+    ptr++; *ptr = '_';
+    ptr = &smilies [2]; *ptr = '^';
+    ptr = smilies + 3; *ptr = '^';
+    ptr = smilies; *( ptr + 4 ) = '.';
+    *( ptr + 5 ) = '^';
+    std::cout << "The filled array (array way print):" << nline << tab;
+    for ( int i = 0; i < 6; i++ )
     {
-      std::cout << numbers [i] << tab; // array way
+      std::cout << smilies [i]; // array way
+      if ( i == 2 )
+        std::cout << tab;
     }
-    std::cout << nline << "The values set to the array using pointers are (pointer way print):" << nline << tab;
-    for ( int i = 0; i < 5; i++ )
+    std::cout << nline << "The filled array (pointer way print):" << nline << tab;
+    for ( int i = 0; i < 6; i++ )
     {
-      std::cout << *( p + i ) << tab; // pointer way
+      std::cout << *( ptr + i ); // pointer way
+      if ( i == 2 )
+        std::cout << tab;
     }
     std::cout << nline << nline;
 
@@ -579,18 +585,18 @@ void _13_02_PointersAndTypes ()
     // pointers can be initialized not only to the address of a variable, but also to the value of another pointer or array.
     ColourCouter ( "----- Pointer Initialization:\n", F_bBLUE );
     ColourCouter ( "Like variables initialization of pointers can be done at the moment of declaration.\n\n", F_YELLOW );
-    int myVar { 0 };            // a variable
-    int* myPtr1 = &myVar; // point to address of variable
-    int myArr [31] { 0 };     // an array
-    int* myPtr2 = myPtr1; // point to the value of a pointer
-    int* myPtr3 = myArr;  // point to an array
-    std::cout << "First pointer's value and pointed value (points to a variable) are:" << nline << tab << myPtr1 << tab << *myPtr1 << nline;
-    std::cout << "Second pointer's value and pointed value (points to first pointer) are:" << nline << tab << myPtr2 << tab << *myPtr2 << nline;
-    std::cout << "First pointer's value and pointed value (points to an array) are:" << nline << tab << myPtr3 << tab << *myPtr3 << nline << nline;
+    int aVariable { 10 }; // a variable
+    int* firstPointer { &aVariable }; // point to address of variable
+    int anArray [3] { 20 }; // an array
+    int* secondPointer { firstPointer }; // point to the value of a pointer
+    int* thirdPointer { anArray }; // point to an array
+    std::cout << "First pointer's value and pointed value (initialized using a variable) are:" << nline << tab << firstPointer << tab << *firstPointer << nline;
+    std::cout << "Second pointer's value and pointed value (initialized using first pointer) are:" << nline << tab << secondPointer << tab << *secondPointer << nline;
+    std::cout << "First pointer's value and pointed value (initialized using an array) are:" << nline << tab << thirdPointer << tab << *thirdPointer << nline << nline;
 
     //! ####################################################################
     //! ----- pointer arithmetics:
-    // when conduction arithmetical operations on pointers, there are these differences to pay attention to:
+    // when conducting arithmetical operations on pointers, there are these differences to pay attention to:
     // first of all only addition and subtraction operations are allowed.
     // even these two allowed operations have slightly different behaviours, since types have different sizes,
     // and this size is going to be added or subtracted to the stored address value in pointers.
@@ -599,21 +605,21 @@ void _13_02_PointersAndTypes ()
     ColourCouter ( "Arithmetical operations on pointers result in different behaviours and outputs than regular integer types.\n\n", F_YELLOW );
     char Char { 'A' };
     char* ptrChar { &Char };
-    short Short { 4454 };
+    short Short { 222 };
     short* ptrShort { &Short };
-    long Long { 44544454 };
+    long Long { 333333 };
     long* ptrLong { &Long };
     std::cout << "The address values and the values pointed to before the addition:" << nline;
-    std::cout << "myChar is:" << tab << ptrChar << tab << *ptrChar << nline;
-    std::cout << "myShort is:" << tab << ptrShort << "\t\t\t\t" << *ptrShort << nline;
-    std::cout << "myLong is:" << tab << ptrLong << "\t\t\t\t" << *ptrLong << nline;
+    std::cout << "ptrChar is:" << tab << ptrChar << tab << *ptrChar << nline;
+    std::cout << "ptrShort is:" << tab << ptrShort << "\t\t\t\t" << *ptrShort << nline;
+    std::cout << "ptrLong is:" << tab << ptrLong << "\t\t\t\t" << *ptrLong << nline;
     ++ptrChar;
     ++ptrShort;
     ++ptrLong;
     std::cout << "The address values and the values pointed to after the addition:" << nline;
-    std::cout << "myChar is:" << tab << ptrChar << tab << *ptrChar << nline;
-    std::cout << "myShort is:" << tab << ptrShort << "\t\t\t\t" << *ptrShort << nline;
-    std::cout << "myLong is:" << tab << ptrLong << "\t\t\t\t" << *ptrLong << nline << nline;
+    std::cout << "ptrChar is:" << tab << ptrChar << tab << *ptrChar << nline;
+    std::cout << "ptrShort is:" << tab << ptrShort << "\t\t\t\t" << *ptrShort << nline;
+    std::cout << "ptrLong is:" << tab << ptrLong << "\t\t\t\t" << *ptrLong << nline << nline;
 
     // combinations: dereference operator with both prefix or postfix versions of increment or decrement operators
     // increment/decrement operator: higher priority (left-to-right)
@@ -621,35 +627,35 @@ void _13_02_PointersAndTypes ()
     // as always parenthesis reduce confusion and add legibility to expressions.
     // postfix: *p++ = *q++;   is roughly equivalent to:   *p = *q; ++p; ++q;
     ColourCouter ( "Four possible combinations of dereference operator with both prefix or postfix versions of increment or decrement operators:\n", F_bYELLOW );
-    int ptrVar { 4454 };
-    int* ptr;
+    int variable { 0 };
+    int* pointer;
     int temp;
-    std::cout << "The stored value in the variable is:" << tab << ptrVar << nline;
-    ColourCouter ( "The temp variable is storage of each operation, so it could be shown.\n\n", F_bCYAN );
-    ptr = &ptrVar;
-    std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
-    temp = *ptr++;   // same as *(ptr++): increment pointer, and dereference un-incremented address
-    std::cout << "ptr after incrementation *ptr++ is:" << tab << ptr << nline;
-    std::cout << "result of incrementation *ptr++ is:" << tab << temp << nline << nline;
+    std::cout << "The stored value in the variable is:" << "\t\t" << variable << nline;
+    ColourCouter ( "The temp variable is the additional storage for each operation, so the results could be shown.\n\n", F_bCYAN );
+    pointer = &variable;
+    std::cout << "pointer value is:" << "\t\t\t\t" << pointer << nline;
+    temp = *pointer++; // same as *(pointer ++): increment pointer, and dereference un-incremented address
+    std::cout << "pointer after operation *pointer++ is:" << "\t\t" << pointer << nline;
+    std::cout << "result of operation *pointer++ is:" << "\t\t" << temp << nline << nline;
     //
-    ptr = &ptrVar;
-    std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
-    temp = *++ptr;   // same as *(++p): increment pointer, and dereference incremented address
-    std::cout << "ptr after incrementation *++ptr is:" << tab << ptr << nline;
-    std::cout << "result of incrementation *++ptr is:" << tab << temp << nline << nline;
+    pointer = &variable;
+    std::cout << "pointer value is:" << "\t\t\t\t" << pointer << nline;
+    temp = *++pointer; // same as *(++pointer): increment pointer, and dereference incremented address
+    std::cout << "pointer after operation *++pointer is:" << "\t\t" << pointer << nline;
+    std::cout << "result of operation *++pointer is:" << "\t\t" << temp << nline << nline;
     //
-    ptr = &ptrVar;
-    std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
-    temp = ++ * ptr;   // same as ++(*p): dereference pointer, and increment the value it points to
-    std::cout << "ptr after incrementation ++*ptr is:" << tab << ptr << nline;
-    std::cout << "result of incrementation ++*ptr is:" << tab << temp << nline << nline;
+    pointer = &variable;
+    std::cout << "pointer value is:" << "\t\t\t\t" << pointer << nline;
+    temp = ++ * pointer; // same as ++(*pointer): dereference pointer, and increment the value it points to
+    std::cout << "pointer after operation ++*pointer is:" << "\t\t" << pointer << nline;
+    std::cout << "result of operation ++*pointer is:" << "\t\t" << temp << nline << nline;
     //
-    ptr = &ptrVar;
-    std::cout << "ptr value is:" << "\t\t\t\t" << ptr << nline;
-    temp = ( *ptr )++; // dereference pointer, and post-increment the value it points to.
-                     // without parenthesis the incrementation happens to the pointer itself too.
-    std::cout << "ptr after incrementation (*ptr)++ is:" << tab << ptr << nline;
-    std::cout << "result of incrementation (*ptr)++ is:" << tab << temp << nline << nline;
+    pointer = &variable;
+    std::cout << "pointer value is:" << "\t\t\t\t" << pointer << nline;
+    temp = ( *pointer )++; // dereference pointer, and post-increment the value it points to.
+                           // without parenthesis the incrementation happens to the pointer itself too.
+    std::cout << "pointer after operation (*pointer)++ is:" << tab << pointer << nline;
+    std::cout << "result of operation (*pointer)++ is:" << "\t\t" << temp << nline << nline;
 
   }
   catch ( const std::exception& )

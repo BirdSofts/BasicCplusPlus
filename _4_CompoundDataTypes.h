@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.h
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,15.05.2019</changed>
+/// <changed>ʆϒʅ,24.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -23,7 +23,7 @@ void _11_06_LibraryArrays ();
 void _12_01_CharacterSequences ();
 
 void _13_01_PointersBasics ();
-void _13_02_PointersAndTypes ();
+void _13_02_PointersAndDataTypes ();
 void _13_03_PointersAndLiterals ();
 void _13_04_MoreOnPointers ();
 void _13_05_PointersToFunctions ();

@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,24.05.2019</changed>
+/// <changed>ʆϒʅ,25.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -665,22 +665,35 @@ void _13_02_PointersAndDataTypes ()
 }
 
 
-void increment_all_PointersUsed ( int* start, int* stop )
+void flag_prime_numbers ( const int* begin, const int* end, bool* flag )
 {
-  int* current = start;
-  while ( current != stop )
+  const int* element = begin;
+  while ( element != end )
   {
-    ++( *current );
-    ++current;
+    if ( *element % 2 == 0 )
+      * flag = true;
+    else
+      if ( *element % 3 == 0 )
+        * flag = true;
+      else
+        if ( *element % 5 == 0 )
+          * flag = true;
+        else
+          if ( *element % 7 == 0 )
+            * flag = true;
+    ++element;
+    ++flag;
   }
 }
-void print_all_ConstantPointersUsed ( const int* start, const int* stop )
+void print_prime_numbers ( const int* begin, const int* end, const bool* flag )
 {
-  const int* current = start;
-  while ( current != stop )
+  const int* element = begin;
+  while ( element != end )
   {
-    std::cout << *current << Tab;
-    ++current;
+    if ( *flag == false )
+      std::cout << *element << Tab;
+    ++element;
+    ++flag;
   }
   std::cout << Nline << Nline;
 }
@@ -694,29 +707,31 @@ void _13_03_PointersAndLiterals ()
     // pointers to non-const are implicitly convertible to pointers to constant, but as a safety feature, the other way around isn't possible.
     ColourCouter ( "----- Pointers and Constants:\n", F_bBLUE );
     ColourCouter ( "To access a variable for just reading purposes, not modifying.\n\n", F_YELLOW );
-    int x;
-    int y { 10 };
-    const int* const_ptr { &y }; // points to a variable but in a constant-qualified manner
+    int a;
+    int b { 5 };
+    const int* const_ptr { &b }; // points to a variable but in a constant-qualified manner
                                  // allowed (non-const type (address of) to constant):
                                  // the type of y is int* and is assigned to a pointer of type constant int*.
-    x = *const_ptr; // ok: reading p
-    //*const_ptr = x; // error: modifying constant-qualified
-    std::cout << "The value accessed by a constant-qualified pointer is:" << tab << x << nline << nline;
+    a = *const_ptr; // ok: reading constant-qualified pointer
+    //*const_ptr = a; // error: modifying constant-qualified pointer
+    std::cout << "The value accessed by a constant-qualified pointer is:" << tab << a << nline << nline;
 
     //! - in addition:
     // one of the use cases: function parameters can include pointers to constant elements to prevent modifications on the passed arguments.
     // to be more clear: pointers that are constant type qualified (point to constant content), can still point to new addresses, but they can not modify the pointed content.
-    ColourCouter ( "Two functions with normal and constant-qualified pointers as parameters:\n", F_bYELLOW );
-    int numbers_array [] { 10,20,30 };
+    ColourCouter ( "Two functions mixing the use of normal and constant-qualified pointers as parameters:\n", F_bYELLOW );
+    const int count { 5 };
+    int the_array [count] { 11,12,13,14,15 };
+    bool bool_array [count] { false };
     std::cout << "The array elements are:" << nline << tab;
-    for ( int i = 0; i < 3; i++ )
+    for ( int i = 0; i < count; i++ )
     {
-      std::cout << numbers_array [i] << tab;
+      std::cout << the_array [i] << tab;
     }
     std::cout << nline << nline;
-    std::cout << "The array elements after execution of the functions are:" << nline << tab;
-    increment_all_PointersUsed ( numbers_array, numbers_array + 3 );
-    print_all_ConstantPointersUsed ( numbers_array, numbers_array + 3 );
+    std::cout << "The prime ones are:" << nline << tab;
+    flag_prime_numbers ( the_array, the_array + count, bool_array );
+    print_prime_numbers ( the_array, the_array + count, bool_array );
 
     //! - in addition:
     // constant pointers:
@@ -726,12 +741,12 @@ void _13_03_PointersAndLiterals ()
     // therefore it needs a grow experience to recognise best suited use cases.
     // a sooner deep understanding of constness, pointers and references is of course better.
     ColourCouter ( "Pointers themselves can also be constant.\n", F_bYELLOW );
-    int x_var { 0 };
+    int x_var { 1 };
     int* ptr1 { &x_var }; // non-const pointer to non-const int
     const int* ptr2 { &x_var }; // non-const pointer to constant int
     int* const ptr3 { &x_var }; // constant pointer to non-const int
     const int* const ptr4 { &x_var }; // constant pointer to constant int
-    std::cout << "The value of variable referenced four times:" << "\t\t" << *ptr1 << tab << *ptr2 << tab << *ptr3 << tab << *ptr4 << nline;
+    std::cout << "The value of variable dereferenced four times:" << "\t\t" << *ptr1 << tab << *ptr2 << tab << *ptr3 << tab << *ptr4 << nline;
 
     //! - in addition:
     // the above syntaxes get even more complex by considering,
@@ -740,32 +755,32 @@ void _13_03_PointersAndLiterals ()
     // on the internet the discussion on the merits of each still goes on intensely.
     const int* ptr5 { &x_var }; //      non-const pointer to constant int
     int const* ptr6 { &x_var }; // also non-const pointer to constant int
-    std::cout << "The value of variable referenced again two times:" << tab << *ptr5 << tab << *ptr6 << nline << nline;
+    std::cout << "The value of variable dereferenced again two times:" << tab << *ptr5 << tab << *ptr6 << nline << nline;
 
 
     //! ####################################################################
     //! ----- pointers and string literals:
     // additional to direct insertion into cout, initialization of strings and arrays of character,
     // string literals can be accessed directly by pointers.
-    // another description: arrays of proper array type to contain all its character plus null-character and each element of type constant char.
+    // another description for string literals: arrays of proper array type to contain all its character plus null-character and each element of type constant char (literals are not modifiable).
     // each element of a character sequence is accessible by a pointer that point to the sequence, exactly like it is accessible using the same array way.
-    // this is because of the before described fact, that arrays and pointers behave essentially the same way in expressions.
+    // the reason: already described fact, that arrays and pointers behave essentially the same way in expressions.
     ColourCouter ( "----- Pointers and string literals:\n", F_bBLUE );
     ColourCouter ( "By using pointers string literals can be accessed directly.\n\n", F_YELLOW );
-    const char* Ptr_StrLit { "Hello!" }; // a pointer pointed to an array of respected literal representation
-    std::cout << "Accessing a character sequence directly in usual array and pointers way:" << nline << tab;
-    for ( int i = 0; i <= 5; i++ )
+    const char* Ptr_StrLit { "Way to go!" }; // a pointer pointed to an array of respected literal representation
+    std::cout << "Accessing a character sequence directly in usual array and pointer way:" << nline << tab;
+    for ( int i = 0; i < 10; i++ )
     {
       std::cout << Ptr_StrLit [i]; // accessing in usual array way
       if ( Ptr_StrLit [i] != '!' )
-        std::cout << '_';
+        std::cout << '.';
     }
     std::cout << "\t\t";
-    for ( int i = 0; i <= 5; i++ )
+    for ( int i = 0; i < 10; i++ )
     {
       std::cout << *( Ptr_StrLit + i ); // accessing in usual pointer way
       if ( *( Ptr_StrLit + i ) != '!' )
-        std::cout << '_';
+        std::cout << '.';
     }
     std::cout << nline << nline;
   }
@@ -802,13 +817,9 @@ void _13_04_MoreOnPointers ()
     // the declaration syntax simply requires an additional asterisk for each level of indirection.
     ColourCouter ( "----- Pointers to pointers:\n", F_bBLUE );
     ColourCouter ( "In C++ pointers are allowed to point to pointers.\n\n", F_YELLOW );
-    int int_var;
-    int* int_ptr;
-    int** int_ptr_ptr; // a pointer to pointer
-                       // useable in three different levels of indirection and each one correspond to a different value.
-    int_var = 89;
-    int_ptr = &int_var;
-    int_ptr_ptr = &int_ptr;
+    int int_var { 89 };
+    int* int_ptr { &int_var };
+    int** int_ptr_ptr { &int_ptr }; // a pointer to pointer, useable in three different levels of indirection and each one correspond to a different value.
     std::cout << "Pointed values in three different levels of indirection are:" << nline << tab;
     std::cout << int_ptr_ptr << tab; // first level, the address of the pointer to pointer
     std::cout << *int_ptr_ptr << tab; // second level, the address of pointed pointer

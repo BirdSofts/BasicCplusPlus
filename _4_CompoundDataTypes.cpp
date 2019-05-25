@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,25.05.2019</changed>
+/// <changed>ʆϒʅ,26.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -791,19 +791,24 @@ void _13_03_PointersAndLiterals ()
 }
 
 
-void increase ( void* data, int p_size )
+void void_parameter ( void* void_ptr, int size )
 {
-  if ( p_size == sizeof ( char ) )
+  if ( size == sizeof ( char ) )
   {
-    char* p_char;
-    p_char = static_cast<char*>( data );
-    ++( *p_char );
+    char* char_ptr;
+    char_ptr = static_cast<char*>( void_ptr );
+    // capital letter switch
+    if ( *char_ptr < 97 )
+      * char_ptr += 32;
+    else
+      *char_ptr -= 32;
   }
-  if ( p_size == sizeof ( int ) )
+  if ( size == sizeof ( int ) )
   {
-    int* p_int;
-    p_int = static_cast<int*>( data );
-    ++( *p_int );
+    int* int_ptr;
+    int_ptr = static_cast<int*>( void_ptr );
+    // square
+    *int_ptr *= *int_ptr;
   }
 }
 void _13_04_MoreOnPointers ()
@@ -838,13 +843,13 @@ void _13_04_MoreOnPointers ()
     // which for non-dynamic data types it is a constant value.
     ColourCouter ( "----- Void pointers:\n", F_bBLUE );
     ColourCouter ( "Void pointers are able to point to values without any infos on their exact types.\n\n", F_YELLOW );
-    char a { 'A' };
-    int b = 24;
-    std::cout << "Values ready to be passed are:" << nline << tab << a << tab << b << nline;
-    increase ( &a, sizeof ( a ) );
-    increase ( &b, sizeof ( b ) );
-    std::cout << "Increased values in the function with a void pointer as parameter are:" << nline;
-    std::cout << tab << a << tab << b << nline << nline;
+    char _char { 'A' };
+    int _int = 24;
+    std::cout << "Values ready to be passed are:" << nline << tab << _char << tab << _int << nline;
+    void_parameter ( &_char, sizeof ( _char ) );
+    void_parameter ( &_int, sizeof ( _int ) );
+    std::cout << "The result values are:" << nline;
+    std::cout << tab << _char << tab << _int << nline << nline;
 
     //! ####################################################################
     //! ----- invalid pointers and null pointers:
@@ -856,24 +861,24 @@ void _13_04_MoreOnPointers ()
     ColourCouter ( "In C++ pointers can point to any address values, no matter their storage state.\n\n", F_YELLOW );
     // the two pointer definitions below, while not pointing to any address with value, aren't cause of any compile error.
     // but dereferencing them is a different story and causes runtime error or undefined behaviours
-    int* pp; // uninitialized pointer (local variable) (no error)
-    int anArray [10];
-    int* qq { &anArray [20] }; // element out of bound (no error)
-    //std::cout << pp << nline; // error: used without initialization
-    std::cout << "The pointed address is (out of bound of the array addresses):" << tab << qq << nline << nline;
+    int* ptr_1; // uninitialized pointer (local variable) (no error)
+    int theArray [2] { 0 };
+    int* ptr_2 { &theArray [4] }; // element out of bound (no error)
+    //std::cout << ptr_1 << nline; // error: used without initialization
+    std::cout << "The pointed address is (out of bound of the array addresses):" << tab << ptr_2 << nline << nline;
 
     //! - in addition:
     // as in past sections somewhat described: null pointers: pointers can NULL, 0 or nullptr to represent that they point to nowhere.
     // null pointers satisfy the need of explicit point to nowhere, and not just an invalid address.
     // all null pointers compare equal to other null pointers.
     // Note as already described: void pointers: point to somewhere without a specific type
-    int* pp2 { 0 };
-    int* qq2 { nullptr };
-    int* rr { NULL }; // quite usual in old codes: using the defined constant NULL to refer to null pointer value
+    int* ptr_a { 0 };
+    int* ptr_b { nullptr };
+    int* ptr_c { NULL }; // quite usual in old codes: using the defined constant NULL to refer to null pointer value
                      // NULL is defined in several headers of the standard library
                      // it is also defined as an alias of some null pointer constant such as 0 or nullptr
     std::cout << "The pointed addresses of defined null pointers are:" << nline;
-    std::cout << tab << pp2 << tab << qq2 << tab << rr << nline << nline;
+    std::cout << tab << ptr_a << tab << ptr_b << tab << ptr_c << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -882,20 +887,18 @@ void _13_04_MoreOnPointers ()
 }
 
 
-int addition_Function ( int a, int b )
+int increment ( int param )
 {
-  return ( a + b );
+  return ++param;
 }
-int subtraction_Function ( int a, int b )
+int decrement ( int param )
 {
-  return ( a - b );
+  return --param;
 }
-int operation_FunctionCaller ( int x, int y, int ( *FuncToCall ) ( int, int ) )
+int operation_FunctionCaller ( int param, int ( *function ) ( int ) )
 {
   // calling the wished function using its stored executable address which is passed as argument
-  int g;
-  g = ( *FuncToCall ) ( x, y );
-  return g;
+  return ( *function ) ( param );
 }
 void _13_05_PointersToFunctions ()
 {
@@ -911,12 +914,13 @@ void _13_05_PointersToFunctions ()
     // parenthesis are needed and alter the higher precedence of function parameters.
     ColourCouter ( "----- Pointers to functions:\n", F_bBLUE );
     ColourCouter ( "Pointers to functions are introduced to call a function or to pass a function as argument to another function.\n\n", F_YELLOW );
-    int a, b, c, d;
-    int ( *minus )( int, int ) = subtraction_Function; // a pointer to function (two parameters and direct initialization)
-    a = subtraction_Function ( 10, 5 ); // calling the function itself
-    b = minus ( 15, 5 ); // calling the pointer to function
-    c = operation_FunctionCaller ( 10, 7, addition_Function ); // passing the function itself
-    d = operation_FunctionCaller ( 34, c, minus ); // passing the pointer to function
+    int a { 10 }, b { 15 }, c { 20 }, d { 25 };
+    std::cout << "The passed values are:" << "\t\t\t\t" << a << ", " << b << ", " << c << ", " << d << nline;
+    int ( *decrease )( int ) = decrement; // a pointer to function (two parameters and direct initialization)
+    a = decrement ( a ); // calling the function itself
+    b = decrease ( b ); // calling the pointer to function
+    c = operation_FunctionCaller ( c, increment ); // passing the function itself
+    d = operation_FunctionCaller ( d, decrease ); // passing the pointer to function
     std::cout << "First result (function itself):" << "\t\t\t" << a << nline;
     std::cout << "Second result (pointer to function):" << "\t\t" << b << nline;
     std::cout << "Third result (passing the function itself):" << tab << c << nline;

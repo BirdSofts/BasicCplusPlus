@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,26.05.2019</changed>
+/// <changed>ʆϒʅ,27.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -797,7 +797,7 @@ void void_parameter ( void* void_ptr, int size )
   {
     char* char_ptr;
     char_ptr = static_cast<char*>( void_ptr );
-    // capital letter switch
+    // uppercase/lowercase switch
     if ( *char_ptr < 97 )
       * char_ptr += 32;
     else
@@ -961,19 +961,19 @@ void _14_01_DynamicMemory ()
     ColourCouter ( "The integrated operator new is to be used to allocate dynamic memory.\n\n", F_YELLOW );
     int* ptr1;
     ptr1 = new int; // allocate memory to contain one single element of type int
-    *ptr1 = 555;
+    *ptr1 = 10;
     std::cout << "The address and value of dynamic allocated memory are:" << nline << tab << ptr1 << tab << *ptr1 << nline;
     // the substantial difference between declaring normal arrays and allocating dynamic memory is,
     // that allocation happens during runtime and the size is any variable value.
     char* ptr2;
-    ptr2 = new char [6]; // allocate a block (an array) of char elements
-    for ( int i = 0; i <= 5; i++ )
+    ptr2 = new char [3]; // allocate a block (an array) of char elements
+    for ( int i = 0; i <= 2; i++ )
     {
       *( ptr2 + i ) = '$'; // accessing in usual pointer way
     }
     std::cout << "The address of first element of the dynamic allocated memory is:" << nline << tab << ptr2 << nline;
     std::cout << "The elements stored in the allocated memory are:" << nline << tab;
-    for ( int i = 0; i <= 5; i++ )
+    for ( int i = 0; i <= 2; i++ )
     {
       std::cout << ptr2 [i] << tab; // accessing in usual array way
     } std::cout << nline << nline;
@@ -997,14 +997,18 @@ void _14_01_DynamicMemory ()
     // since it implies explicit check on pointer value after each and every allocation,
     // thus, unless it is a critical allocation, the exception mechanism is preferred.
     int* ptr3;
-    ptr3 = new ( std::nothrow ) int [5] { 0 };
+    ptr3 = new ( std::nothrow ) int [3];
     if ( ptr3 == nullptr )
       std::cout << "Error assigning memory!" << nline;
     else
     {
+      for ( int i = 0; i <= 2; i++ )
+        ptr3 [i] = 5; // accessing in usual array way
       std::cout << "The address of first element of the dynamic allocated memory is:" << nline << tab << ptr3 << nline;
       std::cout << "The elements stored in the allocated memory are:" << nline << tab;
-      for ( int i = 0; i <= 4; i++ ) { std::cout << ptr3 [i] << tab; } std::cout << nline << nline;
+      for ( int i = 0; i <= 2; i++ )
+        std::cout << ptr3 + i << tab; // accessing in usual pointer way
+      std::cout << nline << nline;
     }
 
     //! ####################################################################
@@ -1024,38 +1028,47 @@ void _14_01_DynamicMemory ()
     // not only by catching the proper exception, but also controlling the user input and checking the pointer value.
     ColourCouter ( "----- Operators delete and delete[]:\n", F_bBLUE );
     ColourCouter ( "The integrated operator delete is to be used to free the allocated dynamic memory.\n\n", F_YELLOW );
-    std::string _inStr;
-    int _number, _index;
-    int* _pointer;
-    std::cout << "How many numbers would you like to type?" << tab;
-    std::getline ( std::cin, _inStr );
-    std::stringstream ( _inStr ) >> _number;
-    while ( _number > 10 )
+    std::string inStr { "" };
+    int number { 0 }, counter { 0 };
+    int* pointer;
+    std::cout << "Enter Numbers (enter 'bye' to exit):" << tab;
+    std::getline ( std::cin, inStr );
+    while ( inStr != "bye" )
     {
-      std::cout << "Come on! You don't want to enter so many numbers! Think and try again. :)" << tab;
-      std::getline ( std::cin, _inStr );
-      std::stringstream ( _inStr ) >> _number;
-    }
-    if ( _number > 5 )
-      std::cout << "Really? You do want to enter so many numbers? :| OK!" << nline;
-    _pointer = new( std::nothrow ) int [_number]; // entered by the user and not a constant
-    if ( _pointer == nullptr )
-      std::cout << nline << "Error: memory couldn't be allocated!" << nline;
-    else
-    {
-      std::cout << nline;
-      for ( _index = 0; _index < _number; _index++ )
+      std::stringstream ( inStr ) >> number;
+      if ( ( number / 2 ) > 500 )
+        counter = 20;
+      else
+        counter = 15;
+      pointer = new( std::nothrow ) int [counter]; // reckoned form user entered value so not a constant
+      if ( pointer == nullptr )
+        std::cout << nline << "Error: memory couldn't be allocated!" << nline;
+      else
       {
-        std::cout << "Enter number:" << tab;
-        //std::cin >> _pointer [_index]; // pointer way: *(_pointer + _index)
-        std::getline ( std::cin, _inStr );
-        std::stringstream ( _inStr ) >> _pointer [_index]; // pointer way: *(_pointer + _index)
+        int j { 0 };
+        for ( int i = 1; i <= number; i++ )
+        {
+          if ( number % i == 0 )
+          {
+            pointer [j] = i;
+            j++;
+          }
+          if ( j == counter )
+            break;
+        }
+        if ( ( j < counter ) && ( number != 1 ) )
+          pointer [j] = number;
+        std::cout << "Some of the divisors are:" << nline << tab;
+        for ( int i = 0; i < j; i++ )
+        {
+          std::cout << pointer [i]; // pointer way: *(_pointer + i)
+          if ( ( i + 1 ) != j )
+            std::cout << ", ";
+        }
+        std::cout << nline << nline << "Enter another number (enter 'bye' to exit):" << tab;
+        std::getline ( std::cin, inStr );
       }
-      std::cout << nline << "You have entered:" << nline << tab;
-      for ( _index = 0; _index < _number; _index++ )
-        std::cout << _pointer [_index] << tab; // pointer way: *(_pointer + _index)
-      std::cout << nline << nline;
-      delete [] _pointer;
+      delete [] pointer;
     }
 
     //! - in addition:

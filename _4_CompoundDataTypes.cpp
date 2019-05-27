@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,27.05.2019</changed>
+/// <changed>ʆϒʅ,28.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1031,7 +1031,7 @@ void _14_01_DynamicMemory ()
     std::string inStr { "" };
     int number { 0 }, counter { 0 };
     int* pointer;
-    std::cout << "Enter Numbers (enter 'bye' to exit):" << tab;
+    std::cout << "Enter a number (enter 'bye' to exit):" << tab;
     std::getline ( std::cin, inStr );
     while ( inStr != "bye" )
     {
@@ -1088,15 +1088,21 @@ void _14_01_DynamicMemory ()
 }
 
 
-struct movies_t
+struct phone
 {
-  std::string title;
+  std::string model;
   int year;
 } mine; // optional field object_names in practice
-void printMovie ( movies_t movie )
+void print ( phone info )
 {
-  std::cout << movie.title << " (" << movie.year << ")" << Nline;
+  std::cout << tab << "- " << info.model << " bought in year (" << info.year << ")" << Nline;
 }
+struct smily
+{
+  char signs [4] { ';', '.', '_', '^' };
+  std::string title [3] { "moustache", "mouth", "lips" };
+  int index { 0 };
+};
 void _15_01_DataStructures ()
 {
   try
@@ -1127,36 +1133,33 @@ void _15_01_DataStructures ()
     // objects declared of them as whole and to the object members individually using the same identifier.
     ColourCouter ( "~~~~~ Data structures:\n", F_bBLUE );
     ColourCouter ( "To introduce grouped data elements with different types and different lengths under one name.\n\n", F_YELLOW );
-    movies_t yours; // after declaration used just like any other type
+    phone yours; // after declaration used just like any other type
     std::string strTemp;
-    mine.title = "2001 A Space Odyssey";
-    mine.year = 1968;
-    std::cout << "Enter the title of your favourite movie: ";
-    std::getline ( std::cin, yours.title );
-    std::cout << "Enter its release year: ";
+    mine.model = "LG M700 Q6";
+    mine.year = 2018;
+    std::cout << "Enter the model of your smartphone:" << tab;
+    std::getline ( std::cin, yours.model );
+    std::cout << "In which year you have bought it?" << tab;
     std::getline ( std::cin, strTemp );
     std::stringstream ( strTemp ) >> yours.year;
-    std::cout << nline << "My favourite movie is:" << nline << tab;
-    printMovie ( mine );
-    std::cout << "And yours is:" << nline << tab;
-    printMovie ( yours );
+    std::cout << nline << "My smartphone model is:" << nline;
+    print ( mine );
+    std::cout << "Your smartphone model is:" << nline;
+    print ( yours );
     std::cout << nline;
 
     //! - in addition:
     // using structures as type of arrays to construct tables or databases.
-    std::cout << "An array with data structure as its type:" << nline;
-    movies_t films [3];
+    ColourCouter ( "An array with data structure as its type:\n", F_bYELLOW );
+    smily some [3];
+    for ( int i = 0; i < 3; i++ )
+      some [i].index = i;
+    std::cout << "These smilies are built:" << nline;
     for ( int i = 0; i < 3; i++ )
     {
-      std::cout << "Enter title: " << tab;
-      std::getline ( std::cin, films [i].title );
-      std::cout << "Enter year: " << tab;
-      std::getline ( std::cin, strTemp );
-      std::stringstream ( strTemp ) >> films [i].year;
+      std::cout << tab << some [i].signs [3] << some [i].signs [i] << some [i].signs [3] << tab;
+      std::cout << some [i].title [i] << nline;
     }
-    std::cout << nline << "You have entered these movies:" << nline;
-    for ( int i = 0; i < 3; i++ )
-      printMovie ( films [i] );
     std::cout << nline;
 
     //! ####################################################################
@@ -1174,52 +1177,54 @@ void _15_01_DataStructures ()
     // --------------------------------------------------------------------------------
     // *a.b         value pointed to by member b (a pointer) of object a    *(a.b)
     // --------------------------------------------------------------------------------
-    // Note in case *a.b equivalent to *(a.b) the object member is a pointer type,
+    // Note in case *a.b, equivalent to *(a.b), the object member is a pointer type,
     // if not, the evaluation results in accessing a hypothetical pointer member called 'b', which isn't the case.
     ColourCouter ( "----- Pointers to structures:\n", F_bBLUE );
     ColourCouter ( "Structures can be pointed to by their own type of pointers.\n\n", F_YELLOW );
-    movies_t aMovie_t;
-    movies_t* ptrMovie_t;
-    ptrMovie_t = &aMovie_t;
-    std::cout << "Accessing movie structure using pointers:" << nline;
-    std::cout << "Enter title: " << tab;
-    std::getline ( std::cin, ptrMovie_t->title ); // for all purposes, equivalent to: (*ptrMovie_t).title
-    std::cout << "Enter year: " << tab;
-    std::getline ( std::cin, strTemp );
-    std::stringstream ( strTemp ) >> ptrMovie_t->year;
-    std::cout << nline << "You have entered:" << tab;
-    std::cout << ptrMovie_t->title << " (" << ptrMovie_t->year << " )" << nline << nline;
+    std::string temp { "" };
+    phone aPhone;
+    phone* ptrPhone;
+    ptrPhone = &aPhone;
+    std::cout << "Accessing phone structure using pointers:" << nline;
+    std::cout << "Enter your smartphone model:" << tab;
+    std::getline ( std::cin, ptrPhone->model ); // for all purposes, equivalent to: (*ptrMovie_t).title
+    std::cout << "Enter the bought year:" << tab;
+    std::getline ( std::cin, temp );
+    std::stringstream ( temp ) >> ptrPhone->year;
+    std::cout << nline << "You have entered:" << nline;
+    print ( aPhone );
+    std::cout << nline;
 
     //! ####################################################################
     //! ----- nesting structures:
     // elements of a structure can also be of structure type, the result is then a nested structure.
     ColourCouter ( "----- Nesting structures:\n", F_bBLUE );
     ColourCouter ( "To introduce elements in a structure that themselves are also structures.\n\n", F_YELLOW );
-    struct friends_t
+    struct owner
     {
       std::string name;
       std::string email;
-      movies_t favorite_movie;
+      phone _phone;
     } maria, charlie;
-    friends_t* ptrFriend_t = &charlie;
+    owner* ptrOwner = &charlie;
     maria.name = "Marie";
     maria.email = "maria@gmail.com";
-    maria.favorite_movie.title = "The Matrix";
-    maria.favorite_movie.year = 1999;
+    maria._phone.model = "IPhone 6";
+    maria._phone.year = 2016;
     charlie.name = "Charlie";
-    ptrFriend_t->email = "charlie@gmail.com";
-    charlie.favorite_movie.title = "Blade Runner";
-    charlie.favorite_movie.year = 1982; // equivalent to next expression
-    ptrFriend_t->favorite_movie.year = 1982; // equivalent to next expression
-    ( *ptrFriend_t ).favorite_movie.year = 1982;
+    ptrOwner->email = "charlie@gmail.com";
+    charlie._phone.model = "Samsung Galaxy";
+    charlie._phone.year = 2015; // equivalent to next expression
+    ptrOwner->_phone.year = 2015; // equivalent to next expression
+    ( *ptrOwner )._phone.year = 2015;
     ColourCouter ( "A demonstration of a nested structure:\n", F_bYELLOW );
-    std::cout << "Maria and Charlie's favourite movies are:" << nline;
+    std::cout << "Maria and Charlie's smartphones model are:" << nline;
     std::cout << maria.name << nline;
-    std::cout << tab << maria.email << nline << tab;
-    printMovie ( maria.favorite_movie );
+    std::cout << maria.email << nline;
+    print ( maria._phone );
     std::cout << charlie.name << nline;
-    std::cout << tab << ptrFriend_t->email << nline << tab;
-    printMovie ( ( *ptrFriend_t ).favorite_movie );
+    std::cout << ptrOwner->email << nline;
+    print ( ( *ptrOwner )._phone );
     std::cout << nline;
   }
   catch ( const std::exception& )

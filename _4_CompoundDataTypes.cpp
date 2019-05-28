@@ -3,7 +3,7 @@
 /// _4_CompoundDataTypes.cpp
 /// </summary>
 /// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,28.05.2019</changed>
+/// <changed>ʆϒʅ,29.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1205,24 +1205,24 @@ void _15_01_DataStructures ()
       std::string name;
       std::string email;
       phone _phone;
-    } maria, charlie;
-    owner* ptrOwner = &charlie;
-    maria.name = "Marie";
-    maria.email = "maria@gmail.com";
-    maria._phone.model = "IPhone 6";
-    maria._phone.year = 2016;
-    charlie.name = "Charlie";
-    ptrOwner->email = "charlie@gmail.com";
-    charlie._phone.model = "Samsung Galaxy";
-    charlie._phone.year = 2015; // equivalent to next expression
+    } anna, john;
+    owner* ptrOwner = &john;
+    anna.name = "Anna";
+    anna.email = "anna@gmail.com";
+    anna._phone.model = "IPhone 6";
+    anna._phone.year = 2016;
+    john.name = "John";
+    ptrOwner->email = "john@gmail.com";
+    john._phone.model = "Samsung Galaxy";
+    john._phone.year = 2015; // equivalent to next expression
     ptrOwner->_phone.year = 2015; // equivalent to next expression
     ( *ptrOwner )._phone.year = 2015;
     ColourCouter ( "A demonstration of a nested structure:\n", F_bYELLOW );
-    std::cout << "Maria and Charlie's smartphones model are:" << nline;
-    std::cout << maria.name << nline;
-    std::cout << maria.email << nline;
-    print ( maria._phone );
-    std::cout << charlie.name << nline;
+    std::cout << "Anna and John's smartphones model are:" << nline;
+    std::cout << anna.name << nline;
+    std::cout << anna.email << nline;
+    print ( anna._phone );
+    std::cout << john.name << nline;
     std::cout << ptrOwner->email << nline;
     print ( ( *ptrOwner )._phone );
     std::cout << nline;
@@ -1263,18 +1263,18 @@ void _16_01_OtherDataTypes ()
     // another purpose is to reduce the length of long or confusing type names.
     ColourCouter ( "----- Type aliases (typedef / using):\n", F_bBLUE );
     ColourCouter ( "To introduce different identifiers as alias for any valid type.\n\n", F_YELLOW );
-    typedef char C; // obvious
-    typedef unsigned int WORD; // WORD is alias for unsigned int
-    typedef char* pChar; // pChar is alias for char*
-    typedef char field [50]; // Note field is alias for char [50]
-    C myChar { 'A' }, anotherChar { 'B' }, * pTc1 { &myChar };
-    WORD myWord { 111 };
-    pChar ptc2 { &anotherChar };
-    field name { "Mehrdad" };
-    using C2 = char;
-    using WORD2 = unsigned int;
-    using pChar2 = char*;
-    using field2 = char [50];
+    typedef int I; // obvious
+    typedef unsigned char COUNTER; // COUNTER is alias for unsigned char
+    typedef char* ptrChar; // ptrChar is alias for char*
+    typedef char name [30]; // Note name is alias for char [20]
+    I theInteger { 10 }, aInteger { 20 }, * ptrInt1 { &theInteger };
+    COUNTER theCounter { 50 };
+    I* ptrInt2 { &aInteger };
+    name myName { "Mehrdad" };
+    using L = long;
+    using Decimal = double;
+    using ptrInt = int*;
+    using surname = char [40];
 
     //! ####################################################################
     //! ----- unions:
@@ -1293,13 +1293,13 @@ void _16_01_OtherDataTypes ()
     // therefore no member of an union has an independent space for storing different values.
     ColourCouter ( "----- Unions:\n", F_bBLUE );
     ColourCouter ( "To share one portion of memory between members with different date types.\n\n", F_YELLOW );
-    union myTypes_t
+    union theTypes
     {
-      char c;
-      int i;
-      float f;
-    } myTypes;
-    myTypes.c = 'A';
+      char character;
+      long number;
+      double floating;
+    } first;
+    first.character = 'A';
 
     //! - in addition:
     // one interesting purpose of unions is to access a value both ways,
@@ -1308,23 +1308,23 @@ void _16_01_OtherDataTypes ()
     // Note this feature is likely to create portability issues,
     // since the exact alignment and order of union members in memory is system dependent.
     std::cout << "Accessing an union in its entirety, as structure and as array:" << nline;
-    union mix_t
-    {                               // assumptions (as already explained fundamental type sizes are system dependent):
-      int int_allBytes;           // 4 byte (entirety access)
+    union mixed_types
+    { // assumptions (as already explained fundamental type sizes are system dependent):
+      int allBytes; // 4 byte (entirety access)
       struct
       {
-        short short_highBytes;  // 2 byte (access in structure form)
-        short short_lowBytes;   // 2 byte
-      } struct_highLow;
-      char char_Bytes [4];        // 4*1 byte (access in array form)
+        short highBytes; // 2 byte (access in structure form)
+        short lowBytes; // 2 byte
+      } highLow;
+      char Byte [4]; // 4*1 byte (access in array form)
     } mix;
-    mix.int_allBytes = 0x11111111;
-    std::cout << "In entirety:" << "\t\t\t" << mix.int_allBytes << nline;
-    std::cout << "Low and high bytes (structure):" << tab << mix.struct_highLow.short_highBytes << tab << mix.struct_highLow.short_lowBytes << nline;
+    mix.allBytes = 0x22222222;
+    std::cout << "In entirety:" << "\t\t\t" << mix.allBytes << nline;
+    std::cout << "Low and high bytes (structure):" << tab << mix.highLow.highBytes << tab << mix.highLow.lowBytes << nline;
     std::cout << "Byte by Byte (array):" << "\t\t";
     for ( unsigned char i = 0; i < 4; i++ )
     {
-      std::cout << mix.char_Bytes [i] << tab;
+      std::cout << mix.Byte [i] << tab;
     }
     std::cout << nline << nline;
 
@@ -1335,25 +1335,25 @@ void _16_01_OtherDataTypes ()
     // as already explained, an union share a space between its members.
     ColourCouter ( "----- Anonymous unions:\n", F_bBLUE );
     ColourCouter ( "By declaring an union without any name in a class or structure, they become anonymous unions.\n\n", F_YELLOW );
-    struct book_t
+    struct person
     {
-      char title [50];
-      char author [50];
+      char name [50];
+      char email [50];
       union
       {
-        float dollar;
-        int yen;
-      } price; // a normal union
+        short day;
+        short month;
+      } birthday; // a normal union
       union
       {
-        float dollar;
-        int yen;
+        short day;
+        short month;
       }; // an anonymous union
-    } book;
-    book.price.dollar = 3.4;
-    book.dollar = 3.4;
-    std::cout << "The value is (normal union):" << tab << book.price.dollar << nline;
-    std::cout << "The value is (anonymous union):" << tab << book.dollar << nline << nline;
+    } mine;
+    mine.birthday.day = 3;
+    mine.day = 3;
+    std::cout << "The value is (normal union):" << tab << mine.birthday.day << nline;
+    std::cout << "The value is (anonymous union):" << tab << mine.day << nline << nline;
 
     //! ####################################################################
     //! ----- enumerated types (enum):
@@ -1369,12 +1369,12 @@ void _16_01_OtherDataTypes ()
     // the field object_names can be used to directly instantiate objects (variables) of this type
     ColourCouter ( "----- Enumerated types (enum):\n", F_bBLUE );
     ColourCouter ( "To introduce a set of custom identifiers, known as enumerators, as possible values.\n\n", F_YELLOW );
-    enum colours_t { black, blue, green, cyan, red, purple, yellow, white }; // a total new data type
-    colours_t myColour;
-    myColour = blue;
-    if ( myColour = green )
-      myColour = red;
-    std::cout << "The value of 'myColour' variable is:" << nline << tab << myColour << nline;
+    enum seasons_t { spring, summer, autumn, winter }; // a total new data type
+    seasons_t theSeason;
+    theSeason = spring;
+    if ( theSeason == spring )
+      theSeason = summer;
+    std::cout << "The value of 'theSeason' variable is:" << nline << tab << theSeason << nline;
 
     //! - in addition:
     // enumerators of an enumerated type declared with enum are always assigned integer values internally,
@@ -1382,15 +1382,14 @@ void _16_01_OtherDataTypes ()
     // if not explicitly specified, the first enumerator's internal integer value is zero (0).
     // the following values then get plus one, each one after another.
     // it is also possible to assign arbitrary integer values to enumerators.
-    enum months_t
+    enum week_t
     {
-      January = 1, February, March, April,
-      May, June, July, August,
-      September, October, November, December
-    } y2k;
-    y2k = January;
-    int val { y2k };
-    std::cout << "The values of variables are:" << nline << tab << y2k << tab << val << nline << nline;
+      Monday = 1, Thursday, Wednesday, Tuesday,
+      Friday, Saturday, Sunday
+    } _week;
+    _week = Sunday;
+    int val { _week };
+    std::cout << "The values of variables are:" << nline << tab << _week << tab << val << nline << nline;
 
     //! ####################################################################
     //! ----- enumerated types with enum class:
@@ -1399,6 +1398,16 @@ void _16_01_OtherDataTypes ()
     // therefore lacking enumerator values of type int, the conversion to int isn't possible.
     // each enumerator value of an enum class is accessible only with scoping into its type,
     // this way of access is also available in normal enum types, but it is just optional.
+    ColourCouter ( "----- Enumerated types with enum class:\n", F_bBLUE );
+    ColourCouter ( "To introduce real enum types that preserve safety.\n\n", F_YELLOW );
+    enum class Seasons { spring, summer, autumn, winter };
+    Seasons aSeason;
+    aSeason = Seasons::spring; // the needed scoping into the type
+    if ( aSeason == Seasons::spring )
+      aSeason = Seasons::autumn;
+    std::cout << "The value of 'aSeason' variable is:" << nline << tab << static_cast<int>( aSeason ) << nline;
+
+    //! - in addition:
     // enum class declared enumerated types have more control over their underlying type,
     // which can be any integral data type such as char, short, unsigned int,
     // and essentially serves to determine the size of the enumerated type.
@@ -1409,16 +1418,11 @@ void _16_01_OtherDataTypes ()
     // .
     // .
     // } object_names;
-    ColourCouter ( "----- Enumerated types with enum class:\n", F_bBLUE );
-    ColourCouter ( "To introduce real enum types that preserve safety.\n\n", F_YELLOW );
-    enum class Colours { black, blue, green, cyan, red, purple, yellow, white };
-    Colours myColour2;
-    myColour2 = Colours::blue; // the needed scoping into the type
-    if ( myColour2 == Colours::green )
-      myColour2 = Colours::red;
-    std::cout << "The value of 'myColour2' variable is:" << nline << tab << static_cast<int>( myColour2 ) << nline;
-    enum class EyeColour : long { blue, green, brown }; // + underlying type (a distinct type of the 'char' size)
-    std::cout << "The size of 'EyeColour' type is:" << nline << tab << sizeof ( EyeColour ) << nline << nline;
+    enum class sports_t : unsigned short
+    {
+      football, tennis, golf, baseball
+    }; // a distinct type (underlying type size is the size of short)
+    std::cout << "The size of 'sports_t' type is:" << nline << tab << sizeof ( sports_t ) << nline << nline;
   }
   catch ( const std::exception& )
   {

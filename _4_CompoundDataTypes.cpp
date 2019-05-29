@@ -1070,6 +1070,7 @@ void _14_01_DynamicMemory ()
       }
       delete [] pointer;
     }
+    std::cout << nline;
 
     //! - in addition:
     // dynamic memory in C language

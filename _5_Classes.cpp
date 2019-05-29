@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,10.05.2019</changed>
+/// <changed>ʆϒʅ,30.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -20,7 +20,7 @@ const char nline { '\n' };
 
 class Rectangle
 {
-  int width, height; // private members (can just be referred to from within other members of the same class)
+  int width, height; // by default: private members
 public:
   void set_values ( int, int ); // declaration but not definition (prototype)
   void print_values ( void )
@@ -29,15 +29,92 @@ public:
   }
   int area ( void ) { return width * height; } // declaration and definition
 };
-// reintroduction of the scope operator (::) (earlier in relation to namespaces)
-// here used to define a member of a class outside the class itself,
-// thus the scope operator specifies the class to which the member being defined belongs and therefore granting the same scope properties as when the function definition included within the class definition.
-// the only difference between the complete definition of a function or just its declaration is that in the first case the function is automatically considered as an inline function by compiler while in the second case it is a normal (non-inline) class member function, which cause no difference in the behaviour, but only on possible compiler optimizations.
-void Rectangle::set_values ( int x, int y )
+void Rectangle::set_values ( int x, int y ) // scope operator: class member outside
 {
   width = x;
   height = y;
 }
+void _17_01_ClassesI ()
+{
+  try
+  {
+    ColourCouter ( " -------------------------------------------------", F_bRED );
+    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+    //! ####################################################################
+    //! ~~~~~ Classes I:
+    // C++ language introduces classes as an expansion to data structures,
+    // additionally to data members, they can contain functions as members.
+    // an instantiation of a class result in an object
+    // putting the concept of classes in that of variables, classes are types and objects are variables.
+    // Note keywords: classes can be defined using keywords 'class' or 'struct'
+    // Note syntax:
+    // class class_name {
+    // access_specifier1;
+    // member1;
+    // access_specifier2;
+    // member2;
+    // ...
+    // } object_names;
+    // declaration body contains members (data or function declaration), also optionally access specifiers.
+    // access right of members get modified using access specifiers, which precede them.
+    // Note access specifiers keywords: 'private' 'protected' 'public'
+    // private: accessible form the members of the same class (or their 'friends')
+    // protected: additionally to that of private, members are accessible from members of their derived classes
+    // public: access to members is granted from everywhere, in which the object is visible
+    // the default access specifier is private,
+    // which is valid for every member declared using no access specifier also implicitly.
+    // note that restrictions on data members of a class prevent modifications in an unexpected way
+    // --(unexpected from the point of view of the object)
+    // Note considering compiler differences, explicit way is always considered a better practice.
+
+    //! - in addition:
+    // definition of a class member outside of the class itself:
+    // scope operator (::) (earlier in relation to namespaces)
+    // scope operator grants the same scope properties, as when the member been defined within the class definition.
+    // therefore it specifies the class of the member, while being defined outside.
+    // a function defined completely within the class itself is automatically considered as inline.
+    // when only its definition is included within the class, compiler considers it a normal (non-inline) class member.
+    // the only difference being already mentioned, the behaviour stays the same,
+    // thus in the end it may come to a possible compiler optimization.
+    ColourCouter ( "~~~~~ Classes I:\n", F_bBLUE );
+    ColourCouter ( "Classes are an expanded concept of data structure with the ability, not only containing data members but also functions as members.\n\n", F_YELLOW );
+    class Rectangle rect;
+    // like data structures, dot (.) method is used to directly access data or function member of a class
+    rect.set_values ( 3, 4 );
+    rect.print_values ();
+    std::cout << "And the calculated area of the rectangle is:" << tab << rect.area () << nline << nline;
+    class Rectangle rectB; // the most important property of a class:
+                           // it is a type and as a such, multiple objects (instances) can be declared of it
+    rectB.set_values ( 5, 6 );
+    rectB.print_values ();
+    std::cout << "And the calculated area of the second rectangle is:" << tab << rectB.area () << nline;
+    // classes allow programming using object-oriented paradigms:
+    // data and functions are both members of the object, thus the reduction of passing and carrying of handlers or other state variables as arguments to functions, since they are part of the objects whose member is called.
+    // notice the calls to the 'area' member function
+
+    //! - in addition:
+    // classes defined with 'struct' and 'union' keywords:
+    // classes can be defined also using the keywords struct and union.
+    //-- the keyword struct:
+    // the same syntax as the keyword 'class' is to be used and the only difference is that the members of a class defined with the keyword 'struct' have public access by default and for all other purposes the both keyword are equivalent in this context.
+    //-- the keyword 'union'
+    // conversely, the concepts of the keyword 'union' is different from that of the classes defined with the keywords 'class' and 'struct', since unions only store one data member at a time, but nevertheless they are also classes and can thus also hold member functions. the default access in union classes is public.
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
 class Rectangle2
 {
   int width, height;
@@ -62,138 +139,10 @@ Rectangle2::Rectangle2 ()
   width = 5;
   height = 5;
 }
-class Circle
+void _17_02_Constructors ()
 {
-  double radius;
-public:
-  Circle ( double r )
-  {
-    radius = r;
-    std::cout << "The radius of the new circle is:" << Tab << radius << Nline;
-  }
-  double circum () { return 2 * radius* 3.14159265; }
-};
-class Rectangle_ex2
-{
-  int width, height;
-public:
-  Rectangle_ex2 ( int, int );
-  int area ()
-  {
-    return width * height;
-  }
-};
-Rectangle_ex2::Rectangle_ex2 ( int x, int y ) { width = x; height = y; } // the usual definition
-//Rectangle_ex2::Rectangle_ex2 (int x, int y) : width (x) { height = y; } // using member initialization
-//Rectangle_ex2::Rectangle_ex2 (int x, int y) : width (x), height (y) {} // the same
-class Circle2
-{
-  double radius;
-public:
-  Circle2 ( double r ) :radius ( r )
-  {
-    std::cout << "This is the second class for circles." << Nline;
-    std::cout << "The radius of the new circle is:" << Tab << radius << Nline;
-  }
-  double area () { return radius * radius* 3.14159265; }
-};
-class Cylinder
-{
-  Circle2 base;
-  // since objects of the class Circle2 can only be constructed with a parameter,
-  // Cylinder's constructor needs to call the base's constructor,
-  // and the only way to do this is in the member initializer list.
-  double height;
-public:
-  Cylinder ( double r, double h ) :base ( r ), height ( h )
-  {
-    std::cout << "The height of the new cylinder is:" << Tab << height << Nline;
-  }
-  // the use of uniform initializer syntax is also possible:
-  //Cylinder (double r, double h) :base {r}, height {h} {}
-  double volume () { return base.area ()* height; }
-};
-class Rectangle3
-{
-  int width, height;
-public:
-  Rectangle3 ( int x, int y ) :width ( x ), height ( y ) { std::cout << "The width and the height of the new rectangle are:" << Tab << width << Tab << height << Nline; }
-  int area ( void ) { return width * height; }
-};
-// ********************************************************************************
-/// <summary>
-/// Classes I
-/// </summary>
-/// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,25.09.2018</changed>
-// ********************************************************************************
-void ClassesI ()
-{
-  // the classes used in this section are defined above it.
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
-    //! ####################################################################
-    //! ~~~~~ Classes I:
-    // classes are an expanded concept of data structures, which not only can contain data members, but also functions as members.
-    // an object is an instantiation of the class. in terms of variable, a class would be the type and an object would be the variable.
-    // classes are defined either using the keyword 'class' or the keyword 'struct'.
-    // syntax:
-    // class class_name {
-    // access_specifier1;
-    // member1;
-    // access_specifier2;
-    // member2;
-    // ...
-    // } object_names;
-    // the body of declaration can contain members, which can either be data or function declarations, and optionally access specifiers.
-    // an access specifier is one of the following keyword: private, protected or public which they than modify the access rights for the members that follow them:
-    // private: members of a class are accessible only from within other members of the same class (or from their 'friends').
-    // --restricting access to some members of a class is useful in big projects to prevent them from being modified in an unexpected way (unexpected from the point of view of the object).
-    // protected: members are accessible from other members of the same class (or from their 'friends'), but also from members of their derived classes.
-    // public: members of a class are accessible from everywhere where the object is visible.
-    // the default access specifier is private, and it is valid for every member in a class declared with the keyword 'class', until any other specifier is chosen.
-    //! -------------------------------------------------------------------------------------------
-    // classes defined with 'struct' and 'union' keywords:
-    // classes can be defined also using the keywords struct and union.
-    //-- the keyword struct:
-    // the same syntax as the keyword 'class' is to be used and the only difference is that the members of a class defined with the keyword 'struct' have public access by default and for all other purposes the both keyword are equivalent in this context.
-    //-- the keyword 'union'
-    // conversely, the concepts of the keyword 'union' is different from that of the classes defined with the keywords 'class' and 'struct', since unions only store one data member at a time, but nevertheless they are also classes and can thus also hold member functions. the default access in union classes is public.
-    //! -------------------------------------------------------------------------------------------
-    ColourCouter ( "~~~~~ Classes I:\n", F_bBLUE );
-    ColourCouter ( "Classes are an expanded concept of data structure with the ability, not only containing data members but also functions as members.\n\n", F_YELLOW );
-    class Rectangle_ex
-    {
-      int width, height;
-    public:
-      void set_values ( int, int ); // declaration but not definition
-      int area ( void ); // the same
-    } rect_ex;
-    // after this declaration every public member can be accessed as if they were normal functions or normal variables by simply inserting a dot (.) between the object name and member name.
-    // by the way, the members of the plain data structure, as they have been introduced, can be accessed with the same method: dot (.)
-    class Rectangle rect;
-    rect.set_values ( 3, 4 );
-    rect.print_values ();
-    std::cout << "And the calculated area of the rectangle is:" << tab << rect.area () << nline << nline;
-    class Rectangle rectB; // the most important property of a class:
-                           // it is a type and as a such, multiple objects (instances) can be declared of it
-    rectB.set_values ( 5, 6 );
-    rectB.print_values ();
-    std::cout << "And the calculated area of the second rectangle is:" << tab << rectB.area () << nline;
-    // classes allow programming using object-oriented paradigms:
-    // data and functions are both members of the object, thus the reduction of passing and carrying of handlers or other state variables as arguments to functions, since they are part of the objects whose member is called.
-    // notice the calls to the 'area' member function
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
 
     //! ####################################################################
     //! ----- constructors:
@@ -222,6 +171,29 @@ void ClassesI ()
                             // with parenthesis rectE becomes a function declaration instead of an object declaration that takes no parameters and return a value of type Rectangle2.
     rectE.print_values ();
     std::cout << "Using the overloaded (default) constructor that takes no parameters:" << tab << rectE.area () << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class Circle
+{
+  double radius;
+public:
+  Circle ( double r )
+  {
+    radius = r;
+    std::cout << "The radius of the new circle is:" << Tab << radius << Nline;
+  }
+  double circum () { return 2 * radius * 3.14159265; }
+};
+void _17_03_UniformInitialization ()
+{
+  try
+  {
 
     //! ####################################################################
     //! ----- uniform initialization:
@@ -252,6 +224,58 @@ void ClassesI ()
     // most existing code uses the functional form.
     // even when the newer style guides suggest the use of the uniform initialization, it also has its potential pitfalls for its preference of initilizer_list as its type.
     // http://www.cplusplus.com/reference/initializer_list/initializer_list/
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class Rectangle_ex2
+{
+  int width, height;
+public:
+  Rectangle_ex2 ( int, int );
+  int area ()
+  {
+    return width * height;
+  }
+};
+Rectangle_ex2::Rectangle_ex2 ( int x, int y ) { width = x; height = y; } // the usual definition
+//Rectangle_ex2::Rectangle_ex2 (int x, int y) : width (x) { height = y; } // using member initialization
+//Rectangle_ex2::Rectangle_ex2 (int x, int y) : width (x), height (y) {} // the same
+class Circle2
+{
+  double radius;
+public:
+  Circle2 ( double r ) :radius ( r )
+  {
+    std::cout << "This is the second class for circles." << Nline;
+    std::cout << "The radius of the new circle is:" << Tab << radius << Nline;
+  }
+  double area () { return radius * radius * 3.14159265; }
+};
+class Cylinder
+{
+  Circle2 base;
+  // since objects of the class Circle2 can only be constructed with a parameter,
+  // Cylinder's constructor needs to call the base's constructor,
+  // and the only way to do this is in the member initializer list.
+  double height;
+public:
+  Cylinder ( double r, double h ) :base ( r ), height ( h )
+  {
+    std::cout << "The height of the new cylinder is:" << Tab << height << Nline;
+  }
+  // the use of uniform initializer syntax is also possible:
+  //Cylinder (double r, double h) :base {r}, height {h} {}
+  double volume () { return base.area () * height; }
+};
+void _17_04_MemberInitializationInConstructor ()
+{
+  try
+  {
 
     //! ####################################################################
     //! ----- member initialization in constructors:
@@ -272,6 +296,26 @@ void ClassesI ()
     // read the 'Cylinder' class and its comments.
     Cylinder cylA { 10,20 };
     std::cout << "cylA's volume:" << tab << cylA.volume () << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class Rectangle3
+{
+  int width, height;
+public:
+  Rectangle3 ( int x, int y ) :width ( x ), height ( y ) { std::cout << "The width and the height of the new rectangle are:" << Tab << width << Tab << height << Nline; }
+  int area ( void ) { return width * height; }
+};
+void _17_05_PointersToClasses ()
+{
+
+  try
+  {
 
     //! ####################################################################
     //! ----- pointers to classes:
@@ -400,7 +444,7 @@ public:
   int& overloadedGet () { return x; };
   const int& overloadedGet () const { return x; };
 };
-void print ( const MyClass2 & arg )
+void print ( const MyClass2& arg )
 {
   std::cout << "Taking the object as constant reference and thus read-only access as result:" << Tab << arg.get2 () << Nline << Nline;
 }

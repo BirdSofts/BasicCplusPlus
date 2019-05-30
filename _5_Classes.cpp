@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,30.05.2019</changed>
+/// <changed>ʆϒʅ,31.05.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -18,21 +18,21 @@ const char tab { '\t' };
 const char nline { '\n' };
 
 
-class Rectangle
+class Number
 {
-  int width, height; // by default: private members
+private:
+  int entity; // by default: private members
 public:
-  void set_values ( int, int ); // declaration but not definition (prototype)
-  void print_values ( void )
+  void set_value ( int ); // declaration but not definition (prototype)
+  void print_value ( void )
   {
-    std::cout << "Width:" << Tab << width << Nline << "Height:" << Tab << height << Nline;
+    std::cout << Tab << "-Value:" << Tab << entity << Nline;
   }
-  int area ( void ) { return width * height; } // declaration and definition
+  int square ( void ) { return entity * 2; } // declaration and definition
 };
-void Rectangle::set_values ( int x, int y ) // scope operator: class member outside
+void Number::set_value ( int a ) // scope operator: class member is defined outside
 {
-  width = x;
-  height = y;
+  entity = a;
 }
 void _17_01_ClassesI ()
 {
@@ -63,10 +63,12 @@ void _17_01_ClassesI ()
     // protected: additionally to that of private, members are accessible from members of their derived classes
     // public: access to members is granted from everywhere, in which the object is visible
     // the default access specifier is private,
-    // which is valid for every member declared using no access specifier also implicitly.
-    // note that restrictions on data members of a class prevent modifications in an unexpected way
-    // --(unexpected from the point of view of the object)
+    // which is valid for every member declared using no access specifier, that is implicitly.
     // Note considering compiler differences, explicit way is always considered a better practice.
+    // note that restrictions on data members of a class prevent modifications in an unexpected way.
+    // since the class's data members get instantiated to be the properties of objects,
+    // from the view point of objects, no unexpected modification should happens to their properties,
+    // with other words, they must have full control on the art of modification procedure.
 
     //! - in addition:
     // definition of a class member outside of the class itself:
@@ -79,41 +81,34 @@ void _17_01_ClassesI ()
     // thus in the end it may come to a possible compiler optimization.
     ColourCouter ( "~~~~~ Classes I:\n", F_bBLUE );
     ColourCouter ( "Classes are an expanded concept of data structure with the ability, not only containing data members but also functions as members.\n\n", F_YELLOW );
-    class Rectangle rect;
+    class Number first;
     // like data structures, dot (.) method is used to directly access data or function member of a class
-    rect.set_values ( 3, 4 );
-    rect.print_values ();
-    std::cout << "And the calculated area of the rectangle is:" << tab << rect.area () << nline << nline;
-    class Rectangle rectB; // the most important property of a class:
-                           // it is a type and as a such, multiple objects (instances) can be declared of it
-    rectB.set_values ( 5, 6 );
-    rectB.print_values ();
-    std::cout << "And the calculated area of the second rectangle is:" << tab << rectB.area () << nline;
-    // classes allow programming using object-oriented paradigms:
-    // data and functions are both members of the object, thus the reduction of passing and carrying of handlers or other state variables as arguments to functions, since they are part of the objects whose member is called.
-    // notice the calls to the 'area' member function
+    first.set_value ( 3 );
+    first.print_value ();
+    std::cout << "Of which the square is:" << tab << first.square () << nline;
+    class Number second;
+    second.set_value ( 5 );
+    second.print_value ();
+    std::cout << "Of which the square is:" << tab << second.square () << nline << nline;
+    // object-oriented paradigms are implemented in programming using classes,
+    // this means that an object instantiated from a class, has its data and function members implemented within,
+    // therefore the concept reduces the passing and carrying of handlers or other state variables as arguments to functions.
 
     //! - in addition:
-    // classes defined with 'struct' and 'union' keywords:
-    // classes can be defined also using the keywords struct and union.
+    // classes defined using keywords 'struct' or 'union':
     //-- the keyword struct:
-    // the same syntax as the keyword 'class' is to be used and the only difference is that the members of a class defined with the keyword 'struct' have public access by default and for all other purposes the both keyword are equivalent in this context.
+    // same syntax as keyword 'class' is needed and the only difference is that default access specifier is 'public'.
     //-- the keyword 'union'
-    // conversely, the concepts of the keyword 'union' is different from that of the classes defined with the keywords 'class' and 'struct', since unions only store one data member at a time, but nevertheless they are also classes and can thus also hold member functions. the default access in union classes is public.
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    // despite different concepts with that of classes defined using keywords 'class' or 'struct',
+    // unions are also classes, thus hold member functions.
+    // default access specifier of unions is 'public'
   }
   catch ( const std::exception& )
   {
 
   }
 }
+
 
 class Rectangle2
 {
@@ -157,6 +152,14 @@ void _17_02_Constructors ()
     Rectangle2 rectC_2 ( 2, 3 ); // since class has constructor, instantiating without the keyword 'class' produces no error.
     rectC.print_values ();
     std::cout << "Using improved version of the class, the calculated area of the rectangle is:" << tab << rectC.area () << nline;
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
 
     //! ####################################################################
     //! ----- overloading constructors:
@@ -497,7 +500,6 @@ public:
     return element;
   }
 };
-
 
 
 // ********************************************************************************

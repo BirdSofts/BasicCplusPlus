@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,31.05.2019</changed>
+/// <changed>ʆϒʅ,01.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -24,7 +24,7 @@ private:
   int entity; // by default: private members
 public:
   void set_value ( int ); // declaration but not definition (prototype)
-  void print_value ( void )
+  void print ( void )
   {
     std::cout << Tab << "-Value:" << Tab << entity << Nline;
   }
@@ -84,11 +84,11 @@ void _17_01_ClassesI ()
     class Number first;
     // like data structures, dot (.) method is used to directly access data or function member of a class
     first.set_value ( 3 );
-    first.print_value ();
+    first.print ();
     std::cout << "Of which the square is:" << tab << first.square () << nline;
     class Number second;
     second.set_value ( 5 );
-    second.print_value ();
+    second.print ();
     std::cout << "Of which the square is:" << tab << second.square () << nline << nline;
     // object-oriented paradigms are implemented in programming using classes,
     // this means that an object instantiated from a class, has its data and function members implemented within,
@@ -110,29 +110,26 @@ void _17_01_ClassesI ()
 }
 
 
-class Rectangle2
+class numberEntity
 {
-  int width, height;
+  int entity;
 public:
-  Rectangle2 ( int, int ); // constructor prototype declaration (without return value)
-  Rectangle2 (); // overloaded constructor declaration
-  void print_values ( void )
+  numberEntity ( int ); // constructor prototype (only declaration)
+  // the default constructor:
+  numberEntity (); // overloaded constructor prototype
+  void print ( void )
   {
-    std::cout << "Width:" << Tab << width << Nline << "Height:" << Tab << height << Nline;
+    std::cout << Tab << "-Value:" << Tab << entity << Nline;
   }
-  int area ( void ) { return width * height; }
+  int square ( void ) { return entity * 2; }
 };
-// constructor definition (without return value)
-Rectangle2::Rectangle2 ( int x, int y )
+numberEntity::numberEntity ( int a ) // constructor definition
 {
-  width = x;
-  height = y;
+  entity = a;
 }
-// overloaded constructor definition
-Rectangle2::Rectangle2 ()
+numberEntity::numberEntity () // overloaded constructor definition
 {
-  width = 5;
-  height = 5;
+  entity = 0;
 }
 void _17_02_Constructors ()
 {
@@ -141,39 +138,42 @@ void _17_02_Constructors ()
 
     //! ####################################################################
     //! ----- constructors:
-    // to avoid undetermined result of calling a member function of a class that uses data members, that aren't set any value yet, a class can include a special function called its constructor,
-    // which automatically called whenever a new objects of the class is created, allowing the class to initialize member variables or allocate storage.
-    // the constructor function is declared just like a regular member function, but with a name that matches the class name and without any return type, not even void.
-    // constructors can not be called explicitly as they were regular member functions. they are only executed once, when a new object of the class is created.
-    std::cout << nline << "----- Constructors:" << nline;
-    std::cout << "A special function, which a class can include to initialize member variables or allocate storage." << nline << nline;
-    std::cout << "Improving the class 'Rectangle' to 'Rektangle2' by implementing a constructor:" << nline;
-    class Rectangle2 rectC ( 2, 3 ); // the arguments are passed to the constructor in the moment the object is crated
-    Rectangle2 rectC_2 ( 2, 3 ); // since class has constructor, instantiating without the keyword 'class' produces no error.
-    rectC.print_values ();
-    std::cout << "Using improved version of the class, the calculated area of the rectangle is:" << tab << rectC.area () << nline;
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    // a call to a function member that uses uninitialized data members, causes undetermined results,
+    // which can, having the best practice, get avoided using the special member function constructor.
+    // instantiation of an object automatically calls the constructor of class,
+    // with the most obvious purpose, initialization of data members and allocation of the needed memory.
+    // a constructor can be declared like regular functions, its identifier matches to that of the class itself,
+    // while having the same structure, a constructor introduces no return type, not even void.
+    // to add to the peculiarity of this special function member, a constructor can never get called explicitly,
+    // therefore unlike regular functions, constructors are executed once at the instantiation moment of objects.
+    ColourCouter ( "----- Constructors:\n", F_bBLUE );
+    ColourCouter ( "A special function member to initialize data members or allocate memory.\n\n", F_YELLOW );
+    ColourCouter ( "The class 'number' improved to introduce its constructor:\n", F_bYELLOW );
+    class numberEntity first ( 2 ); // initialization at the moment of instantiation using class constructor
+    numberEntity second ( 3 ); // no error, class has a constructor present, thus the 'class' keyword is optional
+    first.print ();
+    std::cout << "Of which the square is:" << tab << first.square () << nline << nline;
 
     //! ####################################################################
     //! ----- overloading constructors:
-    // like any other functions constructors can also be overloaded with different parameters (different number of parameters and/or parameters of different types).
-    // overloading constructors can be used to introduce the special kind of constructor known as default constructor which takes no parameters.
-    std::cout << nline << "----- Overloading constructors:" << nline;
-    std::cout << "Constructors can also be overloaded with different parameters." << nline << nline;
-    Rectangle2 rectD ( 3, 4 );
-    rectD.print_values ();
-    std::cout << "Using the normal constructor that takes parameters:" << tab << rectD.area () << nline << nline;
-    Rectangle2 rectE; // empty parenthesis can not be used to call the default constructor:
-                            // with parenthesis rectE becomes a function declaration instead of an object declaration that takes no parameters and return a value of type Rectangle2.
-    rectE.print_values ();
-    std::cout << "Using the overloaded (default) constructor that takes no parameters:" << tab << rectE.area () << nline;
+    // any regular function likewise, a constructor can be overloaded with different number or type of parameters.
+    // being able to overload constructors, the default constructor can also get introduced,
+    // which is the special kind, that takes no parameters.
+    ColourCouter ( "----- Overloading constructors\n", F_bBLUE );
+    ColourCouter ( "Constructors can also introduce different overloads.\n\n", F_YELLOW );
+    numberEntity third ( 4 );
+    third.print ();
+    std::cout << "Of which the square is:" << tab << third.square () << nline << nline;
+    ColourCouter ( "Instantiating using the default constructor:\n", F_bYELLOW );
+    numberEntity forth; // Note without parenthesis
+    forth.print ();
+    std::cout << "Of which the square is:" << tab << forth.square () << nline << nline;
+
+    //! - in addition:
+    numberEntity fifth (); // declaration of a new function
+    // Note peculiarity: default constructor is called using no parenthesis,
+    // since following the object declaration with empty set of parenthesis introduces it as a new function,
+    // which takes no parameters and returns a value of type class
   }
   catch ( const std::exception& )
   {
@@ -219,14 +219,22 @@ void _17_03_UniformInitialization ()
 
     // an advantage of the uniform initialization is that since it uses braces, it can not be confused with function declarations,
     // and thus can explicitly be used to call the default constructor.
-    Rectangle2 rect_test1; // default constructor called
-    Rectangle2 rect_test2 (); // function declaration (default constructor not called)
-    Rectangle2 rect_test3 {}; // default constructor called
+    numberEntity rect_test1; // default constructor called
+    numberEntity rect_test2 (); // function declaration (default constructor not called)
+    numberEntity rect_test3 {}; // default constructor called
 
     // the choice of syntax to call constructors is largely a matter of style.
     // most existing code uses the functional form.
     // even when the newer style guides suggest the use of the uniform initialization, it also has its potential pitfalls for its preference of initilizer_list as its type.
     // http://www.cplusplus.com/reference/initializer_list/initializer_list/
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {
@@ -327,7 +335,7 @@ void _17_05_PointersToClasses ()
     std::cout << nline << "----- Pointers to classes:" << nline;
     std::cout << "A defined class is also a valid type, and can be used as the type pointed to by a pointer." << nline << nline;
     //Rectangle* prect; // error: the class doesn't have any constructor
-    Rectangle2* prect;
+    numberEntity* prect;
     // several operator used in the example below and a guide to them
     // -----------------------------------------------
     // |expression|can be read as                    |

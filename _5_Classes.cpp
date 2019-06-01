@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,01.06.2019</changed>
+/// <changed>ʆϒʅ,02.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -135,11 +135,10 @@ void _17_02_Constructors ()
 {
   try
   {
-
     //! ####################################################################
     //! ----- constructors:
     // a call to a function member that uses uninitialized data members, causes undetermined results,
-    // which can, having the best practice, get avoided using the special member function constructor.
+    // which can, considering the best practice, get avoided using the special member function constructor.
     // instantiation of an object automatically calls the constructor of class,
     // with the most obvious purpose, initialization of data members and allocation of the needed memory.
     // a constructor can be declared like regular functions, its identifier matches to that of the class itself,
@@ -182,59 +181,58 @@ void _17_02_Constructors ()
 }
 
 
-class Circle
+class Smily
 {
-  double radius;
+private:
+  char signs [5] { '-', ';', '.', '_', '^' };
+  std::string title [4] { "nose", "moustache", "mouth", "lips" };
+  int index;
 public:
-  Circle ( double r )
+  Smily () { index = 0; print (); }
+  Smily ( int i ) { index = i; print (); }
+  void print ()
   {
-    radius = r;
-    std::cout << "The radius of the new circle is:" << Tab << radius << Nline;
+    std::cout << "The smily:" << Tab << signs [4] << signs [index] << signs [4] << tab << title [index] << Nline;
   }
-  double circum () { return 2 * radius * 3.14159265; }
 };
 void _17_03_UniformInitialization ()
 {
   try
   {
-
     //! ####################################################################
     //! ----- uniform initialization:
-    // beside the above way to call constructors known as functional form which encloses their parameters in parenthesis, there are also other syntaxes for constructors to be called.
-    // variable initialization syntax (constructors with a single parameter):
+    // beside the above way to call constructors known as functional form,
+    // which encloses their parameters in parenthesis, there are also other syntaxes for constructors to be called.
+    // Note syntax: variable initialization
+    // usable for constructors with a single parameter
     // --class_name object_name = initialization_value;
-    // uniform initialization syntax (recently introduced in C++, essentially the same as functional form, but using braces):
+    // Note syntax: uniform initialization
+    // recently introduced in C++, essentially the same as functional form, but using braces
     // --class_name object_name {value, value, value, ...}
-    // optionally, this last syntax can include an equal sign before the braces.
-    std::cout << nline << "----- Uniform initialization:" << nline;
-    std::cout << "There are different ways for a constructor to be called." << nline << nline;
-    Circle circA ( 10.0 ); // functional form
-    std::cout << "circA's circumference:" << tab << circA.circum () << nline << nline;
-    Circle circB = 20.0; // assignment initialization
-    std::cout << "circB's circumference:" << tab << circB.circum () << nline << nline;
-    Circle circC { 30.0 }; // uniform initialization
-    std::cout << "circC's circumference:" << tab << circC.circum () << nline << nline;
-    Circle circD = { 40.0 }; // POD-like
-    std::cout << "circD's circumference:" << tab << circD.circum () << nline;
+    // optionally, this syntax can include an equal sign before the braces.
+    ColourCouter ( "----- Uniform initialization:\n", F_bBLUE );
+    ColourCouter ( "There are different ways for a constructor to be called.\n\n", F_YELLOW );
+    Smily a ( 0 ); // functional form
+    Smily b = 1; // assignment initialization
+    Smily c { 2 }; // uniform initialization
+    Smily d = { 3 }; // uniform initialization plus equal (POD type-like)
+    std::cout << nline;
 
-    // an advantage of the uniform initialization is that since it uses braces, it can not be confused with function declarations,
-    // and thus can explicitly be used to call the default constructor.
-    numberEntity rect_test1; // default constructor called
-    numberEntity rect_test2 (); // function declaration (default constructor not called)
-    numberEntity rect_test3 {}; // default constructor called
-
-    // the choice of syntax to call constructors is largely a matter of style.
-    // most existing code uses the functional form.
-    // even when the newer style guides suggest the use of the uniform initialization, it also has its potential pitfalls for its preference of initilizer_list as its type.
-    // http://www.cplusplus.com/reference/initializer_list/initializer_list/
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
+    // advantage of using uniform initialization:
+    // using braces no confusion is possible with function declaration,
+    // thus provides the ability to explicitly call the default constructor.
+    Smily x; // default constructor called
+    Smily y (); // a function declaration
+    Smily z {}; // default constructor called
+    std::cout << nline;
+
+    //! - in addition:
+    // the chosen syntax to call constructors is largely seen as a matter of style.
+    // currently most existing code uses the functional form.
+    // despite the newer style guides suggestion to use uniform initialization,
+    // when preferring initializer_list as its type, it also has its potential pitfalls.
+    // http://www.cplusplus.com/reference/initializer_list/initializer_list/
   }
   catch ( const std::exception& )
   {
@@ -243,70 +241,47 @@ void _17_03_UniformInitialization ()
 }
 
 
-class Rectangle_ex2
+class Rect
 {
-  int width, height;
+  double edgeOne, edgeTwo;
 public:
-  Rectangle_ex2 ( int, int );
-  int area ()
-  {
-    return width * height;
-  }
+  //Rect ( double a, double b ) { edgeOne = a; edgeTwo = b; } // the usual definition
+  //Rect ( double a, double b ) : edgeOne ( a ) { edgeTwo = b; } // partly member initialization
+  Rect ( double a, double b ) : edgeOne ( a ), edgeTwo ( b ) {} // fully member initialization
+  double area () { return edgeOne * edgeTwo; }
 };
-Rectangle_ex2::Rectangle_ex2 ( int x, int y ) { width = x; height = y; } // the usual definition
-//Rectangle_ex2::Rectangle_ex2 (int x, int y) : width (x) { height = y; } // using member initialization
-//Rectangle_ex2::Rectangle_ex2 (int x, int y) : width (x), height (y) {} // the same
-class Circle2
+class Cube
 {
-  double radius;
+  Rect base; // Cube's constructor needs to pass parameters to Rect's constructor (member initializer list)
+  double edgeThree;
 public:
-  Circle2 ( double r ) :radius ( r )
-  {
-    std::cout << "This is the second class for circles." << Nline;
-    std::cout << "The radius of the new circle is:" << Tab << radius << Nline;
-  }
-  double area () { return radius * radius * 3.14159265; }
-};
-class Cylinder
-{
-  Circle2 base;
-  // since objects of the class Circle2 can only be constructed with a parameter,
-  // Cylinder's constructor needs to call the base's constructor,
-  // and the only way to do this is in the member initializer list.
-  double height;
-public:
-  Cylinder ( double r, double h ) :base ( r ), height ( h )
-  {
-    std::cout << "The height of the new cylinder is:" << Tab << height << Nline;
-  }
-  // the use of uniform initializer syntax is also possible:
-  //Cylinder (double r, double h) :base {r}, height {h} {}
-  double volume () { return base.area () * height; }
+  //Cube ( double a, double b, double c ) : base ( a, b ), edgeThree ( c ) {} // function initializer list syntax
+  Cube ( double a, double b, double c ) : base { a, b }, edgeThree { c } {} // uniform initializer list syntax
+  double volume () { return base.area () * edgeThree; }
 };
 void _17_04_MemberInitializationInConstructor ()
 {
   try
   {
-
     //! ####################################################################
     //! ----- member initialization in constructors:
-    // when a constructor is used to initialize other members, these other members can be initialized directly, without resorting to statements in its body.
-    // this is done by inserting, before the constructor body, a colon (:) and a list on initializations for class members.
-    // read the 'Rectangle_ex2' class and its comments.
-    // in the last case, in which the constructor of the 'Rectangle_ex2' class is defined, the constructor does nothing more than initializing its members, hence empty function body
-    // since members of fundamental types aren't initialized by default, it doesn't matter for them, in which way the constructor is defined,
-    // but for the member objects (those whose type is a class), if they are not initialized after the colon, they are default-constructed, which means that they can only be initialized using these two ways.
-    std::cout << nline << "----- Member initialization in constructors:" << nline;
-    std::cout << "The process of initializing other members directly, which have been initialized using a constructor, without resorting to the statements in the body of the constructor." << nline << nline;
-
-    // default-constructing all members of a class may or may not always be convenient:
-    // this is a waste when the member then is reinitialized otherwise in the constructor.
-    // in some other cases, default-construction is not even possible, when the class does not have a default constructor.
+    // constructors can be used in different ways to initialize the data members.
+    // the already introduced way resorts to statements within boy code of a constructor.
+    // the direct initialization introduces a list followed by a colon (:), which precedes the constructor body.
+    // Note syntax: constructor_identifier (parameter1, ...) : data_member1 (parameter1), ... { body code }
+    // the way in which a constructor is defined, has no effect on data members of fundamental types,
+    // since thy aren't initialized by default.
+    // this story is different, when it comes to data member objects defined using classes.
+    // to initialize them, there is only two ways, direct initialization after colon or default-constructing.
+    // Note the convenience of default-constructing all data member of a class is questionable:
+    // it is not even possible, when the class introduces no default constructor, and on the other hand,
+    // it is a waste, if data members are reinitialized otherwise in the constructor.
+    // therefore, member initialization list is preferable and this is valid not only in these cases
     // in these cases, members shall be initialized in the member initialization list.
-    // for example: class Cylinder has a member object whose type is the Circle2 class.
-    // read the 'Cylinder' class and its comments.
-    Cylinder cylA { 10,20 };
-    std::cout << "cylA's volume:" << tab << cylA.volume () << nline;
+    ColourCouter ( "----- Member initialization in constructors:\n", F_bBLUE );
+    ColourCouter ( "Constructors can use different methods to initialize data members.\n\n", F_YELLOW );
+    Cube first { 1.1, 2.2, 3.3 };
+    std::cout << "Cube's volume:" << tab << first.volume () << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -368,6 +343,14 @@ void _17_05_PointersToClasses ()
     std::cout << "pObj3[1]'s area:" << pObj3 [1].area () << nline;
     delete pObj2;
     delete [] pObj3;
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {

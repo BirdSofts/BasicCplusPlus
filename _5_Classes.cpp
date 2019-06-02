@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,02.06.2019</changed>
+/// <changed>ʆϒʅ,03.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -241,18 +241,20 @@ void _17_03_UniformInitialization ()
 }
 
 
-class Rect
+class rectangle
 {
+private:
   double edgeOne, edgeTwo;
 public:
   //Rect ( double a, double b ) { edgeOne = a; edgeTwo = b; } // the usual definition
   //Rect ( double a, double b ) : edgeOne ( a ) { edgeTwo = b; } // partly member initialization
-  Rect ( double a, double b ) : edgeOne ( a ), edgeTwo ( b ) {} // fully member initialization
+  rectangle ( double a, double b ) : edgeOne ( a ), edgeTwo ( b ) {} // fully member initialization
   double area () { return edgeOne * edgeTwo; }
 };
 class Cube
 {
-  Rect base; // Cube's constructor needs to pass parameters to Rect's constructor (member initializer list)
+private:
+  rectangle base; // Cube's constructor needs to pass parameters to Rect's constructor (member initializer list)
   double edgeThree;
 public:
   //Cube ( double a, double b, double c ) : base ( a, b ), edgeThree ( c ) {} // function initializer list syntax
@@ -290,67 +292,59 @@ void _17_04_MemberInitializationInConstructor ()
 }
 
 
-class Rectangle3
+class Triangle
 {
-  int width, height;
+private:
+  double base, height;
 public:
-  Rectangle3 ( int x, int y ) :width ( x ), height ( y ) { std::cout << "The width and the height of the new rectangle are:" << Tab << width << Tab << height << Nline; }
-  int area ( void ) { return width * height; }
+  Triangle ( double a, double b ) :base ( a ), height ( b ) {}
+  double area ( void ) { return ( base * height ) / 2; }
 };
 void _17_05_PointersToClasses ()
 {
-
   try
   {
-
     //! ####################################################################
     //! ----- pointers to classes:
-    // once declared, a class becomes a valid type and can be used as the type pointed to by a pointer, thus a pointer can also point to the objects of this new type.
-    // similar to plain data structures, the arrow operator (->) can be used to directly access the members of an object from a pointer.
-    std::cout << nline << "----- Pointers to classes:" << nline;
-    std::cout << "A defined class is also a valid type, and can be used as the type pointed to by a pointer." << nline << nline;
-    //Rectangle* prect; // error: the class doesn't have any constructor
-    numberEntity* prect;
-    // several operator used in the example below and a guide to them
-    // -----------------------------------------------
-    // |expression|can be read as                    |
-    // -----------------------------------------------
-    // |*x        |pointed to by x                   |
-    // -----------------------------------------------
-    // |&x        |address of x                      |
-    // -----------------------------------------------
-    // |x.y       |member y of object x              |
-    // -----------------------------------------------
-    // |x->y      |member y of object pointed to by x|
-    // -----------------------------------------------
-    // |(*x).y    |equivalent to the previous one    |
-    // -----------------------------------------------
-    // |x[0]      |first object pointed to by x      |
-    // -----------------------------------------------
-    // |x[1]      |second object pointed to by x     |
-    // -----------------------------------------------
-    // |x[n]      |(n+1)th object pointed to by x    |
-    // -----------------------------------------------
-    Rectangle3 Obj1 ( 10, 11 );
-    Rectangle3* pObj1, * pObj2, * pObj3;
-    pObj1 = &Obj1;
-    pObj2 = new Rectangle3 ( 12, 13 );
-    pObj3 = new Rectangle3 [2] { {14,15},{16,17} };
-    std::cout << nline << "Obj1's area:" << Obj1.area () << nline;
-    std::cout << "*pObj1's area:" << pObj1->area () << nline;
-    std::cout << "*pObj2's area:" << pObj2->area () << nline;
-    std::cout << "pObj3[0]'s area:" << pObj3 [0].area () << nline;
-    std::cout << "pObj3[1]'s area:" << pObj3 [1].area () << nline;
-    delete pObj2;
-    delete [] pObj3;
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    // declared classes are valid types, thus after declaration usable as pointer type,
+    // thence the declared pointers are able to point to objects of the class.
+    // likewise plain data structures, using the pointers,
+    // members of an object pointed to by a pointer are then accessible through arrow operator (->).
+    // several operators are usable to operate on objects and pointers.
+    // below is a guide list of them, which mostly have been already introduced.
+    // -------------------------------------------------
+    // expression     interpretation
+    // -------------------------------------------------
+    // *x             pointed to by x
+    // -------------------------------------------------
+    // &x             address of x
+    // -------------------------------------------------
+    // x.y            member y of object x
+    // -------------------------------------------------
+    // x->y           member y of object pointed to by x
+    // -------------------------------------------------
+    // (*x).y         equivalent to the previous one
+    // -------------------------------------------------
+    // x[0]           first object pointed to by x
+    // -------------------------------------------------
+    // x[1]           second object pointed to by x
+    // -------------------------------------------------
+    // x[n]           (n+1)th object pointed to by x
+    // -------------------------------------------------
+    ColourCouter ( "----- Pointers to classes:\n", F_bBLUE );
+    ColourCouter ( "A defined class is a valid data type, therefore it can be used as the type of objects pointed to by a pointer.\n\n", F_YELLOW );
+    Triangle objA ( 2.2, 3.3 );
+    Triangle* ptrObjA, * ptrObjB, * ptrObjC;
+    ptrObjA = &objA;
+    ptrObjB = new Triangle ( 4.4, 5.5 );
+    ptrObjC = new Triangle [2] { {6.6, 7.7},{8.8, 9.9} };
+    std::cout << "Triangle's area (object itself):" << "\t\t" << objA.area () << nline;
+    std::cout << "Triangle's area (pointer to object):" << "\t\t" << ptrObjA->area () << nline;
+    std::cout << "Triangle's area (pointer to object):" << "\t\t" << ( *ptrObjB ).area () << nline;
+    std::cout << "Triangle's area (pointer to array of objects):" << tab << ptrObjC [0].area () << nline;
+    std::cout << "Triangle's area (pointer to array of objects):" << tab << ptrObjC [1].area () << nline << nline;
+    delete ptrObjB;
+    delete [] ptrObjC;
   }
   catch ( const std::exception& )
   {
@@ -409,118 +403,17 @@ CVector2 operator + ( const CVector2& Lhs, const CVector2& Rhs )
   temp.y = Lhs.y + Rhs.y;
   return temp;
 }
-class Dummy
+void _17_06_OverloadingOperators ()
 {
-public:
-  bool IsItMe ( Dummy& param );
-};
-bool Dummy::IsItMe ( Dummy& param )
-{
-  if ( &param == this ) return true;
-  else return false;
-}
-class Dummy2
-{
-public:
-  static int n;
-  Dummy2 () { n++; };
-};
-int Dummy2::n = 0; // a static data member of a class need to be initialized somewhere outside it.
-class MyClass2
-{
-public:
-  int x;
-  MyClass2 ( int val ) :x ( val ) {}
-  int get1 () { return x; }
-  int get2 () const { return x; } // const keyword must follows the function prototype
-  const int& get3 () const { return x; }; // const member function returning a const&
-  const int& get4 () { return x; }; // member function returning a const&
-  int& overloadedGet () { return x; };
-  const int& overloadedGet () const { return x; };
-};
-void print ( const MyClass2& arg )
-{
-  std::cout << "Taking the object as constant reference and thus read-only access as result:" << Tab << arg.get2 () << Nline << Nline;
-}
-template <class T> // template parameter
-class aPair // serves to store two elements of any valid type
-{
-  T values [2];
-public:
-  aPair ( T first, T second ) // the constructor is defined inline within the class definition
-  {
-    values [0] = first;
-    values [1] = second;
-  }
-  std::string get ()
-  {
-    return Tab + std::to_string ( values [0] ) + Tab + std::to_string ( values [1] ) + Nline;
-  }
-  T getMax ();
-};
-template <class T> // member function is defined outside the definition of the class template
-T aPair<T>::getMax () // the T between angel brackets is a requirement. 
-                      // it specifies the source of the function's template parameter which is the class template parameter.
-{
-  T retVal;
-  retVal = values [0] > values [1] ? values [0] : values [1];
-  return retVal;
-}
-// class template:
-template <class T>
-class aContainer
-{
-  T element;
-public:
-  aContainer ( T arg ) { element = arg; }
-  T get () { return  element; }
-  T increase () { return ++element; }
-};
-// class template specialization
-template <>
-class aContainer <char>
-{
-  char element;
-public:
-  aContainer ( char arg ) { element = arg; }
-  char get () { return  element; }
-  char uppercase ()
-  {
-    if ( ( element >= 'a' ) && ( element <= 'z' ) )
-      element += 'A' - 'a';
-    return element;
-  }
-};
-
-
-// ********************************************************************************
-/// <summary>
-/// Classes II
-/// </summary>
-/// <created>ʆϒʅ,25.09.2018</created>
-/// <changed>ʆϒʅ,12.01.2019</changed>
-// ********************************************************************************
-void ClassesII ()
-{
-  // the classes used in this section are defined above it.
   try
   {
-    ColourCouter ( " -------------------------------------------------", F_bRED );
-    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
-    //! ####################################################################
-    //! ~~~~~ Classes II:
-    // more on classes.
-    std::cout << nline << "~~~~~ Classes II:" << nline;
-    std::cout << "More on the concepts of classes comes in this section." << nline << nline;
-
     //! ####################################################################
     //! ----- overloading operators:
     // Classes, essentially define new types to be used in C++ code, and these new types interact with code not only by means of constructors and assignments, but also operators.
     // for fundamental arithmetic types the meaning of such operators are obvious and unambiguous but this story can change in certain class types.
     // consider these two below examples:
-    std::cout << "----- Overloading operators:" << nline;
-    std::cout << "In C++, most operators can be overloaded, so they could have defined behaviours for almost any type." << nline << nline;
+    ColourCouter ( "----- Overloading operators:\n", F_bBLUE );
+    ColourCouter ( "In C++, most operators can be overloaded, so they could have defined behaviours for almost any type.\n\n", F_YELLOW );
     int a, b { 1 }, c { 2 }; // example1: operation on fundamental types
     a = b + c; // tree different variable of a fundamental type (int) have been applied addition and assignment operators
     struct myClass
@@ -535,12 +428,9 @@ void ClassesII ()
     // ---------------------------------------------------------------------------
     //   +    -    *    /    =    <    >    +=    -=    *=    /=    <<    >>
     // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
     //   <<=    >>=    ==    !=    <=    >=    ++    --    %    &    ^    !    |  
     // ---------------------------------------------------------------------------
-    // ---------------------------------------------------------------------------
     //   ~&=    ^=    |=    &&    ||    %=    []    ()    ,    ->*    ->    new
-    // ---------------------------------------------------------------------------
     // ---------------------------------------------------------------------------
     //   delete    new[]    delete[]
     // ---------------------------------------------------------------------------
@@ -556,6 +446,14 @@ void ClassesII ()
     CartesianR_1 = Cartesian1 + Cartesian2; // calling the function operator+ implicitly
     CartesianR_1 = Cartesian1.operator+( Cartesian2 ); // calling the function operator+ explicitly
     std::cout << nline << "The result of the overloaded addition operator on two Cartesian vectors is:" << tab << CartesianR_1.x << tab << CartesianR_1.y << nline;
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
 
     // a summary of the parameters needed for each of the different operators that can be overloaded, since operators can come in diverse forms.
     // guide to the table:
@@ -592,7 +490,29 @@ void ClassesII ()
     CartesianR_2 = Cartesian3 + Cartesian4; // implicit
     //CartesianR_2 = Cartesian3.operator+(Cartesian4); // explicit
     std::cout << nline << "The result of the overloaded addition operator on two Cartesian vectors is:" << tab << CartesianR_2.x << tab << CartesianR_2.y << nline;
+  }
+  catch ( const std::exception& )
+  {
 
+  }
+}
+
+
+class Dummy
+{
+public:
+  bool IsItMe ( Dummy& param );
+};
+bool Dummy::IsItMe ( Dummy& param )
+{
+  if ( &param == this ) return true;
+  else return false;
+}
+void _17_07_TheKeywordThis ()
+{
+
+  try
+  {
     //! ####################################################################
     //! ----- the keyword this:
     // the keyword 'this' represents a pointer to the object whose member function is being executed.
@@ -615,7 +535,26 @@ void ClassesII ()
     Cartesian5.printValues ();
     std::cout << "The Cartesian 6 vector:";
     Cartesian6.printValues ();
+  }
+  catch ( const std::exception& )
+  {
 
+  }
+}
+
+
+class Dummy2
+{
+public:
+  static int n;
+  Dummy2 () { n++; };
+};
+int Dummy2::n = 0; // a static data member of a class need to be initialized somewhere outside it.
+void _17_08_StaticMembers ()
+{
+
+  try
+  {
     //! ####################################################################
     //! ----- static members:
     // it is possible for a class to have either data or function as static member.
@@ -640,8 +579,35 @@ void ClassesII ()
     // and since they are like non-member functions,
     // they lack the ability to access non-static members of the class, also member variables or member functions,
     // and they can neither use the keyword 'this'.
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
 
 
+class MyClass2
+{
+public:
+  int x;
+  MyClass2 ( int val ) :x ( val ) {}
+  int get1 () { return x; }
+  int get2 () const { return x; } // const keyword must follows the function prototype
+  const int& get3 () const { return x; }; // const member function returning a const&
+  const int& get4 () { return x; }; // member function returning a const&
+  int& overloadedGet () { return x; };
+  const int& overloadedGet () const { return x; };
+};
+void print ( const MyClass2& arg )
+{
+  std::cout << "Taking the object as constant reference and thus read-only access as result:" << Tab << arg.get2 () << Nline << Nline;
+}
+void _17_09_ConstantMemberFunctions ()
+{
+
+  try
+  {
     //! ####################################################################
     //! ----- constant member functions:
     // defining an object of a class with qualification as constant means that the access to its data member from outside is read-only as if all its data member were constant, while the constructor is still called and has modification-right on these data member.
@@ -684,7 +650,43 @@ void ClassesII ()
     //OverloadsInUse2.overloadedGet () = 25; // not valid: overloadedGet() returns const int&
     temp = OverloadsInUse2.overloadedGet ();
     std::cout << "Second overload without modification right, thus getting:" << tab << temp << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
 
+  }
+}
+
+
+template <class T> // template parameter
+class aPair // serves to store two elements of any valid type
+{
+  T values [2];
+public:
+  aPair ( T first, T second ) // the constructor is defined inline within the class definition
+  {
+    values [0] = first;
+    values [1] = second;
+  }
+  std::string get ()
+  {
+    return Tab + std::to_string ( values [0] ) + Tab + std::to_string ( values [1] ) + Nline;
+  }
+  T getMax ();
+};
+template <class T> // member function is defined outside the definition of the class template
+T aPair<T>::getMax () // the T between angel brackets is a requirement. 
+                      // it specifies the source of the function's template parameter which is the class template parameter.
+{
+  T retVal;
+  retVal = values [0] > values [1] ? values [0] : values [1];
+  return retVal;
+}
+void _17_10_ClassTemplates ()
+{
+
+  try
+  {
     //! ####################################################################
     //! ----- class templates:
     // the same as function templates, class templates allow the classes to have members that use template parameters as type.
@@ -698,7 +700,44 @@ void ClassesII ()
     std::cout << "The max in this pair is:" << tab << twoInteger.getMax () << nline;
     std::cout << "Two doubles are:" << twoDouble.get ();
     std::cout << "The max in this pair is:" << tab << twoDouble.getMax () << nline;
+  }
+  catch ( const std::exception& )
+  {
 
+  }
+}
+
+
+// class template:
+template <class T>
+class aContainer
+{
+  T element;
+public:
+  aContainer ( T arg ) { element = arg; }
+  T get () { return  element; }
+  T increase () { return ++element; }
+};
+// class template specialization
+template <>
+class aContainer <char>
+{
+  char element;
+public:
+  aContainer ( char arg ) { element = arg; }
+  char get () { return  element; }
+  char uppercase ()
+  {
+    if ( ( element >= 'a' ) && ( element <= 'z' ) )
+      element += 'A' - 'a';
+    return element;
+  }
+};
+void _17_11_TemplateSpecialization ()
+{
+
+  try
+  {
     //! ####################################################################
     //! ----- template specialization:
     // to define a different implementation for a template when a specific type is passed as argument
@@ -719,11 +758,25 @@ void ClassesII ()
     std::cout << theInt.increase () << nline;
     std::cout << "The character and its uppercase are:" << "\t\t" << theChar.get () << tab;
     std::cout << theChar.uppercase () << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _18_01_SpecialMembers ()
+{
+  try
+  {
+    ColourCouter ( " -------------------------------------------------", F_bRED );
+    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
-    //! ----- special members:
+    //! ~~~~~ special members:
     // 
-    std::cout << nline << "----- Special members:" << nline;
+    std::cout << nline << "~~~~~ Special members:" << nline;
     std::cout << "." << nline << nline;
 
 

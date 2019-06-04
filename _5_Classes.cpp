@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,03.06.2019</changed>
+/// <changed>ʆϒʅ,05.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -353,54 +353,39 @@ void _17_05_PointersToClasses ()
 }
 
 
-class CVector1
+class Matrix
 {
+private:
 public:
-  int x, y;
-  CVector1 () {};
-  CVector1 ( int a, int b ) :x ( a ), y ( b )
-  {
-    std::cout << "The new instance using Cartesian vector class 'CVector1' created has the values:" << Tab << a << Tab << b << Nline;
-  }
-  CVector1 operator + ( const CVector1& );
-  CVector1 operator = ( const CVector1& );
-  void printValues ()
-  {
-    std::cout << "The object's (a Cartesian vector) values (x and y) are:" << Tab << x << Tab << y << Nline;
-  }
+  int a, b, c, d; // public so usable for none member functions
+  Matrix () { a = b = c = d = 0; };
+  Matrix ( int a, int b, int c, int d ) :a ( a ), b ( b ), c ( c ), d ( d ) {}
+  Matrix operator + ( const Matrix& );
+  Matrix operator = ( const Matrix& );
+  void print ()
+  { std::cout << Tab << "The matrix is:" << Tab << a << ", " << b << ", " << c << ", " << d << Nline; }
 };
 // operator overloaded as member function
-CVector1 CVector1::operator + ( const CVector1& param )
+Matrix Matrix::operator + ( const Matrix& input )
 {
-  CVector1 temp;
-  temp.x = x + param.x;
-  temp.y = y + param.y;
+  Matrix temp;
+  temp.a = a + input.a; temp.b = b + input.b;
+  temp.c = c + input.c; temp.d = d + input.d;
   return temp;
 }
-// expansion on the example: the keyword this
-// very similar to what actually the compiler generates implicitly for this class for the operator=
-CVector1 CVector1::operator = ( const CVector1& param )
+Matrix Matrix::operator = ( const Matrix& input )
 {
-  x = param.x;
-  y = param.y;
+  a = input.a; b = input.b;
+  c = input.c; d = input.d;
+  // the keyword this: very similar to what actually the compiler generates implicitly for the operator= in this class
   return *this;
 }
-class CVector2
-{
-public:
-  int x, y;
-  CVector2 () {};
-  CVector2 ( int a, int b ) :x ( a ), y ( b )
-  {
-    std::cout << "The new instance using Cartesian vector class 'CVector2' created has the values:" << Tab << a << Tab << b << Nline;
-  }
-};
 // operator overloaded as non-member function
-CVector2 operator + ( const CVector2& Lhs, const CVector2& Rhs )
+Matrix operator - ( const Matrix& first, const Matrix& second )
 {
-  CVector2 temp;
-  temp.x = Lhs.x + Rhs.x;
-  temp.y = Lhs.y + Rhs.y;
+  Matrix temp;
+  temp.a = first.a - second.a;
+  temp.b = first.b - second.b;
   return temp;
 }
 void _17_06_OverloadingOperators ()
@@ -409,87 +394,81 @@ void _17_06_OverloadingOperators ()
   {
     //! ####################################################################
     //! ----- overloading operators:
-    // Classes, essentially define new types to be used in C++ code, and these new types interact with code not only by means of constructors and assignments, but also operators.
-    // for fundamental arithmetic types the meaning of such operators are obvious and unambiguous but this story can change in certain class types.
-    // consider these two below examples:
+    // new types defined through classes interact with the code also by the means of operators,
+    // hence operators' obvious and unambiguous interaction with fundamental types can change using these new types,
+    // therefore the need to overload operators is self explanatory, which C++ language provides the means so to.
+    // a list of over-loadable operators:
+    // ---------------------------------------------------------------------------
+    // +      -     *     /     =     <     >     +=    -=    *=    /=    <<    >>
+    // ---------------------------------------------------------------------------
+    // <<=    >>=   ==    !=    <=    >=    ++    --    %     &     ^     !     |
+    // ---------------------------------------------------------------------------
+    // ~&=    ^=    |=    &&    ||    %=    []    ()    ,     ->*   ->
+    // ---------------------------------------------------------------------------
+    // new    delete    new[]   delete[]
+    // ---------------------------------------------------------------------------
+    // the operator functions, which through their special names differentiate with regular functions,
+    // are to be used to overload operators.
+    // Note the syntax:
+    // type operator sign (parameters) {}
+    // while the obligation of exact functionality of overloaded operator to that of mathematical or usual meaning lacks,
+    // the strong recommendation is there to oblige, and to follow the usual meaning of operators.
     ColourCouter ( "----- Overloading operators:\n", F_bBLUE );
     ColourCouter ( "In C++, most operators can be overloaded, so they could have defined behaviours for almost any type.\n\n", F_YELLOW );
-    int a, b { 1 }, c { 2 }; // example1: operation on fundamental types
-    a = b + c; // tree different variable of a fundamental type (int) have been applied addition and assignment operators
-    struct myClass
-    {
-      std::string product;
-      float price;
-    } d, e, f; // example2
-    //d = e+f; // compilation error, since myClass has no defined behaviour for addition operator
-
-    // C++, however, allows most operators to be overloaded, so that their behaviour can be defined for just about any type, including classes.
-    // here a list of the operators that can be overloaded:
-    // ---------------------------------------------------------------------------
-    //   +    -    *    /    =    <    >    +=    -=    *=    /=    <<    >>
-    // ---------------------------------------------------------------------------
-    //   <<=    >>=    ==    !=    <=    >=    ++    --    %    &    ^    !    |  
-    // ---------------------------------------------------------------------------
-    //   ~&=    ^=    |=    &&    ||    %=    []    ()    ,    ->*    ->    new
-    // ---------------------------------------------------------------------------
-    //   delete    new[]    delete[]
-    // ---------------------------------------------------------------------------
-    // operators are overloaded by means of the operator functions, which are regular functions with special names.
-    // the syntax is:
-    // type operator sign (parameter) { /* ... body ... */ }
-    // there is no obligation that the functionality of an overloaded operator bears a relation to the mathematical or usual meaning of that operator, but it is strongly recommanded.
-    // example: implementing addition operator on Cartesian vectors, which are sets of two coordinates: x and y.
-    CVector1 Cartesian1 ( 3, 1 );
-    CVector1 Cartesian2 ( 1, 2 );
-    CVector1 CartesianR_1;
+    Matrix matrix_1 ( 1, 2, 3, 4 );
+    Matrix matrix_2 ( 4, 3, 2, 1 );
+    Matrix result_1;
     // both expressions are equivalent:
-    CartesianR_1 = Cartesian1 + Cartesian2; // calling the function operator+ implicitly
-    CartesianR_1 = Cartesian1.operator+( Cartesian2 ); // calling the function operator+ explicitly
-    std::cout << nline << "The result of the overloaded addition operator on two Cartesian vectors is:" << tab << CartesianR_1.x << tab << CartesianR_1.y << nline;
-    /*
+    result_1 = matrix_1 + matrix_2; // calling the function operator+ implicitly
+    result_1 = matrix_1.operator+( matrix_2 ); // calling the function operator+ explicitly
+    ColourCouter ( "The matrices are:\n", F_bYELLOW );
+    matrix_1.print ();
+    matrix_2.print ();
+    ColourCouter ( "The result of the overloaded addition operator on two matrices is:\n", F_bYELLOW );
+    result_1.print ();
+    std::cout << nline;
 
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
-
-    // a summary of the parameters needed for each of the different operators that can be overloaded, since operators can come in diverse forms.
+    // a guide list, that introduces parameters needed for different over-loadable operators and their diverse forms.
     // guide to the table:
-    // please, replace @ by the operator in each case.
+    // in each case # is to be replaced by the operator.
     // a is an object of the class A, b is an object of the class B, c is an object of the class C
-    // TYPE is just any type (that operators overloads perform the conversion to type TYPE)
-    // -------------------------------------------------------------------------------------------------------------
-    // | Expression | Operator                                      | Member function        | Non-member function |
-    // -------------------------------------------------------------------------------------------------------------
-    // | @a         | + - * & ! ~ ++ --                             | A::operator@()         | operator@(A)        |
-    // -------------------------------------------------------------------------------------------------------------
-    // | a@	        | ++ --                                         | A::operator@(int)      | operator@(A, int)   |
-    // -------------------------------------------------------------------------------------------------------------
-    // | a@b        | + - * / % ^ & | < > == != <= >= << >> && || , | A::operator@(B)        | operator@(A, B)     |
-    // -------------------------------------------------------------------------------------------------------------
-    // | a@b        | = += -= *= /= %= ^= &= |= <<= >>= []          | A::operator@(B)        | -                   |
-    // -------------------------------------------------------------------------------------------------------------
-    // | a(b,c...)  | ()                                            | A::operator()(B, C...) | -                   |
-    // -------------------------------------------------------------------------------------------------------------
-    // | a->b       | ->                                            | A::operator->()        | -                   |
-    // -------------------------------------------------------------------------------------------------------------
-    // | (TYPE) a   | TYPE                                          | A::operator TYPE()     | -                   |
-    // -------------------------------------------------------------------------------------------------------------
-    // note, that some operators may be overloaded in two form: either as a member function or as a non-member function.
-    // examples guide:
-    // the operator overloaded as a member function in class 'CVector1'
-    // the operator overloaded as a non-member function in class 'CVector2'
-    // in case of overloading as a non-member function, the operator function takes an object of the proper class as first argument.
-    std::cout << nline << "Overloading the operator as a non-member function:" << nline;
-    CVector2 Cartesian3 ( 3, 1 );
-    CVector2 Cartesian4 ( 1, 2 );
-    CVector2 CartesianR_2;
+    // TYPE is just any type, that operators overloads perform the conversion to
+    // ----------------------------------------------------------------------------------------------------------
+    // Expression     Operator                                        Member function         Non-member function
+    // ----------------------------------------------------------------------------------------------------------
+    // #a             + - * & ! ~ ++ --                               A::operator#()          operator#(A)
+    // ----------------------------------------------------------------------------------------------------------
+    // a#             ++ --                                           A::operator#(int)       operator#(A, int)
+    // ----------------------------------------------------------------------------------------------------------
+    // a#b            + - * / % ^ & | < > == != <= >= << >> && || ,   A::operator#(B)         operator#(A, B)
+    // ----------------------------------------------------------------------------------------------------------
+    // a#b            = += -= *= /= %= ^= &= |= <<= >>= []            A::operator#(B)         -
+    // ----------------------------------------------------------------------------------------------------------
+    // a(b,c...)      ()                                              A::operator()(B,C...)   -
+    // ----------------------------------------------------------------------------------------------------------
+    // a->b           ->                                              A::operator->()         -
+    // ----------------------------------------------------------------------------------------------------------
+    // (TYPE) a       TYPE                                            A::operator TYPE()      -
+    // ----------------------------------------------------------------------------------------------------------
+
+    //! - in addition:
+    // some operators may be overloaded not only as a member function, but also as a non-member function.
+    // when overloading by the mean of non-member functions,
+    // the operator function takes naturally all the needed objects of proper class as arguments.
+    ColourCouter ( "Overloading the operator as a non-member function:\n\n", F_YELLOW );
+    Matrix matrix_3 ( 1, 2, 3, 4 );
+    Matrix matrix_4 ( 4, 3, 2, 1 );
+    Matrix result_2;
     // the overloaded operator is not a member of the class so explicit expression produces error:
-    CartesianR_2 = Cartesian3 + Cartesian4; // implicit
-    //CartesianR_2 = Cartesian3.operator+(Cartesian4); // explicit
-    std::cout << nline << "The result of the overloaded addition operator on two Cartesian vectors is:" << tab << CartesianR_2.x << tab << CartesianR_2.y << nline;
+    result_2 = matrix_3 - matrix_4; // implicit
+    //result_2 = matrix_3.operator-( matrix_4 ); // explicit
+    ColourCouter ( "The matrices are:\n", F_bYELLOW );
+    matrix_3.print ();
+    matrix_4.print ();
+    ColourCouter ( "The result of the overloaded subtraction operator on two matrices is:\n", F_bYELLOW );
+    result_2.print ();
+    std::cout << nline;
   }
   catch ( const std::exception& )
   {
@@ -527,14 +506,22 @@ void _17_07_TheKeywordThis ()
     // the keyword this is also frequently used in operator= member function, that returns objects by reference.
     // expanding the example1 on Cartesian vectors, its operator= member function could be defined and used as:
     std::cout << nline << "The use of the keyword 'this' in the operator= member function:" << nline << nline;
-    CVector1 Cartesian5 ( 3, 1 );
-    CVector1 Cartesian6 ( 1, 2 );
+    Matrix Cartesian5 ( 3, 1, 4, 2 );
+    Matrix Cartesian6 ( 1, 3, 2, 4 );
     Cartesian5 = Cartesian6;
     std::cout << "And the coordination after the assignment are:" << nline;
     std::cout << "The Cartesian 5 vector:";
-    Cartesian5.printValues ();
+    Cartesian5.print ();
     std::cout << "The Cartesian 6 vector:";
-    Cartesian6.printValues ();
+    Cartesian6.print ();
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {

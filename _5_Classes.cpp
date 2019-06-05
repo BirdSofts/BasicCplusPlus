@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,05.06.2019</changed>
+/// <changed>ʆϒʅ,06.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -190,7 +190,7 @@ private:
 public:
   Smily () { index = 0; print (); }
   Smily ( int i ) { index = i; print (); }
-  void print ()
+  void print ( void )
   {
     std::cout << "The smily:" << Tab << signs [4] << signs [index] << signs [4] << tab << title [index] << Nline;
   }
@@ -297,7 +297,7 @@ class Triangle
 private:
   double base, height;
 public:
-  Triangle ( double a, double b ) :base ( a ), height ( b ) {}
+  Triangle ( double a, double b ) : base ( a ), height ( b ) {}
   double area ( void ) { return ( base * height ) / 2; }
 };
 void _17_05_PointersToClasses ()
@@ -359,10 +359,10 @@ private:
 public:
   int a, b, c, d; // public so usable for none member functions
   Matrix () { a = b = c = d = 0; };
-  Matrix ( int a, int b, int c, int d ) :a ( a ), b ( b ), c ( c ), d ( d ) {}
+  Matrix ( int a, int b, int c, int d ) : a ( a ), b ( b ), c ( c ), d ( d ) {}
   Matrix operator + ( const Matrix& );
-  Matrix operator = ( const Matrix& );
-  void print ()
+  //Matrix operator = ( const Matrix& );
+  void print ( void )
   { std::cout << Tab << "The matrix is:" << Tab << a << ", " << b << ", " << c << ", " << d << Nline; }
 };
 // operator overloaded as member function
@@ -373,13 +373,14 @@ Matrix Matrix::operator + ( const Matrix& input )
   temp.c = c + input.c; temp.d = d + input.d;
   return temp;
 }
-Matrix Matrix::operator = ( const Matrix& input )
-{
-  a = input.a; b = input.b;
-  c = input.c; d = input.d;
-  // the keyword this: very similar to what actually the compiler generates implicitly for the operator= in this class
-  return *this;
-}
+//Matrix Matrix::operator = ( const Matrix& input )
+//{
+//  a = input.a; b = input.b;
+//  c = input.c; d = input.d;
+//  // the keyword this: very similar to what actually the compiler generates implicitly for the operator= in this class
+//  return *this;
+//}
+
 // operator overloaded as non-member function
 Matrix operator - ( const Matrix& first, const Matrix& second )
 {
@@ -477,16 +478,32 @@ void _17_06_OverloadingOperators ()
 }
 
 
-class Dummy
+class Pattern
 {
+private:
+  char sign;
 public:
-  bool IsItMe ( Dummy& param );
+  Pattern ( char prm ) : sign ( prm ) {}
+  bool Equal ( Pattern& prm )
+  {
+    if ( &prm == this ) return true;
+    else return false;
+  }
+  Pattern operator=( Pattern& prm )
+  {
+    sign = prm.sign;
+    return *this;
+  }
+  void print ( void )
+  {
+    for ( unsigned char i = 1; i <= 3; i++ )
+    {
+      for ( unsigned char j = 0; j < i; j++ )
+        std::cout << sign;
+      std::cout << nline;
+    }
+  }
 };
-bool Dummy::IsItMe ( Dummy& param )
-{
-  if ( &param == this ) return true;
-  else return false;
-}
 void _17_07_TheKeywordThis ()
 {
 
@@ -494,34 +511,29 @@ void _17_07_TheKeywordThis ()
   {
     //! ####################################################################
     //! ----- the keyword this:
-    // the keyword 'this' represents a pointer to the object whose member function is being executed.
-    // it is used within a class's member function to refer to the object itself.
-    std::cout << nline << "----- The keyword this:" << nline;
-    std::cout << "To refer to the object of the class within the class's member function." << nline << nline;
-    class Dummy aA;
-    class Dummy* bB { &aA };
-    if ( bB->IsItMe ( aA ) )
-      std::cout << "Yes, &aA is bB" << nline;
+    // the keyword 'this', usable within a class's member function, is a pointer to the object itself
+    // whose member function is already executing.
+    ColourCouter ( "----- The keyword this:\n", F_bBLUE );
+    ColourCouter ( "To refer to the object itself within the class's member function.\n\n", F_YELLOW );
+    class Pattern A { '*' };
+    class Pattern B { '$' };
+    class Pattern* C { &A };
+    std::cout << "Pattern object A (pointed to):" << nline;
+    if ( C->Equal ( A ) )
+      C->print ();
+    std::cout << "Pattern object B:" << nline;
+    if ( A.Equal ( B ) == false )
+      B.print ();
+    std::cout << nline;
 
-    // the keyword this is also frequently used in operator= member function, that returns objects by reference.
-    // expanding the example1 on Cartesian vectors, its operator= member function could be defined and used as:
-    std::cout << nline << "The use of the keyword 'this' in the operator= member function:" << nline << nline;
-    Matrix Cartesian5 ( 3, 1, 4, 2 );
-    Matrix Cartesian6 ( 1, 3, 2, 4 );
-    Cartesian5 = Cartesian6;
-    std::cout << "And the coordination after the assignment are:" << nline;
-    std::cout << "The Cartesian 5 vector:";
-    Cartesian5.print ();
-    std::cout << "The Cartesian 6 vector:";
-    Cartesian6.print ();
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
+    // operator= member function uses the keyword 'this' frequently, which returns objects by reference.
+    std::cout << "Pattern object A (after assignment):" << nline;
+    if ( A.Equal ( B ) == false )
+      A = B;
+    A.print ();
+    std::cout << nline;
+
   }
   catch ( const std::exception& )
   {
@@ -530,13 +542,18 @@ void _17_07_TheKeywordThis ()
 }
 
 
-class Dummy2
+class Sentence
 {
+private:
+  std::string content;
 public:
+  Sentence () { n++; };
+  Sentence ( std::string prm ) : content ( prm ) { n++; };
+  void print ( void ) { std::cout << content; }
   static int n;
-  Dummy2 () { n++; };
+  static void decrease ( void ) { n--; }
 };
-int Dummy2::n = 0; // a static data member of a class need to be initialized somewhere outside it.
+int Sentence::n { 0 }; // a static data member of a class need to be initialized somewhere outside it.
 void _17_08_StaticMembers ()
 {
 
@@ -544,28 +561,32 @@ void _17_08_StaticMembers ()
   {
     //! ####################################################################
     //! ----- static members:
-    // it is possible for a class to have either data or function as static member.
-    // a static class member is also known as a 'class member', since there is only one common variable for all the objects of that same class, sharing the same value.
-    // for example, it may be used as a variable within a class to contain the value of a counter, that stores the number of the objects of that class, which are already allocated.
-    // in fact, static members, while having properties as non-member variables, enjoy class scope.
-    // for this reason and to avoid their several declarations, they can not be initialized directly in the class.
-    // a static class member, since it is a common variable value for all the objects of the same class,
-    // it can be referred to as a member of any objects of that class (.) or even directly by the class name (::) (of course this is only valid for the static members).
-    std::cout << nline << "----- Static members:" << nline;
-    std::cout << "Static members, either data of functions, are common members of a class to all the objects of that class." << nline << nline;
-    Dummy2 A;
-    Dummy2 B [7];
-    std::cout << "Counted allocations value stored in the common data member of the class till now is:" << tab << A.n << nline; // referring by an object identifier
-    Dummy2* C = new Dummy2;
-    std::cout << "Counted allocations value stored in the common data member of the class till now is:" << tab << Dummy2::n << nline; // referring by the class name
+    // a class can introduce static members, either data members known as class variables or function members.
+    // an static member is not only shared between all the objects of that class,
+    // it is also accessible through the identifier of the class itself,
+    // hence a good example of such a member is a counter to observe the number of allocated objects of that class.
+    // static members are referable and accessible from all the objects of the class by dot (.),
+    // and directly from the class's identifier by scope operator (::).
+    // -- in fact, static members, while having properties as non-member data or functions, enjoy class scope,
+    // ---- therefore static data members:
+    // can not be initialized directly in the class, hence additionally to avoid they being declared several times.
+    // ---- therefore static member functions:
+    // lack the access to non-static class members, either data or functions, additionally they can't use keyword 'this'.
+    ColourCouter ( "----- Static members:\n", F_bBLUE );
+    ColourCouter ( "Static members, either data or functions, are common members of a class to all the objects of that class.\n\n", F_YELLOW );
+    std::string temp = "Hello! ";
+    Sentence A [3] { temp, temp, temp };
+    Sentence B { "How are you?\n" };
+    for ( unsigned char i = 0; i < 3; i++ )
+      A [i].print ();
+    B.print ();
+    std::cout << "Counted objects of the class:" << tab << B.n << nline; // referring by an object
+    Sentence* C = new Sentence { "where are you from?\n" };
+    C->print ();
+    std::cout << "Counted objects of the class:" << tab << C->n << nline; // referring by a dynamic allocated pointer
     delete C;
-
-    // classes can also have static member functions, which represent the same:
-    // common members of a class to all the objects of that class.
-    // while being accessed similar to members of the class, acting exactly as non-member functions.
-    // and since they are like non-member functions,
-    // they lack the ability to access non-static members of the class, also member variables or member functions,
-    // and they can neither use the keyword 'this'.
+    Sentence::decrease (); // static member function: counting down (one object is gone! :) )
+    std::cout << "Counted objects of the class:" << tab << Sentence::n << nline << nline; // referring by the class
   }
   catch ( const std::exception& )
   {
@@ -637,6 +658,14 @@ void _17_09_ConstantMemberFunctions ()
     //OverloadsInUse2.overloadedGet () = 25; // not valid: overloadedGet() returns const int&
     temp = OverloadsInUse2.overloadedGet ();
     std::cout << "Second overload without modification right, thus getting:" << tab << temp << nline << nline;
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {

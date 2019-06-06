@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,06.06.2019</changed>
+/// <changed>ʆϒʅ,07.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -595,21 +595,22 @@ void _17_08_StaticMembers ()
 }
 
 
-class MyClass2
+class Character
 {
+private:
 public:
-  int x;
-  MyClass2 ( int val ) :x ( val ) {}
-  int get1 () { return x; }
-  int get2 () const { return x; } // const keyword must follows the function prototype
-  const int& get3 () const { return x; }; // const member function returning a const&
-  const int& get4 () { return x; }; // member function returning a const&
-  int& overloadedGet () { return x; };
-  const int& overloadedGet () const { return x; };
+  char entity;
+  Character ( char arg ) :entity ( arg ) {} // constructor
+  char get_1 () { return entity; } // normal function member
+  char get_2 () const { return entity; } // constant function member: 'const' keyword must follows the function prototype
+  const char& get_3 () const { return entity; }; // constant function member returning a constant reference
+  const char& get_4 () { return entity; }; // normal function member returning a constant reference
+  char& set_get_overloads () { return entity; }; // overloaded on constant state: returns reference
+  const char& set_get_overloads () const { return entity; }; // overloaded on constant state: returns constant reference
 };
-void print ( const MyClass2& arg )
+void print ( const Character& arg )
 {
-  std::cout << "Taking the object as constant reference and thus read-only access as result:" << Tab << arg.get2 () << Nline << Nline;
+  std::cout << "Object's data member (object taken as constant reference):" << nline << Tab << arg.get_2 () << Nline << Nline;
 }
 void _17_09_ConstantMemberFunctions ()
 {
@@ -618,54 +619,54 @@ void _17_09_ConstantMemberFunctions ()
   {
     //! ####################################################################
     //! ----- constant member functions:
-    // defining an object of a class with qualification as constant means that the access to its data member from outside is read-only as if all its data member were constant, while the constructor is still called and has modification-right on these data member.
-    // properties of:
-    // no modification right on non-static data members or call right on non-constant member function
+    // a constant object declared from a class qualifies the outside access to all its data members to read-only,
+    // exactly as if these data member were actually constant declared within the class definition,
+    // while constructor still get called and has modification-right on these data members.
+    // --properties of constant qualified objects of a class:
+    // they can only call the function members qualified as constant. note: constant function return type is different.
+    // --properties of constant qualified function members:
+    // while they can't modify non-static data members, they lake the right to call non-constant member functions.
     // in essence, the state of an object shan't be modified by a constant member.
-    // the limitation of accessing to only constant member functions
-    // non-constant objects can access both constant and non-constant member functions alike.
+    // Note: non-constant objects can access both constant and non-constant member functions alike.
+    ColourCouter ( "----- Constant member functions:\n", F_bBLUE );
+    ColourCouter ( "Declaring an object of a class with qualification as constant introduces the restricted read-only access to its own data and function members.\n\n", F_YELLOW );
+    const Character aConstantObject ( 'A' ); // valid: constructor of the constant objects
+    char temp { '-' };
+    //aConstantObject.x = 'B'; // not valid: unmodifiable data members
+    temp = aConstantObject.entity; // valid: read access right on data members
+    std::cout << "Object's data member (read-only access):" << nline << tab << temp << nline << nline;
 
-    std::cout << nline << "----- Constant member functions:" << nline;
-    std::cout << "Defining an object of a class with qualification as constant introduces the restricted read-only access to its own data member." << nline << nline;
-    // constructor on constant object
-    const MyClass2 aConstantObject ( 10 );
-    int temp { 0 };
-    //aConstantObject.x = 20; // not valid: unmodifiable value
-    temp = aConstantObject.x;
-    std::cout << "Qualified read only access to data member of an object:" << tab << temp << nline;
-    //temp = aConstantObject.get1 (); // not valid: member function itself needs to be specified as constant member (see get2)
-    temp = aConstantObject.get2 ();
-    std::cout << "A callable member function of a constant object and its return value:" << tab << temp << nline << nline;
+    //temp = aConstantObject.get1 (); // not valid: not a constant member function
+    temp = aConstantObject.get_2 ();
+    std::cout << "Object's function member (constant function member):" << nline << tab << temp << nline;
 
-    // note: const keyword can be used to qualify the type returned by a member function.
-    // this is different and independent and has its own place in the function prototype
-    temp = aConstantObject.get3 ();
-    std::cout << "A callable member function of a constant object and its constant return value:" << tab << temp << nline << nline;
-    //temp = aConstantObject.get4 (); // not valid: member function itself needs to be specified as constant member
+    temp = aConstantObject.get_3 ();
+    std::cout << "Object's function member (constant function member with constant reference as return type):" << nline << tab << temp << nline << nline;
+    //temp = aConstantObject.get4 (); // not valid: not a constant member function
 
-    // note: the consideration should be there that the use of constant objects are perfectly common, thus the effort of declaring all members that don't modify the object as constant worth it.
-    // most functions with classes as parameters take them as constant reference, therefore they can only access their constant member.
-    MyClass2 aObject ( 20 );
+    //! - in addition:
+    // the consideration should be there that the use of constant objects are perfectly common,
+    // thus the effort of declaring all members that don't modify the object as constant worth it.
+    // most functions with classes as parameters take them as constant reference,
+    // therefore they can only access the constant object members.
+    Character aObject ( 'B' );
     print ( aObject );
 
-    // note: overloads of member functions on their constant state is possible: i.e., two member functions with identical signatures of a class, one may be in constant state and other not.
-    // therefore a call from a constant object goes to the constant overload and the non-constant object call the other version.
-    MyClass2 OverloadsInUse1 ( 10 );
-    const MyClass2 OverloadsInUse2 ( 20 );
-    OverloadsInUse1.overloadedGet () = 15; // ok: overloadedGet() returns int&
-    temp = OverloadsInUse1.overloadedGet ();
-    std::cout << "First overload with modification right, thus setting and getting:" << tab << temp << nline;
-    //OverloadsInUse2.overloadedGet () = 25; // not valid: overloadedGet() returns const int&
-    temp = OverloadsInUse2.overloadedGet ();
-    std::cout << "Second overload without modification right, thus getting:" << tab << temp << nline << nline;
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
+    // note: member functions with identical signatures are on their constant state over-loadable,
+    // this means, that the constant qualified versions are called when the objects themselves are constant.
+    // Note FYI: the reference returned in a function member is a kind of implicit pointer to returned value.
+    // when defined as non-constant, the function member is then usable at the left side of assignment operator,
+    // hence giving the function member the ability to modify the returned value.
+    // https://www.tutorialspoint.com/cplusplus/returning_values_by_reference.htm
+    Character firstObject ( 'D' );
+    const Character secondObject ( 'E' );
+    firstObject.set_get_overloads () = 'F'; // valid: modification through function return type qualified as reference
+    temp = firstObject.set_get_overloads ();
+    std::cout << "Object's function member (modification through references):" << nline << tab << temp << nline;
+    //secondObject.set_get_overloads () = 'G'; // not valid: read access through constant reference
+    temp = secondObject.set_get_overloads ();
+    std::cout << "Object's function member (read access through references):" << nline << tab << temp << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -716,6 +717,14 @@ void _17_10_ClassTemplates ()
     std::cout << "The max in this pair is:" << tab << twoInteger.getMax () << nline;
     std::cout << "Two doubles are:" << twoDouble.get ();
     std::cout << "The max in this pair is:" << tab << twoDouble.getMax () << nline;
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {

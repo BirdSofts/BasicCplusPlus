@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,07.06.2019</changed>
+/// <changed>ʆϒʅ,08.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -82,7 +82,7 @@ void _17_01_ClassesI ()
     ColourCouter ( "~~~~~ Classes I:\n", F_bBLUE );
     ColourCouter ( "Classes are an expanded concept of data structure with the ability, not only containing data members but also functions as members.\n\n", F_YELLOW );
     class Number first;
-    // like data structures, dot (.) method is used to directly access data or function member of a class
+    // like data structures, dot (.) method is used to directly access members either data or function of a class
     first.set_value ( 3 );
     first.print ();
     std::cout << "Of which the square is:" << tab << first.square () << nline;
@@ -91,7 +91,7 @@ void _17_01_ClassesI ()
     second.print ();
     std::cout << "Of which the square is:" << tab << second.square () << nline << nline;
     // object-oriented paradigms are implemented in programming using classes,
-    // this means that an object instantiated from a class, has its data and function members implemented within,
+    // this means that an object instantiated from a class, has its members either data or function implemented within,
     // therefore the concept reduces the passing and carrying of handlers or other state variables as arguments to functions.
 
     //! - in addition:
@@ -137,16 +137,16 @@ void _17_02_Constructors ()
   {
     //! ####################################################################
     //! ----- constructors:
-    // a call to a function member that uses uninitialized data members, causes undetermined results,
-    // which can, considering the best practice, get avoided using the special member function constructor.
+    // a call to a member function that uses uninitialized data members, causes undetermined results,
+    // which can get avoided, considering the best practice, using the special member function known as constructor.
     // instantiation of an object automatically calls the constructor of class,
     // with the most obvious purpose, initialization of data members and allocation of the needed memory.
     // a constructor can be declared like regular functions, its identifier matches to that of the class itself,
     // while having the same structure, a constructor introduces no return type, not even void.
-    // to add to the peculiarity of this special function member, a constructor can never get called explicitly,
+    // to add to the peculiarity of this special member function, a constructor can never get called explicitly,
     // therefore unlike regular functions, constructors are executed once at the instantiation moment of objects.
     ColourCouter ( "----- Constructors:\n", F_bBLUE );
-    ColourCouter ( "A special function member to initialize data members or allocate memory.\n\n", F_YELLOW );
+    ColourCouter ( "A special member function to initialize data members or allocate memory.\n\n", F_YELLOW );
     ColourCouter ( "The class 'number' improved to introduce its constructor:\n", F_bYELLOW );
     class numberEntity first ( 2 ); // initialization at the moment of instantiation using class constructor
     numberEntity second ( 3 ); // no error, class has a constructor present, thus the 'class' keyword is optional
@@ -357,7 +357,7 @@ class Matrix
 {
 private:
 public:
-  int a, b, c, d; // public so usable for none member functions
+  int a, b, c, d; // public so usable for none-member functions
   Matrix () { a = b = c = d = 0; };
   Matrix ( int a, int b, int c, int d ) : a ( a ), b ( b ), c ( c ), d ( d ) {}
   Matrix operator + ( const Matrix& );
@@ -373,14 +373,6 @@ Matrix Matrix::operator + ( const Matrix& input )
   temp.c = c + input.c; temp.d = d + input.d;
   return temp;
 }
-//Matrix Matrix::operator = ( const Matrix& input )
-//{
-//  a = input.a; b = input.b;
-//  c = input.c; d = input.d;
-//  // the keyword this: very similar to what actually the compiler generates implicitly for the operator= in this class
-//  return *this;
-//}
-
 // operator overloaded as non-member function
 Matrix operator - ( const Matrix& first, const Matrix& second )
 {
@@ -506,7 +498,6 @@ public:
 };
 void _17_07_TheKeywordThis ()
 {
-
   try
   {
     //! ####################################################################
@@ -556,12 +547,11 @@ public:
 int Sentence::n { 0 }; // a static data member of a class need to be initialized somewhere outside it.
 void _17_08_StaticMembers ()
 {
-
   try
   {
     //! ####################################################################
     //! ----- static members:
-    // a class can introduce static members, either data members known as class variables or function members.
+    // a class can introduce static members, either data members known as class variables or member functions.
     // an static member is not only shared between all the objects of that class,
     // it is also accessible through the identifier of the class itself,
     // hence a good example of such a member is a counter to observe the number of allocated objects of that class.
@@ -601,10 +591,10 @@ private:
 public:
   char entity;
   Character ( char arg ) :entity ( arg ) {} // constructor
-  char get_1 () { return entity; } // normal function member
-  char get_2 () const { return entity; } // constant function member: 'const' keyword must follows the function prototype
-  const char& get_3 () const { return entity; }; // constant function member returning a constant reference
-  const char& get_4 () { return entity; }; // normal function member returning a constant reference
+  char get_1 () { return entity; } // normal member function
+  char get_2 () const { return entity; } // constant member function: 'const' keyword must follows the function prototype
+  const char& get_3 () const { return entity; }; // constant member function returning a constant reference
+  const char& get_4 () { return entity; }; // normal member function returning a constant reference
   char& set_get_overloads () { return entity; }; // overloaded on constant state: returns reference
   const char& set_get_overloads () const { return entity; }; // overloaded on constant state: returns constant reference
 };
@@ -614,7 +604,6 @@ void print ( const Character& arg )
 }
 void _17_09_ConstantMemberFunctions ()
 {
-
   try
   {
     //! ####################################################################
@@ -623,13 +612,13 @@ void _17_09_ConstantMemberFunctions ()
     // exactly as if these data member were actually constant declared within the class definition,
     // while constructor still get called and has modification-right on these data members.
     // --properties of constant qualified objects of a class:
-    // they can only call the function members qualified as constant. note: constant function return type is different.
-    // --properties of constant qualified function members:
+    // they can only call the member functions qualified as constant. note: constant function return type is different.
+    // --properties of constant qualified member functions:
     // while they can't modify non-static data members, they lake the right to call non-constant member functions.
     // in essence, the state of an object shan't be modified by a constant member.
     // Note: non-constant objects can access both constant and non-constant member functions alike.
     ColourCouter ( "----- Constant member functions:\n", F_bBLUE );
-    ColourCouter ( "Declaring an object of a class with qualification as constant introduces the restricted read-only access to its own data and function members.\n\n", F_YELLOW );
+    ColourCouter ( "Declaring an object of a class with qualification as constant introduces the restricted read-only access to its own members either data or function.\n\n", F_YELLOW );
     const Character aConstantObject ( 'A' ); // valid: constructor of the constant objects
     char temp { '-' };
     //aConstantObject.x = 'B'; // not valid: unmodifiable data members
@@ -638,10 +627,10 @@ void _17_09_ConstantMemberFunctions ()
 
     //temp = aConstantObject.get1 (); // not valid: not a constant member function
     temp = aConstantObject.get_2 ();
-    std::cout << "Object's function member (constant function member):" << nline << tab << temp << nline;
+    std::cout << "Object's member function (constant member function):" << nline << tab << temp << nline;
 
     temp = aConstantObject.get_3 ();
-    std::cout << "Object's function member (constant function member with constant reference as return type):" << nline << tab << temp << nline << nline;
+    std::cout << "Object's member function (constant member function with constant reference as return type):" << nline << tab << temp << nline << nline;
     //temp = aConstantObject.get4 (); // not valid: not a constant member function
 
     //! - in addition:
@@ -655,18 +644,18 @@ void _17_09_ConstantMemberFunctions ()
     //! - in addition:
     // note: member functions with identical signatures are on their constant state over-loadable,
     // this means, that the constant qualified versions are called when the objects themselves are constant.
-    // Note FYI: the reference returned in a function member is a kind of implicit pointer to returned value.
-    // when defined as non-constant, the function member is then usable at the left side of assignment operator,
-    // hence giving the function member the ability to modify the returned value.
+    // Note FYI: the reference returned in a member function is a kind of implicit pointer to returned value.
+    // when defined as non-constant, the member function is then usable at the left side of assignment operator,
+    // hence giving the member function the ability to modify the returned value.
     // https://www.tutorialspoint.com/cplusplus/returning_values_by_reference.htm
     Character firstObject ( 'D' );
     const Character secondObject ( 'E' );
     firstObject.set_get_overloads () = 'F'; // valid: modification through function return type qualified as reference
     temp = firstObject.set_get_overloads ();
-    std::cout << "Object's function member (modification through references):" << nline << tab << temp << nline;
+    std::cout << "Object's member function (modification through references):" << nline << tab << temp << nline;
     //secondObject.set_get_overloads () = 'G'; // not valid: read access through constant reference
     temp = secondObject.set_get_overloads ();
-    std::cout << "Object's function member (read access through references):" << nline << tab << temp << nline << nline;
+    std::cout << "Object's member function (read access through references):" << nline << tab << temp << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -675,56 +664,44 @@ void _17_09_ConstantMemberFunctions ()
 }
 
 
-template <class T> // template parameter
-class aPair // serves to store two elements of any valid type
+template <class tType> // template parameter
+class NumberGeneric
 {
-  T values [2];
+private:
+  tType entity;
 public:
-  aPair ( T first, T second ) // the constructor is defined inline within the class definition
-  {
-    values [0] = first;
-    values [1] = second;
-  }
-  std::string get ()
-  {
-    return Tab + std::to_string ( values [0] ) + Tab + std::to_string ( values [1] ) + Nline;
-  }
-  T getMax ();
+  NumberGeneric ( tType prm ) :entity ( prm ) {} // inline: defined within the class definition
+  tType get () { return  entity; }
+  tType square ();
 };
-template <class T> // member function is defined outside the definition of the class template
-T aPair<T>::getMax () // the T between angel brackets is a requirement. 
-                      // it specifies the source of the function's template parameter which is the class template parameter.
+// defined outside the class definition
+template <class tType>
+tType NumberGeneric <tType> ::square ()
 {
-  T retVal;
-  retVal = values [0] > values [1] ? values [0] : values [1];
-  return retVal;
+  tType result;
+  result = entity * 2;
+  return result;
 }
 void _17_10_ClassTemplates ()
 {
-
   try
   {
     //! ####################################################################
     //! ----- class templates:
-    // the same as function templates, class templates allow the classes to have members that use template parameters as type.
-    // if the member function is defined outside the definition of the class template, it shall be preceded with the template <...> prefix.
-    std::cout << nline << "----- Class templates:" << nline;
-    std::cout << "To introduce classes that are able to have members that use template parameters as type." << nline << nline;
-    aPair<int> twoInteger ( 100, 75 ); // an object of the class to store two int values
-    aPair<double> twoDouble ( 3.3, 2.2 ); // an object of the class to store two double values
-    std::cout << "The results of maximum evaluation in the class template 'aPair':" << nline;
-    std::cout << "Two integers are:" << twoInteger.get ();
-    std::cout << "The max in this pair is:" << tab << twoInteger.getMax () << nline;
-    std::cout << "Two doubles are:" << twoDouble.get ();
-    std::cout << "The max in this pair is:" << tab << twoDouble.getMax () << nline;
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    // class templates allow the use of template parameters as type in the concepts of class,
+    // just as already introduced in function templates section.
+    // Note when defining a member function outside of the class template, the template <...> prefix shall precede it.
+    // additionally following is the needed definition syntax, which is notable.
+    // Note syntax: template_parameter class_identifier <template_parameter> ::member_function_identifier () {}
+    // the template parameter between the angel brackets is also a requirement,
+    // which introduces the function's template parameter, which is the same as class template parameter.
+    ColourCouter ( "----- Class templates:\n", F_bBLUE );
+    ColourCouter ( "To introduce classes that are able to have members that use template parameters as type.\n\n", F_YELLOW );
+    NumberGeneric<int> intNum ( 2 );
+    NumberGeneric<double> doubleNum ( 2.2 );
+    std::cout << "The number entities and their squares:" << nline;
+    std::cout << "First one:" << tab << intNum.get () << tab << intNum.square () << nline;
+    std::cout << "Second one:" << tab << doubleNum.get () << tab << doubleNum.square () << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -734,14 +711,14 @@ void _17_10_ClassTemplates ()
 
 
 // class template:
-template <class T>
+template <class tType>
 class aContainer
 {
-  T element;
+  tType element;
 public:
-  aContainer ( T arg ) { element = arg; }
-  T get () { return  element; }
-  T increase () { return ++element; }
+  aContainer ( tType arg ) { element = arg; }
+  tType get () { return  element; }
+  tType increase () { return ++element; }
 };
 // class template specialization
 template <>
@@ -760,7 +737,6 @@ public:
 };
 void _17_11_TemplateSpecialization ()
 {
-
   try
   {
     //! ####################################################################
@@ -783,6 +759,14 @@ void _17_11_TemplateSpecialization ()
     std::cout << theInt.increase () << nline;
     std::cout << "The character and its uppercase are:" << "\t\t" << theChar.get () << tab;
     std::cout << theChar.uppercase () << nline;
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {

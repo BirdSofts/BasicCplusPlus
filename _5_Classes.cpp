@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,08.06.2019</changed>
+/// <changed>ʆϒʅ,09.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -710,30 +710,43 @@ void _17_10_ClassTemplates ()
 }
 
 
-// class template:
+// generic template class:
 template <class tType>
-class aContainer
+class Entity
 {
-  tType element;
+private:
+  tType content;
 public:
-  aContainer ( tType arg ) { element = arg; }
-  tType get () { return  element; }
-  tType increase () { return ++element; }
+  Entity ( tType prm ) :content ( prm ) {}
+  tType get () { return  content; }
+  void square () { content *= 2; }
+  tType operator+ ( tType prm ) { return content + prm; }
 };
 // class template specialization
 template <>
-class aContainer <char>
+class Entity <std::string>
 {
-  char element;
+private:
+  std::string content;
 public:
-  aContainer ( char arg ) { element = arg; }
-  char get () { return  element; }
-  char uppercase ()
+  Entity ( std::string prm ) :content ( prm ) {}
+  std::string get () { return  content; }
+  void upLowerCase ()
   {
-    if ( ( element >= 'a' ) && ( element <= 'z' ) )
-      element += 'A' - 'a';
-    return element;
+
+    // uppercase/lowercase switch (ASCII code of character)
+    std::string temp { "" };
+    for ( char c : content )
+    {
+      if ( c < 97 )
+        c += 32;
+      else
+        c -= 32;
+      temp += c;
+    }
+    content = temp;
   }
+  std::string operator+ ( std::string prm ) { return  content + prm; }
 };
 void _17_11_TemplateSpecialization ()
 {
@@ -741,32 +754,26 @@ void _17_11_TemplateSpecialization ()
   {
     //! ####################################################################
     //! ----- template specialization:
-    // to define a different implementation for a template when a specific type is passed as argument
-    // for example the simple increment function on types and a special implementation on char type:
-    // the syntax used for the template specialization of the example:
-    // template <> class aContainer <cahr> {...};
-    // empty parameter list <> is needed, since all types are known and there is no need for any template arguments for this specialization.
-    // the second note is the <char> specialization parameter, which identify the type, on which the class template is specialized for.
-    // this difference is also notable:
-    // generic class template: template <class T> class aContainter {...};
-    // the specialization of: template <> class aContainer <cahr> {...};
-    // note: in declaration of a specialization, all members of the generic class even identical members must be defined again, since no inheritance happens between a generic class and its specialization.
-    std::cout << nline << "----- Template specialization:" << nline;
-    std::cout << "Different implementation of a template when a specific type is passed." << nline << nline;
-    aContainer <int> theInt ( 7 );
-    aContainer <char> theChar ( 'j' );
-    std::cout << "The integer value and its increment are:" << tab << theInt.get () << tab;
-    std::cout << theInt.increase () << nline;
-    std::cout << "The character and its uppercase are:" << "\t\t" << theChar.get () << tab;
-    std::cout << theChar.uppercase () << nline;
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    // different defined implementation for a template to introduce specific behaviour,
+    // when a special type is passed is known as template specialization.
+    // Note syntax: template <> class class_identifier <type_specialization_parameter> {...};
+    // note the empty parameter list <>
+    // the reason: this introduction specializes an already defined template with all its needed template argument.
+    // type specialization parameter identifies the type, for which the template specialization is being introduced.
+    // note that all members of the generic class, even identical ones, must be defined in its specialization again,
+    // since there is no inheritance between a generic class and the specialization there of.
+    ColourCouter ( "----- Template specialization:\n", F_bBLUE );
+    ColourCouter ( "To introduce different implementation of a template for a specific type.\n\n", F_YELLOW );
+    Entity <int> theInt ( 2 );
+    Entity <std::string> theString ( "Hello" );
+    std::cout << "The integer value:" << tab << theInt.get () << nline;
+    theInt.square ();
+    std::cout << "Square operation:" << tab << theInt.get () << nline;
+    std::cout << "+operator:" << "\t\t" << theInt + 2 << nline << nline;
+    std::cout << "The character value:" << tab << theString.get () << nline;
+    theString.upLowerCase ();
+    std::cout << "Upper/lowercase switch:" << tab << theString.get () << nline;
+    std::cout << "+operator:" << "\t\t" << theString + " bye" << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -791,6 +798,14 @@ void _18_01_SpecialMembers ()
 
 
 
+    /*
+
+    */
+    //ColourCouter ( "\n", F_bBLUE );
+    //ColourCouter ( "\n\n", F_YELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {

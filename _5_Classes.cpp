@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,09.06.2019</changed>
+/// <changed>ʆϒʅ,10.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -42,7 +42,7 @@ void _17_01_ClassesI ()
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
-    //! ~~~~~ Classes I:
+    //! ~~~~~ Classes:
     // C++ language introduces classes as an expansion to data structures,
     // additionally to data members, they can contain functions as members.
     // an instantiation of a class result in an object
@@ -79,7 +79,7 @@ void _17_01_ClassesI ()
     // when only its definition is included within the class, compiler considers it a normal (non-inline) class member.
     // the only difference being already mentioned, the behaviour stays the same,
     // thus in the end it may come to a possible compiler optimization.
-    ColourCouter ( "~~~~~ Classes I:\n", F_bBLUE );
+    ColourCouter ( "~~~~~ Classes:\n", F_bBLUE );
     ColourCouter ( "Classes are an expanded concept of data structure with the ability, not only containing data members but also functions as members.\n\n", F_YELLOW );
     class Number first;
     // like data structures, dot (.) method is used to directly access members either data or function of a class
@@ -791,21 +791,86 @@ void _18_01_SpecialMembers ()
 
     //! ####################################################################
     //! ~~~~~ special members:
+    // member function defined implicitly under certain circumstances are known as special members:
+    // -------------------------------------------------------------
+    // member function        typical form for class theClass
+    // -------------------------------------------------------------
+    // default constructor    theClass::theClass();
+    // -------------------------------------------------------------
+    // destructor             theClass::~theClass();
+    // -------------------------------------------------------------
+    // copy constructor       theClass::theClass (const theClass&);
+    // -------------------------------------------------------------
+    // copy assignment        theClass& operator= (const theClass&);
+    // -------------------------------------------------------------
+    // move constructor       theClass::theClass (theClass&&);
+    // -------------------------------------------------------------
+    // move assignment        theClass& operator= (theClass&&);
+    // -------------------------------------------------------------
+    ColourCouter ( "~~~~~ Special members:\n", F_bBLUE );
+    ColourCouter ( "Special member functions are defined implicitly under certain circumstances.\n\n", F_YELLOW );
+
+
+
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class FloatingPoint
+{
+private:
+  double entity;
+public:
+  FloatingPoint () { entity = 0; } // explicit defined default constructor
+  FloatingPoint ( const double& arg ) :entity ( arg ) {}
+  const double& get () const { return entity; }
+};
+void _18_02_DefaultConstructor ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- default constructor:
+    // an object defined of a class, but not initialised with any arguments, calls the default constructor.
+    // classes defined without any constructor are assumed by compiler to have an implicitly defined default constructor.
+    // after a class provides a constructor, taking any number of parameters to initialize object's data members with,
+    // compiler in no case introduces an implicit default constructor,
+    // thus no instantiation not using the explicit defined constructor is possible.
+    // hence afterward, for the ability to instantiate using default constructor, it shall be defined explicitly.
+    ColourCouter ( "----- Default Constructor:\n", F_bBLUE );
+    ColourCouter ( "This special member introduces object's instantiation without passing any arguments.\n\n", F_YELLOW );
+    FloatingPoint anEntity;
+    FloatingPoint anotherEntity { 2.2 };
+    std::cout << "The floating point numbers are:" << nline;
+    std::cout << tab << anEntity.get () << tab << anotherEntity.get () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _18_03_Destructor ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- destructor:
     // 
-    std::cout << nline << "~~~~~ Special members:" << nline;
-    std::cout << "." << nline << nline;
+    ColourCouter ( "----- Destructor:\n", F_bBLUE );
+    ColourCouter ( ".\n\n", F_YELLOW );
 
 
 
-
-    /*
-
-    */
-    //ColourCouter ( "\n", F_bBLUE );
-    //ColourCouter ( "\n\n", F_YELLOW );
     //ColourCouter ( "\n", F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
+
   }
   catch ( const std::exception& )
   {

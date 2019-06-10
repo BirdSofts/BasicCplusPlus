@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,10.06.2019</changed>
+/// <changed>ʆϒʅ,11.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -855,22 +855,78 @@ void _18_02_DefaultConstructor ()
 }
 
 
+class FloatEntity
+{
+private:
+  double* ptrEntity;
+public:
+  FloatEntity () : ptrEntity ( new double ) { *ptrEntity = 0; }
+  FloatEntity ( const double& arg ) :ptrEntity ( new double ( arg ) ) {}
+  ~FloatEntity () { delete ptrEntity; } // destructor
+  const double& get () const { return *ptrEntity; }
+};
 void _18_03_Destructor ()
 {
   try
   {
     //! ####################################################################
     //! ----- destructor:
-    // 
+    // the special member destructor is needed to free the allocated resource by a class, when its lifetime ends.
+    // note that when a class doesn't allocate any dynamic memory, it doesn't really require a destructor.
+    // like constructor, destructor of a class is automatically called upon the lifetime end of the objects defined of.
+    // destructor, very much like the default constructor, takes not even void as argument,
+    // while using the class identifier as its own and preceded with a tilde sign (~).
+    // the destructor of the below defined object is called at the end of the function.
     ColourCouter ( "----- Destructor:\n", F_bBLUE );
-    ColourCouter ( ".\n\n", F_YELLOW );
+    ColourCouter ( "Destructor is a special member, and is called at the lifetime end of a class.\n\n", F_YELLOW );
+    FloatEntity theEntity { 4.4 };
+    std::cout << "The floating point number is:" << nline;
+    std::cout << tab << theEntity.get () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
 
+  }
+}
+
+
+class Creature
+{
+private:
+  std::string name;
+public:
+  Creature ( std::string arg ) :name ( arg ) {}
+  const std::string& const get () { return name; }
+};
+void _18_04_CopyConstructor ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- copy constructor:
+    // the special member copy constructor, after invocation at the moment of a new object's definition,
+    // which is passed another already defined object of the same class as a single argument,
+    // instantiates a duplication of it, using the new object's identifier.
+    // copy constructor introduces its first possibly constant qualified argument of type reference to the class itself.
+    // copy, move constructors/assignments are implicitly provided through compiler,
+    // if the class itself doesn't introduce its custom version,
+    // which then simply performs a shallow copy of the members of the passed object.
+    ColourCouter ( "----- Copy constructor:\n", F_bBLUE );
+    ColourCouter ( "To instantiate an object as copy of another object.\n\n", F_YELLOW );
+    Creature one { "Human" };
+    Creature two { one }; // invoking the implicit copy constructor
+    std::cout << "The copied creature is identified as:" << nline;
+    std::cout << tab << two.get () << nline << nline;
+
+    //! - in addition:
+    // while the implicit introduced copy constructor perfectly suites the need of many classes,
+    // when it comes to pointers and handling its allocated storage,
+    // a performed shallow copy through which is jest the pointer value and not the pointed content.
+    // the result is then...
 
 
     //ColourCouter ( "\n", F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
-
   }
   catch ( const std::exception& )
   {

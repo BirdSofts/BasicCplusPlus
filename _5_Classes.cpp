@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,11.06.2019</changed>
+/// <changed>ʆϒʅ,12.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -212,8 +212,8 @@ void _17_03_UniformInitialization ()
     // optionally, this syntax can include an equal sign before the braces.
     ColourCouter ( "----- Uniform initialization:\n", F_bBLUE );
     ColourCouter ( "There are different ways for a constructor to be called.\n\n", F_YELLOW );
-    Smily a ( 0 ); // functional form
-    Smily b = 1; // assignment initialization
+    Smily a ( 0 ); // functional form (usable for single argument constructors)
+    Smily b = 1; // assignment initialization (usable for single argument constructors)
     Smily c { 2 }; // uniform initialization
     Smily d = { 3 }; // uniform initialization plus equal (POD type-like)
     std::cout << nline;
@@ -898,6 +898,17 @@ public:
   Creature ( std::string arg ) :name ( arg ) {}
   const std::string& const get () { return name; }
 };
+class creaturePtr
+{
+private:
+  std::string* ptrName;
+public:
+  creaturePtr ( const std::string& arg ) :ptrName ( new std::string ( arg ) ) {}
+  ~creaturePtr () { delete ptrName; }
+  // custom copy constructor
+  creaturePtr ( const creaturePtr& obj ) : ptrName ( new std::string ( obj.get () ) ) {}
+  const std::string& get () const { return *ptrName; }
+};
 void _18_04_CopyConstructor ()
 {
   try
@@ -907,10 +918,13 @@ void _18_04_CopyConstructor ()
     // the special member copy constructor, after invocation at the moment of a new object's definition,
     // which is passed another already defined object of the same class as a single argument,
     // instantiates a duplication of it, using the new object's identifier.
+    // with other words, the new object get initialized using another already defined object of the same class.
     // copy constructor introduces its first possibly constant qualified argument of type reference to the class itself.
     // copy, move constructors/assignments are implicitly provided through compiler,
     // if the class itself doesn't introduce its custom version,
     // which then simply performs a shallow copy of the members of the passed object.
+    // for example the implicit defined copy constructor by compiler for the class Creature is roughly equivalent to:
+    // Creature::Creature ( const Creature & obj ) : name ( obj.name ) {}
     ColourCouter ( "----- Copy constructor:\n", F_bBLUE );
     ColourCouter ( "To instantiate an object as copy of another object.\n\n", F_YELLOW );
     Creature one { "Human" };
@@ -919,14 +933,100 @@ void _18_04_CopyConstructor ()
     std::cout << tab << two.get () << nline << nline;
 
     //! - in addition:
-    // while the implicit introduced copy constructor perfectly suites the need of many classes,
-    // when it comes to pointers and handling its allocated storage,
-    // a performed shallow copy through which is jest the pointer value and not the pointed content.
-    // the result is then...
+    // while the introduced implicit copy constructor perfectly suites the need of many classes,
+    // when it comes to pointers and handling the allocated storage, a performed shallow copy,
+    // through which just the pointer value and not the pointed content get duplicated, in no case is a wished result.
+    // after a shallow copy, the object and its duplication point to the same destination address of memory,
+    // hence the program crushes at the destruction moment of this object or its copy on runtime.
+    // therefore the only solution is a custom copy constructor to perform a deep copy.
+    ColourCouter ( "Deep copy instantiation:\n", F_bYELLOW );
+    creaturePtr three { "Human" };
+    creaturePtr four { three };
+    std::cout << "The copied creature is identified as:" << nline;
+    std::cout << tab << four.get () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class Animal
+{
+private:
+  std::string* ptrName;
+public:
+  Animal ( const std::string& arg ) :ptrName ( new std::string ( arg ) ) {}
+  ~Animal () { delete ptrName; }
+  Animal ( const Animal& obj ) : ptrName ( new std::string ( obj.get () ) ) {}
+  // copy assignment operator
+  Animal& operator= ( const Animal& obj )
+  {
+    // --two available options for different scenarios:
+    // ----free the allocated memory (in case of constant member)
+    delete ptrName;
+    ptrName = new std::string ( obj.get () );
+    return *this;
+    // ----re-utilization (in case of non-constant member)
+    *ptrName = obj.get ();
+    return *this;
+  }
+  const std::string& get () const { return *ptrName; }
+};
+void _18_05_CopyAssignment ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- copy assignment:
+    // objects can additionally be copied on any assignment operation.
+    // one of the overloads of the operator= is the copy assignment operator, which is a special member,
+    // the single parameter of which is a value or reference to the class itself,
+    // and generally returns a reference to *this, although not being a requirement.
+    // a possible signature of the copy assignment of the class Creature is:
+    // Creature& operator= ( const Creature& );
+    // like copy constructor, the compiler defines a copy assignment operator implicitly,
+    // when the class introduces no custom version of its own,
+    // which performs needed shallow copy of a lot of classes perfectly.
+    // when it comes to pointers to objects and handling the needed storage, as the case with copy constructor,
+    // additionally to risk of freeing the allocated memory twice, there is the danger of memory leaks creation,
+    // which occurs by not deleting the object pointed to by the under new assignment operation object.
+    // a deep copy performed after deleting or reassigning the previous object solves these issues.
+    ColourCouter ( "----- Copy Assignment:\n", F_bBLUE );
+    ColourCouter ( "To copy an object on assignment operation.\n\n", F_YELLOW );
+    Animal one { "Dog" };
+    // initialization through copy constructor
+    Animal two { one };
+    // initialization through copy constructor (already introduced syntax, which calls single-argument constructors)
+    Animal three = one;
+    // already initialized objects, thus copy assignment is called
+    one = three;
+    std::cout << "The copied animal is identified as:" << nline;
+    std::cout << tab << one.get () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _18_06_MoveConstructorAndAssignment ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- move constructor and assignment:
+    // 
+    ColourCouter ( "----- Move constructor and assignment:\n", F_bBLUE );
+    ColourCouter ( ".\n\n", F_YELLOW );
+
 
 
     //ColourCouter ( "\n", F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
+    //! - in addition:
   }
   catch ( const std::exception& )
   {

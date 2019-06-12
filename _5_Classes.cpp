@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,12.06.2019</changed>
+/// <changed>ʆϒʅ,13.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1012,14 +1012,96 @@ void _18_05_CopyAssignment ()
 }
 
 
+class Appliance
+{
+private:
+  std::string* ptrName;
+public:
+  Appliance ( const std::string& arg ) :ptrName ( new std::string ( arg ) ) {}
+  ~Appliance () { delete ptrName; }
+  // copy constructor
+  Appliance ( const Appliance& obj ) : ptrName ( new std::string ( obj.get () ) ) {}
+  // copy assignment operator (non-constant member scenario)
+  Appliance& operator= ( const Appliance& obj )
+  {
+    *ptrName = obj.get ();
+    return *this;
+  }
+  // move constructor
+  Appliance ( Appliance&& obj ) :ptrName ( obj.ptrName ) { obj.ptrName = nullptr; }
+  // move assignment
+  Appliance& operator= ( Appliance&& obj )
+  {
+    delete ptrName;
+    ptrName = obj.ptrName;
+    obj.ptrName = nullptr;
+    return *this;
+  }
+  // addition
+  Appliance operator+ ( const Appliance& arg ) { return Appliance ( get () + " and " + arg.get () ); }
+  const std::string& get () const { return *ptrName; }
+};
 void _18_06_MoveConstructorAndAssignment ()
 {
   try
   {
     //! ####################################################################
     //! ----- move constructor and assignment:
-    // 
+    // moving similar to copying set the value to another object, the difference is the actual transfer,
+    // hence the source, which must be an unnamed object, loses that content.
+    // unnamed objects, for example return type of functions or type-casts, are in nature temporary,
+    // therefore they aren't identified with any name.
+    // initialization/assignment using temporary objects triggers the special member move constructor/assignment.
+    // to mention the efficient side, the use of unnamed temporaries make the copy unnecessary,
+    // with other words, the short-living unnamed objects are then acquired with the most efficient operation.
+    // the only parameter of move constructor/assignment is of type revalue reference to the class itself,
+    // which is specified following the type with two ampersands (&&),
+    // and then as a parameter matches the temporaries of the same type.
+    // Note syntax form (revalue reference): theClass ( theClass&& ); --- theClass& operator= ( theClass&& );
+    // for objects that manage their storage, such as objects that allocate and free storage with 'new' and 'delete',
+    // the concept of moving provides its most usefulness,
+    // considering the real difference between the operations copying and moving:
+    // --copying from A to B means: memory allocation for B and copying the entire content of A to it
+    // --moving from A to B means: transferring the allocated memory of A to B, which simply involves copying the pointer.
     ColourCouter ( "----- Move constructor and assignment:\n", F_bBLUE );
+    ColourCouter ( "Transferring the content of an unnamed object to destination.\n\n", F_YELLOW );
+    Appliance one { "Refrigerator" };
+    Appliance two { "Washing machine" };
+    std::cout << "The copied appliances are identified as:" << nline;
+    Appliance temp { one }; // copy constructor
+    std::cout << tab << temp.get () << nline;
+    temp = two; // copy assignment
+    std::cout << tab << temp.get () << nline << nline;
+    std::cout << "The moved appliances are identified as:" << nline;
+    Appliance three { Appliance{"Stove"} }; // move constructor
+    std::cout << tab << three.get () << nline;
+    temp = one + three; // move assignment
+    std::cout << tab << temp.get () << nline << nline;
+
+    //! - in addition:
+    // compilers introducing Return Value Optimization optimize many cases,
+    // that formally require a move-construction call, such as returned function value used to initialize an object.
+    // through this optimization the move constructor may actually never get called.
+    // note that the use of revalue reference needs to be practised with care.
+    // while it can be used as parameter type of any function, the usefulness is arguable.
+    // using it in other functions than move constructors is tricky,
+    // unnecessary and the source of errors quite difficult to track.
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _18_07_ImplicitMembers ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- implicit members:
+    // 
+    ColourCouter ( "----- Implicit members:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 
@@ -1027,6 +1109,7 @@ void _18_06_MoveConstructorAndAssignment ()
     //ColourCouter ( "\n", F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
+
   }
   catch ( const std::exception& )
   {

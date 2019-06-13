@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,13.06.2019</changed>
+/// <changed>ʆϒʅ,14.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1094,14 +1094,68 @@ void _18_06_MoveConstructorAndAssignment ()
 }
 
 
+const double PI { 3.14159f };
+class Circle
+{
+private:
+  double radius;
+public:
+  Circle ( double arg ) :radius ( arg ) {}
+  Circle () = default; // default definition is explicitly selected
+  Circle ( const Circle& obj ) = delete; // explicitly deleted
+  double circumference () { return 2 * radius * PI; }
+};
 void _18_07_ImplicitMembers ()
 {
   try
   {
     //! ####################################################################
     //! ----- implicit members:
-    // 
+    // below comes the certain circumstances,
+    // under which the six special member functions described above are implicitly defined:
+    // --------------------------------------------------------------------------------------------------
+    // member function      implicitly defined if:                                    default definition:
+    // --------------------------------------------------------------------------------------------------
+    // default constructor  no other constructors                                     does nothing
+    // destructor           no destructor                                             "
+    // copy constructor     no move constructor/assignment                            copies all members
+    // copy assignment      "                                                         "
+    // move constructor     no destructor/copy constructor/copy nor move assignment   moves all members
+    // move assignment      "                                                         "
+    // --------------------------------------------------------------------------------------------------
+    // note that due to backward compatibility with C structures and earlier C++ version,
+    // under same criteria pairs of special members are implicitly defined,
+    // which in fact contain even deprecated circumstances.
+    // further more classes using the keywords 'default' and 'delete' can explicitly select,
+    // which of these members exist with their default definition and which are deleted.
+    // Note syntax:
+    // function_declaration = default; --- function_declaration = delete;
+    // note that the recommendation for future support backward in time is there, when defining a class,
+    // which explicitly introduces one custom copy/move constructor or copy/move assignment but not both,
+    // to explicitly specify the state of the other special member functions as 'delete' or 'default'.
     ColourCouter ( "----- Implicit members:\n", F_bBLUE );
+    ColourCouter ( "Special members are implicit defined under different criteria.\n\n", F_YELLOW );
+    Circle one;
+    Circle two ( 2.2 );
+    std::cout << "The circle's circumference is:" << tab << two.circumference () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _19_01_FriendFunctions () 
+{
+  try
+  {
+    //! ####################################################################
+    //! ~~~~~ friendship and inheritance:
+    //! ----- friend functions:
+    // 
+    ColourCouter ( "~~~~~ Friendship and inheritance:\n\n", F_bBLUE );
+    ColourCouter ( "----- Friend functions:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

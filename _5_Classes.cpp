@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,14.06.2019</changed>
+/// <changed>ʆϒʅ,15.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1094,7 +1094,7 @@ void _18_06_MoveConstructorAndAssignment ()
 }
 
 
-const double PI { 3.14159f };
+const float PI { 3.14159 };
 class Circle
 {
 private:
@@ -1146,16 +1146,105 @@ void _18_07_ImplicitMembers ()
 }
 
 
-void _19_01_FriendFunctions () 
+void _19_01_FriendshipAndInheritance ()
+{
+  try
+  {
+    ColourCouter ( " -------------------------------------------------", F_bRED );
+    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+    //! ####################################################################
+    //! ~~~~~ friendship and inheritance:
+    //
+    ColourCouter ( "~~~~~ Friendship and inheritance:\n", F_bBLUE );
+    ColourCouter ( "Some useful expansions on the concept of classes.\n\n", F_YELLOW );
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class Cylinder; // empty declaration (usable as type to define objects)
+class Base
+{
+  friend class Cylinder; // Cylinder is a friend (Cylinder has the privilege to access)
+private:
+  double radius;
+  const double P { 3.14159 };
+public:
+  Base () { radius = 1; } // default constructor
+  Base ( double prm ) :radius ( prm ) {}
+  double circumference () { return 2 * radius * P; }
+  friend void expand_by_base ( Base&, double ); // friend function (not a member function!)
+  friend void expand_by_height ( Cylinder&, double ); // the same
+};
+class Cylinder
+{
+private:
+  Base base;
+  double height;
+public:
+  Cylinder ( double prm ) :height ( prm ) {}
+  double volume () { return base.circumference () * height; }
+  void new_base ( Base );
+  void set ( double prm ) { height *= prm; }
+};
+void expand_by_base ( Base& obj, double prm ) { obj.radius *= prm; } // friend of Base
+void expand_by_height ( Cylinder& obj, double prm ) { obj.set ( prm ); } // not a friend of Cylinder
+void Cylinder::new_base ( Base obj ) // defined outside
+{
+  // the privilege of friends! :)
+  base.radius = obj.radius;
+}
+void _19_02_FriendFunctionsAndClasses ()
 {
   try
   {
     //! ####################################################################
-    //! ~~~~~ friendship and inheritance:
-    //! ----- friend functions:
+    //! ----- friend functions and classes:
+    // private and protected members of a class are accessible within it and from its friends,
+    // which are those classes or functions defined with the keyword 'friend'.
+    // --a non-member external function's declaration needs to be included within the definition of the class,
+    // preceded with the keyword 'friend'.
+    // when conducting operations between two different classes, accessing their private and protected members,
+    // the concept of friend functions has its most typical use.
+    // --similarly, the declaration of a friend class after inclusion within the class definition,
+    // preceded with the keyword 'friend', qualifies it by additional rights.
+    // note that unless explicitly specified, friendships are not corresponded,
+    // hence declaring a class as friend within a class,
+    // doesn't qualifies the class to be also a friend to its friend class,
+    // therefore the friend class, if needed, must define its friendship to this class explicitly.
+    // note, since friendships are not transitive, unless explicitly declared, a friend of a friend is a friend.
+    ColourCouter ( "----- Friend functions and classes:\n", F_bBLUE );
+    ColourCouter ( "Functions and classes defined as friend of a class can access its private and protected members.\n\n", F_YELLOW );
+    Cylinder one { 5 };
+    std::cout << "Cylinder's volume (base is default constructed):" << nline << tab << one.volume () << nline;
+    Base two ( 2.2 );
+    one.new_base ( two );
+    std::cout << "Cylinder's volume (class friend's privilege):" << nline << tab << one.volume () << nline;
+    expand_by_base ( two, 0.9 );
+    one.new_base ( two );
+    std::cout << "Cylinder's volume (function friend's privilege):" << nline << tab << one.volume () << nline;
+    expand_by_height ( one, 0.9 );
+    std::cout << "Cylinder's volume (no friendship is declared):" << nline << tab << one.volume () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _19_03_InheritanceBetweenClasses ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- inheritance between classes:
     // 
-    ColourCouter ( "~~~~~ Friendship and inheritance:\n\n", F_bBLUE );
-    ColourCouter ( "----- Friend functions:\n", F_bBLUE );
+    ColourCouter ( "----- Inheritance between classes:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,15.06.2019</changed>
+/// <changed>ʆϒʅ,19.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1237,14 +1237,77 @@ void _19_02_FriendFunctionsAndClasses ()
 }
 
 
+class Person
+{
+protected:
+  std::string name;
+public:
+  void setter ( std::string arg ) { name = arg; };
+};
+// first derived class and its own features
+class Customer :public Person
+{
+public:
+  std::string print () { return name + " wants to buy a new phone."; }
+};
+// second derived class and its own features
+class Worker :public Person
+{
+public:
+  std::string print () { return name + " works in the shop as cashier."; }
+};
 void _19_03_InheritanceBetweenClasses ()
 {
   try
   {
     //! ####################################################################
     //! ----- inheritance between classes:
-    // 
+    // classes can inherit some of their characteristics from another classes.
+    // a derived class from a base class through the process of inheritance then retains to the inherited features,
+    // which means that it inherits all accessible members of the base class, and additionally introduces its own members.
+    // a class can base itself on another class by declaring the inheritance relationship.
+    // Note syntax: class derived_class_neme :public base_class_name { ... };
+    // there are three options to specify the access level, which are 'public', 'protected' and 'private' keywords.
+    // using these access specifiers, the derived class can limits the accessibility of the inherited members,
+    // hence an inheritance relationship declared with 'private' keyword, retain all inherited members as private members,
+    // no matter that they have been originally defined as public or protected in the base class.
+    // note that, on the other hand, inheriting with public access specifier, saves the original defined state of base class members.
+    // all in all, in C++ public inheritance has the most use cases,
+    // since needed members of a base class defined with other access levels are better represented as member variables instead.
+    // after not explicitly specifying the access level for inheritance,
+    // compiler implicitly assumes it as private for those defined with 'class' keyword and public for those defined with 'struct'.
+    // Note accessibility of class members, considering inheritance concepts:
+    // ----------------------------------------------------------
+    // Access                       public    protected   private
+    // members of the same class    yes       yes         yes
+    // members of derived class     yes       yes         no
+    // not members                  yes       no          no
+    // ----------------------------------------------------------
+    // note that protected members of a base class are accessible within the derived class.
     ColourCouter ( "----- Inheritance between classes:\n", F_bBLUE );
+    ColourCouter ( "Characteristics of a class can be inherited by other classes.\n\n", F_YELLOW );
+    Customer one;
+    Worker two;
+    one.setter ( "John" );
+    two.setter ( "Mary" );
+    std::cout << one.print () << nline;
+    std::cout << two.print () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _19_04_InheritedCharacteristics ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- inherited characteristics:
+    // 
+    ColourCouter ( "----- Inherited characteristics:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 
@@ -1252,7 +1315,6 @@ void _19_03_InheritanceBetweenClasses ()
     //ColourCouter ( "\n", F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
-
   }
   catch ( const std::exception& )
   {

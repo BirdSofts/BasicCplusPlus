@@ -3,7 +3,7 @@
 /// _5_Classes.h
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,15.06.2019</changed>
+/// <changed>ʆϒʅ,19.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -36,6 +36,7 @@ void _18_07_ImplicitMembers ();
 void _19_01_FriendshipAndInheritance ();
 void _19_02_FriendFunctionsAndClasses ();
 void _19_03_InheritanceBetweenClasses ();
+void _19_04_InheritedCharacteristics ();
 
 
 #endif // !CLASSES_H

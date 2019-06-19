@@ -1300,21 +1300,93 @@ void _19_03_InheritanceBetweenClasses ()
 }
 
 
+class toInherit
+{
+private:
+  int baseEntity;
+public:
+  toInherit ()
+  {
+    std::cout << "Base class: default constructor" << nline;
+    baseEntity = 0;
+  }
+  toInherit ( int a ) :baseEntity { a }
+  {
+    std::cout << "Base class: custom constructor" << nline;
+  }
+  const int& baseGet () { return baseEntity; }
+};
+class divertedOne :public toInherit
+{
+private:
+  int entity;
+public:
+  // call to base class default constructor
+  divertedOne ( int a ) :entity { a }
+  {
+    std::cout << "First diverted class: custom constructor" << nline;
+  };
+  const int& get () { return entity; }
+};
+class divertedTwo :public toInherit
+{
+private:
+  int entity;
+public:
+  // call to base class specific custom constructor
+  divertedTwo ( int a, int b ) :entity { a }, toInherit { b }
+  {
+    std::cout << "Second diverted class: custom constructor" << nline;
+  };
+  const int& get () { return entity; }
+};
 void _19_04_InheritedCharacteristics ()
 {
   try
   {
     //! ####################################################################
     //! ----- inherited characteristics:
-    // 
+    // generally, a derived class defined with public inheritance relationship retain access to every member of a base class except:
+    // constructors, destructor, assignment operator members, the friends, and private members of the base class.
+    // note that, while the access to constructors and destructors of the base class in inheritance way isn't provided,
+    // the constructors and destructor of the derived class automatically call these special member functions of the base class.
+    // this automated call, unless explicitly specified differently, happens to its default constructor.
+    // through the syntax provided to initialize member variables in the initialization list,
+    // it is possible to explicitly call custom constructors of a base class.
+    // Note syntax
+    // derived_constructor_name ( parameters ) : data_members { parameters }, base_constructor_name { parameters } { ... }
     ColourCouter ( "----- Inherited characteristics:\n", F_bBLUE );
+    ColourCouter ( "Not all the members of a base class get retained in the process of inheritance.\n\n", F_YELLOW );
+    // base class default constructor:
+    divertedOne first { 1 };
+    std::cout << "First diverted class entities:" << tab << first.baseGet () << tab << first.get () << nline << nline;
+    // base class custom constructor:
+    divertedTwo second { 2, 1 };
+    std::cout << "Second diverted class entities:" << tab << second.baseGet () << tab << second.get () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _19_05_MultipleInheritance ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- multiple inheritance:
+    // 
+    ColourCouter ( "----- Multiple inheritance:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 
 
-    //ColourCouter ( "\n", F_bYELLOW );
+    //ColourCouter ( "\n F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
+
   }
   catch ( const std::exception& )
   {

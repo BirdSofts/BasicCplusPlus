@@ -37,6 +37,7 @@ void _19_01_FriendshipAndInheritance ();
 void _19_02_FriendFunctionsAndClasses ();
 void _19_03_InheritanceBetweenClasses ();
 void _19_04_InheritedCharacteristics ();
+void _19_05_MultipleInheritance ();
 
 
 #endif // !CLASSES_H

@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,19.06.2019</changed>
+/// <changed>ʆϒʅ,20.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1371,19 +1371,71 @@ void _19_04_InheritedCharacteristics ()
 }
 
 
+class Shape
+{
+protected:
+  const float PI { 3.14159 };
+  float radius;
+public:
+  Shape ( const float& prm ) : radius ( prm ) {}
+  float exponent ( const float& prmOne, const unsigned char& ex )
+  {
+    float temp { 1 };
+    for ( unsigned char i = 0; i < ex; i++ )
+    {
+      temp *= prmOne;
+    }
+    return temp;
+  }
+};
+class Output
+{
+private:
+public:
+  void print ( const float& prm ) { std::cout << "The volume of sphere is:" << tab << prm; }
+};
+class Sphere :public Shape, public Output
+{
+private:
+public:
+  Sphere ( const float& prm ) : Shape ( prm ) {}
+  float area () { return ( 4 / 3 ) * PI * exponent ( radius, 3 ); }
+};
 void _19_05_MultipleInheritance ()
 {
   try
   {
     //! ####################################################################
     //! ----- multiple inheritance:
-    // 
+    // expanding the inheritance concepts, classes can be based on more than one class,
+    // the declaration syntax then get extended to include the needed base classes, separating them with coma ','.
+    // Note syntax: class derived_class_neme :public base_class_one, public base_class_two, ... { ... };
     ColourCouter ( "----- Multiple inheritance:\n", F_bBLUE );
+    ColourCouter ( "A class can inherit characteristics from more than one base class.\n\n", F_YELLOW );
+    Sphere one ( 10.5 );
+    one.print ( one.area () );
+    std::cout << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _20_01_Polymorphism ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- polymorphism:
+    // 
+    ColourCouter ( "----- Polymorphism:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 
 
-    //ColourCouter ( "\n F_bYELLOW );
+    //ColourCouter ( "\n", F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
 

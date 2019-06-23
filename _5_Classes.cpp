@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,20.06.2019</changed>
+/// <changed>ʆϒʅ,24.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1427,10 +1427,86 @@ void _20_01_Polymorphism ()
 {
   try
   {
+    ColourCouter ( " -------------------------------------------------", F_bRED );
+    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
     //! ####################################################################
-    //! ----- polymorphism:
+    //! ~~~~~ polymorphism:
+    // the needed concepts for the following to be understood are data structures, classes, pointers, friendship and inheritance,
+    // without which, learning deeper isn't going to bring anything.
+    // all of them are already introduced in this tutorial.
+    ColourCouter ( "~~~~~ Polymorphism:\n", F_bBLUE );
+    ColourCouter ( "Deeper knowledge in the concepts of classes.\n\n", F_YELLOW );
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class Numbers
+{
+protected:
+  int first, second;
+public:
+  void set_numbers ( int a, int b ) { first = a; second = b; }
+};
+class Subtraction :public Numbers
+{
+public:
+  int result ()
+  {
+    if ( first > second )
+      return first - second;
+    else
+      return second - first;
+  }
+};
+class Summation :public Numbers
+{
+public:
+  int result ()
+  {
+    return first + second;
+  }
+};
+void _20_02_PointersToBaseClass ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- pointers to base class:
+    // furthermore on the advantages of inheritance concepts and introducing polymorphism,
+    // a pointer to a diverted class is additionally type-compatible with another one to its base class.
+    // note that it is not possible to access the members of a diverted class through a pointer to its base class.
+    // in the example, base class can't represent a common implementation for the different operations.
+    ColourCouter ( "----- Pointer to base class:\n", F_bBLUE );
+    ColourCouter ( "A pointer can point to a base class through its diverted class address.\n\n", F_YELLOW );
+    Subtraction minus;
+    Summation plus;
+    Numbers* ptr_minus { &minus }; // type-compatible feature
+    Numbers* ptr_plus { &plus };
+    ptr_minus->set_numbers ( 20, 10 ); // dereferencing the base member
+    ptr_plus->set_numbers ( 20, 10 );
+    std::cout << "The subtraction result:" << tab << minus.result () << nline;
+    std::cout << "The summation result:" << tab << plus.result () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _20_03_VirtualMembers ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- virtual members:
     // 
-    ColourCouter ( "----- Polymorphism:\n", F_bBLUE );
+    ColourCouter ( "----- Virtual members:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 
@@ -1438,7 +1514,6 @@ void _20_01_Polymorphism ()
     //ColourCouter ( "\n", F_bYELLOW );
     //ColourCouter ( "\n", F_bCYAN );
     //! - in addition:
-
   }
   catch ( const std::exception& )
   {

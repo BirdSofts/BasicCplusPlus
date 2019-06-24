@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,24.06.2019</changed>
+/// <changed>ʆϒʅ,25.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1316,27 +1316,27 @@ public:
   }
   const int& baseGet () { return baseEntity; }
 };
-class divertedOne :public toInherit
+class derivedOne :public toInherit
 {
 private:
   int entity;
 public:
   // call to base class default constructor
-  divertedOne ( int a ) :entity { a }
+  derivedOne ( int a ) :entity { a }
   {
-    std::cout << "First diverted class: custom constructor" << nline;
+    std::cout << "First derived class: custom constructor" << nline;
   };
   const int& get () { return entity; }
 };
-class divertedTwo :public toInherit
+class derivedTwo :public toInherit
 {
 private:
   int entity;
 public:
   // call to base class specific custom constructor
-  divertedTwo ( int a, int b ) :entity { a }, toInherit { b }
+  derivedTwo ( int a, int b ) :entity { a }, toInherit { b }
   {
-    std::cout << "Second diverted class: custom constructor" << nline;
+    std::cout << "Second derived class: custom constructor" << nline;
   };
   const int& get () { return entity; }
 };
@@ -1358,11 +1358,11 @@ void _19_04_InheritedCharacteristics ()
     ColourCouter ( "----- Inherited characteristics:\n", F_bBLUE );
     ColourCouter ( "Not all the members of a base class get retained in the process of inheritance.\n\n", F_YELLOW );
     // base class default constructor:
-    divertedOne first { 1 };
-    std::cout << "First diverted class entities:" << tab << first.baseGet () << tab << first.get () << nline << nline;
+    derivedOne first { 1 };
+    std::cout << "First derived class entities:" << tab << first.baseGet () << tab << first.get () << nline << nline;
     // base class custom constructor:
-    divertedTwo second { 2, 1 };
-    std::cout << "Second diverted class entities:" << tab << second.baseGet () << tab << second.get () << nline << nline;
+    derivedTwo second { 2, 1 };
+    std::cout << "Second derived class entities:" << tab << second.baseGet () << tab << second.get () << nline << nline;
   }
   catch ( const std::exception& )
   {
@@ -1478,11 +1478,11 @@ void _20_02_PointersToBaseClass ()
     //! ####################################################################
     //! ----- pointers to base class:
     // furthermore on the advantages of inheritance concepts and introducing polymorphism,
-    // a pointer to a diverted class is additionally type-compatible with another one to its base class.
-    // note that it is not possible to access the members of a diverted class through a pointer to its base class.
+    // a pointer to a derived class is additionally type-compatible with another one to its base class.
+    // note that it is not possible to access the members of a derived class through a pointer to its base class.
     // in the example, base class can't represent a common implementation for the different operations.
     ColourCouter ( "----- Pointer to base class:\n", F_bBLUE );
-    ColourCouter ( "A pointer can point to a base class through its diverted class address.\n\n", F_YELLOW );
+    ColourCouter ( "A pointer can point to a base class through its derived class address.\n\n", F_YELLOW );
     Subtraction minus;
     Summation plus;
     Numbers* ptr_minus { &minus }; // type-compatible feature
@@ -1499,14 +1499,79 @@ void _20_02_PointersToBaseClass ()
 }
 
 
+class Pair
+{
+protected:
+  int first, second;
+public:
+  void set ( int a, int b ) { first = a; second = b; }
+  virtual int result () { return 0; }
+};
+class Division :public Pair
+{
+public:
+  int result ()
+  {
+    if ( first > second )
+      return first / second;
+    else
+      return second / first;
+  }
+};
+class Multiplication :public Pair
+{
+public:
+  int result ()
+  {
+    return first * second;
+  }
+};
 void _20_03_VirtualMembers ()
 {
   try
   {
     //! ####################################################################
     //! ----- virtual members:
-    // 
+    // preceding the member function declaration with 'virtual' keyword and redefining it in derived classes,
+    // its calling properties through references are preserved.
+    // the redefined implementations of a function member defined and qualified as virtual in base class,
+    // can then be accessed through a reference of the base class.
+    // with other words, the 'virtual' keyword qualifies a function and its redefined implementations to be called appropriately,
+    // specially using a pointer to the type of the base class, which points to an object of the derived class.
+    // Note syntax: virtual function_return_type identifier () {...}
+    // classes that inherit or declare a virtual function are known as polymorphic ones.
+    // the example introduces a regular class as base containing a virtual function member with different implementations.
     ColourCouter ( "----- Virtual members:\n", F_bBLUE );
+    ColourCouter ( "Through virtual qualification, calling properties through references are preserved.\n\n", F_YELLOW );
+    Pair aPair;
+    Division divide;
+    Multiplication multiply;
+    Pair* ptr_aPair { &aPair };
+    Pair* ptr_divide { &divide };
+    Pair* ptr_multiply { &multiply };
+    ptr_aPair->set ( 20, 10 );
+    ptr_divide->set ( 20, 10 );
+    ptr_multiply->set ( 20, 10 );
+    // access to members of derived classes through the pointers to base
+    std::cout << "The base implementation:" << tab << ptr_aPair->result () << nline;
+    std::cout << "The division result:" << "\t\t" << ptr_divide->result () << nline;
+    std::cout << "The multiplication result:" << tab << ptr_multiply->result () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _20_04_AbstractBaseClasses ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- abstract base classes:
+    // 
+    ColourCouter ( "----- Abstract base classes:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

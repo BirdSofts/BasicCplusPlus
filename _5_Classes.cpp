@@ -896,7 +896,7 @@ private:
   std::string name;
 public:
   Creature ( std::string arg ) :name ( arg ) {}
-  const std::string& const get () { return name; }
+  const std::string& get () const { return name; }
 };
 class creaturePtr
 {
@@ -1094,7 +1094,7 @@ void _18_06_MoveConstructorAndAssignment ()
 }
 
 
-const float PI { 3.14159 };
+const double PI { 3.14159 };
 class Circle
 {
 private:
@@ -1374,13 +1374,13 @@ void _19_04_InheritedCharacteristics ()
 class Shape
 {
 protected:
-  const float PI { 3.14159 };
-  float radius;
+  const double PI { 3.14159 };
+  double radius;
 public:
-  Shape ( const float& prm ) : radius ( prm ) {}
-  float exponent ( const float& prmOne, const unsigned char& ex )
+  Shape ( const double& prm ) : radius ( prm ) {}
+  double exponent ( const double& prmOne, const unsigned char& ex )
   {
-    float temp { 1 };
+    double temp { 1 };
     for ( unsigned char i = 0; i < ex; i++ )
     {
       temp *= prmOne;
@@ -1392,14 +1392,14 @@ class Output
 {
 private:
 public:
-  void print ( const float& prm ) { std::cout << "The volume of sphere is:" << tab << prm; }
+  void print ( const double& prm ) { std::cout << "The volume of sphere is:" << tab << prm; }
 };
 class Sphere :public Shape, public Output
 {
 private:
 public:
-  Sphere ( const float& prm ) : Shape ( prm ) {}
-  float area () { return ( 4 / 3 ) * PI * exponent ( radius, 3 ); }
+  Sphere ( const double& prm ) : Shape ( prm ) {}
+  double area () { return ( 4 / 3 ) * PI * exponent ( radius, 3 ); }
 };
 void _19_05_MultipleInheritance ()
 {
@@ -1564,21 +1564,61 @@ void _20_03_VirtualMembers ()
 }
 
 
+class Bits
+{
+protected:
+  int entity;
+public:
+  Bits ( int a ) : entity ( a ) {};
+  virtual int result () = 0;
+  // call to pure virtual members from the abstract base class
+  void print () { std::cout << this->result () << nline; }
+};
+class ShiftR :public Bits
+{
+public:
+  ShiftR ( int a ) : Bits ( a ) {};
+  int result () { return ( entity >> 1 ); }
+};
+class ShiftL :public Bits
+{
+public:
+  ShiftL ( int a ) : Bits ( a ) {};
+  int result () { return ( entity << 1 ); }
+};
 void _20_04_AbstractBaseClasses ()
 {
   try
   {
     //! ####################################################################
     //! ----- abstract base classes:
-    // 
+    // furthermore the introduction to abstract base classes follows.
+    // these ones can't be used to instantiate any object thereof and can only be used as base classes,
+    // therefore they can introduce pure virtual member functions, which don't have any definition.
+    // Note syntax: virtual function_return_type identifier () = 0;
+    // note that the definition is replaced by equal to zero.
+    // through the introduction of even one virtual member function the class is then known as abstract base class.
+    // note: the advantages of abstract base classes:
+    // --they shine with their polymorphic ability, after declaration of pointers to them and dereferencing objects of derived classes.
+    // --an abstract base class, despite not even being implemented,
+    // can use special pointer 'this' within its member functions to access the proper virtual members.
+    // C++ language introduces its polymorphic characteristics through virtual members and abstract classes,
+    // which provide their most usefulness on object-oriented projects.
+    // additionally these features can be applied to arrays of objects or dynamically allocated objects.
+    // note that, when declaring a dynamic allocated object, somehow like the pointer to base class pointed to object of derived class,
+    // the declared pointer is of type base class and the allocated object is directly declared of type derived class.
     ColourCouter ( "----- Abstract base classes:\n", F_bBLUE );
-    ColourCouter ( ".\n\n", F_YELLOW );
-
-
-
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    ColourCouter ( "Abstract base classes introduce pure virtual member functions.\n\n", F_YELLOW );
+    ShiftR right { 1 };
+    Bits* ptr_right { &right };
+    Bits* ptr_left = new ShiftL { 3 }; // the dynamic allocated object
+    std::cout << "Shift to right (result function):" << tab << ptr_right->result () << nline;
+    std::cout << "Shift to left (result function):" << tab << ptr_left->result () << nline;
+    std::cout << "Shift to right (print function):" << tab;
+    ptr_right->print ();
+    std::cout << "Shift to left (print function):" << "\t\t";
+    ptr_left->print ();
+    std::cout << nline;
   }
   catch ( const std::exception& )
   {

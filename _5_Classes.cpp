@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,25.06.2019</changed>
+/// <changed>ʆϒʅ,26.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1611,7 +1611,7 @@ void _20_04_AbstractBaseClasses ()
     ColourCouter ( "Abstract base classes introduce pure virtual member functions.\n\n", F_YELLOW );
     ShiftR right { 1 };
     Bits* ptr_right { &right };
-    Bits* ptr_left = new ShiftL { 3 }; // the dynamic allocated object
+    Bits* ptr_left = new ShiftL { 1 }; // the dynamic allocated object
     std::cout << "Shift to right (result function):" << tab << ptr_right->result () << nline;
     std::cout << "Shift to left (result function):" << tab << ptr_left->result () << nline;
     std::cout << "Shift to right (print function):" << tab;

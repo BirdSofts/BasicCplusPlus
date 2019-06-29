@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,29.06.2019</changed>
+/// <changed>ʆϒʅ,30.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -50,7 +50,7 @@ void _21_02_ImplicitConversion ()
     // this implicit feature from smaller types to larger compatible ones is known as promotion,
     // and the destination type is guaranteed to contain the exact same value.
     // note that, while converting between other arithmetic types, the outcome isn't always the exact value:
-    // -- a signed type converted to unsigned corresponds to its 2's complement bitwise representation,
+    // -- a signed type converted to an unsigned corresponds to its 2's complement bitwise representation,
     // this means that for example -1 is converted to the largest value in destination type, -2 to the second largest and so on.
     // -- in boolean case: false is equivalent to zero and true corresponds to all the other values for numeric types,
     // additionally false is converted to null pointer for pointer types.
@@ -80,14 +80,70 @@ void _21_02_ImplicitConversion ()
 }
 
 
+class TypeOne
+{
+private:
+  short entity;
+public:
+  TypeOne ( short a ) : entity ( a ) {};
+  int get () { return entity; }
+};
+class TypeTwo
+{
+private:
+  int element;
+public:
+  TypeTwo ( int a ) : element ( a ) {};
+  // constructor conversion
+  TypeTwo ( TypeOne& obj ) { element = obj.get (); };
+  // assignment conversion
+  TypeTwo& operator= ( TypeOne& obj ) { element = obj.get (); return *this; }
+  // type-cast operator conversion
+  operator TypeOne() { return TypeOne ( element ); }
+  int get () { return element; }
+};
 void _21_03_ImplicitConversionsWithClasses ()
 {
   try
   {
     //! ####################################################################
     //! ----- implicit conversion with classes:
-    // 
+    // for classes to manage implicit conversions, there are three member functions introduced:
+    // -- Single-argument constructors: a particular type can implicitly be converted to initialize an object.
+    // -- Assignment operator: a particular type can implicitly be converted on assignments.
+    // -- Type-cast operator: conversions can implicitly be granted to a particular type.
+    // Note: syntax of type cast operator:
+    // operator destination_class_type () { return destination_class_type (); }
+    // as above clearly obvious and additionally to see in the example, this feature introduces a peculiar syntax,
+    // in which the operator is followed by the destination type and an empty set of parentheses,
+    // on the other hand, since the return type is the destination type, it is not specified before the 'operator' keyword.
     ColourCouter ( "----- Implicit conversions with classes:\n", F_bBLUE );
+    ColourCouter ( "Classes introduces three member functions to handle implicit conversions.\n\n", F_YELLOW );
+    TypeOne first ( 10 );
+    TypeTwo second { first }; // calls constructor
+    std::cout << "Constructor conversion:" << "\t\t" << second.get () << nline;
+    TypeTwo third { 1000 };
+    third = first; // calls assignment
+    std::cout << "Assignment conversion:" << "\t\t" << third.get () << nline;
+    TypeTwo forth { 10000 };
+    first = forth; // calls type-cast operator
+    std::cout << "Type-cast operator conversion:" << tab << first.get () << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _21_04_KeywordExplicit ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- implicit keyword:
+    // 
+    ColourCouter ( "----- Implicit keyword:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

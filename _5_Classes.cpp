@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,26.06.2019</changed>
+/// <changed>ʆϒʅ,30.06.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -1534,13 +1534,13 @@ void _20_03_VirtualMembers ()
     //! ----- virtual members:
     // preceding the member function declaration with 'virtual' keyword and redefining it in derived classes,
     // its calling properties through references are preserved.
-    // the redefined implementations of a function member defined and qualified as virtual in base class,
+    // the redefined implementations of a member function defined and qualified as virtual in base class,
     // can then be accessed through a reference of the base class.
     // with other words, the 'virtual' keyword qualifies a function and its redefined implementations to be called appropriately,
     // specially using a pointer to the type of the base class, which points to an object of the derived class.
     // Note syntax: virtual function_return_type identifier () {...}
     // classes that inherit or declare a virtual function are known as polymorphic ones.
-    // the example introduces a regular class as base containing a virtual function member with different implementations.
+    // the example introduces a regular class as base containing a virtual member function with different implementations.
     ColourCouter ( "----- Virtual members:\n", F_bBLUE );
     ColourCouter ( "Through virtual qualification, calling properties through references are preserved.\n\n", F_YELLOW );
     Pair aPair;

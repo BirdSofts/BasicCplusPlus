@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,30.06.2019</changed>
+/// <changed>ʆϒʅ,01.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -122,10 +122,10 @@ void _21_03_ImplicitConversionsWithClasses ()
     TypeOne first ( 10 );
     TypeTwo second { first }; // calls constructor
     std::cout << "Constructor conversion:" << "\t\t" << second.get () << nline;
-    TypeTwo third { 1000 };
+    TypeTwo third { 100 };
     third = first; // calls assignment
     std::cout << "Assignment conversion:" << "\t\t" << third.get () << nline;
-    TypeTwo forth { 10000 };
+    TypeTwo forth { 1000 };
     first = forth; // calls type-cast operator
     std::cout << "Type-cast operator conversion:" << tab << first.get () << nline << nline;
   }
@@ -136,14 +136,73 @@ void _21_03_ImplicitConversionsWithClasses ()
 }
 
 
+class TheTypeOne
+{
+private:
+  short entity;
+public:
+  TheTypeOne ( short a ) : entity ( a ) {};
+  int get () { return entity; }
+};
+class TheTypeTwo
+{
+private:
+  int element;
+public:
+  TheTypeTwo ( int a ) : element ( a ) {};
+  // constructor conversion
+  explicit TheTypeTwo ( TheTypeOne& obj ) { element = obj.get (); };
+  // assignment conversion
+  TheTypeTwo& operator= ( TheTypeOne& obj ) { element = obj.get (); return *this; }
+  // type-cast operator conversion
+  operator TheTypeOne() { return TheTypeOne ( element ); }
+  int get () { return element; }
+};
+int square ( TheTypeTwo obj ) { int tmp { obj.get () }; return ( tmp *= tmp ); }
 void _21_04_KeywordExplicit ()
 {
   try
   {
     //! ####################################################################
-    //! ----- implicit keyword:
+    //! ----- keyword explicit:
+    // C++ language grants one implicit conversion on the moment of calling a function for each argument,
+    // which can be problematic considering classes, since the outcome may not be the intended one at all.
+    // in the example, which builds upon the example of the section 'implicit conversion with classes,
+    // when omitting the 'explicit' keyword preceded the special member function constructor,
+    // the function, which takes an argument of type 'TheTypeTwo', can as well be called using an object of type 'TheTypeOne'.
+    // while it may even be intended, it can be prevented qualifying the affected constructor with the keyword 'explicit'.
+    // note that explicit constructors can not be called using assignment-like syntax.
+    // additionally type-cast member functions can also be explicit defined,
+    // which similar to explicit constructors prevents the implicit conversions to destination type.
+    ColourCouter ( "----- Keyword explicit:\n", F_bBLUE );
+    ColourCouter ( "Classes can introduce 'explicit' keyword to handle implicit conversions by special means.\n\n", F_YELLOW );
+    TheTypeOne first ( 10 );
+    //TheTypeTwo second = first; // not valid since constructor is explicit defined
+    TheTypeTwo second { first };
+    TheTypeTwo third { 100 };
+    third = first;
+    TheTypeTwo forth { 1000 };
+    first = forth;
+    int temp { 0 };
+    //temp = square ( first ); not valid since constructor is explicit qualified
+    temp = square ( third );
+    std::cout << "The result of the 'square' function:" << tab << temp << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _21_05_TypeCasting ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- type casting:
     // 
-    ColourCouter ( "----- Implicit keyword:\n", F_bBLUE );
+    ColourCouter ( "----- Type casting:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 
@@ -154,6 +213,6 @@ void _21_04_KeywordExplicit ()
   }
   catch ( const std::exception& )
   {
-
+      
   }
 }

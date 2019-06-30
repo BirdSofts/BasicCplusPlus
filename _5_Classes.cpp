@@ -3,7 +3,7 @@
 /// _5_Classes.cpp
 /// </summary>
 /// <created>ʆϒʅ,18.09.2018</created>
-/// <changed>ʆϒʅ,30.06.2019</changed>
+/// <changed>ʆϒʅ,01.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -28,7 +28,7 @@ public:
   {
     std::cout << Tab << "-Value:" << Tab << entity << Nline;
   }
-  int square ( void ) { return entity * 2; } // declaration and definition
+  int square ( void ) { return entity * entity; } // declaration and definition
 };
 void Number::set_value ( int a ) // scope operator: class member is defined outside
 {
@@ -121,7 +121,7 @@ public:
   {
     std::cout << Tab << "-Value:" << Tab << entity << Nline;
   }
-  int square ( void ) { return entity * 2; }
+  int square ( void ) { return entity * entity; }
 };
 numberEntity::numberEntity ( int a ) // constructor definition
 {
@@ -679,7 +679,7 @@ template <class tType>
 tType NumberGeneric <tType> ::square ()
 {
   tType result;
-  result = entity * 2;
+  result = entity * entity;
   return result;
 }
 void _17_10_ClassTemplates ()
@@ -719,7 +719,7 @@ private:
 public:
   Entity ( tType prm ) :content ( prm ) {}
   tType get () { return  content; }
-  void square () { content *= 2; }
+  void square () { content *= content; }
   tType operator+ ( tType prm ) { return content + prm; }
 };
 // class template specialization

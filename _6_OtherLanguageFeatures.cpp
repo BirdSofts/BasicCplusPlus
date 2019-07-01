@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,01.07.2019</changed>
+/// <changed>ʆϒʅ,02.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -201,8 +201,183 @@ void _21_05_TypeCasting ()
   {
     //! ####################################################################
     //! ----- type casting:
-    // 
+    // since C++ language is a strong-typed language, when it comes to conversion,
+    // specially those that interpret the value differently, require an explicit conversion.
+    // the already introduced inherited from C language explicit generic type-casting operators known as 'functional' and 'c-like',
+    // Note syntaxes:
+    // (new_type) expression
+    // new_type (expression)
+    // satisfy the conversion needs of most fundamental date types to and from each other.
+    // on the other hand, when it comes to classes and pointers to classes,
+    // these aged ways can lead to syntactically correct code that cause runtime error or unexpected result.
+    // using these, unrestricted type casting indiscriminately grants converts of any pointer type to another one.
+    // C++ language additionally introduces four specific casting operators, each one embeds its own characteristics,
+    // and they then take control over type conversion between classes.
+    // Note syntaxes:
+    // dynamic_cast <new_type> (expression)
+    // reinterpret_cast <new_type> (expression)
+    // static_cast <new_type> (expression)
+    // const_cast <new_type> (expression)
     ColourCouter ( "----- Type casting:\n", F_bBLUE );
+    ColourCouter ( "The fact that C++ is a strong-type language satisfies the demand of explicit type casting in many cases.\n\n", F_YELLOW );
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class Base
+{
+private:
+  int entity;
+public:
+  Base ( int ent ) : entity ( ent ) {}
+  virtual void dummy () { std::cout << "The Base is pointed!" << nline; }
+};
+class Derived :public Base
+{
+private:
+  char element;
+public:
+  Derived ( char ent, int  elm ) : Base ( ent ), element ( elm ) {}
+  void dummy () { std::cout << "The Derived is pointed!" << nline; }
+};
+void _21_06_DynamicCast ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- dynamic_cast:
+    // the use case of 'dynamic_cast' border itself to pointers, void* pointers and references to classes.
+    // the purpose there of is to assure that the result of conversion is a valid complete object of the destination pointer type.
+    // it naturally can handle conversions from pointer-to-derived to pointer-to-base known as 'pointer upcast',
+    // exactly like the allowed implicit conversion which is already introduced.
+    // additionally to up-casting, it grants the process other way around known as 'pointer downcast' to polymorphic classes,
+    // on the condition that the pointed object is a valid complete object of the target type.
+    // in case of failure while performing the dynamic_cast on an incomplete object, a null-pointer is the result of the operation,
+    // and performing impossible conversion to a reference type through dynamic_cast operator,
+    // results to an exception of type bad_cast instead.
+    // furthermore, this operator can handle other allowed implicit casts such as casting any pointer type to void* pointers,
+    // and casting the types of null pointers to each other even between unrelated classes.
+    // Note Compatibility note: to keep track of dynamic types, this type of dynamic_cast needs Run_Time Type Information (RTTI).
+    // some compilers, while supporting this feature, have it as disabled by default,
+    // which then needs to be enabled to properly work with these types.
+    ColourCouter ( "----- dynamic_cast:\n", F_bBLUE );
+    ColourCouter ( "This operator introduces different useful features when casting the types of different pointers.\n\n", F_YELLOW );
+    Base* toBase_1 = new Derived ( 1, 1 );
+    Base* toBase_2 = new Base ( 2 ); // an incomplete object, just the base and therefore unusable for the purpose
+    toBase_1->dummy ();
+    toBase_2->dummy ();
+    Derived* toDerived_1 { nullptr }; // to use for down-casting
+    Derived* toDerived_2 { nullptr }; // to use for down-casting
+    Base* toBase_3 { nullptr }; // to use for up-casting
+    toDerived_1 = dynamic_cast<Derived*>( toBase_1 ); // down casting
+    toDerived_1->dummy ();
+    toDerived_2 = dynamic_cast<Derived*>( toBase_2 ); // down casting
+    if ( toDerived_2 != nullptr )
+      toDerived_2->dummy (); // handled exception because of an incomplete object
+    toBase_3 = dynamic_cast<Base*>( toDerived_1 ); // up casting
+    toBase_3->dummy ();
+    std::cout << nline;
+  }
+  catch ( const std::exception& error )
+  {
+    std::cout << nline << "Exception:" << error.what () << nline;
+  }
+}
+
+
+void _21_07_StaticCast ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- static_cast:
+    // through this operator upcast and downcast conversions between pointers to related classes are a possibility.
+    // concerning polymorphic classes, it suffers the setback that no runtime checks are performed,
+    // therefore there is no guarantee that the state of an object being converted fully matches the destination type,
+    // on the other hand it doesn't incur certain type-safety overhead, from which dynamic_cast operator suffers.
+    // thus while being fast, the programmer needs to ensure the safety of the performed operation.
+    // the operator therefore is able to perform additional conversions on pointers to classes,
+    // which are the opposite of implicitly allowed ones i.e. those that it handles as standard.
+    // note that the example below uses the polymorphic classes defined in the dynamic_cast section.
+    //! to conclude this section, static_cast can perform:
+    // --all implicit conversions and their opposites not only to pointers to classes.
+    // --operations from void* to any pointer type, guaranteeing the same pointer value as result,
+    // when the obtained void* value matches to the pointer type under operation.
+    // --conversions of integer or floating-point values and enum types to enum types.
+    // --explicit calls to single argument constructors or conversion operators of classes.
+    // --casting operations to revalue references.
+    // --conversions of enum class values to integer or floating-point values.
+    // --conversions of any type to valid, while evaluating and discarding the value.
+    ColourCouter ( "----- static_cast:\n", F_bBLUE );
+    ColourCouter ( "This operator can perform different conversion operations to a vast sphere of data types.\n\n", F_YELLOW );
+    Base* toBase = new Base ( 1 ); // an incomplete object
+    toBase->dummy ();
+    Derived* toDerived { nullptr };
+    toDerived = static_cast<Derived*>( toBase );
+    //toDerived->dummy (); // note that this dereference could lead to runtime error
+    std::cout << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class One
+{
+public:
+  void trier () { std::cout << "The class One!" << nline; }
+};
+class Two
+{
+public:
+  void trier () { std::cout << "The class Two!" << nline; }
+};
+void _21_08_ReinterpretCast ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- reinterpret_cast:
+    // this operator can handle the conversion of any pointer type to any other pointer type, even of unrelated classes.
+    // it simply copy the value from one pointer to another as binary code,
+    // no check on pointer content and pointer type is performed, and grants all pointer conversions.
+    // additionally it converts pointers to or from integer types, formatting the resulted integer value platform-specific.
+    // there is only one guarantee for this represented pointer through integer type result,
+    // that if the destination type is spaced enough (like 'intptr_t' in heather 'stdint.h') to fully contain the interpretation,
+    // it can be cast back to a valid pointer.
+    // note that this operator is aimed to perform low-level operations based on reinterpreting the type's binary representation,
+    // which static_cast operator isn't able to handle, and the result is then system-specific not-portable code.
+    // the example below is compilable and introduces an unsafe dereference to 'second' pointer,
+    // since the pointer is reinterpreted from an object with a total unrelated and likely incompatible class.
+    ColourCouter ( "----- reinterpret_cast:\n", F_bBLUE );
+    ColourCouter ( "To reinterpret the binary representations of the types using low-level operations.\n\n", F_YELLOW );
+    One* first = new One;
+    first->trier ();
+    Two* second = reinterpret_cast<Two*>( first );
+    second->trier (); // an unsafe dereferencing
+    std::cout << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _21_09_ConstCast ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- const_cast:
+    // 
+    ColourCouter ( "----- const_cast:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 
@@ -213,6 +388,6 @@ void _21_05_TypeCasting ()
   }
   catch ( const std::exception& )
   {
-      
+
   }
 }

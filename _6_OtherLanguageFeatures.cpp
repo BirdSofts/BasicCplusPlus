@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,02.07.2019</changed>
+/// <changed>ʆϒʅ,03.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -370,14 +370,102 @@ void _21_08_ReinterpretCast ()
 }
 
 
+
+void Tongue ( std::string* prm )
+{
+  std::string temp { "" };
+  std::cout << "The passed argument is:" << tab << *prm << nline;
+  for ( char elm : *prm )
+  {
+    if ( elm == 'b' )
+      temp += ":b\t";
+    if ( elm == 'd' )
+      temp += "d:\t";
+  }
+  std::cout << "In which so many tongues are found:" << tab << temp << nline << nline;
+  *prm = "The new string."; // an unsecure practice, which causes undefined behaviour
+  std::cout << "The value after manipulation (within the function):" << tab << *prm << nline;
+}
 void _21_09_ConstCast ()
 {
   try
   {
     //! ####################################################################
     //! ----- const_cast:
-    // 
+    // this operator change the constant state of the object pointed to by a pointer either by setting or removing it.
+    // one of the use cases is to manipulate and pass a non-constant pointer to a function, which accepts a constant argument.
+    // while this manipulation is useful, when it comes to actually modify a former constant object, the behaviour is undefined.
     ColourCouter ( "----- const_cast:\n", F_bBLUE );
+    ColourCouter ( "Using this operator the constness of a pointed object can be manipulated.\n\n", F_YELLOW );
+    const std::string str { "A constant string to be used for creation." };
+    const std::string* const_str { &str };
+    Tongue ( const_cast<std::string*>( const_str ) );
+    std::cout << "The value after manipulation (out of the function):" << tab << str << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class BaseType { public: virtual void print () { std::cout << "The Base!"; } };
+class DerivedType : public BaseType { public: void print () { std::cout << "The Derived!"; } };
+void _21_10_TypeId ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- typeid:
+    // this operator, after identifying the type of an expression, returns a reference to a constant object of type 'type_info'.
+    // this type is defined in the standard header <typeinfo>.
+    // using == or != operators, the returned result by 'typeid' is then operable to compare with another one,
+    // that is returned in the same manner.
+    // the other use case is to obtain the data type or class name by means of the name() member of this operator,
+    // which then returns a null-terminated character sequence containing the identified value.
+    // applied 'typeid' operator on classes requires the RTTI (Run-Time Type Information) to track the type of dynamic objects.
+    // in case of polymorphic classes as object type of an expression,
+    // the returned value of the operator is the type of the most derived complete object.
+    // note that the returned value of the member name() is dependent on compiler implementation,
+    // therefore the quality of these literals is based on the advancement of your used technology.
+    // additionally note, if a null pointer preceded by the dereference operator (*) passed as argument of 'typeid' operator,
+    // the result is a thrown 'bad_typeid' exception.
+    ColourCouter ( "----- typeid:\n", F_bBLUE );
+    ColourCouter ( "This operator grants the identification of the type of an expression.\n\n", F_YELLOW );
+    int* one { nullptr }, two { 10 };
+    if ( typeid( one ) != typeid( two ) )
+      std::cout << "Different types:" << nline;
+    std::cout << "The type of 'one' is:" << tab << typeid( one ).name () << nline;
+    std::cout << "The type of 'two' is:" << tab << typeid( two ).name () << nline << nline;
+    const char* literal { "A string!" };
+    std::cout << "The type of 'literal' is:" << tab << typeid( literal ).name () << nline << nline;
+    BaseType* base { new BaseType };
+    BaseType* derived { new DerivedType };
+    // pointer themselves are of the type reference to the base class:
+    std::cout << "The type of 'base' is:" << "\t\t" << typeid( base ).name () << nline;
+    std::cout << "The type of 'derived' is:" << tab << typeid( derived ).name () << nline;
+    // on the other hand, for objects their dynamic type (the type of their most derived complete object) is prompted:
+    std::cout << "The type of '*base' is:" << "\t\t" << typeid( *base ).name () << nline;
+    std::cout << "The type of '*derived' is:" << tab << typeid( *derived ).name () << nline << nline;
+  }
+  catch ( const std::exception& error )
+  {
+    std::cout << "Occurred Exception is:" << error.what () << nline;
+  }
+}
+
+
+void _22_01_Exceptions ()
+{
+  try
+  {
+    ColourCouter ( " -------------------------------------------------", F_bRED );
+    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+    //! ####################################################################
+    //! ~~~~~ exceptions:
+    // 
+    ColourCouter ( "~~~~~ Exceptions:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

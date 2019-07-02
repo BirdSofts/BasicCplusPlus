@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.h
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,02.07.2019</changed>
+/// <changed>ʆϒʅ,03.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -21,6 +21,10 @@ void _21_05_TypeCasting ();
 void _21_06_DynamicCast ();
 void _21_07_StaticCast ();
 void _21_08_ReinterpretCast ();
+void _21_09_ConstCast ();
+void _21_10_TypeId ();
+
+void _22_01_Exceptions ();
 
 
 #endif // !OTHERLANGUAGEFEATURES_H

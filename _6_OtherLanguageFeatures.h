@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.h
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,03.07.2019</changed>
+/// <changed>ʆϒʅ,04.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -28,7 +28,9 @@ void _22_01_Exceptions ();
 void _22_02_ExceptionSpecification ();
 void _22_03_StandardExceptions ();
 
-void _23_01_PreprocessorsDirectives ();
+void _23_01_PreprocessorDirectives ();
+void _23_02_MacroDefinitions ();
+void _23_03_ConditionalInclusions ();
 
 
 #endif // !OTHERLANGUAGEFEATURES_H

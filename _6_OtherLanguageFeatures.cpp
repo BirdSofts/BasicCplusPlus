@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,03.07.2019</changed>
+/// <changed>ʆϒʅ,04.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -627,7 +627,7 @@ void _22_03_StandardExceptions ()
 }
 
 
-void _23_01_PreprocessorsDirectives ()
+void _23_01_PreprocessorDirectives ()
 {
   try
   {
@@ -635,9 +635,99 @@ void _23_01_PreprocessorsDirectives ()
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
 
     //! ####################################################################
-    //! ~~~~~ preprocessors directives:
+    //! ~~~~~ preprocessor directives:
+    // to direct the preprocessor, a C++ program includes special lines of codes known as preprocessor directives,
+    // which are preceded by a hash sign (#). these lines of code must be examined and resolved by the preprocessor,
+    // before the actual compilation of code begins.
+    // further on their characteristics, they are not program statements, thus no semicolon (;) is expected to end them,
+    // they extend across a single line of code, therefore to introduce them in more than one line,
+    // the following line is indicated by a backslash (\) at the end of the current line.
+    ColourCouter ( "~~~~~ Preprocessor directives:\n", F_bBLUE );
+    ColourCouter ( "Special lines of code examined and resolved before the actual program compilation.\n\n", F_YELLOW );
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_02_MacroDefinitions ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- macro definitions (#define, #undef):
+    // preprocessor macros are definable using '#define' directive.
+    // Note: syntax: #define identifier replacement
+    // encountering this directive triggers the preprocessor, which doesn't understand C++ proper,
+    // to replace all the occurrences of the defined identifier by replacement.
+    // note that the replacement can simply be anything, including an expression, a statement or a block.
+    ColourCouter ( "----- Macro Definitions (#define, #undef):\n", F_bBLUE );
+    ColourCouter ( "Provide different replacement features within the source code before actual compilation.\n\n", F_YELLOW );
+    std::cout << "An array defined filled and printed using '#define':" << tab;
+#define DIRECTIVE_ONE 5
+    short arrayOne [DIRECTIVE_ONE] { 0 };
+    for ( short i = 0; i < DIRECTIVE_ONE; i++ )
+      arrayOne [i] = i;
+    for ( short i = 0; i < DIRECTIVE_ONE; i++ )
+      std::cout << ' ' << arrayOne [i];
+    std::cout << nline << nline;
+    //! - in addition:
+    // the result of combining preprocessor directive '#define' with parameters is function macros,
+    // which then additional to normal replacement, replaces each argument by its identifier, like it was actually a function.
+    std::cout << "A function macro to calculate exponent:" << "\t\t\t";
+#define exponent(x,y) for ( short i = 0; i < y; i++ ) x *= x; std::cout << x
+    int var { 10 };
+    exponent ( var, 3 );
+    std::cout << nline << nline;
+
+    //! - in addition:
+    // a defined macro lasts until it is undefined using '#undef' preprocessor directive,
+    // therefore defined macros aren't affected by any block structure.
+    std::cout << "The array example using the directive '#undef':" << "\t\t";
+#define DIRECTIVE_TWO 10
+    short arrayTwo [DIRECTIVE_TWO] { 0 };
+    for ( short i = 0; i < DIRECTIVE_TWO; i++ )
+      arrayTwo [i] = i;
+#undef DIRECTIVE_TWO
+#define DIRECTIVE_TWO 5
+    for ( short i = 0; i < DIRECTIVE_TWO; i++ )
+      std::cout << ' ' << arrayTwo [i];
+    std::cout << nline << nline;
+
+    //! - in addition:
+    // the defined function macros can contain two special operators (# and ##) to specialize the replaced sequences.
+    // the operator # precedes a parameter name,
+    // and triggers the preprocessor to replace them with the passed literal additionally enclosed between double quotes.
+    // the operator ## specialize the replacement adding concatenation of its two arguments without blank spaces.
+    std::cout << "The use of special operators of the function macros:" << nline;
+#define text(prm) #prm
+    std::cout << tab << text ( Hello!) << nline;
+#define concatenate(x,y) x ## y
+    std::cout << tab << concatenate ( text, ( Hello!) ) << nline << nline;
+
+    //! - in addition:
+    // note that introducing too many complex macro definitions defined before the perfectly complex C++ language syntax,
+    // which are additionally checked before the actual source code is a nasty practice.
+    // since the result syntax in many cases is different from the expected one by the programmer,
+    // the heavy reliance on complicated macros makes the code unreadable.
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_03_ConditionalInclusions ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- conditional inclusions:
     // 
-    ColourCouter ( "~~~~~ Preprocessors directives:\n", F_bBLUE );
+    ColourCouter ( "----- Conditional inclusions:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

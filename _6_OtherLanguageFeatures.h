@@ -25,6 +25,10 @@ void _21_09_ConstCast ();
 void _21_10_TypeId ();
 
 void _22_01_Exceptions ();
+void _22_02_ExceptionSpecification ();
+void _22_03_StandardExceptions ();
+
+void _23_01_PreprocessorsDirectives ();
 
 
 #endif // !OTHERLANGUAGEFEATURES_H

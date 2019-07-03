@@ -464,8 +464,180 @@ void _22_01_Exceptions ()
 
     //! ####################################################################
     //! ~~~~~ exceptions:
-    // 
+    // when special circumstances such as runtime errors in programs occur,
+    // exceptions take the control and transfer it to special functions called handlers.
+    // exceptions need to be caught by try-blocks,
+    // which contain portions of code likely to set the normal execution of a program unstable.
+    // occurred exceptional situations within these blocks trigger exceptions,
+    // which then transfer the control to exception handler.
+    // on the case of normal program flow without exceptions, all handlers are ignored.
+    // the keyword 'throw' is foreseen to throw an exception within a try block, accepts one parameter,
+    // subsequently handlers of exceptions are those declared with the keyword 'catch' immediately after the try-block.
+    // after occurrence of a special circumstance, the thrown exception passes its only parameter to the exception handler.
+    // Note: syntaxes:
+    // try { throw exception_number }
+    // catch ( exception_type exception_identifer ) { /*body code to handle the occurred exception*/ }
+    // return 0;
+    // note that the body code of program, at least those lines likely to cause problem is written in try-block.
+    // while the exception handler syntax (catch-block) reminds the declaration of a regular function accepting one parameter,
+    // it contains the importance of its parameter type, using other words,
+    // the thrown argument type must match to that of this parameter to properly pass against and catch the exception.
+    // chained multiple catch expressions are possible, each one introduces a different parameter type,
+    // and between these multiple handlers the one declaring the correct type is then going to be executed.
+    // to catch any exception, no matter its type, the handler may provide an ellipsis (...) in its definition,
+    // which then is useful as a default handler in the end of the chain.
+    // an occurred exception thrown and caught by a handler brings the standard execution of the program to after the try-catch block.
+    // additionally nested try-catch blocks introduce the ability to forward the occurred exception,
+    // using the expression 'throw;' with no arguments from an internal block to an external one.
     ColourCouter ( "~~~~~ Exceptions:\n", F_bBLUE );
+    ColourCouter ( "Exceptions enrich the program with the ability to handle exceptional situations.\n\n", F_YELLOW );
+    // a structure to throw, no matter what! :)
+    int var { 10 };
+    try
+    {
+      if ( var < 10 ) throw 'S';
+      else
+        if ( var > 10 ) throw true;
+        else
+          throw var;
+    }
+    catch ( char ex )
+    {
+      std::cout << "The exception of the value being smaller!" << nline;
+    }
+    catch ( bool ex )
+    {
+      std::cout << "The exception of the value being greater!" << nline;
+    }
+    catch ( ... ) // the default handler
+    {
+      std::cout << "Oh, the situation is out of control! ^_^ " << nline;
+    }
+    // nested try catch:
+    try
+    {
+      try
+      {
+        /* some code */
+        throw 100;
+      }
+      catch ( int ex )
+      {
+        throw; // exception forwarder
+      }
+    }
+    catch ( ... ) // external catcher
+    {
+      std::cout << "Oh, no, exception! ^;^ " << nline << nline;
+    }
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _22_02_ExceptionSpecification ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- exception specification:
+    // a deprecated feature in C++ language may be encountered in old code known as dynamic exception specification,
+    // which is still supported, follows the declaration of a function and expands it with a 'throw' specifier.
+    // Note: syntax: function_type function_identifier ( parameters ) throw ( exception_type ) { ... };
+    // if the body code of this function throws an exception of type other than declared exception type,
+    // it results to a call to std::unexpected instead of calling the proper handler or a call to std::terminate.
+    // leaving the specifier 'throw' empty results a call to std::unexpected for any exception.
+    // leaving the deprecated stuff aside, a function then follows the normal code execution,
+    // and under occurred exceptions calls a proper handler.
+    ColourCouter ( "----- Exception specification:\n", F_bBLUE );
+    ColourCouter ( "A deprecated feature in C++ language, which is still supported and exists in old codes.\n\n", F_YELLOW );
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+class theException : public std::exception
+{
+  const char* what () const throw( )
+  {
+    return "Oh, no, exception! ^;^ ";
+  }
+} anException; // here declared for an expanded scope
+void _22_03_StandardExceptions ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- standard exceptions:
+    // using the C++ Standard library, a base class known as std::exception is provided in the header file <exception>,
+    // designed to ease the declaration of objects need to be thrown on occurred different circumstances.
+    // deriving classes introducing it as their base, its declared virtual member function 'what' is provided,
+    // which returns a null-terminated character sequence of type char*,
+    // and can be overwritten to indicate a description of the occurred exception.
+    // further on the matter of catching the thrown object exceptions of our derived class from this base,
+    // the handler needs to be able to take the objects of the base class type by reference,
+    // which expands the usability of this feature to catching all derived related objects by this base class as type.
+    // Note all the following thrown exceptions by the standard components of the C++ language is derived form this exception class:
+    // ----------------------------------------------------------------------------------------
+    // exception            description: thrown by...
+    // bad_alloc            the operator new on allocation failure
+    // bad_cast             the operator dynamic_cast, indicating its failure in a dynamic cast
+    // bad_exception        certain dynamic exception specifiers
+    // bad_typeid           the operator typeid
+    // bad_function_call    empty function objects (the state of no target callable object)
+    // bad_weak_ptr         shared_ptr when passed a bad weak_ptr
+    // ----------------------------------------------------------------------------------------
+    // additionally the header <exception> derives two generic exception types from this exception class,
+    // that can be inherited by custom needed exceptions to indicate errors.
+    // ----------------------------------------------------------
+    // exception            description
+    // logic_error          error of the program's internal logic
+    // runtime_error        error detected during runtime
+    // ----------------------------------------------------------
+    ColourCouter ( "----- Standard exceptions:\n", F_bBLUE );
+    ColourCouter ( "In C++ language provided standard way to derive classes based on standard exception feature.\n\n", F_YELLOW );
+    try
+    {
+      if ( true ) throw anException;
+    }
+    catch ( const std::exception& ex ) // notice the ampersand (&): catching exception objects by reference
+    {
+      std::cout << ex.what () << nline;
+    }
+    try
+    {
+      long long* anArray = new long long [1000000000000000000]; // throwing a standard exception on memory allocation
+    }
+    catch ( const std::exception& ex )
+    {
+      std::cout << "Occurred standard exception is:" << tab << ex.what () << nline << nline;
+
+    }
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_01_PreprocessorsDirectives ()
+{
+  try
+  {
+    ColourCouter ( " -------------------------------------------------", F_bRED );
+    ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
+
+    //! ####################################################################
+    //! ~~~~~ preprocessors directives:
+    // 
+    ColourCouter ( "~~~~~ Preprocessors directives:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

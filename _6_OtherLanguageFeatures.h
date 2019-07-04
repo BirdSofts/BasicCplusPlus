@@ -31,6 +31,7 @@ void _22_03_StandardExceptions ();
 void _23_01_PreprocessorDirectives ();
 void _23_02_MacroDefinitions ();
 void _23_03_ConditionalInclusions ();
+void _23_04_LineControl ();
 
 
 #endif // !OTHERLANGUAGEFEATURES_H

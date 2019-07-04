@@ -725,9 +725,86 @@ void _23_03_ConditionalInclusions ()
   try
   {
     //! ####################################################################
-    //! ----- conditional inclusions:
+    //! ----- conditional inclusions (#ifdef, #ifndef, #if, #endif, #else and # elif):
+    // for purpose of directing the preprocessor to include or discard parts of the source code under certain circumstances:
+    // --the directive '#ifdef' include a part for compilation, if the macro taken by it as parameter is defined,
+    // and the directive '#ifndef' serves as its counterpart, not compiling if the parameter is defined.
+    // note that these two directives are blind to the value defined or not defined for their passed parameter,
+    // therefore they serve their purpose independent from this value.
+    ColourCouter ( "----- Conditional inclusions (#ifdef, #ifndef, #if, #endif, #else and # elif):\n", F_bBLUE );
+    ColourCouter ( "Some parts of the source code can be included for compilation under certain conditions.\n\n", F_YELLOW );
+#ifndef DIRECTIVE_THREE
+#define DIRECTIVE_THREE 5
+#endif // !DIRECTIVE_THREE
+#ifdef DIRECTIVE_THREE
+    std::cout << "The array example compiled under certain circumstances:" << tab;
+    short arrayOne [DIRECTIVE_THREE] { 0 };
+    for ( short i = 0; i < DIRECTIVE_THREE; i++ )
+      arrayOne [i] = i;
+    for ( short i = 0; i < DIRECTIVE_THREE; i++ )
+      std::cout << ' ' << arrayOne [i];
+    std::cout << nline << nline;
+#endif
+
+    //! - in addition:
+    // --the directives '#if', '#else' and '#elif' are usable to check the fulfilment of a condition,
+    // under which then the enclosed parts of code within them are included for compilation.
+    // note that the directives '#if' '#elif' only evaluate constant expressions or macro expressions.
+    // the chained structures of these directives need to be closed with a proper '#endif' at the right place.
+#if DIRECTIVE_THREE==5
+#undef DIRECTIVE_THREE
+#define DIRECTIVE_THREE 10
+
+#elif DIRECTIVE_THREE<2O
+#undef DIRECTIVE_THREE
+#define DIRECTIVE_THREE 30
+
+#else
+#undef DIRECTIVE_THREE
+#define DIRECTIVE_THREE 50
+#endif
+    std::cout << "The array example defined using conditioned indices:" << tab;
+    short arrayTwo [DIRECTIVE_THREE] { 0 };
+    for ( short i = 0; i < DIRECTIVE_THREE; i++ )
+      arrayTwo [i] = i;
+    for ( short i = 0; i < DIRECTIVE_THREE; i++ )
+      std::cout << ' ' << arrayTwo [i];
+    std::cout << nline << nline;
+
+    //! - in addition:
+    // using the special operators 'defined' and '!defined' in combination with '#if' and '#elif' directives,
+    // the served purposes of the directives '#ifdef' and '#ifndef' can perfectly be achieved.
+#if defined DIRECTIVE_THREE
+#undef DIRECTIVE_THREE
+#define DIRECTIVE_THREE 5
+#elif !defined DIRECTIVE_FOUR
+#define DIRECTIVE_THREE 5
+#else
+#undef DIRECTIVE_FOUR
+#endif
+    std::cout << "Redefined array example:" << tab;
+    short arrayThree [DIRECTIVE_THREE] { 0 };
+    for ( short i = 0; i < DIRECTIVE_THREE; i++ )
+      arrayThree [i] = i;
+    for ( short i = 0; i < DIRECTIVE_THREE; i++ )
+      std::cout << ' ' << arrayThree [i];
+    std::cout << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_04_LineControl ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- line control (#line):
     // 
-    ColourCouter ( "----- Conditional inclusions:\n", F_bBLUE );
+    ColourCouter ( "----- Line control (#line):\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

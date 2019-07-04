@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,04.07.2019</changed>
+/// <changed>ʆϒʅ,05.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -782,7 +782,7 @@ void _23_03_ConditionalInclusions ()
 #else
 #undef DIRECTIVE_FOUR
 #endif
-    std::cout << "Redefined array example:" << tab;
+    std::cout << "The redefined array example:" << tab;
     short arrayThree [DIRECTIVE_THREE] { 0 };
     for ( short i = 0; i < DIRECTIVE_THREE; i++ )
       arrayThree [i] = i;
@@ -803,8 +803,34 @@ void _23_04_LineControl ()
   {
     //! ####################################################################
     //! ----- line control (#line):
-    // 
+    // occurred errors while compiling are referenced by compiler indicating the line number and the file name,
+    // in which they happened, easing the search for the code generating them.
+    // using the directive '#line' it is possible to control both line number and file name,
+    // indicating the values we need the compiler references to.
+    // Note: syntax: #line number "file_name"
+    // after this declaration above one line of code, the next line will be assigned the new defined number,
+    // and the successive lines will then increase after this number subsequently.
+    // additionally the optional field "file_name" redefines the indicated file name shown by compiler.
     ColourCouter ( "----- Line control (#line):\n", F_bBLUE );
+    ColourCouter ( "To manipulate the indicated line number and file name of an occurred error.\n\n", F_YELLOW );
+#line 100 "AnImaginaryFile"
+    //for ( int int i = 0; i < 5; i++ ) {} // uncomment for test: error generating expression
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_05_ErrorDirective ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- error directive (#error):
+    // 
+    ColourCouter ( "----- Error directive (#error):\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

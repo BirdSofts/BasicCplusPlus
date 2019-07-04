@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.h
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,04.07.2019</changed>
+/// <changed>ʆϒʅ,05.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 #pragma once
@@ -32,6 +32,7 @@ void _23_01_PreprocessorDirectives ();
 void _23_02_MacroDefinitions ();
 void _23_03_ConditionalInclusions ();
 void _23_04_LineControl ();
+void _23_05_ErrorDirective ();
 
 
 #endif // !OTHERLANGUAGEFEATURES_H

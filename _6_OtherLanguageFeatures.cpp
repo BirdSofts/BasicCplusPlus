@@ -3,7 +3,7 @@
 /// _5_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,05.07.2019</changed>
+/// <changed>ʆϒʅ,06.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -829,8 +829,96 @@ void _23_05_ErrorDirective ()
   {
     //! ####################################################################
     //! ----- error directive (#error):
-    // 
+    // using the directive '#error', which accepts a string as its parameter, the compilation can be aborted.
+    // this string will be used to generate an error to indicate the cause of abortion.
     ColourCouter ( "----- Error directive (#error):\n", F_bBLUE );
+    ColourCouter ( "The compilation process can be aborted.\n\n", F_YELLOW );
+#ifndef __cplusplus
+#error No C++ compiler is found.
+
+#else
+#if __cplusplus<201103
+    //#error The compiler supports an old standard version.
+#endif
+
+#endif // __cplusplus
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_06_SourceFileInclusion ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- source file inclusion (#include):
+    // up until now a lot of header files got included in the source code using the appropriate directive '#include',
+    // through which the preprocessor got directed to replace each one by the entire content of the introduced header.
+    // Note: syntaxes:
+    // #include <header>
+    // #include "file_name.h"
+    // --the first syntax is to include headers provided by the implementation like those of standard C++ library,
+    // and introduces them in angle-brackets (<>).
+    // --the second syntax using quotes ("") introduces the header file needed, which then triggers the search,
+    // and in an implementation-defined manner, in general including current path, tries to find the header file.
+    // when the file isn't found, the directive will be interpreted by compiler as a header inclusion,
+    // like it wasn't defined using quotes ("") at all.
+    // note that, no matter the headers are actual files or provided in some implementation-definition manner,
+    // they shall properly be introduced and included with this directive.
+    ColourCouter ( "----- Source file inclusion (#include):\n", F_bBLUE );
+    ColourCouter ( "To introduce and include headers into the program source code.\n\n", F_YELLOW );
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_07_PragmaDirective ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- pragma directive (#pragma):
+    // considering the platform and the compiler, the directive '#pragma' may specify diverse options,
+    // therefore using it needs additional knowledge probably acquirable from manual or reference of the compiler.
+    // whether a compiler supports specific arguments for this directive or none at all,
+    // the additional unsupported and defined 'pragma' directives are ignored, thus aren't the source of any error.
+    // note that the below example introduced as header guard is usable to prevent repeated inclusion.
+    // the standard C++ way, guaranteed to work for all compilers,
+    // warps the code within a block of '#ifndef #define and #endif directives as following.
+    ColourCouter ( "----- Pragma directive (#pragma):\n", F_bBLUE );
+    ColourCouter ( "Dependent on the compiler and platform, diverse options may be introduced.\n\n", F_YELLOW );
+#pragma once // include guard widely supported by various compilers
+    // C++ standard header guard
+#ifndef HEADER_FILE_H
+#define HEADER_FILE_H
+
+    // header file content
+
+#endif // !HEADER_FILE_H
+
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _23_08_PredefinedMacroNames ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- predefined macro names:
+    // 
+    ColourCouter ( "----- Predefined macro names:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

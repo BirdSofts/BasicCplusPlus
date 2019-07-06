@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------
 /// <summary>
-/// _5_OtherLanguageFeatures.cpp
+/// _6_OtherLanguageFeatures.cpp
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,06.07.2019</changed>
+/// <changed>ʆϒʅ,07.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -813,7 +813,7 @@ void _23_04_LineControl ()
     // additionally the optional field "file_name" redefines the indicated file name shown by compiler.
     ColourCouter ( "----- Line control (#line):\n", F_bBLUE );
     ColourCouter ( "To manipulate the indicated line number and file name of an occurred error.\n\n", F_YELLOW );
-#line 100 "AnImaginaryFile"
+//#line 100 "AnImaginaryFile" // uncomment for test: commented to have the correct results in following sections
     //for ( int int i = 0; i < 5; i++ ) {} // uncomment for test: error generating expression
   }
   catch ( const std::exception& )
@@ -917,15 +917,41 @@ void _23_08_PredefinedMacroNames ()
   {
     //! ####################################################################
     //! ----- predefined macro names:
-    // 
+    // predefined macros are defined using two underscore characters (_).
+    // the following macros are always defined and available:
+    // ---------------------------------------------------------------------------------------------------------------------------
+    // macro            represent the value of
+    // __LINE__         an integer containing the current source code line under compilation.
+    // __FILE__         an string literal containing the presumed source file name under compilation.
+    // __DATE__         an string literal formatted like "Mmm dd yyyy" containing the start date of compilation process.
+    // __TIME__         an string literal formatted like "hh:mm:ss" containing the start time of compilation process.
+    // __cplusplus      an integer containing the version of the supported C++ standard by compiler:
+    //                  -- 199711L: ISO C++ 1998/2003
+    //                  -- 201103L: ISO C++ 2011
+    //                  based on the fact that many compilers aren't conforming, this value may be defined by them in five digits,
+    //                  or even neither of the above represented value as standard.
+    // __STDC_HOSTED__  1 (one) in case that all standard herders are available as hosted implementation and 0 (zero) otherwise.
+    // ---------------------------------------------------------------------------------------------------------------------------
+    // the followings are the optionally defined macros, dependent on the availability of a feature
+    // -------------------------------------------------------------------------------------------------------------------------------
+    // macro                            value
+    // __STDC__                         in C: 1 (one) defined value means that the implementation conforms to the C standard.
+    //                                  in C++: different implementation, different values
+    // __STDC_VERSION__                 in C:   --199401L: ISO C 1990, Amendment 1
+    //                                          --199901L: ISO C 1999
+    //                                          --201112L: ISO C 2011
+    //                                  in C++: different implementation, different values
+    // __STDC_MB_MIGHT_NEQ_WC__         1 (one) means, multi-byte encoding result of a character in character literals might be wrong
+    // __STD_ISO_10646__                formatted as yyyymmL specifying the date of Unicode standard and encoded in wchar_t characters
+    // __STDCPP_STATIC_POINTER_SAFETY__ 1 (one) means the implementation uses strict pointer safety
+    // __STDCPP_THREADS__               1 (one) means the program can use more than one thread
+    // -------------------------------------------------------------------------------------------------------------------------------
+    // note that different implementations may define and represent their additional constants
     ColourCouter ( "----- Predefined macro names:\n", F_bBLUE );
-    ColourCouter ( ".\n\n", F_YELLOW );
-
-
-
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    ColourCouter ( "Some useful macros defined by the implementation.\n\n", F_YELLOW );
+    std::cout << "Current C++ standard supported by the compiler:" << tab << __cplusplus << nline;
+    std::cout << "The compiler is compiling the line " << __LINE__ << " of source file:" << nline << __FILE__ << nline;
+    std::cout << "The compilation began at:" << tab << __TIME__ << nline << nline;
   }
   catch ( const std::exception& )
   {

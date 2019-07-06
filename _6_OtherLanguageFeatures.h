@@ -1,16 +1,14 @@
 ﻿// --------------------------------------------------------------------------------
 /// <summary>
-/// _5_OtherLanguageFeatures.h
+/// _6_OtherLanguageFeatures.h
 /// </summary>
 /// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,06.07.2019</changed>
+/// <changed>ʆϒʅ,07.07.2019</changed>
 // --------------------------------------------------------------------------------
 
-#pragma once
 
-
-#ifndef OTHERLANGUAGEFEATURES_H
-#define OTHERLANGUAGEFEATURES_H
+#ifndef _6_OTHERLANGUAGEFEATURES_H
+#define _6_OTHERLANGUAGEFEATURES_H
 
 
 void _21_01_TypeConversions ();
@@ -38,4 +36,4 @@ void _23_07_PragmaDirective ();
 void _23_08_PredefinedMacroNames ();
 
 
-#endif // !OTHERLANGUAGEFEATURES_H
+#endif // !_6_OTHERLANGUAGEFEATURES_H

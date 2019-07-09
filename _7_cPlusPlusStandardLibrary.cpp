@@ -3,7 +3,7 @@
 /// _7_cPlusPlusStandardLibrary.h
 /// </summary>
 /// <created>ʆϒʅ,07.07.2019</created>
-/// <changed>ʆϒʅ,08.07.2019</changed>
+/// <changed>ʆϒʅ,10.07.2019</changed>
 // --------------------------------------------------------------------------------
 
 //#include "pch.h"
@@ -41,8 +41,8 @@ void _24_01_InputAndOutputWithFiles ()
     ColourCouter ( "~~~~~ Input/output with files:\n", F_bBLUE );
     ColourCouter ( "The diverted file stream classes from basic i/ostream classes satisfy the purpose.\n\n", F_YELLOW );
     std::ofstream firstTXTfile;
-    firstTXTfile.open ( ".\\x64\\Debug\\text.txt" );
-    firstTXTfile << "An output to a text file written using standard C++ file streams.";
+    firstTXTfile.open ( "text.txt" );
+    firstTXTfile << "An output to a text file streamed using standard C++ file streams.";
     firstTXTfile.close ();
   }
   catch ( const std::exception& )
@@ -129,8 +129,161 @@ void _24_03_TextFiles ()
   {
     //! ####################################################################
     //! ----- text files:
-    // 
+    // all associated files to a file stream object not mentioning ios::binary are text files, designed to store texts,
+    // therefore all input/output operations passing values to/from them suffer some formatting translations,
+    // in which the results don't necessarily correspond to their literal binary values.
+    // like standard C++ input/output streams, the operators 'insertion' (<<) and 'extraction' (>>) are needed to operate on files.
     ColourCouter ( "----- Text files:\n", F_bBLUE );
+    ColourCouter ( "Simple files designed to store texts.\n\n", F_YELLOW );
+    std::cout << "Writing to a file, reading from it and capitalizing the characters for print:" << nline << nline;
+    std::ofstream fileStreamOne ( "text.txt" );
+    if ( fileStreamOne.is_open () )
+    {
+      fileStreamOne << "First line to a text file streamed using standard C++ file streams." << nline;
+      fileStreamOne << "And this is the second line." << tab << "^;^" << nline;
+      fileStreamOne.close ();
+    }
+    std::ifstream fileStreamTwo ( "text.txt" );
+    std::string strLine { "" };
+    std::string str { "" };
+    // in the next expression, 'getline()' returns a reference to the object itself,
+    // thus the evaluated result is 'true' if the stream is ready for more operations,
+    // and 'false' if the end of the file is reached or an error is occurred.
+    while ( std::getline ( fileStreamTwo, strLine ) )
+    {
+      for ( char el : strLine )
+      {
+        if ( ( el > 96 ) && ( el < 121 ) )
+          el -= 32;
+        str += el;
+      }
+      std::cout << str << nline;
+      str = "";
+    }
+    fileStreamTwo.close ();
+    std::cout << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _24_04_CheckingStateFlags ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- checking state flags:
+    // followings are the member functions of a stream object provided to examine the current stream state,
+    // all of which return a boolean value.
+    // -- bad (): after a failure in a read/write operation, like having a close file under operation
+    // or the device's lack of enough space, this member function results to 'true'.
+    // -- fail (): when the same cases as 'bad ()' member function occur, this member function returns 'true' as result,
+    // also if format errors happen, such as extraction of values with character nature, when an integer value is to be read.
+    // -- eof (): this member function returns 'true', if the stream object while reading has reached the end of the file.
+    // -- good (): this member function is the most generic one, returns 'false' when calling other function members result to 'true',
+    // and despite the similarity considering 'bad ()' member function as antonym, they are not the exact opposites,
+    // since 'good ()' member function examines more state flags at once.
+    // -- clear (): the functionality of clearing the state flags is wrapped in this member function.
+    ColourCouter ( "----- Checking state flags:\n", F_bBLUE );
+    ColourCouter ( "To make sure whether a stream object functions as expected, different state flags are provided.\n\n", F_YELLOW );
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _24_05_GetAndPutStreamPositioning ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- get and put stream positioning:
+    // at least one internal position is kept by all i/o stream objects:
+    // --'ifstream' similar to 'istream', saves the location of the next element to be read in an internal 'get position'.
+    // --'ofstream' similar to 'ostream', saves the location of the next element to be written in an internal 'put position'.
+    // --'fstream' similar to 'iostream', saves both get and put positions.
+    // while these internal stream positions indicate the locations, where the next read/write operation is performed,
+    // they can be observed and modified through the member functions introduced below:
+    // --'tellg ()' and 'tellp ()' are the member functions of an object instantiated from the streams above,
+    // and while not taking any parameters return a value of the member type 'streampos',
+    // which represents the current 'get position' and 'put position' in cases of 'tellg ()' and 'tellp ()' member functions in row.
+    // --'seekg ()' and 'seekp ()' member functions after object instantiation from the i/o streams,
+    // provide two different forms of overloaded prototypes:
+    // Note: syntaxes:  seekg ( position );
+    //                  seekp ( position );
+    // these two different overloaded prototypes above are the first form, which take their parameters of type 'streampos',
+    // and set the stream object pointer to the absolute location 'position', counting from the begin of the file.
+    // Note: syntaxes:  seekg ( offset, direction );
+    //                  seekp ( offset, direction );
+    // two above introduced different overloaded prototypes as second form take their offset parameters of type 'streampos',
+    // and set the 'get/put position' to an offset value counted from their taken parameters 'distance'.
+    // their 'distance' parameters are of the enumerated type 'seekdir', taking any of the following values:
+    // -------------------------------------------------------------
+    // direction    representation
+    // ios::beg     to count the offset from the begin of the stream
+    // ios::cur     to count the offset from current position
+    // ios::end     to count the offset from the begin of the stream
+    // -------------------------------------------------------------
+    // note that for an offset to be counted from the end of the file, which means in backward direction,
+    // the offset needs to be introduced with negative numbers.
+    // the above fact is additionally valid, when counting from current position in backward direction.
+    // in the end, explaining the special member type 'streampos', its uses are in buffers and file positioning,
+    // which as introduced up until now, is widely needed in member functions of objects instantiated from file stream classes.
+    // values of this type, while being safely subtract-able,
+    // are convertible to integers large enough to contain the size of the file.
+    // another particular member type of stream class used by these stream positioning functions is 'streamoff'.
+    // ---------------------------------------------------------------------------------------------------
+    // type       member type     description
+    // streampos  ios::pos_type   the type defined as fpos<mbstate_t>
+    //                            is convertible to/from streamoff special member type and subtract-able to values thereof.
+    // streamoff  ios::off_type   this type is defined as an alias of a fundamental integral type such as 'int' or 'long long'
+    // ---------------------------------------------------------------------------------------------------
+    // note that both the above special member types are aliases of their non-member equivalent fundamental types,
+    // thus all of them are usable.
+    // note that, since the special member types are the same on all stream objects,
+    // including the stream objects using exotic types of characters, they are more generic,
+    // on the other hand for historical reasons, the use of non-member types are wide in existing code.
+    ColourCouter ( "----- Get and put stream positioning:\n", F_bBLUE );
+    ColourCouter ( "Stream objects keep at least one internal stream position in their internal get/put positions.\n\n", F_YELLOW );
+    ColourCouter ( "A text file created and inserted with two sentences in the examples of past sections:\n", F_bYELLOW );
+    std::ifstream fileStream ( "text.txt" );
+    std::streampos begin { fileStream.tellg () };
+    fileStream.seekg ( 0, std::ifstream::end );
+    long long end { fileStream.tellg () };
+    //std::streampos end { fileStream.tellg () }; // the alias
+    std::cout << "The size of the file is:" << tab << end - begin << nline;
+
+    char ch [3] { '0' };
+    fileStream.seekg ( -2, std::ifstream::end ); // from the end of the file in backward direction
+    fileStream.seekg ( -3, std::ifstream::cur ); // from current position in backward direction
+    for ( char i = 0; i < 3; i++ )
+      fileStream.get ( ch [i] );
+    fileStream.close ();
+    std::cout << "Extracting the smily at the end of the file:" << tab;
+    for ( char i = 0; i < 3; i++ )
+      std::cout << ch [i];
+    std::cout << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _24_06_BinaryFiles ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- binary files:
+    // 
+    ColourCouter ( "----- Binary files:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

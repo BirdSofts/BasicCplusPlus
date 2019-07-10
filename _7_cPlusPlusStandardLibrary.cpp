@@ -262,7 +262,8 @@ void _24_05_GetAndPutStreamPositioning ()
     fileStream.seekg ( -2, std::ifstream::end ); // from the end of the file in backward direction
     fileStream.seekg ( -3, std::ifstream::cur ); // from current position in backward direction
     for ( char i = 0; i < 3; i++ )
-      fileStream.get ( ch [i] );
+      fileStream >> ch [i];
+    //fileStream.get ( ch [i] ); // alternative
     fileStream.close ();
     std::cout << "Extracting the smily at the end of the file:" << tab;
     for ( char i = 0; i < 3; i++ )
@@ -276,14 +277,85 @@ void _24_05_GetAndPutStreamPositioning ()
 }
 
 
+class dummy
+{
+private:
+  int entity;
+  std::string str;
+public:
+  dummy () { entity = 0; str = ""; };
+  dummy ( int prmOne, std::string prmTwo ) : entity ( prmOne ), str ( prmTwo ) {}
+  void print ( void ) { std::cout << "The object's elements are:" << tab << entity << tab << str; }
+};
 void _24_06_BinaryFiles ()
 {
   try
   {
     //! ####################################################################
     //! ----- binary files:
-    // 
+    // when it comes to binary files, possibly the stored date is not formatted in lines,
+    // and no extracted date from them needs to be formatted,
+    // therefore extraction and insertion using the conventional operators (<< and >>),
+    // functions like 'getline ()' or even some member functions provided for these kind of operations are not efficient.
+    // instantiated objects from stream classes provide two specifically designed member functions,
+    // which read or write binary date sequentially.
+    // these two being declared as 'write' and 'read', based on their functionality,
+    // are the member functions of 'ostream' or 'istream', are inherited from 'ofstream' or 'ifstream',
+    // and additionally 'fstream' have them both introduced.
+    // Note: prototype syntaxes:
+    // an_object_of_streams.write ( memory_block, size );
+    // an_object_of_streams.read ( memory_block, size );
+    // note that their first parameter is a pointer to the type char (char*), representing the address of an array,
+    // which will contain the bytes need to be read or write founded on their different functionality respectively.
+    // their second parameter is passed a valid integer to specify the number of characters
+    // needed to be read from the file into a block of memory, or to write it into the file.
     ColourCouter ( "----- Binary files:\n", F_bBLUE );
+    ColourCouter ( "Files designed to store different kinds of unformatted data.\n\n", F_YELLOW );
+    ColourCouter ( "Writing a binary file to be read in unformatted and formatted way:\n", F_bYELLOW );
+    dummy data ( 10, "Hello!" ); // the object instantiated from the class
+    std::streampos size { sizeof ( dummy ) };
+    std::ofstream streamOne ( "binary.bin", std::fstream::binary ); // object stream for write
+    if ( streamOne.is_open () )
+    {
+      // complex data: simple type cast and write the content of the object already in the memory into the binary file
+      streamOne.write ( ( char*) & data, size );
+    }
+    streamOne.close ();
+    char* testTwo { new char [size] }; // to read the unformatted content of the binary file
+    std::ifstream streamTwo ( "binary.bin", std::fstream::binary ); // object stream for read
+    streamTwo.seekg ( 0, std::fstream::beg );
+    std::cout << "Reading the unformatted content of the binary file:" << nline << nline;
+    streamTwo.read ( testTwo, size ); // read the content into a pointer pointed to an array of char
+    for ( int i = 0; i < size; i++ )
+    {
+      std::cout << testTwo [i];
+    }
+    std::cout << nline << nline;
+    dummy* inFile { new dummy }; // to read the class written into the binary file for reusing purposes (formatted read)
+    streamTwo.seekg ( 0, std::fstream::beg );
+    // complex data: simple type cast and read the data in char type form,
+    // then format and load it into memory as a whole object of class pointed to by a pointer.
+    streamTwo.read ( ( char*) inFile, size );
+    std::cout << "Accessing the content of the binary file already loaded and correctly formatted in memory:" << nline << nline << tab;
+    inFile->print ();
+    streamTwo.close ();
+    std::cout << nline << nline;
+  }
+  catch ( const std::exception& )
+  {
+
+  }
+}
+
+
+void _24_07_BuffersAndSynchronization ()
+{
+  try
+  {
+    //! ####################################################################
+    //! ----- buffers and synchronization:
+    // 
+    ColourCouter ( "----- Buffers and synchronization:\n", F_bBLUE );
     ColourCouter ( ".\n\n", F_YELLOW );
 
 

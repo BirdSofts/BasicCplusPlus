@@ -17,6 +17,7 @@ void _24_03_TextFiles ();
 void _24_04_CheckingStateFlags ();
 void _24_05_GetAndPutStreamPositioning ();
 void _24_06_BinaryFiles ();
+void _24_07_BuffersAndSynchronization ();
 
 
 #endif // !_7_CPLUSPLUSSTANDARDLIBRARY_H

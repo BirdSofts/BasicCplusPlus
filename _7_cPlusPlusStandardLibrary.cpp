@@ -354,15 +354,22 @@ void _24_07_BuffersAndSynchronization ()
   {
     //! ####################################################################
     //! ----- buffers and synchronization:
-    // 
+    // a stream object is provided with an internal buffer object of type 'streambuf', which may represent a memory block,
+    // acting as an intermediary between the stream and the physical file.
+    // with other words, through this buffer the operations on the file may be intermediated,
+    // which means that the stream object itself may not directly insert or extract to/from the physical file.
+    // additionally, consider that the operating system itself may define other layers of buffering,
+    // intermediating all the read/write operations on files.
+    // --closing a file: before the file is closed, the synchronization of all buffers that have not jet been flushed happens,
+    // and all the pending data is going to be written or read to/from the physical drive.
+    // --a full buffer: a buffer has size and when it is full, the automatic synchronization happens.
+    // --explicit manipulators: stream objects are provided with certain manipulators such as 'flush' and 'endl',
+    // each of them cause an explicit synchronization to take place.
+    // --explicit member function 'sync ()': an explicit call to this member function immediately synchronize the buffer,
+    // which returns an integer equal to -1, if the stream isn't associated a buffer or if the operation fails,
+    // and otherwise 0 if the synchronization was indeed successful.
     ColourCouter ( "----- Buffers and synchronization:\n", F_bBLUE );
-    ColourCouter ( ".\n\n", F_YELLOW );
-
-
-
-    //ColourCouter ( "\n", F_bYELLOW );
-    //ColourCouter ( "\n", F_bCYAN );
-    //! - in addition:
+    ColourCouter ( "Operations on physical files may be intermediated through provided buffers.\n\n", F_YELLOW );
   }
   catch ( const std::exception& )
   {

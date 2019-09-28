@@ -88,5 +88,6 @@
     <None Include="LearningCplusPlus.aps" />
     <None Include=".gitignore" />
     <None Include=".gitattributes" />
+    <None Include="LICENSE.md" />
   </ItemGroup>
 </Project>

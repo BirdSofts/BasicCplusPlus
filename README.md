@@ -1,5 +1,5 @@
 # Introduction 
-LearningCplusPlus project originally aimed to serve as a personal private reference for coding in C++ language.
+CplusPlus project originally aimed to serve as a personal private reference for coding in C++ language.
 The project is just learning materials, which tries very hard to bring learning instruction, the source code itself and the compilation results all together in coding environment in easy language which results in experiencing more joy while learning to code.
 
 <table>

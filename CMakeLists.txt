@@ -3,19 +3,19 @@
 #/
 #/ </summary>
 #/ <created>ʆϒʅ,18.04.2019</created>
-#/ <changed>ʆϒʅ,13.09.2019</changed>
+#/ <changed>ʆϒʅ,06.11.2021</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-set(TARGET_NAME LearningCplusPlus)
+set(TARGET_NAME CplusPlus)
 
 set(PROJECT_NAME ${TARGET_NAME})
 
 project(${PROJECT_NAME}
   VERSION 1.0.0.1
-  DESCRIPTION "Learning CplusPlus Notes"
-  HOMEPAGE_URL "https://github.com/BirdSofts/LearningCplusPlus"
+  DESCRIPTION "CplusPlus Examples And Notes"
+  HOMEPAGE_URL "https://github.com/BirdSofts/CplusPlus"
   LANGUAGES CXX
   )
 
@@ -27,7 +27,7 @@ if(MSVC)
 endif(MSVC)
 
 list(APPEND HEADER_FILES
-  LearningCplusPlus.h
+  CplusPlus.h
   _1_Introduction.h
   _2_BasicsOfCplusPlus.h
   _3_ProgramStructure.h
@@ -39,7 +39,7 @@ list(APPEND HEADER_FILES
   )
 
 list(APPEND SOURCE_FILES
-  LearningCplusPlus.cpp
+  CplusPlus.cpp
   _1_Introduction.cpp
   _2_BasicsOfCplusPlus.cpp
   _3_ProgramStructure.cpp

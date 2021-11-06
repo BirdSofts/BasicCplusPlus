@@ -3,11 +3,11 @@
 /// pch.h
 /// </summary>
 /// <created>ʆϒʅ,16.04.2019</created>
-/// <changed>ʆϒʅ,13.10.2019</changed>
+/// <changed>ʆϒʅ,06.11.2021</changed>
 // --------------------------------------------------------------------------------
 
-#ifndef LEARNINGCPLUSPLUS_H
-#define LEARNINGCPLUSPLUS_H
+#ifndef CPLUSPLUS_H
+#define CPLUSPLUS_H
 
 
 #if WIN32
@@ -39,4 +39,4 @@
 #include <fstream> // C++ standard file streams
 
 
-#endif //LEARNINGCPLUSPLUS_H
+#endif //CPLUSPLUS_H

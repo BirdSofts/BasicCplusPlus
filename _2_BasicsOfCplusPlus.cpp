@@ -12,7 +12,7 @@
 // this directive instruct the preprocessor to include header iostream, which is a section of standard C++ code.
 // header iostream after inclusion allow the program to perform standard input and output operations.
 //#include "pch.h"
-#include "LearningCplusPlus.h"
+#include "CplusPlus.h"
 #include "Console.h"
 
 
@@ -35,7 +35,7 @@ void _02_01_StructureOfaProgram () // declaration of the function, explanation i
     //! ####################################################################
     //! ~~~~~ structure of a program:
     // a C++ program always start from the main function, no matter the order of definitions.
-    // the main function of this program is in LearningCplusPlus.cpp file.
+    // the main function of this program is in CplusPlus.cpp file.
     // the main function is the only function which called automatically.
     // other functions can be executed if they are called directly or indirectly from main function.
     ColourCouter ( "~~~~~ Structure of a program:\n", F_bWHITE );

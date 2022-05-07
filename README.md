@@ -2,54 +2,41 @@
 CplusPlus project originally aimed to serve as a personal private reference for coding in C++ language.
 The project is just learning materials, which tries very hard to bring learning instruction, the source code itself and the compilation results all together in coding environment in easy language which results in experiencing more joy while learning to code.
 
-<table>
-<tr>
-<td><b>Creator's Website:</b></td>
-<td><a href="https://birdpoems.jimdofree.com/">BirdPoems</a></td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td><b>Creator's private repository:</b></td>
-<td><a href="https://dev.azure.com/BirdSofts/">BirdSofts</a></td>
-<td><b>Creator's public repository:</b></td>
-<td><a href="https://github.com/BirdSofts">BirdSofts</a></td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td><b>Creator's Emails:</b></td>
-<td><a href="mailto:s.mehrdad.47@gamil.com">s.mehrdad.47@gamil.com</a></td>
-<td><a href="mailto:s.mehrdad.47@outlook.com">s.mehrdad.47@outlook.com</a></td>
-</tr>
-</table>
 
 # Getting Started
 1.  Installation process:
-Compilable! :)
 Both Visual Studio and Qt Creator (MinGW compiler under Windows) IDEs have been tested.
+
+<table>
+<tr>
+<td><b>Git:</b></td>
+<td>git clone git@github.com:s-mehrdad/CplusPlus.git</td>
+<td>git clone git@ssh.dev.azure.com:v3/BirdSofts/CplusPlus/CplusPlus</td>
+</tr>
+</table>
 
 2.  Software dependencies:
 Dependent on Windows APIs
 
 3.  Latest releases:
-Still no release, just coding and debugging
+Source code is released and ready to be built.
 
 4.  API references
 Windows's console: screen, colour and font manipulations APIs.
 
 # Build and Test
-If you are a beginner, use Visual Studio or know what you are doing before doing anything.
+If you are a beginner, use Visual Studio or know what you are doing.
+Compile using CMake.
 
-Compilable using CMake.
-```cmake
-cmake --build build-path
-```
+<table>
+<tr>
+<td><b>Cmake:</b></td>
+<td>cmake --build build-path</td>
+</tr>
+</table>
 
 # Contribute
-I appreciate any contribution to the project.
+Contributions are welcomed.
 
 # References
 <table>
@@ -77,4 +64,4 @@ I appreciate any contribution to the project.
 </table>
 
 # Copyright Notice
-The literature and all the known and unknown ideas provided within the following learning resource is copyrighted. On the other hand, so far the source code is concerned, most of which is learned and inspired from online references and the addition to them can be used under the licence terms provided with the software itself.
+The literature and all the known and unknown ideas provided within the following learning resource is copyrighted. On the other hand, so far the source code is concerned, most of which is learned and inspired from online references and the addition to them can be used under the license terms provided with the software itself.

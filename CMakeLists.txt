@@ -3,7 +3,7 @@
 #/
 #/ </summary>
 #/ <created>ʆϒʅ,18.04.2019</created>
-#/ <changed>ʆϒʅ,06.11.2021</changed>
+#/ <changed>ʆϒʅ,07.05.2022</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
@@ -15,7 +15,7 @@ set(PROJECT_NAME ${TARGET_NAME})
 project(${PROJECT_NAME}
   VERSION 1.0.0.1
   DESCRIPTION "CplusPlus Examples And Notes"
-  HOMEPAGE_URL "https://github.com/BirdSofts/CplusPlus"
+  HOMEPAGE_URL "https://github.com/s-mehrdad/CplusPlus"
   LANGUAGES CXX
   )
 

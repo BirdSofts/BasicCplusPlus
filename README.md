@@ -61,6 +61,9 @@ Contributions are welcomed.
 <tr>
 <td><a href="http://www.cplusplus.com/reference/">C++ reference</a></td>
 </tr>
+<tr>
+<td><a href="https://sourceforge.net/p/predef/wiki/OperatingSystems/">Platforms reference</a></td>
+</tr>
 </table>
 
 # Copyright Notice

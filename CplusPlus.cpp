@@ -1,4 +1,4 @@
-﻿
+
 // --------------------------------------------------------------------------------
 /// <summary>
 /// ............................::Nerd snow sayings!::............................
@@ -7,13 +7,22 @@
 /// Programming needs patience and practical practice.
 /// Programming in a way, that no nerdy dog in the future is able to compile it, is to be avoided!
 /// I was almost a good nerd and emptied my Recycle Bin regularly at the night! :) So be a lamb (^.^) and stay a good nerd!
+/// CplusPlus.cpp
+/// CplusPlus
+/// created by Mehrdad Solimanimajd on 11.04.2018
 /// </summary>
-/// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,06.11.2021</changed>
+/// <created>ʆϒʅ, 11.04.2018</created>
+/// <changed>ʆϒʅ, 10.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
+
+#ifdef _WIN32
 #include "Console.h"
+#elifdef __APPLE__
+#include "Terminal.h"
+#endif
+
 #include "_1_Introduction.h"
 #include "_2_BasicsOfCplusPlus.h"
 #include "_3_ProgramStructure.h"
@@ -29,17 +38,24 @@ int main ()
   {
 #pragma region Console
     // font
-    COORD fontS { 16,16 };
-    ConsoleFont ( L"Courier New" );
-    ConsoleFontSize ( fontS );
-    ConsoleFontColour ( F_WHITE );
-    // screen
-    COORD leftANDtop { 15,15 };
-    COORD widthANDheight { 102,32 };
+    coordinateType fontS { 16,16 };
+#ifdef _WIN32
+    ConsleFont ( L"Courier New" );
     COLORREF backColour { RGB ( 50,50,50 ) };
-    ConsoleScreenPosition ( leftANDtop );
-    ConsoleScreenSize ( widthANDheight );
+#elifdef __APPLE__
+
+#endif
+//    ConsoleFontSize ( fontS );
+//    ConsoleFontColour ( F_WHITE );
+//    // screen
+//    coordinateType leftANDtop { 15,15 };
+//    coordinateType widthANDheight { 102,32 };
+//    ConsoleScreenPosition ( leftANDtop );
+//    ConsoleScreenSize ( widthANDheight );
+#ifdef _WIN32
     ConsoleScreenColour ( backColour );
+#elifdef __APPLE__
+#endif
 
     //// cursor
     //ConsoleCursorState ( false );
@@ -61,6 +77,7 @@ int main ()
     // https://www.ibm.com/support/knowledgecenter/en/
     // https://www.tutorialspoint.com/cplusplus/
     // C++ reference: http://www.cplusplus.com/reference/
+    //  https://sourceforge.net/p/predef/wiki/OperatingSystems/
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n", F_bRED );
     ColourCouter ( "References:\n", F_bWHITE );
@@ -70,7 +87,8 @@ int main ()
     ColourCouter ( "https://docs.microsoft.com/\n", F_YELLOW );
     ColourCouter ( "https://www.ibm.com/support/knowledgecenter/en/\n", F_YELLOW );
     ColourCouter ( "https://www.tutorialspoint.com/cplusplus/\n", F_YELLOW );
-    ColourCouter ( "C++ reference: http://www.cplusplus.com/reference/\n", F_YELLOW );
+    ColourCouter ( "C++ reference: http://www.cplusplus.com/reference/\n",  F_YELLOW );
+    ColourCouter ( "//  https://sourceforge.net/p/predef/wiki/OperatingSystems/\n", F_YELLOW );
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n", F_bRED );
     //! ...............................:: nerd Snow's sayings! ::...............................

@@ -1,9 +1,11 @@
-﻿// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
 /// <summary>
 /// _2_Basics.cpp
+/// CplusPlus
+/// created by Mehrdad Solimanimajd on 11.04.2018
 /// </summary>
-/// <created>ʆϒʅ,11.04.2018</created>
-/// <changed>ʆϒʅ,13.10.2019</changed>
+/// <created>ʆϒʅ, 11.04.2018</created>
+/// <changed>ʆϒʅ, 15.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 //! preprocessor directives:
@@ -13,7 +15,11 @@
 // header iostream after inclusion allow the program to perform standard input and output operations.
 //#include "pch.h"
 #include "CplusPlus.h"
+#ifdef _WIN32
 #include "Console.h"
+#elifdef __APPLE__
+#include "Terminal.h"
+#endif
 
 
 //! using namespace std:
@@ -529,8 +535,8 @@ c0de"           " paRTed"  " And "
     // therefore what lies between parenthesis is the content of the string.
     // if needed the combinations of raw prefix and other ones (u, U, L and u8) are a possibility.
     ColourCouter ( "All possible modification to string literals:\n", F_bYELLOW );
-    const std::string con22 { u8"Z\t!\tz" };
-    const std::string con23 { u8R"aRawString(--\"' (^_^) AnY likeable StrIng (^.^) '"/--)aRawString" };
+    const std::string con22 { "Z\t!\tz" };
+    const std::string con23 { R"aRawString(--\"' (^_^) AnY likeable StrIng (^.^) '"/--)aRawString" };
     std::cout << "Modifying the type of literal string to UTF_8:\t" << con22 << "\n";
     std::cout << "A raw string encoded in UTF_8:\t\t\t" << con23 << "\n\n";
   }

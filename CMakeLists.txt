@@ -1,9 +1,11 @@
-﻿# *******************************************************************************************
+# *******************************************************************************************
 #/ <summary>
-#/
+#/ CMakeLists.txt
+#/ CplusPlus
+#/ created by Mehrdad Solimanimajd on 18.04.2019
 #/ </summary>
-#/ <created>ʆϒʅ,18.04.2019</created>
-#/ <changed>ʆϒʅ,07.05.2022</changed>
+#/ <created>ʆϒʅ, 18.04.2019</created>
+#/ <changed>ʆϒʅ, 15.01.2023</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
@@ -36,6 +38,7 @@ list(APPEND HEADER_FILES
   _6_OtherLanguageFeatures.h
   _7_cPlusPlusStandardLibrary.h
   Console.h
+  Terminal.h
   )
 
 list(APPEND SOURCE_FILES
@@ -48,6 +51,7 @@ list(APPEND SOURCE_FILES
   _6_OtherLanguageFeatures.cpp
   _7_cPlusPlusStandardLibrary.cpp
   Console.cpp
+  Terminal.cpp
   )
 
 if(WIN32)

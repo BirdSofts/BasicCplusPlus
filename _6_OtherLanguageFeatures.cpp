@@ -1,13 +1,19 @@
-﻿// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
 /// <summary>
 /// _6_OtherLanguageFeatures.cpp
+/// CplusPlus
+/// created by Mehrdad Solimanimajd on 26.06.2019
 /// </summary>
-/// <created>ʆϒʅ,26.06.2019</created>
-/// <changed>ʆϒʅ,13.10.2019</changed>
+/// <created>ʆϒʅ, 26.06.2019</created>
+/// <changed>ʆϒʅ, 15.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
+#ifdef _WIN32
 #include "Console.h"
+#elifdef __APPLE__
+#include "Terminal.h"
+#endif
 
 
 #define Tab '\t'
@@ -612,7 +618,11 @@ void _22_03_StandardExceptions ()
     }
     try
     {
+#ifdef _WIN32
       long long* anArray = new long long [1000000000000000000]; // throwing a standard exception on memory allocation
+#elifdef __APPLE__
+      throw anException;
+#endif
     }
     catch ( const std::exception& ex )
     {

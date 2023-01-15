@@ -1,13 +1,19 @@
-﻿// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
 /// <summary>
 /// _7_cPlusPlusStandardLibrary.h
+/// CplusPlus
+/// created by Mehrdad Solimanimajd on 07.07.2019
 /// </summary>
-/// <created>ʆϒʅ,07.07.2019</created>
-/// <changed>ʆϒʅ,13.10.2019</changed>
+/// <created>ʆϒʅ, 07.07.2019</created>
+/// <changed>ʆϒʅ, 15.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
+#ifdef _WIN32
 #include "Console.h"
+#elifdef __APPLE__
+#include "Terminal.h"
+#endif
 
 
 #define Tab '\t'

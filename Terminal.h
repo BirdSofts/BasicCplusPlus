@@ -1,19 +1,19 @@
 // ********************************************************************************
 /// <summary>
-/// Windows's conslole screen manipulations at runtime
-/// Console.cpp
+/// MacOs's terminal screen manipualtions at runtime
+/// Terminal.h
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 02.10.2018
+/// created by Mehrdad Solimanimajd on 12.01.2023
 /// </summary>
 /// <returns></returns>
-/// <created>ʆϒʅ, 02.10.2018</created>
+/// <created>ʆϒʅ, 12.01.2023</created>
 /// <changed>ʆϒʅ, 15.01.2023</changed>
 // ********************************************************************************
 
-#ifndef CONSOLE_H
-#define CONSOLE_H
+#ifndef TERMINAL_H
+#define TERMINAL_H
 
-#ifdef _WIN32
+#ifdef __APPLE__
 
 
 #define F_BLACK                 0x00
@@ -55,17 +55,22 @@
     //  reminds of old systems without proper graphic driver
     //  0: Black // 1: Blue  //  2 : Green  //  3 : Cyan  //  4 : Red  //  5 : Purple  //  6 : Yellow  //  7 : White  //  8 : bright black  //  9 : Bright blue  //  10 : Bright green  //  11 : Bright cyan  //  12 : Bright red  //  13 : Bright purple  //  14 : Bright yellow  //  15 : Bright white
 
+typedef struct CoordinateType
+{
+    short x;
+    short y;
+} coordinateType;
 
-void ConsoleFont ( const LPCWSTR fontName );
-void ConsoleFontSize ( const COORD fontSize );
-void ConsoleFontColour ( const WORD fontColour );
-void ConsoleScreenPosition ( const COORD screenPosition );
-void ConsoleScreenSize ( const COORD ColRowCount );
-void ConsoleScreenColour ( const COLORREF BGcolour );
+void ConsoleFont ( const char32_t * fontName );
+void ConsoleFontSize ( const coordinateType fontSize );
+void ConsoleFontColour ( const int16_t fontColour );
+void ConsoleScreenPosition ( const coordinateType screenPosition );
+void ConsoleScreenSize ( const coordinateType ColRowCount );
+//void ConsoleScreenColour ( const COLORREF BGcolour );
 void ConsoleCursorState ( const bool CursorVisibility );
-void ColourCouter ( const std::string strCharacter, const WORD Colour );
+void ColourCouter ( const std::string strCharacter, const short Colour );
 
 
-#endif //CONSOLE_H
+#endif //TERMINAL_H
 
 #endif

@@ -1,13 +1,19 @@
-﻿// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
 /// <summary>
 /// _4_CompoundDataTypes.cpp
+/// CplusPlus
+/// created by Mehrdad Solimanimajd on 30.05.2018
 /// </summary>
-/// <created>ʆϒʅ,30.05.2018</created>
-/// <changed>ʆϒʅ,13.10.2019</changed>
+/// <created>ʆϒʅ, 30.05.2018</created>
+/// <changed>ʆϒʅ, 15.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
+#ifdef _WIN32
 #include "Console.h"
+#elifdef __APPLE__
+#include "Terminal.h"
+#endif
 
 
 #define Tab '\t'

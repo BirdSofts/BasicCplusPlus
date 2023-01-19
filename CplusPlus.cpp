@@ -12,7 +12,7 @@
 /// created by Mehrdad Solimanimajd on 11.04.2018
 /// </summary>
 /// <created>ʆϒʅ, 11.04.2018</created>
-/// <changed>ʆϒʅ, 10.01.2023</changed>
+/// <changed>ʆϒʅ, 19.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -37,16 +37,16 @@ int main ()
   try
   {
 #pragma region Console
+#ifdef _WIN32
     // font
     coordinateType fontS { 16,16 };
-#ifdef _WIN32
     ConsleFont ( L"Courier New" );
     COLORREF backColour { RGB ( 50,50,50 ) };
 #elifdef __APPLE__
 
 #endif
 //    ConsoleFontSize ( fontS );
-//    ConsoleFontColour ( F_WHITE );
+//    ConsoleFontColour ( F_bPURPLE );
 //    // screen
 //    coordinateType leftANDtop { 15,15 };
 //    coordinateType widthANDheight { 102,32 };
@@ -80,7 +80,7 @@ int main ()
     //  https://sourceforge.net/p/predef/wiki/OperatingSystems/
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n", F_bRED );
-    ColourCouter ( "References:\n", F_bWHITE );
+    ColourCouter ( "References:\n", F_bPURPLE );
     ColourCouter ( "http://www.cplusplus.com/doc/\n", F_YELLOW );
     ColourCouter ( "https://stackoverflow.com/\n", F_YELLOW );
     ColourCouter ( "http://de.cppreference.com/\n", F_YELLOW );
@@ -92,7 +92,7 @@ int main ()
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n", F_bRED );
     //! ...............................:: nerd Snow's sayings! ::...............................
-    ColourCouter ( "Nerd snow's sayings!\n", F_bWHITE );
+    ColourCouter ( "Nerd snow's sayings!\n", F_bPURPLE );
     ColourCouter ( "Programming needs patience and practical practice.\n", F_YELLOW );
     ColourCouter ( "Programming in a way, that no nerdy dog in the future is able to compile it, is to be avoided!\n", F_YELLOW );
     ColourCouter ( "I was almost a good nerd and emptied my Recycle Bin regularly at the night! :) So be a lamb (^.^) and stay a good nerd!\n", F_YELLOW );

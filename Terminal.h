@@ -7,7 +7,7 @@
 /// </summary>
 /// <returns></returns>
 /// <created>ʆϒʅ, 12.01.2023</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 18.01.2023</changed>
 // ********************************************************************************
 
 #ifndef TERMINAL_H
@@ -16,44 +16,83 @@
 #ifdef __APPLE__
 
 
-#define F_BLACK                 0x00
-#define F_BLUE                  0x01
-#define F_GREEN                 0x02
-#define F_CYAN                  0x03
-#define F_RED                   0x04
-#define F_PURPLE                0x05
-#define F_YELLOW                0x06
-#define F_WHITE                 0x07
-#define F_bBLACK                0x08
-#define F_bBLUE                 0X09
-#define F_bGREEN                0x0A
-#define F_bCYAN                 0x0B
-#define F_bRED                  0x0C
-#define F_bPURPLE               0x0D
-#define F_bYELLOW               0x0E
-#define F_bWHITE                0x0F
+// ANSI escape sequences
+// F: forground, B: background, b: bright
+//#define F_BLACK(prm)            "\033["+std::to_string(prm)+"m"
+#define F_BLACK                 "\033[30m"
+#define F_RED                   "\033[31m"
+#define F_GREEN                 "\033[32m"
+#define F_YELLOW                "\033[33m"
+#define F_BLUE                  "\033[34m"
+#define F_PURPLE                "\033[35m"
+#define F_CYAN                  "\033[36m"
+#define F_WHITE                 "\033[37m"
+#define F_bBLACK                "\033[90m"
+#define F_bRED                  "\033[91m"
+#define F_bGREEN                "\033[92m"
+#define F_bYELLOW               "\033[93m"
+#define F_bBLUE                 "\033[94m"
+#define F_bPURPLE               "\033[95m"
+#define F_bCYAN                 "\033[96m"
+#define F_bWHITE                "\033[97m"
 
-#define B_BLACK                 0x00
-#define B_BLUE                  0x10
-#define B_GREEN                 0x20
-#define B_CYAN                  0x30
-#define B_RED                   0x40
-#define B_PURPLE                0x50
-#define B_YELLOW                0x60
-#define B_WHITE                 0x70
-#define B_bBLACK                0x80
-#define B_bBLUE                 0X90
-#define B_bGREEN                0xA0
-#define B_bCYAN                 0xB0
-#define B_bRED                  0xC0
-#define B_bPURPLE               0xD0
-#define B_bYELLOW               0xE0
-#define B_bWHITE                0xF0
-    // octal (first 15 hexadecimal numbers are for colours)
-    // numbers after the 15 are for backgrounds
-    // more numbers also possible which
-    //  reminds of old systems without proper graphic driver
-    //  0: Black // 1: Blue  //  2 : Green  //  3 : Cyan  //  4 : Red  //  5 : Purple  //  6 : Yellow  //  7 : White  //  8 : bright black  //  9 : Bright blue  //  10 : Bright green  //  11 : Bright cyan  //  12 : Bright red  //  13 : Bright purple  //  14 : Bright yellow  //  15 : Bright white
+#define B_BLACK                 "\033[40m"
+#define B_RED                   "\033[41m"
+#define B_GREEN                 "\033[42m"
+#define B_BLUE                  "\033[43m"
+#define B_YELLOW                "\033[44m"
+#define B_PURPLE                "\033[45m"
+#define B_CYAN                  "\033[46m"
+#define B_WHITE                 "\033[47m"
+#define B_bBLACK                "\033[100m"
+#define B_bRED                  "\033[101m"
+#define B_bGREEN                "\033[102m"
+#define B_bYELLOW               "\033[103m"
+#define B_bBLUE                 "\033[104m"
+#define B_bPURPLE               "\033[105m"
+#define B_bCYAN                 "\033[106m"
+#define B_bWHITE                "\033[107m"
+
+//// expanded piece of code from wikipedia: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+//int i, j, n{0};
+//
+//for (i = 0; i < 11; i++)
+//{
+//    for (j = 0; j < 10; j++)
+//    {
+//        n = 10 * i + j;
+//        if (n > 108)
+//            break;
+//        std::string spaceStr{""};
+//        if (i == 0)
+//        {
+//            spaceStr = "  ";
+//
+//            printf("\033[%dm%s%3d\033[m", n, " ", n);
+//            if (i == 0 && j == 0)
+//            {
+//                std::cout << spaceStr + " "
+//                          << "\033[" << std::to_string(n)
+//                          << "m" << std::to_string(n) << spaceStr;
+//                spaceStr = "";
+//            }
+//            else
+//            {
+//                std::cout << spaceStr << "\033[" << std::to_string(n)
+//                          << "m" << std::to_string(n) << spaceStr;
+//                spaceStr = "";
+//            }
+//        }
+//        else
+//        {
+//            printf("\033[%dm%s%3d\033[m", n, " ", n);
+//            std::cout << "  "
+//                      << "\033[" << std::to_string(n) << "m" << std::to_string(n) << " ";
+//        }
+//    }
+//    std::cout << "\n";
+//}
+//printf("\n\n");
 
 typedef struct CoordinateType
 {
@@ -68,7 +107,7 @@ void ConsoleScreenPosition ( const coordinateType screenPosition );
 void ConsoleScreenSize ( const coordinateType ColRowCount );
 //void ConsoleScreenColour ( const COLORREF BGcolour );
 void ConsoleCursorState ( const bool CursorVisibility );
-void ColourCouter ( const std::string strCharacter, const short Colour );
+void ColourCouter ( const std::string strCharacter, const std::string Colour );
 
 
 #endif //TERMINAL_H

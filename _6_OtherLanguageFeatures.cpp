@@ -5,7 +5,7 @@
 /// created by Mehrdad Solimanimajd on 26.06.2019
 /// </summary>
 /// <created>ʆϒʅ, 26.06.2019</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 19.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -34,7 +34,7 @@ void _21_01_TypeConversions ()
     //! ####################################################################
     //! ~~~~~ type conversions:
     // there are different ways to convert types to each other.
-    ColourCouter ( "~~~~~ Type conversions:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Type conversions:\n", F_bPURPLE );
     ColourCouter ( "Introduction of different ways to convert types to or from each other.\n\n", F_YELLOW );
   }
   catch ( const std::exception& )
@@ -71,7 +71,7 @@ void _21_02_ImplicitConversion ()
     // -- null pointers are convertible to pointers of any type, and all type of pointers can be converted to void pointers.
     // -- pointers to a derived class are convertible to pointers of an accessible and unambiguous base class,
     // and the conversion known as pointer upcast is performable not even modifying the pointer's constant or volatile qualification.
-    ColourCouter ( "----- Implicit conversion:\n", F_bWHITE );
+    ColourCouter ( "----- Implicit conversion:\n", F_bPURPLE );
     ColourCouter ( "The values of compatible types can be automatically converted to each other at the moment of copying.\n\n", F_YELLOW );
     int int_var { 100 };
     long long_var { int_var }; // implicit conversion and initialization
@@ -123,7 +123,7 @@ void _21_03_ImplicitConversionsWithClasses ()
     // as above clearly obvious and additionally to see in the example, this feature introduces a peculiar syntax,
     // in which the operator is followed by the destination type and an empty set of parentheses,
     // on the other hand, since the return type is the destination type, it is not specified before the 'operator' keyword.
-    ColourCouter ( "----- Implicit conversions with classes:\n", F_bWHITE );
+    ColourCouter ( "----- Implicit conversions with classes:\n", F_bPURPLE );
     ColourCouter ( "Classes introduces three member functions to handle implicit conversions.\n\n", F_YELLOW );
     TypeOne first ( 10 );
     TypeTwo second { first }; // calls constructor
@@ -180,7 +180,7 @@ void _21_04_KeywordExplicit ()
     // note that explicit constructors can not be called using assignment-like syntax.
     // additionally type-cast member functions can also be explicit defined,
     // which similar to explicit constructors prevents the implicit conversions to destination type.
-    ColourCouter ( "----- Keyword explicit:\n", F_bWHITE );
+    ColourCouter ( "----- Keyword explicit:\n", F_bPURPLE );
     ColourCouter ( "Classes can introduce 'explicit' keyword to handle implicit conversions by special means.\n\n", F_YELLOW );
     TheTypeOne first ( 10 );
     //TheTypeTwo second = first; // not valid since constructor is explicit defined
@@ -224,7 +224,7 @@ void _21_05_TypeCasting ()
     // reinterpret_cast <new_type> (expression)
     // static_cast <new_type> (expression)
     // const_cast <new_type> (expression)
-    ColourCouter ( "----- Type casting:\n", F_bWHITE );
+    ColourCouter ( "----- Type casting:\n", F_bPURPLE );
     ColourCouter ( "The fact that C++ is a strong-type language satisfies the demand of explicit type casting in many cases.\n\n", F_YELLOW );
   }
   catch ( const std::exception& )
@@ -270,7 +270,7 @@ void _21_06_DynamicCast ()
     // Note Compatibility note: to keep track of dynamic types, this type of dynamic_cast needs Run_Time Type Information (RTTI).
     // some compilers, while supporting this feature, have it as disabled by default,
     // which then needs to be enabled to properly work with these types.
-    ColourCouter ( "----- dynamic_cast:\n", F_bWHITE );
+    ColourCouter ( "----- dynamic_cast:\n", F_bPURPLE );
     ColourCouter ( "This operator introduces different useful features when casting the types of different pointers.\n\n", F_YELLOW );
     Base* toBase_1 = new Derived ( 1, 1 );
     Base* toBase_2 = new Base ( 2 ); // an incomplete object, just the base and therefore unusable for the purpose
@@ -318,7 +318,7 @@ void _21_07_StaticCast ()
     // --casting operations to revalue references.
     // --conversions of enum class values to integer or floating-point values.
     // --conversions of any type to valid, while evaluating and discarding the value.
-    ColourCouter ( "----- static_cast:\n", F_bWHITE );
+    ColourCouter ( "----- static_cast:\n", F_bPURPLE );
     ColourCouter ( "This operator can perform different conversion operations to a vast sphere of data types.\n\n", F_YELLOW );
     Base* toBase = new Base ( 1 ); // an incomplete object
     toBase->dummy ();
@@ -361,7 +361,7 @@ void _21_08_ReinterpretCast ()
     // which static_cast operator isn't able to handle, and the result is then system-specific not-portable code.
     // the example below is compilable and introduces an unsafe dereference to 'second' pointer,
     // since the pointer is reinterpreted from an object with a total unrelated and likely incompatible class.
-    ColourCouter ( "----- reinterpret_cast:\n", F_bWHITE );
+    ColourCouter ( "----- reinterpret_cast:\n", F_bPURPLE );
     ColourCouter ( "To reinterpret the binary representations of the types using low-level operations.\n\n", F_YELLOW );
     One* first = new One;
     first->trier ();
@@ -401,7 +401,7 @@ void _21_09_ConstCast ()
     // this operator change the constant state of the object pointed to by a pointer either by setting or removing it.
     // one of the use cases is to manipulate and pass a non-constant pointer to a function, which accepts a constant argument.
     // while this manipulation is useful, when it comes to actually modify a former constant object, the behaviour is undefined.
-    ColourCouter ( "----- const_cast:\n", F_bWHITE );
+    ColourCouter ( "----- const_cast:\n", F_bPURPLE );
     ColourCouter ( "Using this operator the constness of a pointed object can be manipulated.\n\n", F_YELLOW );
     const std::string str { "A constant string to be used for creation." };
     const std::string* const_str { &str };
@@ -436,7 +436,7 @@ void _21_10_TypeId ()
     // therefore the quality of these literals is based on the advancement of your used technology.
     // additionally note, if a null pointer preceded by the dereference operator (*) passed as argument of 'typeid' operator,
     // the result is a thrown 'bad_typeid' exception.
-    ColourCouter ( "----- typeid:\n", F_bWHITE );
+    ColourCouter ( "----- typeid:\n", F_bPURPLE );
     ColourCouter ( "This operator grants the identification of the type of an expression.\n\n", F_YELLOW );
     int* one { nullptr }, two { 10 };
     if ( typeid( one ) != typeid( two ) )
@@ -495,7 +495,7 @@ void _22_01_Exceptions ()
     // an occurred exception thrown and caught by a handler brings the standard execution of the program to after the try-catch block.
     // additionally nested try-catch blocks introduce the ability to forward the occurred exception,
     // using the expression 'throw;' with no arguments from an internal block to an external one.
-    ColourCouter ( "~~~~~ Exceptions:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Exceptions:\n", F_bPURPLE );
     ColourCouter ( "Exceptions enrich the program with the ability to handle exceptional situations.\n\n", F_YELLOW );
     // a structure to throw, no matter what! :)
     int var { 10 };
@@ -558,7 +558,7 @@ void _22_02_ExceptionSpecification ()
     // leaving the specifier 'throw' empty results a call to std::unexpected for any exception.
     // leaving the deprecated stuff aside, a function then follows the normal code execution,
     // and under occurred exceptions calls a proper handler.
-    ColourCouter ( "----- Exception specification:\n", F_bWHITE );
+    ColourCouter ( "----- Exception specification:\n", F_bPURPLE );
     ColourCouter ( "A deprecated feature in C++ language, which is still supported and exists in old codes.\n\n", F_YELLOW );
   }
   catch ( const std::exception& )
@@ -606,7 +606,7 @@ void _22_03_StandardExceptions ()
     // logic_error          error of the program's internal logic
     // runtime_error        error detected during runtime
     // ----------------------------------------------------------
-    ColourCouter ( "----- Standard exceptions:\n", F_bWHITE );
+    ColourCouter ( "----- Standard exceptions:\n", F_bPURPLE );
     ColourCouter ( "In C++ language provided standard way to derive classes based on standard exception feature.\n\n", F_YELLOW );
     try
     {
@@ -652,7 +652,7 @@ void _23_01_PreprocessorDirectives ()
     // further on their characteristics, they are not program statements, thus no semicolon (;) is expected to end them,
     // they extend across a single line of code, therefore to introduce them in more than one line,
     // the following line is indicated by a backslash (\) at the end of the current line.
-    ColourCouter ( "~~~~~ Preprocessor directives:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Preprocessor directives:\n", F_bPURPLE );
     ColourCouter ( "Special lines of code examined and resolved before the actual program compilation.\n\n", F_YELLOW );
   }
   catch ( const std::exception& )
@@ -673,7 +673,7 @@ void _23_02_MacroDefinitions ()
     // encountering this directive triggers the preprocessor, which doesn't understand C++ proper,
     // to replace all the occurrences of the defined identifier by replacement.
     // note that the replacement can simply be anything, including an expression, a statement or a block.
-    ColourCouter ( "----- Macro Definitions (#define, #undef):\n", F_bWHITE );
+    ColourCouter ( "----- Macro Definitions (#define, #undef):\n", F_bPURPLE );
     ColourCouter ( "Provide different replacement features within the source code before actual compilation.\n\n", F_YELLOW );
     std::cout << "An array defined filled and printed using '#define':" << tab;
 #define DIRECTIVE_ONE 5
@@ -741,7 +741,7 @@ void _23_03_ConditionalInclusions ()
     // and the directive '#ifndef' serves as its counterpart, not compiling if the parameter is defined.
     // note that these two directives are blind to the value defined or not defined for their passed parameter,
     // therefore they serve their purpose independent from this value.
-    ColourCouter ( "----- Conditional inclusions (#ifdef, #ifndef, #if, #endif, #else and # elif):\n", F_bWHITE );
+    ColourCouter ( "----- Conditional inclusions (#ifdef, #ifndef, #if, #endif, #else and # elif):\n", F_bPURPLE );
     ColourCouter ( "Some parts of the source code can be included for compilation under certain conditions.\n\n", F_YELLOW );
 #ifndef DIRECTIVE_THREE
 #define DIRECTIVE_THREE 5
@@ -821,7 +821,7 @@ void _23_04_LineControl ()
     // after this declaration above one line of code, the next line will be assigned the new defined number,
     // and the successive lines will then increase after this number subsequently.
     // additionally the optional field "file_name" redefines the indicated file name shown by compiler.
-    ColourCouter ( "----- Line control (#line):\n", F_bWHITE );
+    ColourCouter ( "----- Line control (#line):\n", F_bPURPLE );
     ColourCouter ( "To manipulate the indicated line number and file name of an occurred error.\n\n", F_YELLOW );
 //#line 100 "AnImaginaryFile" // uncomment for test: commented to have the correct results in following sections
     //for ( int int i = 0; i < 5; i++ ) {} // uncomment for test: error generating expression
@@ -841,7 +841,7 @@ void _23_05_ErrorDirective ()
     //! ----- error directive (#error):
     // using the directive '#error', which accepts a string as its parameter, the compilation can be aborted.
     // this string will be used to generate an error to indicate the cause of abortion.
-    ColourCouter ( "----- Error directive (#error):\n", F_bWHITE );
+    ColourCouter ( "----- Error directive (#error):\n", F_bPURPLE );
     ColourCouter ( "The compilation process can be aborted.\n\n", F_YELLOW );
 #ifndef __cplusplus
 #error No C++ compiler is found.
@@ -879,7 +879,7 @@ void _23_06_SourceFileInclusion ()
     // like it wasn't defined using quotes ("") at all.
     // note that, no matter the headers are actual files or provided in some implementation-definition manner,
     // they shall properly be introduced and included with this directive.
-    ColourCouter ( "----- Source file inclusion (#include):\n", F_bWHITE );
+    ColourCouter ( "----- Source file inclusion (#include):\n", F_bPURPLE );
     ColourCouter ( "To introduce and include headers into the program source code.\n\n", F_YELLOW );
   }
   catch ( const std::exception& )
@@ -902,7 +902,7 @@ void _23_07_PragmaDirective ()
     // note that the below example introduced as header guard is usable to prevent repeated inclusion.
     // the standard C++ way, guaranteed to work for all compilers,
     // warps the code within a block of '#ifndef #define and #endif directives as following.
-    ColourCouter ( "----- Pragma directive (#pragma):\n", F_bWHITE );
+    ColourCouter ( "----- Pragma directive (#pragma):\n", F_bPURPLE );
     ColourCouter ( "Dependent on the compiler and platform, diverse options may be introduced.\n\n", F_YELLOW );
 #pragma once // include guard widely supported by various compilers
     // C++ standard header guard
@@ -957,7 +957,7 @@ void _23_08_PredefinedMacroNames ()
     // __STDCPP_THREADS__               1 (one) means the program can use more than one thread
     // -------------------------------------------------------------------------------------------------------------------------------
     // note that different implementations may define and represent their additional constants
-    ColourCouter ( "----- Predefined macro names:\n", F_bWHITE );
+    ColourCouter ( "----- Predefined macro names:\n", F_bPURPLE );
     ColourCouter ( "Some useful macros defined by the implementation.\n\n", F_YELLOW );
     std::cout << "Current C++ standard supported by the compiler:" << tab << __cplusplus << nline;
     std::cout << "The compiler is compiling the line " << __LINE__ << " of source file:" << nline << __FILE__ << nline;

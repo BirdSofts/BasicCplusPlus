@@ -5,7 +5,7 @@
 /// created by Mehrdad Solimanimajd on 11.04.2018
 /// </summary>
 /// <created>ʆϒʅ, 11.04.2018</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 19.01.2023</changed>
 // --------------------------------------------------------------------------------
 
 //! preprocessor directives:
@@ -44,7 +44,7 @@ void _02_01_StructureOfaProgram () // declaration of the function, explanation i
     // the main function of this program is in CplusPlus.cpp file.
     // the main function is the only function which called automatically.
     // other functions can be executed if they are called directly or indirectly from main function.
-    ColourCouter ( "~~~~~ Structure of a program:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Structure of a program:\n", F_bPURPLE );
     ColourCouter ( "Although C++ language doesn't have any strict rules on structure and indention in source code, it is better for human understanding, that it be properly structured and indented.\n\n", F_YELLOW );
 
     // comment is the important tool, which provides direct documentation within source code
@@ -82,7 +82,7 @@ void _03_01_VariablesTypesAndIdentifiers ()
     //! ####################################################################
     //! ~~~~~ variables, types and identifiers:
     // variables are portions of memory that have types and are defined to store values.
-    ColourCouter ( "~~~~~ Variables, types and identifiers:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Variables, types and identifiers:\n", F_bPURPLE );
     ColourCouter ( "Portions of memory to store values of different types.\n\n", F_YELLOW );
 
     //! ####################################################################
@@ -95,7 +95,7 @@ void _03_01_VariablesTypesAndIdentifiers ()
     // programmers identifiers can not match C++ reserved keywords.
     // C++ is a case-sensitive language.
     // std::endl: flushes the stream and prints the newline character
-    ColourCouter ( "----- Declaration and initialization in different C++ revisions:\n", F_bWHITE );
+    ColourCouter ( "----- Declaration and initialization in different C++ revisions:\n", F_bPURPLE );
     ColourCouter ( "A variable must first be declared and in the moment of declaration, it can be initialized.\n\n", F_YELLOW );
     int a1 = 0; // C-like initialization
     int a2 ( 0 ); // constructor initialization (C++ language)
@@ -108,13 +108,13 @@ void _03_01_VariablesTypesAndIdentifiers ()
     //! - in addition:
     // after declaration, a variable can be assigned its first time value or a new value.
     // some simple processes on variables for the time being:
-    ColourCouter ( "Assigning new values to variables:\n", F_bYELLOW );
+    ColourCouter ( "Assigning new values to variables:\n", F_GREEN );
     std::cout << "aa: " << aa << '\t' << "bb: " << bb << '\t' << "Initialization's value of result is: " << result << std::endl;
     aa = 5;
     bb = 2;
     std::cout << "Assigned values:\t" << "aa: " << aa << '\t' << "bb: " << bb << std::endl << std::endl;
     aa = aa + 1;
-    ColourCouter ( "Some processes on the variables above:\n", F_bYELLOW );
+    ColourCouter ( "Some processes on the variables above:\n", F_GREEN );
     std::cout << "Result of ( aa + 1 ):\t" << aa << std::endl;
     result = bb - aa;
     // last insertion:
@@ -136,7 +136,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     // the zeros and ones stored in memory which represent variables need to be interpreted.
     // for this purpose the program needs to be aware of the kind of the stored data.
     // implementations of basic types, supported by most systems, directly into the language, represent basic storage units known as fundamental types.
-    ColourCouter ( "~~~~~ Fundamental types and deduction:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Fundamental types and deduction:\n", F_bPURPLE );
     ColourCouter ( "Fundamental types are the basics types supported by most systems.\n", F_YELLOW );
     ColourCouter ( "Deduction introduce the ability of the compiler, with which the type of an unknown variable can be identified.\n\n", F_YELLOW );
 
@@ -153,7 +153,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ----------------------------------------------------------------
     // wchar_t      Can represent the largest supported character set.
     // ----------------------------------------------------------------
-    ColourCouter ( "----- Fundamental types: Character types\n", F_bWHITE );
+    ColourCouter ( "----- Fundamental types: Character types\n", F_bPURPLE );
     ColourCouter ( "Character types can represents a single character and are in different sizes.\n\n", F_YELLOW );
 
     std::cout << "Size of char in byte:\t\t" << sizeof ( char ) << "\n";
@@ -197,7 +197,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ------------------------------------------------------------------
     // unsigned long long int   "
     // ------------------------------------------------------------------
-    ColourCouter ( "----- Fundamental types: integer types\n", F_bWHITE );
+    ColourCouter ( "----- Fundamental types: integer types\n", F_bPURPLE );
     ColourCouter ( "Integer types can represent numerical values, are in variety of sizes and can be either signed or unsigned.\n\n", F_YELLOW );
 
     signed char num1_1 { -128 }, num1_2 { 127 }; // hexadecimal: -0x80 to 0x7f
@@ -241,7 +241,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ------------------------------------------------------------------
     // long double              precision not less than double (15 digits)
     // ------------------------------------------------------------------
-    ColourCouter ( "----- Fundamental types: floats\n", F_bWHITE );
+    ColourCouter ( "----- Fundamental types: floats\n", F_bPURPLE );
     ColourCouter ( "Depending on the kind of the floating-point of these types, they can represent real values with different levels of precision.\n\n", F_YELLOW );
 
     float num6_1 { 1.8e-38 }, num6_2 { 3.4e+38 };
@@ -274,7 +274,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ------------------------------------------------------------------
     // decltype (nullptr)       void pointer
     // ------------------------------------------------------------------
-    ColourCouter ( "----- Fundamental other types: bool, void and nullptr\n", F_bWHITE );
+    ColourCouter ( "----- Fundamental other types: bool, void and nullptr\n", F_bPURPLE );
     ColourCouter ( "The in C++ known as bool Boolean type, is a logical type and represents 'true' or 'false' as values.\n\n", F_YELLOW );
 
     bool bool_var_1 { true }, bool_var_2 { false };
@@ -317,7 +317,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     //! ----- strings:
     // the class string is one of the compound types in C++.
     // header file is <string>.
-    ColourCouter ( "----- Strings:\n", F_bWHITE );
+    ColourCouter ( "----- Strings:\n", F_bPURPLE );
     ColourCouter ( "One of the compound types in C++ is the class string.\n\n", F_YELLOW );
     std::string str1 = { "This is the initial string." }; // initialization in C++ standard form.
     std::cout << "The string variable value is:\t" << str1 << "\n\n";
@@ -328,7 +328,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     //! ####################################################################
     //! ----- deduction of type:
     // auto and decltype shall mainly be used when the type can't be determined or for improving the readability. the example below is non of them.
-    ColourCouter ( "----- Deduction of type:\n", F_bWHITE );
+    ColourCouter ( "----- Deduction of type:\n", F_bPURPLE );
     ColourCouter ( "Uses: determination of types, improving the readability.\n\n", F_YELLOW );
     int int_var { 0 };
     auto aut_var { int_var }; // same as: int aut_var { int_var }
@@ -356,13 +356,13 @@ void _04_01_ConstantNumerals ()
     // first kind of the most obvious constants are numerals, which can be of types integer or floating-point.
     // like variables numerals have types.
     // in the statement "i=5;" 5 is a numeral constant.
-    ColourCouter ( "~~~~~ Constants numerals:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Constants numerals:\n", F_bPURPLE );
     ColourCouter ( "One of the most obvious kind of constants are numerals.\n\n", F_YELLOW );
 
     //! ####################################################################
     //! ----- integer constants:
     // C++ allows the use of numbers in octal or hexadecimal base
-    ColourCouter ( "----- Integer constants:\n", F_bWHITE );
+    ColourCouter ( "----- Integer constants:\n", F_bPURPLE );
     ColourCouter ( "Fixed values of type integer.\n\n", F_YELLOW );
     const int con1 { 75 }; // decimal
     const int con2 { 0113 }; // octal (preceded with 0)
@@ -402,7 +402,7 @@ void _04_01_ConstantNumerals ()
     // ---------------------
     // l        long double
     // ---------------------
-    ColourCouter ( "----- Floating point constants:\n", F_bWHITE );
+    ColourCouter ( "----- Floating point constants:\n", F_bPURPLE );
     ColourCouter ( "Fixed values of type floating point.\n\n", F_YELLOW );
     const double con8 { 3.14159f }; // the PI number
     const float con9 { static_cast<float>( 6.02e23L ) }; // the number of Avogadro
@@ -429,10 +429,10 @@ void _04_02_ConstantLiterals ()
     // second kind of the most obvious constants are literals, which can be of types character or string
     // this kind of constants are enclosed in quotes.
     // ' for characters and "  for strings
-    ColourCouter ( "~~~~~ Constant literals:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Constant literals:\n", F_bPURPLE );
     ColourCouter ( "Literals are the second most obvious kind in the sphere of constants.\n\n", F_YELLOW );
 
-    ColourCouter ( "Some constant characters and strings:\n", F_bYELLOW );
+    ColourCouter ( "Some constant characters and strings:\n", F_GREEN );
     const char con12 { 'Z' };
     std::cout << "'Z' character:\t" << con12 << "\n";
     const std::string con13 = { "How do you do?" };
@@ -441,7 +441,7 @@ void _04_02_ConstantLiterals ()
     //! - in addition:
     // character and string literals can be used to represent special characters,
     // which are in most cases difficult or impossible to be used in the source code.
-    ColourCouter ( "Constants ability (spacial characters):\n", F_bYELLOW );
+    ColourCouter ( "Constants ability (spacial characters):\n", F_GREEN );
     const char con14 { '\n' };
     const std::string con15 { "One\tTwo\tThree" };
     std::cout << "Special new line character:" << con14;
@@ -486,7 +486,7 @@ void _04_02_ConstantLiterals ()
     // every character in computer is an ASCI code.
     // https://de.cppreference.com/w/cpp/language/ascii
     // examples: "\202","\x2d". for more on this check the link below.
-    ColourCouter ( "Using ASCII code of characters:\n", F_bYELLOW );
+    ColourCouter ( "Using ASCII code of characters:\n", F_GREEN );
     const char con16 { '\202' };
     const char con17 { '\x2d' };
     std::cout << "Initialled constants with ASCI code of characters:\t" << con16 << '\t' << con17 << "\n\n";
@@ -495,7 +495,7 @@ void _04_02_ConstantLiterals ()
     // simply by separating several literal strings by blank spaces they will be concatenated in one.
     // in C++ big literal strings within a twin of quotes can be written in more than one line by using "\" backslash character.
     // note: only blank spaces which are within the quotes are a part of the literal string, all the other ones or none at all will be ignored.
-    ColourCouter ( "Concatenating string literals features in C++:\n", F_bYELLOW );
+    ColourCouter ( "Concatenating string literals features in C++:\n", F_GREEN );
     const std::string con18 { "\
 This strIng Is ""In ""the"   " soURce\
 c0de"           " paRTed"  " And "
@@ -512,7 +512,7 @@ c0de"           " paRTed"  " And "
     // ------------------
     // L        whar_t
     // ------------------
-    ColourCouter ( "Modification to the types of defined characters:\n", F_bYELLOW );
+    ColourCouter ( "Modification to the types of defined characters:\n", F_GREEN );
     const char16_t con19 { ( 'UZ' ) };
     const char32_t con20 { ( 'LZ' ) };
     const wchar_t con21 { ( 'uZ' ) };
@@ -534,7 +534,7 @@ c0de"           " paRTed"  " And "
     // both are going to be ignored and both can be anything,
     // therefore what lies between parenthesis is the content of the string.
     // if needed the combinations of raw prefix and other ones (u, U, L and u8) are a possibility.
-    ColourCouter ( "All possible modification to string literals:\n", F_bYELLOW );
+    ColourCouter ( "All possible modification to string literals:\n", F_GREEN );
     const std::string con22 { "Z\t!\tz" };
     const std::string con23 { R"aRawString(--\"' (^_^) AnY likeable StrIng (^.^) '"/--)aRawString" };
     std::cout << "Modifying the type of literal string to UTF_8:\t" << con22 << "\n";
@@ -554,7 +554,7 @@ void _04_03_OtherConstantLiterals ()
     //! ####################################################################
     //! ~~~~~ other constant literals:
     // third kind of constants is boolean and pointers type, that is keyword literals true, false and nullptr.
-    ColourCouter ( "~~~~~ Other constant literals:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Other constant literals:\n", F_bPURPLE );
     ColourCouter ( "In C++ language there are three other keyword literals which are 'true', 'false' and 'nullptr'.\n\n", F_YELLOW );
     const bool con24 { false };
     std::cout << "Boolean constant keyword literal 'false':\t" << con24 << "\n";
@@ -565,14 +565,14 @@ void _04_03_OtherConstantLiterals ()
     //! ----- typed constant expressions (programmer defined):
     // for convenience sake, since some literals may often be repeated in source code.
     // an example:
-    ColourCouter ( "----- Typed constant expressions:\n", F_bWHITE );
+    ColourCouter ( "----- Typed constant expressions:\n", F_bPURPLE );
     ColourCouter ( "To avoid the often repetition of literals in the source code.\n\n", F_YELLOW );
     const char tab { '\t' };
     const char nline { '\n' };
     const double pi { 3.1415926 };
     double radius { 5.0 }, circle;
     circle = radius * radius * pi;
-    ColourCouter ( "Using typed constants:\n", F_bYELLOW );
+    ColourCouter ( "Using typed constants:\n", F_GREEN );
     std::cout << "The circle area:" << tab << radius << " * " << radius << " * " << pi << " =  " << circle << nline << nline;
 
 
@@ -589,13 +589,13 @@ void _04_03_OtherConstantLiterals ()
     // which means they are single line instructions and unlike statements don't need semicolons.
     // a semicolon in the replacement will be a part of the sequence,
     // so it is going to be included in all of the occurrences.
-    ColourCouter ( "----- Preprocessor definitions:\n", F_bWHITE );
+    ColourCouter ( "----- Preprocessor definitions:\n", F_bPURPLE );
     ColourCouter ( "Another mechanism to define constant values.\n\n", F_YELLOW );
 #define Tab '\t'
 #define Nline '\n'
 #define Pi 3.1415926
     circle = radius * radius * Pi;
-    ColourCouter ( "Using preprocessor definitions:\n", F_bYELLOW );
+    ColourCouter ( "Using preprocessor definitions:\n", F_GREEN );
     std::cout << "The circle area:" << Tab << radius << " * " << radius << " * " << Pi << " =  " << circle << Nline << Nline;
   }
   catch ( const std::exception& )
@@ -618,13 +618,13 @@ void _05_01_ArithmeticOperators ()
     //! ####################################################################
     //! ~~~~~ mathematical operators:
     // mathematical operators will be used to have mathematical operations on operands.
-    ColourCouter ( "~~~~~ Mathematical operators:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Mathematical operators:\n", F_bPURPLE );
     ColourCouter ( "Mathematical operators represent the most important and basic mathematical operations.\n\n", F_YELLOW );
 
     //! ####################################################################
     //! ----- assignment operator (=):
     // the assignment operations always takes place from right to left.
-    ColourCouter ( "----- Assignment operator (=):\n", F_bWHITE );
+    ColourCouter ( "----- Assignment operator (=):\n", F_bPURPLE );
     ColourCouter ( "The most simple mathematical operation in C++ is represented by assignment.\n\n", F_YELLOW );
     int x { 0 }, y { 2 };
     std::cout << "Current values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << nline;
@@ -638,7 +638,7 @@ void _05_01_ArithmeticOperators ()
     //! - in addition:
     // assignment operation can be evaluated, this means the assignment itself has a value,
     // which in fundamental types is the value that assigned in the operation.
-    ColourCouter ( "The value of assignment operation:\n", F_bYELLOW );
+    ColourCouter ( "The value of assignment operation:\n", F_GREEN );
     y = 6 + ( x = 10 ); // y is 6 + the value of another assignment operation
     std::cout << "y = 6 + ( x = 10 ):" << tab << "x: " << x << tab << "y: " << y << nline << nline;
 
@@ -646,7 +646,7 @@ void _05_01_ArithmeticOperators ()
     //! ####################################################################
     //! ----- arithmetic operators (+, -, *, /, %):
     // percentage sign represent modulo which is the remainder of a division.
-    ColourCouter ( "----- Arithmetic operator (+, -, *, /, %):\n", F_bWHITE );
+    ColourCouter ( "----- Arithmetic operator (+, -, *, /, %):\n", F_bPURPLE );
     ColourCouter ( "The most simple arithmetic operators with the most use.\n\n", F_YELLOW );
     int q { 0 };
     q = 23 % 10;
@@ -655,7 +655,7 @@ void _05_01_ArithmeticOperators ()
     //! ####################################################################
     //! ----- compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):
     // modification of the current value of the variable by performing an operation on it.
-    ColourCouter ( "----- Compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):\n", F_bWHITE );
+    ColourCouter ( "----- Compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):\n", F_bPURPLE );
     ColourCouter ( "To introduce expressions that modify the current value while assigning.\n\n", F_YELLOW );
     int a { 0 }, b { 2 };
     std::cout << "Current values are:" << "\t\t\t" << "a: " << a << tab << "b: " << b << nline;
@@ -665,7 +665,7 @@ void _05_01_ArithmeticOperators ()
     //! ####################################################################
     //! ----- increment and decrement (++, --):
     // these operators increase or decrease the value stored in a variable by one.
-    ColourCouter ( "----- Increment and decrement (++, --):\n", F_bWHITE );
+    ColourCouter ( "----- Increment and decrement (++, --):\n", F_bPURPLE );
     ColourCouter ( "Increment and decrement of the value by one.\n\n", F_YELLOW );
     int c { 0 }, d { 2 };
     std::cout << "Current values are:" << "\t\t" << "c: " << c << tab << "d: " << d << nline;
@@ -678,8 +678,8 @@ void _05_01_ArithmeticOperators ()
     // these operators can be used both as prefix and as suffix.
     // although simple expressions like ++d and d++ have the same meaning,
     // they may result different values in different expressions and different compilers.
-    ColourCouter ( "Difference between the expressions ( d = ++c ) and ( d = c++ ):\n", F_bYELLOW );
-    ColourCouter ( "Results are compiler dependent!\n", F_bCYAN );
+    ColourCouter ( "Difference between the expressions ( d = ++c ) and ( d = c++ ):\n", F_GREEN );
+    ColourCouter ( "Results are compiler dependent!\n", F_CYAN );
     c = 1;
     d = 0;
     std::cout << "Current values are:" << "\t\t\t" << "c: " << c << tab << "d: " << d << nline;
@@ -705,13 +705,13 @@ void _05_02_LagicalOperators ()
     //! ####################################################################
     //! ~~~~~ boolean operators:
     // boolean operators will be used to have logical operations on operands.
-    ColourCouter ( "~~~~~ Boolean operators:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Boolean operators:\n", F_bPURPLE );
     ColourCouter ( "Boolean operators represent the logical operations.\n\n", F_YELLOW );
 
     //! ####################################################################
     //! ----- relational and comparison operators (==, !=, <, > ,<=, >=):
     // the results of comparison are going be boolean. any value can be compared.
-    ColourCouter ( "----- Relational and comparison operators (==, !=, <, > ,<=, >=):\n", F_bWHITE );
+    ColourCouter ( "----- Relational and comparison operators (==, !=, <, > ,<=, >=):\n", F_bPURPLE );
     ColourCouter ( "To introduce the comparison of expressions.\n\n", F_YELLOW );
     int x { 0 }, y { 2 }, z { 4 };
     std::cout << "To be compared values are:" << "\t\t\t" << "x: " << x << tab << "y: " << y << tab << "z: " << z << nline;
@@ -728,7 +728,7 @@ void _05_02_LagicalOperators ()
     //! ####################################################################
     //! ----- logical operators (!, &&, ||):
     // the operator ! (logical NOT) inverts its one operand, which will be written to its right.
-    ColourCouter ( "----- Logical operators (!, &&, ||):\n", F_bWHITE );
+    ColourCouter ( "----- Logical operators (!, &&, ||):\n", F_bPURPLE );
     ColourCouter ( "Logical operators evaluate their operands to come up with the rational end results.\n\n", F_YELLOW );
     int a { 0 }, b { 2 }, c { 4 };
     std::cout << "Current values are:" << "\t\t\t" << "a: " << a << tab << "b: " << b << tab << "c: " << c << nline;
@@ -739,7 +739,7 @@ void _05_02_LagicalOperators ()
     // short circuit evaluation: C++ only evaluates what is necessary to come up with the combined relational result.
     // this evaluation happens from left to right.
     // for example in '(a==b)&&(a<=b)' statement, considering the logical AND, if 'a==b' is false, C++ never checks the rest of the statement.
-    ColourCouter ( "Short circuit evaluation in C++:\n", F_bYELLOW );
+    ColourCouter ( "Short circuit evaluation in C++:\n", F_GREEN );
     std::cout << "Current values are:" << "\t\t\t\t\t" << "a: " << a << tab << "b: " << b << nline;
     if ( !( a == b ) )
     {
@@ -750,7 +750,7 @@ void _05_02_LagicalOperators ()
     //! - in addition:
     // this is most important when it comes to statements that has side effects.
     // for example altering values in the right-hand expression.
-    ColourCouter ( "Side effects of short circuit evaluation:\n", F_bYELLOW );
+    ColourCouter ( "Side effects of short circuit evaluation:\n", F_GREEN );
     std::cout << "Current values are:" << tab << "a: " << a << tab << "b: " << b << tab << "c: " << c << nline;
     if ( ( a == 4 ) || ( ++b > a ) ) // if a==4 is true, then ++b will never be executed
       std::cout << "The increment in (( a == 4 ) || ( ++b > a )) is going to happen if a isn't 4:" << nline;
@@ -761,7 +761,7 @@ void _05_02_LagicalOperators ()
     // if its condition is true, the operator will return result1 and otherwise result2.
     // Note statement syntax (format):
     // condition ? result1 : result2
-    ColourCouter ( "----- Conditional ternary operator (?):\n", F_bWHITE );
+    ColourCouter ( "----- Conditional ternary operator (?):\n", F_bPURPLE );
     ColourCouter ( "This operator evaluate an expression and returns one value.\n\n", F_YELLOW );
     int e { 0 }, f { 2 }, g { 4 };
     std::string str_result;
@@ -776,7 +776,7 @@ void _05_02_LagicalOperators ()
     //! ----- comma operator (,):
     // this operator will be used to separate the expressions,
     // when there are more than one expression in a statement that actually suppose to have one.
-    ColourCouter ( "----- Comma operator (,):\n", F_bWHITE );
+    ColourCouter ( "----- Comma operator (,):\n", F_bPURPLE );
     ColourCouter ( "Separating the expressions is what this operator does.\n\n", F_YELLOW );
     int h { 1 }, i { 1 }, j { 1 };
     std::cout << "Current values are:" << "\t\t\t\t" << "h: " << h << tab << "i: " << i << tab << "j: " << j << nline;
@@ -786,13 +786,13 @@ void _05_02_LagicalOperators ()
     //! - in addition:
     // in cases that the set of expressions need to be evaluated for a value to be reached,
     // only the most right expression is considered.
-    ColourCouter ( "Evaluation of a set of expressions and reaching a value:\n", F_bYELLOW );
+    ColourCouter ( "Evaluation of a set of expressions and reaching a value:\n", F_GREEN );
     std::cout << "Current values are:" << "\t\t\t\t\t" << "h: " << h << tab << "i: " << i << tab << "j: " << j << nline;
     h = ( i = 3, i + 2 ); // in this expression set, first the assignment 'i=3' is considered and then the rest.
     std::cout << "Result of expression ( i = 3, i + 2 ):" << "\t\t\t" << h << nline << nline;
     std::cout << "Current values are:" << "\t\t\t\t\t" << "h: " << h << tab << "i: " << i << tab << "j: " << j << nline;
     h = ( i >= 2, j <= 4, j != 4 ); // in this expression set, only the last expression 'j!=4' is considered.
-    ColourCouter ( "Evaluation result of Last expression 'j != 4':\n", F_bCYAN );
+    ColourCouter ( "Evaluation result of Last expression 'j != 4':\n", F_CYAN );
     std::cout << "Result of expression ( i >= 2, j <= 4, j != 4 ):" << tab << h << nline << nline;
   }
   catch ( const std::exception& )
@@ -809,7 +809,7 @@ void _05_03_OtherOperators ()
     //! ####################################################################
     //! ~~~~~ other operators:
     //
-    ColourCouter ( "~~~~~ Other operators:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Other operators:\n", F_bPURPLE );
     ColourCouter ( "The introduction of some other important operators.\n", F_YELLOW );
     ColourCouter ( "Additional to the below operators, as the tutorial goes on, some more will be introduced.\n\n", F_YELLOW );
 
@@ -830,10 +830,10 @@ void _05_03_OtherOperators ()
     // >>   SHR     shift bits right
     // ----------------------------------------------
     char xx { 1 };
-    ColourCouter ( "----- Bitwise operators (&, |, ^, ~, <<, >>):\n", F_bWHITE );
+    ColourCouter ( "----- Bitwise operators (&, |, ^, ~, <<, >>):\n", F_bPURPLE );
     ColourCouter ( "To introduce modification on the stored bit patterns of a value.\n\n", F_YELLOW );
     std::cout << "Current value which stays unchanged:" << tab << static_cast<int>( xx ) << nline;
-    ColourCouter ( "The result of modification:\n", F_bYELLOW );
+    ColourCouter ( "The result of modification:\n", F_GREEN );
     std::cout << "Result of expression ( xx & xx ):" << tab << ( xx & xx ) << nline; // -0001 and -0001 = -0001
     std::cout << "Result of expression ( xx | xx ):" << tab << ( xx | xx ) << nline; // -0001 or -0001 = -0001
     std::cout << "Result of expression ( xx ^ xx ):" << tab << ( xx ^ xx ) << nline; // -0001 xor -0001 = -0000
@@ -844,7 +844,7 @@ void _05_03_OtherOperators ()
     //! ####################################################################
     //! ----- explicit type casting operator:
     // convert the value of a given type to another type
-    ColourCouter ( "----- Explicit type casting operator:\n", F_bWHITE );
+    ColourCouter ( "----- Explicit type casting operator:\n", F_bPURPLE );
     ColourCouter ( "To introduce the conversion of the type of a value to another type:\n\n", F_YELLOW );
     int yy { 0 };
     float f { static_cast<float> ( 3.14 ) }; // type casting in C++ standard 2011 revision (initialization)
@@ -857,7 +857,7 @@ void _05_03_OtherOperators ()
     //! ####################################################################
     //! ----- The 'sizeof' operator:
     // sizeof: take one parameter (type or variable) and return the size in bytes.
-    ColourCouter ( "----- The 'sizeof' operator:\n", F_bWHITE );
+    ColourCouter ( "----- The 'sizeof' operator:\n", F_bPURPLE );
     ColourCouter ( "Returns the size of fundamental types.\n\n", F_YELLOW );
     yy = sizeof ( long long ); // the returned value of 'sizeof' is a compile-time constant (before program execution)
     std::cout << "The size of type long long is:" << tab << yy << nline << nline;
@@ -876,7 +876,7 @@ void _05_04_PrecedenceOfOperators ()
     //! ####################################################################
     //! ~~~~~ precedence of operators:
     // higher precedence of operators determines the evaluation order of operators in an expression
-    ColourCouter ( "~~~~~ Precedence of operators:\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Precedence of operators:\n", F_bPURPLE );
     ColourCouter ( "Defines the evaluation order of operators in an expression.\n\n", F_YELLOW );
     int x { 0 };
     x = 2 + 8 % 3; // the remainder operator will be evaluated first
@@ -886,7 +886,7 @@ void _05_04_PrecedenceOfOperators ()
     // uses of parenthesis:
     // to explicitly clarify the intended effect
     // to override the precedence of operators
-    ColourCouter ( "Overriding the precedence of operators:\n", F_bYELLOW );
+    ColourCouter ( "Overriding the precedence of operators:\n", F_GREEN );
     x = 2 + ( 8 % 3 ); // same as without parenthesis
     std::cout << "The result of expression ' 2 + ( 8 % 3 ) ':" << tab << x << nline;
     x = ( 2 + 8 ) % 3; // overriding the precedence
@@ -968,20 +968,20 @@ void _06_01_BasicInputOutput ()
     // that they identify streams for error messages and logging
     // which in many cases and most environment setups they do the same thing which is printing on screen,
     // although they can be individually redirected.
-    ColourCouter ( "~~~~~ Basic input/output (cin, cout, cerr and clog):\n", F_bWHITE );
+    ColourCouter ( "~~~~~ Basic input/output (cin, cout, cerr and clog):\n", F_bPURPLE );
     ColourCouter ( "The streams are the standard features, which C++ language uses to interact with users.\n\n", F_YELLOW );
 
     //! ####################################################################
     //! ----- standard output (cout):
     // default output of this stream is screen and processes the operation with using the insertion operator (<<)
     // which inserts the data into the stream that precedes it
-    ColourCouter ( "----- Standard output (cout):\n", F_bWHITE );
+    ColourCouter ( "----- Standard output (cout):\n", F_bPURPLE );
     ColourCouter ( "Inserting outputs of different types:\n\n", F_YELLOW );
     std::cout << "An output string\n"; // a string literal
     std::cout << 23487284; // a number literal (numeral)
     std::cout << '\n'; // a character literal
     std::cout << nline; // a variable of type char (\n)
-    ColourCouter ( "Chained insertion:\n", F_bYELLOW );
+    ColourCouter ( "Chained insertion:\n", F_GREEN );
     std::cout << "Current year is: " << tab << 2018 << nline << "My birth year is: " << tab << 1989 << nline;
 
     //! - in addition:
@@ -999,7 +999,7 @@ void _06_01_BasicInputOutput ()
     // which followed by the variable where the extracted data needs to be stored.
     // the extraction of characters from input by cin stream will be continued till the user presses the enter or return key.
     // depended on the type of the variable, cin stream determines how to interpret the entered characters.
-    ColourCouter ( "----- Standard input (cin):\n", F_bWHITE );
+    ColourCouter ( "----- Standard input (cin):\n", F_bPURPLE );
     ColourCouter ( "Extracting inputs of different types:\n\n", F_YELLOW );
     char char_in;
     std::cout << "Please enter a character as input:" << tab;
@@ -1012,10 +1012,10 @@ void _06_01_BasicInputOutput ()
     // the program continue and the result of process is unknown.
     // a program shall handle invalid values properly, independent from what user enters.
     // for this purpose, latter on the stringstreams will be used to have a better control on user input.
-    ColourCouter ( "The drawback of cin:\n", F_bYELLOW );
+    ColourCouter ( "The drawback of cin:\n", F_GREEN );
     int int_in;
-    ColourCouter ( "Test: for the next insertion input a character:\n", F_bCYAN );
-    ColourCouter ( "-- If you try it, you probably need to debug the program again. ^_^\n", F_bCYAN );
+    ColourCouter ( "Test: for the next insertion input a character:\n", F_CYAN );
+    ColourCouter ( "-- If you try it, you probably need to debug the program again. ^_^\n", F_CYAN );
     std::cout << "Please enter a number as input:" << "\t\t";
     std::cin >> int_in; // unknown results caused from unwanted inputs
     std::cout << "The double of it is:" << "\t\t\t" << int_in * 2 << nline << nline;
@@ -1023,7 +1023,7 @@ void _06_01_BasicInputOutput ()
     //! - in addition:
     // chained extraction of more than one datum in one line.
     // user must separate inputs with blank spaces such as white space, tab or new line.
-    ColourCouter ( "Chained extraction:\n", F_bYELLOW );
+    ColourCouter ( "Chained extraction:\n", F_GREEN );
     int int_in2;
     std::cout << "Please enter two integer values as input (separate them with any kind of spaces):" << nline;
     std::cout << "  - ";
@@ -1035,7 +1035,7 @@ void _06_01_BasicInputOutput ()
     // to get an entire line with the stream cin the function getline() from the standard library can be used.
     // what users generally expect for inputs to happen in console environment is to introduce the field and press enter or return. in terms of lines getline function can be used to obtain inputs from user.
     // if there isn't any strong reason not to, getline shall be used to extract inputs instead of cin.
-    ColourCouter ( "Extracting an entire line (string):\n", F_bYELLOW );
+    ColourCouter ( "Extracting an entire line (string):\n", F_GREEN );
     std::string str_in;
     std::cout << "Please enter a line of string containing spaces:" << nline << "  - ";
     std::cin >> str_in; // extracting the input till first space
@@ -1051,9 +1051,9 @@ void _06_01_BasicInputOutput ()
     // this type which is defined in standard header <sstream> allows the strings to be treated like streams,
     // thus allowing the insertion and extraction operations to be performed on strings like what happens in cin or cout streams.
     // the most useful means of this feature is to convert string to numeral values and vice versa.
-    ColourCouter ( "----- The type stringstream:\n", F_bWHITE );
+    ColourCouter ( "----- The type stringstream:\n", F_bPURPLE );
     ColourCouter ( "Performing insertion and extraction on strings just like what happens in cin or cout stream.\n\n", F_YELLOW );
-    ColourCouter ( "Converting string to int:\n", F_bYELLOW );
+    ColourCouter ( "Converting string to int:\n", F_GREEN );
     std::string str_var { "2048 ABC 1024" };
     std::cout << "The string containing numeral values:" << "\t\t" << str_var << nline;
     int int_var;
@@ -1065,7 +1065,7 @@ void _06_01_BasicInputOutput ()
     // using getline and stringstream instead of cin
     // the goal is to separate the input process from its interpretation as data.
     // a demonstration of extracting in the user-expected behaviour of console programs and in the same time gaining more control over the transformation of inputs into more useful data.
-    ColourCouter ( "Separating input process from its interpretation:\n", F_bYELLOW );
+    ColourCouter ( "Separating input process from its interpretation:\n", F_GREEN );
     const double pi { 3.14159 };
     std::string str_var2;
     double radius { 0 };

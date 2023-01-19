@@ -7,7 +7,7 @@
 /// </summary>
 /// <returns></returns>
 /// <created>ʆϒʅ, 12.01.2023</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 19.01.2023</changed>
 // ********************************************************************************
 
 #include "CplusPlus.h"
@@ -100,12 +100,12 @@ void ConsoleCursorState ( const bool CursorVisible )
 }
 
 
-void ColourCouter ( const std::string strCharacter, const short Colour )
+void ColourCouter ( const std::string strCharacter, const std::string Colour )
 {
 //  GetConsoleScreenBufferInfoEx ( consoleOutput, &screenBinfoEX );
 //  screenBinfoEXstorage = screenBinfoEX;
 //  SetConsoleTextAttribute ( consoleOutput, Colour );
-  std::cout << strCharacter;
+  std::cout << Colour << strCharacter;
 //  SetConsoleTextAttribute ( consoleOutput, screenBinfoEXstorage.wAttributes );
 //  GetConsoleScreenBufferInfoEx ( consoleOutput, &screenBinfoEX );
 }

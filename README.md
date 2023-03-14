@@ -5,18 +5,17 @@ The project is just learning materials, which tries very hard to bring learning 
 
 # Getting Started
 1.  Installation process:
-Both Visual Studio and Qt Creator (MinGW compiler under Windows) IDEs have been tested.
+Both Visual Studio and Qt Creator (MinGW) IDEs have been tested. MacOs's Xcode and Cmake have been used to build too.
 
 <table>
 <tr>
 <td><b>Git:</b></td>
 <td>git clone git@github.com:s-mehrdad/CplusPlus.git</td>
-<td>git clone git@ssh.dev.azure.com:v3/BirdSofts/CplusPlus/CplusPlus</td>
 </tr>
 </table>
 
 2.  Software dependencies:
-Dependent on Windows APIs
+Can be compiled on Windows, MacOs and Linux
 
 3.  Latest releases:
 Source code is released and ready to be built.
@@ -63,6 +62,7 @@ Contributions are welcomed.
 </tr>
 <tr>
 <td><a href="https://sourceforge.net/p/predef/wiki/OperatingSystems/">Platforms reference</a></td>
+<td><a href="https://en.wikipedia.org/wiki/ANSI_escape_code#DOS,_OS/2,_and_Windows">ANSI escape code</a></td>
 </tr>
 </table>
 

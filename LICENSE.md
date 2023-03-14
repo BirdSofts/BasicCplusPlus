@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2018 Mehrdad Solimanimajd
+Copyright (c) 2018 Mehrdad Soleimanimajd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -2,10 +2,10 @@
 /// <summary>
 /// _6_OtherLanguageFeatures.h
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 26.06.2019
+/// created by Mehrdad Soleimanimajd on 26.06.2019
 /// </summary>
 /// <created>ʆϒʅ, 26.06.2019</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 #ifndef _6_OTHERLANGUAGEFEATURES_H

@@ -2,10 +2,10 @@
 /// <summary>
 /// _5_Classes.h
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 18.09.2018
+/// created by Mehrdad Soleimanimajd on 18.09.2018
 /// </summary>
 /// <created>ʆϒʅ, 18.09.2018</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 #ifndef _5_CLASSES_H

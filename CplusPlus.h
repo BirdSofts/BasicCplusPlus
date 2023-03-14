@@ -2,10 +2,10 @@
 /// <summary>
 /// CplusPlus.h
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 16.04.2019
+/// created by Mehrdad Soleimanimajd on 16.04.2019
 /// </summary>
 /// <created>ʆϒʅ, 16.04.2019</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 #ifndef CPLUSPLUS_H
@@ -30,7 +30,8 @@
 #include <cwchar> // C++ standard library to work with C wide strings
 #ifdef _WIN32
 #include <Windows.h> // Windows standard API's
-#elifdef __APPLE__
+//#else #elif #elifdef #elifndef
+#elif defined __APPLE__
 #include <termios.h>
 #endif
 

@@ -3,11 +3,11 @@
 /// MacOs's terminal screen manipulations at runtime.
 /// Terminal.cpp
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 12.01.2023
+/// created by Mehrdad Soleimanimajd on 12.01.2023
 /// </summary>
 /// <returns></returns>
 /// <created>ʆϒʅ, 12.01.2023</created>
-/// <changed>ʆϒʅ, 19.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // ********************************************************************************
 
 #include "CplusPlus.h"

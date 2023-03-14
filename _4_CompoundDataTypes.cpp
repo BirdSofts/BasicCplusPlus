@@ -2,10 +2,10 @@
 /// <summary>
 /// _4_CompoundDataTypes.cpp
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 30.05.2018
+/// created by Mehrdad Soleimanimajd on 30.05.2018
 /// </summary>
 /// <created>ʆϒʅ, 30.05.2018</created>
-/// <changed>ʆϒʅ, 19.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"

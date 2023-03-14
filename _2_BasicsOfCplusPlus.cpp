@@ -2,10 +2,10 @@
 /// <summary>
 /// _2_Basics.cpp
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 11.04.2018
+/// created by Mehrdad Soleimanimajd on 11.04.2018
 /// </summary>
 /// <created>ʆϒʅ, 11.04.2018</created>
-/// <changed>ʆϒʅ, 19.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 //! preprocessor directives:

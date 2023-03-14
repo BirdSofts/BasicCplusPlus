@@ -2,10 +2,10 @@
 /// <summary>
 /// _7_cPlusPlusStandardLibrary.h
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 07.07.2019
+/// created by Mehrdad Soleimanimajd on 07.07.2019
 /// </summary>
 /// <created>ʆϒʅ, 07.07.2019</created>
-/// <changed>ʆϒʅ, 19.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"

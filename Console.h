@@ -3,11 +3,11 @@
 /// Windows's conslole screen manipulations at runtime
 /// Console.cpp
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 02.10.2018
+/// created by Mehrdad Soleimanimajd on 02.10.2018
 /// </summary>
 /// <returns></returns>
 /// <created>ʆϒʅ, 02.10.2018</created>
-/// <changed>ʆϒʅ, 15.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // ********************************************************************************
 
 #ifndef CONSOLE_H

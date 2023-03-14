@@ -2,10 +2,10 @@
 /// <summary>
 /// _1_Introduction.cpp
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 20.12.2018
+/// created by Mehrdad Soleimanimajd on 20.12.2018
 /// </summary>
 /// <created>ʆϒʅ, 20.12.2018</created>
-/// <changed>ʆϒʅ, 19.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -25,7 +25,7 @@ void _01_01_Introduction ()
 
     //! ####################################################################
     //! ~~~~~ C++ language:
-    // over the years the evolution of the C++ language was constant.
+      // over the years evolution of C++ language held itself constant.
     // therefore having a compiler with the ability to support the most recent feature is self-explanatory.
     ColourCouter ( "~~~~~ C++ Language:\n", F_bPURPLE );
     ColourCouter ( "The constant evolution of the C++ language over the years, make the use of a compiler with support for the most recent feature self-explanatory.\n\n", F_YELLOW );

@@ -2,10 +2,10 @@
 /// <summary>
 /// _6_OtherLanguageFeatures.cpp
 /// CplusPlus
-/// created by Mehrdad Solimanimajd on 26.06.2019
+/// created by Mehrdad Soleimanimajd on 26.06.2019
 /// </summary>
 /// <created>ʆϒʅ, 26.06.2019</created>
-/// <changed>ʆϒʅ, 19.01.2023</changed>
+/// <changed>ʆϒʅ, 14.03.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -920,6 +920,27 @@ void _23_07_PragmaDirective ()
   }
 }
 
+// forgotten synopsis checked
+template <class typeA, class typeB>
+/// memory fragments: shapes: circle, rectangle
+class aaa : TheTypeOne
+{
+private:
+    typeA a;
+    typeB b;
+public:
+    template <typename typeD>
+    aaa(typeD a);
+    aaa(typeA a, typeB b);
+    ~aaa(void);
+    
+    virtual int bb (void) = 0;
+    int bc (void) { return 0; };
+    
+    friend class TheTypeTwo;
+};
+template <typename typeC>
+typeC c;
 
 void _23_08_PredefinedMacroNames ()
 {

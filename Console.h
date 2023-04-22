@@ -1,3 +1,4 @@
+
 // ********************************************************************************
 /// <summary>
 /// Windows's conslole screen manipulations at runtime
@@ -7,7 +8,7 @@
 /// </summary>
 /// <returns></returns>
 /// <created>ʆϒʅ, 02.10.2018</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // ********************************************************************************
 
 #ifndef CONSOLE_H
@@ -49,11 +50,11 @@
 #define B_bPURPLE               0xD0
 #define B_bYELLOW               0xE0
 #define B_bWHITE                0xF0
-    // octal (first 15 hexadecimal numbers are for colours)
-    // numbers after the 15 are for backgrounds
-    // more numbers also possible which
-    //  reminds of old systems without proper graphic driver
-    //  0: Black // 1: Blue  //  2 : Green  //  3 : Cyan  //  4 : Red  //  5 : Purple  //  6 : Yellow  //  7 : White  //  8 : bright black  //  9 : Bright blue  //  10 : Bright green  //  11 : Bright cyan  //  12 : Bright red  //  13 : Bright purple  //  14 : Bright yellow  //  15 : Bright white
+// octal (first 15 hexadecimal numbers are for colours)
+// numbers after the 15 are for backgrounds
+// more numbers also possible which
+//  reminds of old systems without proper graphic driver
+//  0: Black // 1: Blue  //  2 : Green  //  3 : Cyan  //  4 : Red  //  5 : Purple  //  6 : Yellow  //  7 : White  //  8 : bright black  //  9 : Bright blue  //  10 : Bright green  //  11 : Bright cyan  //  12 : Bright red  //  13 : Bright purple  //  14 : Bright yellow  //  15 : Bright white
 
 
 void ConsoleFont ( const LPCWSTR fontName );

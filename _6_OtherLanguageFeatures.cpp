@@ -1,3 +1,4 @@
+
 // --------------------------------------------------------------------------------
 /// <summary>
 /// _6_OtherLanguageFeatures.cpp
@@ -5,7 +6,7 @@
 /// created by Mehrdad Soleimanimajd on 26.06.2019
 /// </summary>
 /// <created>ʆϒʅ, 26.06.2019</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -30,7 +31,7 @@ void _21_01_TypeConversions ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ type conversions:
     // there are different ways to convert types to each other.
@@ -39,7 +40,7 @@ void _21_01_TypeConversions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -81,7 +82,7 @@ void _21_02_ImplicitConversion ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -137,7 +138,7 @@ void _21_03_ImplicitConversionsWithClasses ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -196,7 +197,7 @@ void _21_04_KeywordExplicit ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -229,7 +230,7 @@ void _21_05_TypeCasting ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -329,7 +330,7 @@ void _21_07_StaticCast ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -371,7 +372,7 @@ void _21_08_ReinterpretCast ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -410,7 +411,7 @@ void _21_09_ConstCast ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -467,7 +468,7 @@ void _22_01_Exceptions ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ exceptions:
     // when special circumstances such as runtime errors in programs occur,
@@ -539,7 +540,7 @@ void _22_01_Exceptions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -563,7 +564,7 @@ void _22_02_ExceptionSpecification ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -627,12 +628,12 @@ void _22_03_StandardExceptions ()
     catch ( const std::exception& ex )
     {
       std::cout << "Occurred standard exception is:" << tab << ex.what () << nline << nline;
-
+      
     }
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -643,7 +644,7 @@ void _23_01_PreprocessorDirectives ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ preprocessor directives:
     // to direct the preprocessor, a C++ program includes special lines of codes known as preprocessor directives,
@@ -657,7 +658,7 @@ void _23_01_PreprocessorDirectives ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -691,7 +692,7 @@ void _23_02_MacroDefinitions ()
     int var { 10 };
     exponent ( var, 3 );
     std::cout << nline << nline;
-
+    
     //! - in addition:
     // a defined macro lasts until it is undefined using '#undef' preprocessor directive,
     // therefore defined macros aren't affected by any block structure.
@@ -705,7 +706,7 @@ void _23_02_MacroDefinitions ()
     for ( short i = 0; i < DIRECTIVE_TWO; i++ )
       std::cout << ' ' << arrayTwo [i];
     std::cout << nline << nline;
-
+    
     //! - in addition:
     // the defined function macros can contain two special operators (# and ##) to specialize the replaced sequences.
     // the operator # precedes a parameter name,
@@ -716,7 +717,7 @@ void _23_02_MacroDefinitions ()
     std::cout << tab << text ( Hello!) << nline;
 #define concatenate(x,y) x ## y
     //std::cout << tab << concatenate ( text, ( Hello!) ) << nline << nline; // compiler dependent
-
+    
     //! - in addition:
     // note that introducing too many complex macro definitions defined before the perfectly complex C++ language syntax,
     // which are additionally checked before the actual source code is a nasty practice.
@@ -725,7 +726,7 @@ void _23_02_MacroDefinitions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -755,7 +756,7 @@ void _23_03_ConditionalInclusions ()
       std::cout << ' ' << arrayOne [i];
     std::cout << nline << nline;
 #endif
-
+    
     //! - in addition:
     // --the directives '#if', '#else' and '#elif' are usable to check the fulfilment of a condition,
     // under which then the enclosed parts of code within them are included for compilation.
@@ -764,11 +765,11 @@ void _23_03_ConditionalInclusions ()
 #if DIRECTIVE_THREE==5
 #undef DIRECTIVE_THREE
 #define DIRECTIVE_THREE 10
-
+    
 #elif DIRECTIVE_THREE<2O
 #undef DIRECTIVE_THREE
 #define DIRECTIVE_THREE 30
-
+    
 #else
 #undef DIRECTIVE_THREE
 #define DIRECTIVE_THREE 50
@@ -780,7 +781,7 @@ void _23_03_ConditionalInclusions ()
     for ( short i = 0; i < DIRECTIVE_THREE; i++ )
       std::cout << ' ' << arrayTwo [i];
     std::cout << nline << nline;
-
+    
     //! - in addition:
     // using the special operators 'defined' and '!defined' in combination with '#if' and '#elif' directives,
     // the served purposes of the directives '#ifdef' and '#ifndef' can perfectly be achieved.
@@ -802,7 +803,7 @@ void _23_03_ConditionalInclusions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -823,12 +824,12 @@ void _23_04_LineControl ()
     // additionally the optional field "file_name" redefines the indicated file name shown by compiler.
     ColourCouter ( "----- Line control (#line):\n", F_bPURPLE );
     ColourCouter ( "To manipulate the indicated line number and file name of an occurred error.\n\n", F_YELLOW );
-//#line 100 "AnImaginaryFile" // uncomment for test: commented to have the correct results in following sections
+    //#line 100 "AnImaginaryFile" // uncomment for test: commented to have the correct results in following sections
     //for ( int int i = 0; i < 5; i++ ) {} // uncomment for test: error generating expression
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -845,17 +846,17 @@ void _23_05_ErrorDirective ()
     ColourCouter ( "The compilation process can be aborted.\n\n", F_YELLOW );
 #ifndef __cplusplus
 #error No C++ compiler is found.
-
+    
 #else
 #if __cplusplus<201103
     //#error The compiler supports an old standard version.
 #endif
-
+    
 #endif // __cplusplus
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -884,7 +885,7 @@ void _23_06_SourceFileInclusion ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -908,15 +909,15 @@ void _23_07_PragmaDirective ()
     // C++ standard header guard
 #ifndef HEADER_FILE_H
 #define HEADER_FILE_H
-
+    
     // header file content
-
+    
 #endif // !HEADER_FILE_H
-
+    
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -926,18 +927,18 @@ template <class typeA, class typeB>
 class aaa : TheTypeOne
 {
 private:
-    typeA a;
-    typeB b;
+  typeA a;
+  typeB b;
 public:
-    template <typename typeD>
-    aaa(typeD a);
-    aaa(typeA a, typeB b);
-    ~aaa(void);
-    
-    virtual int bb (void) = 0;
-    int bc (void) { return 0; };
-    
-    friend class TheTypeTwo;
+  template <typename typeD>
+  aaa(typeD a);
+  aaa(typeA a, typeB b);
+  ~aaa(void);
+  
+  virtual int bb (void) = 0;
+  int bc (void) { return 0; };
+  
+  friend class TheTypeTwo;
 };
 template <typename typeC>
 typeC c;
@@ -986,6 +987,6 @@ void _23_08_PredefinedMacroNames ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }

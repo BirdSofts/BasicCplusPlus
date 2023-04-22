@@ -1,3 +1,4 @@
+
 // --------------------------------------------------------------------------------
 /// <summary>
 /// _5_Classes.cpp
@@ -5,7 +6,7 @@
 /// created by Mehrdad Soleimanimajd on 18.09.2018
 /// </summary>
 /// <created>ʆϒʅ, 18.09.2018</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -46,7 +47,7 @@ void _17_01_ClassesI ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ Classes:
     // C++ language introduces classes as an expansion to data structures,
@@ -75,7 +76,7 @@ void _17_01_ClassesI ()
     // since the class's data members get instantiated to be the properties of objects,
     // from the view point of objects, no unexpected modification should happens to their properties,
     // with other words, they must have full control on the art of modification procedure.
-
+    
     //! - in addition:
     // definition of a class member outside of the class itself:
     // scope operator (::) (earlier in relation to namespaces)
@@ -99,7 +100,7 @@ void _17_01_ClassesI ()
     // object-oriented paradigms are implemented in programming using classes,
     // this means that an object instantiated from a class, has its members either data or function implemented within,
     // therefore the concept reduces the passing and carrying of handlers or other state variables as arguments to functions.
-
+    
     //! - in addition:
     // classes defined using keywords 'struct' or 'union':
     //-- the keyword struct:
@@ -111,7 +112,7 @@ void _17_01_ClassesI ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -158,7 +159,7 @@ void _17_02_Constructors ()
     numberEntity second ( 3 ); // no error, class has a constructor present, thus the 'class' keyword is optional
     first.print ();
     std::cout << "Of which the square is:" << tab << first.square () << nline << nline;
-
+    
     //! ####################################################################
     //! ----- overloading constructors:
     // any regular function likewise, a constructor can be overloaded with different number or type of parameters.
@@ -173,7 +174,7 @@ void _17_02_Constructors ()
     numberEntity forth; // Note without parenthesis
     forth.print ();
     std::cout << "Of which the square is:" << tab << forth.square () << nline << nline;
-
+    
     //! - in addition:
     numberEntity fifth (); // declaration of a new function
     // Note peculiarity: default constructor is called using no parenthesis,
@@ -182,23 +183,23 @@ void _17_02_Constructors ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
 
-class Smily
+class Smiley
 {
 private:
   char signs [5] { '-', ';', '.', '_', '^' };
   std::string title [4] { "nose", "moustache", "mouth", "lips" };
   int index;
 public:
-  Smily () { index = 0; print (); }
-  Smily ( int i ) { index = i; print (); }
+  Smiley () { index = 0; print (); }
+  Smiley ( int i ) { index = i; print (); }
   void print ( void )
   {
-    std::cout << "The smily:" << Tab << signs [4] << signs [index] << signs [4] << tab << title [index] << Nline;
+    std::cout << "The smiley:" << Tab << signs [4] << signs [index] << signs [4] << tab << title [index] << Nline;
   }
 };
 void _17_03_UniformInitialization ()
@@ -218,21 +219,21 @@ void _17_03_UniformInitialization ()
     // optionally, this syntax can include an equal sign before the braces.
     ColourCouter ( "----- Uniform initialization:\n", F_bPURPLE );
     ColourCouter ( "There are different ways for a constructor to be called.\n\n", F_YELLOW );
-    Smily a ( 0 ); // functional form (usable for single argument constructors)
-    Smily b = 1; // assignment initialization (usable for single argument constructors)
-    Smily c { 2 }; // uniform initialization
-    Smily d = { 3 }; // uniform initialization plus equal (POD type-like)
+    Smiley a ( 0 ); // functional form (usable for single argument constructors)
+    Smiley b = 1; // assignment initialization (usable for single argument constructors)
+    Smiley c { 2 }; // uniform initialization
+    Smiley d = { 3 }; // uniform initialization plus equal (POD type-like)
     std::cout << nline;
-
+    
     //! - in addition:
     // advantage of using uniform initialization:
     // using braces no confusion is possible with function declaration,
     // thus provides the ability to explicitly call the default constructor.
-    Smily x; // default constructor called
-    Smily y (); // a function declaration
-    Smily z {}; // default constructor called
+    Smiley x; // default constructor called
+    Smiley y (); // a function declaration
+    Smiley z {}; // default constructor called
     std::cout << nline;
-
+    
     //! - in addition:
     // the chosen syntax to call constructors is largely seen as a matter of style.
     // currently most existing code uses the functional form.
@@ -242,7 +243,7 @@ void _17_03_UniformInitialization ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -293,7 +294,7 @@ void _17_04_MemberInitializationInConstructor ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -354,7 +355,7 @@ void _17_05_PointersToClasses ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -426,7 +427,7 @@ void _17_06_OverloadingOperators ()
     ColourCouter ( "The result of the overloaded addition operator on two matrices is:\n", F_GREEN );
     result_1.print ();
     std::cout << nline;
-
+    
     //! - in addition:
     // a guide list, that introduces parameters needed for different over-loadable operators and their diverse forms.
     // guide to the table:
@@ -450,7 +451,7 @@ void _17_06_OverloadingOperators ()
     // ----------------------------------------------------------------------------------------------------------
     // (TYPE) a       TYPE                                            A::operator TYPE()      -
     // ----------------------------------------------------------------------------------------------------------
-
+    
     //! - in addition:
     // some operators may be overloaded not only as a member function, but also as a non-member function.
     // when overloading by the mean of non-member functions,
@@ -471,7 +472,7 @@ void _17_06_OverloadingOperators ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -522,7 +523,7 @@ void _17_07_TheKeywordThis ()
     if ( A.Equal ( B ) == false )
       B.print ();
     std::cout << nline;
-
+    
     //! - in addition:
     // operator= member function uses the keyword 'this' frequently, which returns objects by reference.
     std::cout << "Pattern object A (after assignment):" << nline;
@@ -530,11 +531,11 @@ void _17_07_TheKeywordThis ()
       A = B;
     A.print ();
     std::cout << nline;
-
+    
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -586,7 +587,7 @@ void _17_08_StaticMembers ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -630,15 +631,15 @@ void _17_09_ConstantMemberFunctions ()
     //aConstantObject.x = 'B'; // not valid: unmodifiable data members
     temp = aConstantObject.entity; // valid: read access right on data members
     std::cout << "Object's data member (read-only access):" << nline << tab << temp << nline << nline;
-
+    
     //temp = aConstantObject.get1 (); // not valid: not a constant member function
     temp = aConstantObject.get_2 ();
     std::cout << "Object's member function (constant member function):" << nline << tab << temp << nline;
-
+    
     temp = aConstantObject.get_3 ();
     std::cout << "Object's member function (constant member function with constant reference as return type):" << nline << tab << temp << nline << nline;
     //temp = aConstantObject.get4 (); // not valid: not a constant member function
-
+    
     //! - in addition:
     // the consideration should be there that the use of constant objects are perfectly common,
     // thus the effort of declaring all members that don't modify the object as constant worth it.
@@ -646,7 +647,7 @@ void _17_09_ConstantMemberFunctions ()
     // therefore they can only access the constant object members.
     Character aObject ( 'B' );
     print ( aObject );
-
+    
     //! - in addition:
     // note: member functions with identical signatures are on their constant state over-loadable,
     // this means, that the constant qualified versions are called when the objects themselves are constant.
@@ -665,7 +666,7 @@ void _17_09_ConstantMemberFunctions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -711,7 +712,7 @@ void _17_10_ClassTemplates ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -739,7 +740,7 @@ public:
   std::string get () { return  content; }
   void upLowerCase ()
   {
-
+    
     // uppercase/lowercase switch (ASCII code of character)
     std::string temp { "" };
     for ( char c : content )
@@ -783,7 +784,7 @@ void _17_11_TemplateSpecialization ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -794,7 +795,7 @@ void _18_01_SpecialMembers ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ special members:
     // member function defined implicitly under certain circumstances are known as special members:
@@ -815,13 +816,13 @@ void _18_01_SpecialMembers ()
     // -------------------------------------------------------------
     ColourCouter ( "~~~~~ Special members:\n", F_bPURPLE );
     ColourCouter ( "Special member functions are defined implicitly under certain circumstances.\n\n", F_YELLOW );
-
-
-
+    
+    
+    
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -856,7 +857,7 @@ void _18_02_DefaultConstructor ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -891,7 +892,7 @@ void _18_03_Destructor ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -937,7 +938,7 @@ void _18_04_CopyConstructor ()
     Creature two { one }; // invoking the implicit copy constructor
     std::cout << "The copied creature is identified as:" << nline;
     std::cout << tab << two.get () << nline << nline;
-
+    
     //! - in addition:
     // while the introduced implicit copy constructor perfectly suites the need of many classes,
     // when it comes to pointers and handling the allocated storage, a performed shallow copy,
@@ -953,7 +954,7 @@ void _18_04_CopyConstructor ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1013,7 +1014,7 @@ void _18_05_CopyAssignment ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1083,7 +1084,7 @@ void _18_06_MoveConstructorAndAssignment ()
     std::cout << tab << three.get () << nline;
     temp = one + three; // move assignment
     std::cout << tab << temp.get () << nline << nline;
-
+    
     //! - in addition:
     // compilers introducing Return Value Optimization optimize many cases,
     // that formally require a move-construction call, such as returned function value used to initialize an object.
@@ -1095,7 +1096,7 @@ void _18_06_MoveConstructorAndAssignment ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1147,7 +1148,7 @@ void _18_07_ImplicitMembers ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1158,7 +1159,7 @@ void _19_01_FriendshipAndInheritance ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ friendship and inheritance:
     //
@@ -1167,7 +1168,7 @@ void _19_01_FriendshipAndInheritance ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1238,7 +1239,7 @@ void _19_02_FriendFunctionsAndClasses ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1301,7 +1302,7 @@ void _19_03_InheritanceBetweenClasses ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1372,7 +1373,7 @@ void _19_04_InheritedCharacteristics ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1424,7 +1425,7 @@ void _19_05_MultipleInheritance ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1435,7 +1436,7 @@ void _20_01_Polymorphism ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ polymorphism:
     // the needed concepts for the following to be understood are data structures, classes, pointers, friendship and inheritance,
@@ -1446,7 +1447,7 @@ void _20_01_Polymorphism ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1500,7 +1501,7 @@ void _20_02_PointersToBaseClass ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1565,7 +1566,7 @@ void _20_03_VirtualMembers ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1628,6 +1629,6 @@ void _20_04_AbstractBaseClasses ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }

@@ -1,3 +1,4 @@
+
 // ********************************************************************************
 /// <summary>
 /// Windows's conslole screen manipulations at runtime
@@ -7,7 +8,7 @@
 /// </summary>
 /// <returns></returns>
 /// <created>ʆϒʅ, 02.10.2018</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // ********************************************************************************
 
 #include "CplusPlus.h"

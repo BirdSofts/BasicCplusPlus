@@ -1,3 +1,4 @@
+
 # *******************************************************************************************
 #/ <summary>
 #/ CMakeLists.txt
@@ -5,7 +6,7 @@
 #/ created by Mehrdad Soleimanimajd on 18.04.2019
 #/ </summary>
 #/ <created>ʆϒʅ, 18.04.2019</created>
-#/ <changed>ʆϒʅ, 14.03.2023</changed>
+#/ <changed>ʆϒʅ, 22.04.2023</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
@@ -18,7 +19,8 @@ set(CMAKE_CXX_COMPILER GCC)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 set(CMAKE_CXX_STANDARD 17)
 
-project(${PROJECT_NAME}
+project(${PROJECT_NAME}
+
   VERSION 1.0.0.1
   DESCRIPTION "CplusPlus Examples And Notes"
   HOMEPAGE_URL "https://github.com/s-mehrdad/CplusPlus"

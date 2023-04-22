@@ -1,3 +1,4 @@
+
 // --------------------------------------------------------------------------------
 /// <summary>
 /// _7_cPlusPlusStandardLibrary.h
@@ -5,7 +6,7 @@
 /// created by Mehrdad Soleimanimajd on 07.07.2019
 /// </summary>
 /// <created>ʆϒʅ, 07.07.2019</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -30,7 +31,7 @@ void _24_01_InputAndOutputWithFiles ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ input/output with files:
     // standard streams classes provided by C++ language to perform output/input operations to and from files are:
@@ -53,7 +54,7 @@ void _24_01_InputAndOutputWithFiles ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -111,7 +112,7 @@ void _24_02_OpeningAndClosingFiles ()
     // no matter which way a file is opened, both of these forms are valid and equivalent.
     // the member function 'is_open' returns a boolean value of true indicating,
     // whether the stream object is successfully associated an open file or false otherwise.
-
+    
     //! ----- opening files:
     // an opened file in a stream object takes some resources from operating system,
     // thus after the operation with a file is done, OS needs awareness to free and set those resources available again.
@@ -125,7 +126,7 @@ void _24_02_OpeningAndClosingFiles ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -172,7 +173,7 @@ void _24_03_TextFiles ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -199,7 +200,7 @@ void _24_04_CheckingStateFlags ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -264,7 +265,7 @@ void _24_05_GetAndPutStreamPositioning ()
     long long end { fileStream.tellg () };
     //std::streampos end { fileStream.tellg () }; // the alias
     std::cout << "The size of the file is:" << tab << end - begin << nline;
-
+    
     char ch [3] { '0' };
     fileStream.seekg ( -2, std::ifstream::end ); // from the end of the file in backward direction
     fileStream.seekg ( -3, std::ifstream::cur ); // from current position in backward direction
@@ -279,7 +280,7 @@ void _24_05_GetAndPutStreamPositioning ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -350,7 +351,7 @@ void _24_06_BinaryFiles ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -380,7 +381,7 @@ void _24_07_BuffersAndSynchronization ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -389,12 +390,12 @@ void _25_01_Extras ()
 {
   try
   {
-    // Todo Threads
-    // Todo interface keyword
-      
+    // TODO Threads
+    // TODO interface keyword
+    
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }

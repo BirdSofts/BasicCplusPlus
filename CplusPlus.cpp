@@ -12,7 +12,7 @@
 /// created by Mehrdad Soleimanimajd on 11.04.2018
 /// </summary>
 /// <created>ʆϒʅ, 11.04.2018</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -43,32 +43,32 @@ int main ()
     ConsleFont ( L"Courier New" );
     COLORREF backColour { RGB ( 50,50,50 ) };
 #elifdef __APPLE__
-
+    
 #endif
-//    ConsoleFontSize ( fontS );
-//    ConsoleFontColour ( F_bPURPLE );
-//    // screen
-//    coordinateType leftANDtop { 15,15 };
-//    coordinateType widthANDheight { 102,32 };
-//    ConsoleScreenPosition ( leftANDtop );
-//    ConsoleScreenSize ( widthANDheight );
+    //    ConsoleFontSize ( fontS );
+    //    ConsoleFontColour ( F_bPURPLE );
+    //    // screen
+    //    coordinateType leftANDtop { 15,15 };
+    //    coordinateType widthANDheight { 102,32 };
+    //    ConsoleScreenPosition ( leftANDtop );
+    //    ConsoleScreenSize ( widthANDheight );
 #ifdef _WIN32
     ConsoleScreenColour ( backColour );
 #elifdef __APPLE__
 #endif
-
+    
     //// cursor
     //ConsoleCursorState ( false );
-
+    
     //// codec
     //UINT consoleOutputCPstorage;
     //consoleOutputCPstorage = GetConsoleOutputCP ();
     //SetConsoleOutputCP ( CP_UTF8 );
-
+    
     //// back to default codec
     //SetConsoleOutputCP ( consoleOutputCPstorage );
 #pragma endregion
-
+    
     //! ...................................:: References ::...................................
     // http://www.cplusplus.com/doc/
     // https://stackoverflow.com/
@@ -98,18 +98,18 @@ int main ()
     ColourCouter ( "I was almost a good nerd and emptied my Recycle Bin regularly at the night! :) So be a lamb (^.^) and stay a good nerd!\n", F_YELLOW );
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     ColourCouter ( " +++++++++++++++++++++++++++++++++++++++++++++++++", F_bRED );
     ColourCouter ( "++++++++++++++++++++++++++++++++++++++++++++++++++\n", F_bRED );
     ColourCouter ( ".:: Introduction ::.\n", F_CYAN );
-
+    
     _01_01_Introduction ();
-
+    
     //! .................................:: BASICS OF C++ ::.................................
     ColourCouter ( " +++++++++++++++++++++++++++++++++++++++++++++++++", F_bRED );
     ColourCouter ( "++++++++++++++++++++++++++++++++++++++++++++++++++\n", F_bRED );
     ColourCouter ( ".:: BASICS OF C++ ::.\n", F_CYAN );
-
+    
     _02_01_StructureOfaProgram ();
     _03_01_VariablesTypesAndIdentifiers ();
     _03_02_FundamentalTypesAndDeduction ();
@@ -121,13 +121,13 @@ int main ()
     _05_03_OtherOperators ();
     _05_04_PrecedenceOfOperators ();
     _06_01_BasicInputOutput ();
-
-
+    
+    
     //! ...............................:: PROGRAM STRUCTURE ::...............................
     ColourCouter ( " +++++++++++++++++++++++++++++++++++++++++++++++++", F_bRED );
     ColourCouter ( "++++++++++++++++++++++++++++++++++++++++++++++++++\n", F_bRED );
     ColourCouter ( ".:: PROGRAM STRUCTURE ::.\n", F_CYAN );
-
+    
     _07_01_ControlStructures ();
     _07_02_SelectionStatements ();
     _07_03_IterationStatements ();
@@ -152,12 +152,12 @@ int main ()
     _10_04_UsingKeyword ();
     _10_05_NamespaceAliasing ();
     _10_06_StorageClasses ();
-
+    
     //! ..............................:: COMPOUND DATA TYPES ::..............................
     ColourCouter ( " +++++++++++++++++++++++++++++++++++++++++++++++++", F_bRED );
     ColourCouter ( "++++++++++++++++++++++++++++++++++++++++++++++++++\n", F_bRED );
     ColourCouter ( ".:: COMPOUND DATA TYPES ::.\n", F_CYAN );
-
+    
     _11_01_Arrays ();
     _11_02_InitializingArrays ();
     _11_03_AccessingValues ();
@@ -173,12 +173,12 @@ int main ()
     _14_01_DynamicMemory ();
     _15_01_DataStructures ();
     _16_01_OtherDataTypes ();
-
+    
     //! ....................................:: CLASSES ::....................................
     ColourCouter ( " +++++++++++++++++++++++++++++++++++++++++++++++++", F_bRED );
     ColourCouter ( "++++++++++++++++++++++++++++++++++++++++++++++++++\n", F_bRED );
     ColourCouter ( ".:: CLASSES ::.\n", F_CYAN );
-
+    
     _17_01_ClassesI ();
     _17_02_Constructors ();
     _17_03_UniformInitialization ();
@@ -206,12 +206,12 @@ int main ()
     _20_02_PointersToBaseClass ();
     _20_03_VirtualMembers ();
     _20_04_AbstractBaseClasses ();
-
+    
     //! ....................................:: OTHER LANGUAGE FEATURES ::....................................
     ColourCouter ( " +++++++++++++++++++++++++++++++++++++++++++++++++", F_bRED );
     ColourCouter ( "++++++++++++++++++++++++++++++++++++++++++++++++++\n", F_bRED );
     ColourCouter ( ".:: OTHER LANGUAGE FEATURES ::.\n", F_CYAN );
-
+    
     _21_01_TypeConversions ();
     _21_02_ImplicitConversion ();
     _21_03_ImplicitConversionsWithClasses ();
@@ -241,16 +241,16 @@ int main ()
     _24_06_BinaryFiles ();
     _24_07_BuffersAndSynchronization ();
     _25_01_Extras ();
-
-
+    
+    
     ColourCouter ( " +++++++++++++++++++++++++++++++++++++++++++++++++", F_bRED );
     ColourCouter ( "++++++++++++++++++++++++++++++++++++++++++++++++++\n", F_bRED );
   }
   catch ( const std::exception& )
   {
-
+    
   }
-
+  
   // preventing the instant closing of console window, so the result could be seen
   // not a good practice anyhow with a lot discussion in the internet
   // alternatives:
@@ -259,7 +259,7 @@ int main ()
   system ( "PAUSE" ); // system dependent
   std::cin.get (); // alternative and portable
   // for advanced programmer: your program should be able to handle it itself
-
+  
   //return 0;
   return EXIT_SUCCESS; // see the tutorials > functions section > the return value of main
 }

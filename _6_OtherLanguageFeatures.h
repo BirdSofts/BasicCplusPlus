@@ -1,3 +1,4 @@
+
 // --------------------------------------------------------------------------------
 /// <summary>
 /// _6_OtherLanguageFeatures.h
@@ -5,7 +6,7 @@
 /// created by Mehrdad Soleimanimajd on 26.06.2019
 /// </summary>
 /// <created>ʆϒʅ, 26.06.2019</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // --------------------------------------------------------------------------------
 
 #ifndef _6_OTHERLANGUAGEFEATURES_H

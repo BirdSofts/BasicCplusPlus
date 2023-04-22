@@ -1,3 +1,4 @@
+
 // ********************************************************************************
 /// <summary>
 /// MacOs's terminal screen manipualtions at runtime
@@ -7,7 +8,7 @@
 /// </summary>
 /// <returns></returns>
 /// <created>ʆϒʅ, 12.01.2023</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // ********************************************************************************
 
 #ifndef TERMINAL_H
@@ -96,8 +97,8 @@
 
 typedef struct CoordinateType
 {
-    short x;
-    short y;
+  short x;
+  short y;
 } coordinateType;
 
 void ConsoleFont ( const char32_t * fontName );

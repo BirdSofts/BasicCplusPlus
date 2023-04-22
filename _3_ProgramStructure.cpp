@@ -1,3 +1,4 @@
+
 // --------------------------------------------------------------------------------
 /// <summary>
 /// _3_ProgramStructures.cpp
@@ -5,7 +6,7 @@
 /// created by Mehrdad Soleimanimajd on 09.05.2018
 /// </summary>
 /// <created>ʆϒʅ, 09.05.2018</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // --------------------------------------------------------------------------------
 
 #include "CplusPlus.h"
@@ -30,7 +31,7 @@ void _07_01_ControlStructures ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ control structures (statements and flow control):
     // apart from linear sequence of statements a program can contain repeated segments of code, decision taking and bifurcations.
@@ -43,7 +44,7 @@ void _07_01_ControlStructures ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -56,7 +57,7 @@ void _07_02_SelectionStatements ()
     //! ~~~~~ selection statements (if and else):
     // execution of a statement or block if the condition is fulfilled.
     //! keywords:   if  else
-
+    
     // Note syntax: if (condition) statement
     ColourCouter ( "~~~~~ Selection statements (if and else):\n", F_bPURPLE );
     ColourCouter ( "Can be used to introduce conditioned execution of statements.\n\n", F_YELLOW );
@@ -64,9 +65,9 @@ void _07_02_SelectionStatements ()
     std::cout << "Current value of x is:" << tab << x << nline;
     if ( ( x % 3 ) == 0 )
       std::cout << "Three is a devisor of x" << nline; // a statement
-  // a block statement without usual indentation and line breaks:
+    // a block statement without usual indentation and line breaks:
     if ( true ) { std::cout << "x is "; std::cout << x << nline << nline; }
-
+    
     // Note syntax: if (condition) statement1 else statement2
     // the introduced statement2 by 'else' keyword will be executed, when the condition is not fulfilled.
     bool flag { false };
@@ -75,7 +76,7 @@ void _07_02_SelectionStatements ()
       std::cout << "x divided by 3 is:" << tab << x / 3 << nline;
     else // introduction of an alternative statement
       std::cout << "x divided by 9 is:" << tab << x / 9 << nline << nline;
-
+    
     // concatenated several if + else structure
     // for example it can be introduced to fulfil the intention of checking a range of values
     x = 10;
@@ -90,7 +91,7 @@ void _07_02_SelectionStatements ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -105,7 +106,7 @@ void _07_03_IterationStatements ()
     //! keywords:   while   do  for
     ColourCouter ( "~~~~~ Iteration statements (Loops):\n", F_bPURPLE );
     ColourCouter ( "To repeat statements a certain times or until a condition is fulfilled.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- the while loop:
     // repeat the statement while the expression is true.
@@ -127,7 +128,7 @@ void _07_03_IterationStatements ()
       ++n; // alter the value checked in condition.
     }
     std::cout << "}" << nline << nline;
-
+    
     //! ####################################################################
     //! ----- the do-while loop:
     // the same behaviour like while loop but the condition will be checked after the execution of the statement.
@@ -149,7 +150,7 @@ void _07_03_IterationStatements ()
       ++o;
     } while ( o <= 10 );
     std::cout << "}" << nline << nline;
-
+    
     //! ####################################################################
     //! ----- the for loop:
     // iteration of the statement a certain number of times while its condition is true
@@ -168,7 +169,7 @@ void _07_03_IterationStatements ()
       }
     }
     std::cout << "}" << nline << nline;
-
+    
     //! - in addition:
     // more on for loops plus some other features:
     // the tree fields in the for loop are optional but the semicolons between them in all cases are obligatory.
@@ -185,16 +186,16 @@ void _07_03_IterationStatements ()
       std::cout << "^-^" << tab; // times of execution is 10
     }
     std::cout << nline << nline;
-
+    
     //! - in addition:
     // example of nested for loops:
     // Added to pattern: take note of repeated line and division in patterns
-    //  *   *  
-    //   * *   
+    //  *   *
+    //   * *
     //    *      * 9 times
-    //    *    
-    //   * *   
-    //  *   *  
+    //    *
+    //   * *
+    //  *   *
     ColourCouter ( "Demonstration of a pattern using nested for loops:\n", F_GREEN );
     bool flag { false };
     for ( int i = 1; i <= 5; i++ )
@@ -212,7 +213,7 @@ void _07_03_IterationStatements ()
       std::cout << nline;
     }
     std::cout << nline;
-
+    
     //! ####################################################################
     //! ----- range-based for loops: iteration over all the elements in a range
     // Note syntax: for (declaration : range) statement;
@@ -251,7 +252,7 @@ void _07_03_IterationStatements ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -265,7 +266,7 @@ void _07_04_JumpStatements ()
     // they can be used to alter the flow of a program by jumping to specific locations
     ColourCouter ( "~~~~~ Jump statements:\n", F_bPURPLE );
     ColourCouter ( "The flow of a program can be altered by jumping to specific locations.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- the break statement:
     // to leave a loop, even if its end condition isn't fulfilled.
@@ -294,7 +295,7 @@ void _07_04_JumpStatements ()
       } else
         word += c;
     }
-
+    
     //! ####################################################################
     //! ----- the continue statement:
     // to skip the current iteration and jumping to the next one.
@@ -320,7 +321,7 @@ void _07_04_JumpStatements ()
         a_word += c;
     }
     std::cout << tab << "There are " << counter << " neutral words in string." << nline << nline;
-
+    
     //! ####################################################################
     //! ----- the goto statement: provides absolute jump to another point in the program
     // this jump is an unconditional jump, ignores the nesting levels and doesn't cause any automatic stack unwinding,
@@ -340,7 +341,7 @@ void _07_04_JumpStatements ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -388,7 +389,7 @@ void _07_05_AnotherSelectionStatement ()
       }
     }
     std::cout << nline << nline;
-
+    
     //! - in addition:
     // the syntax of switch is inherited from the early versions of C language. switch uses labels in place of blocks.
     // the break statement for each case is needed, otherwise switch executes all the statements after the equivalent case till the end or reaching a break no matter what case they belong to.
@@ -422,7 +423,7 @@ void _07_05_AnotherSelectionStatement ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -441,7 +442,7 @@ void _08_01_Functions ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ functions:
     // a group of code that is given a name to structure a program in segment of code to perform individual tasks,
@@ -465,7 +466,7 @@ void _08_01_Functions ()
     std::cout << "Passed variables as parameters:" << "\t\t" << "x = " << x << tab << "y = " << y << nline;
     result = division ( x, y ); // passing variables
     std::cout << "The result of subtraction function:" << tab << result << nline << nline;
-
+    
     ColourCouter ( "Division function called as an operand of addition operation:\n", F_GREEN );
     std::cout << "Passed variables as parameters:" << "\t\t" << "x = " << x << tab << "y = " << y << nline;
     result = 6 + division ( x, y ); // the function call is operand of addition operation.
@@ -474,7 +475,7 @@ void _08_01_Functions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -503,7 +504,7 @@ void _08_02_VoidFunctions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -538,7 +539,7 @@ void _08_03_MainFunctionReturnValue ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -584,7 +585,7 @@ void _08_04_PassedArgumentsTypes ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -631,10 +632,10 @@ void _08_05_Efficiency ()
     std::cin >> character;
     count = search_ref ( line, character );
     std::cout << nline << "\t" << count << " characters could be counted." << nline << nline;
-
+    
     //! - in addition:
     // functions with reference parameters are generally perceived as functions that modify the arguments passed.
-    // by qualifying the parameters as constant, it can be guaranteed that the function doesn't modify the arguments 
+    // by qualifying the parameters as constant, it can be guaranteed that the function doesn't modify the arguments
     ColourCouter ( "The use of constant parameters in passing arguments by reference:\n", F_GREEN );
     std::cout << "Above entered character will be used:" << nline;
     count = search_ref_const ( line, character );
@@ -642,7 +643,7 @@ void _08_05_Efficiency ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -683,7 +684,7 @@ void _08_06_InlineFunctions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -714,7 +715,7 @@ void _08_07_ParametersDefaultValues ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -750,7 +751,7 @@ void _08_08_FunctionsDeclaration ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 void negative ( int x )
@@ -792,7 +793,7 @@ void _08_09_Recursivity ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -803,7 +804,7 @@ void _09_01_OverloadsAndTemplates ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ overloads and templates:
     ColourCouter ( "~~~~~ Overloads and templates:\n", F_bPURPLE );
@@ -812,7 +813,7 @@ void _09_01_OverloadsAndTemplates ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -853,7 +854,7 @@ void _09_02_OverloadedFunctions ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -911,7 +912,7 @@ void _09_03_FunctionTemplates ()
     double result2;
     result2 = multiply_generic<double> ( 0.3, 0.3 ); // making another instance with double type
     std::cout << "Result of another instance (double type):" << tab << result2 << nline << nline;
-
+    
     //! - in addition:
     // type deduction in generic types
     // since the generic type SomeType is also used as parameters of the function, the compiler is able to deduce the data type automatically.
@@ -921,7 +922,7 @@ void _09_03_FunctionTemplates ()
     // take the following call for instance:
     ColourCouter ( "Instantiating another instance while using deduction of type:\n", F_GREEN );
     std::cout << "Result of another instance (deduction):" << "\t\t" << multiply_generic ( 0.3, 0.3 ) << nline << nline;
-
+    
     //! - in addition:
     // templates are a powerful and versatile feature.
     // while they can have multiple template parameters, it is still possible for the function to use regular non-templated types.
@@ -936,7 +937,7 @@ void _09_03_FunctionTemplates ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -972,7 +973,7 @@ void _09_04_ParticularTypeTemplateArguments ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -983,7 +984,7 @@ void _10_01_NameVisibility ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ name visibility:
     // in C++ name entities such as variables, functions and compound types need to be declared before being used.
@@ -994,7 +995,7 @@ void _10_01_NameVisibility ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1032,7 +1033,7 @@ void _10_02_Scopes ()
     std::cout << "Local variable's value (first function scope):" << "\t\t" << first_function () << nline;
     std::cout << "Local variable's value (second function scope):" << "\t\t" << second_function () << nline;
     std::cout << "Global variable's value after change:" << "\t\t\t" << global_variable << nline << nline;
-
+    
     //! - in addition:
     // the visibility of an entity with block scope extends until the end of the block including its inner blocks.
     // nevertheless, re-utilization of an outer block defined name in the inner blocks is possible.
@@ -1058,27 +1059,27 @@ void _10_02_Scopes ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
 
 namespace firstNamespace
 {
-  int a { 10 };
-  int b { 20 };
-  int task () { return ( a * b ); }
+int a { 10 };
+int b { 20 };
+int task () { return ( a * b ); }
 }
 namespace secondNamespace
 {
-  const double pi { 3.1415926 };
-  double task ( double r ) { return ( r * r * pi ); }
+const double pi { 3.1415926 };
+double task ( double r ) { return ( r * r * pi ); }
 }
 // namespaces can be split
 namespace firstNamespace
 {
-  int c { 40 };
-  int d { 50 };
+int c { 40 };
+int d { 50 };
 }
 void _10_03_Namespaces ()
 {
@@ -1112,15 +1113,15 @@ void _10_03_Namespaces ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
 
 namespace name_space
 {
-  int a { 50 };
-  double b { 6.6 };
+int a { 50 };
+double b { 6.6 };
 }
 void _10_04_UsingKeyword ()
 {
@@ -1139,7 +1140,7 @@ void _10_04_UsingKeyword ()
       std::cout << "Need to qualify the name:" << nline;
       std::cout << tab << "The value of b:" << tab << name_space::b << nline << nline;
     }
-
+    
     // using as a directive to introduce an entire namespace:
     // using and using namespace stated in a block, have only validity within inside of it,
     // and when stated directly in the global scope, inside of the entire source code,
@@ -1161,14 +1162,14 @@ void _10_04_UsingKeyword ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
 
 namespace identifier
 {
-  int a { 10 };
+int a { 10 };
 }
 void _10_05_NamespaceAliasing ()
 {
@@ -1189,7 +1190,7 @@ void _10_05_NamespaceAliasing ()
       std::cout << "The value of a (namespace alias, respectively identifier):" << tab << identifier::a << nline;
       std::cout << "The value of a (namespace alias, respectively identifier):" << tab << alias::a << nline << nline;
     }
-
+    
     //! ####################################################################
     //! ----- : the std namespace
     // entities declared in this namespace belong to the standard C++ library.
@@ -1200,7 +1201,7 @@ void _10_05_NamespaceAliasing ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -1228,6 +1229,6 @@ void _10_06_StorageClasses ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }

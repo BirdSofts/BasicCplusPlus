@@ -1,3 +1,4 @@
+
 // --------------------------------------------------------------------------------
 /// <summary>
 /// _2_Basics.cpp
@@ -5,7 +6,7 @@
 /// created by Mehrdad Soleimanimajd on 11.04.2018
 /// </summary>
 /// <created>ʆϒʅ, 11.04.2018</created>
-/// <changed>ʆϒʅ, 14.03.2023</changed>
+/// <changed>ʆϒʅ, 22.04.2023</changed>
 // --------------------------------------------------------------------------------
 
 //! preprocessor directives:
@@ -37,7 +38,7 @@ void _02_01_StructureOfaProgram () // declaration of the function, explanation i
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ structure of a program:
     // a C++ program always start from the main function, no matter the order of definitions.
@@ -46,28 +47,28 @@ void _02_01_StructureOfaProgram () // declaration of the function, explanation i
     // other functions can be executed if they are called directly or indirectly from main function.
     ColourCouter ( "~~~~~ Structure of a program:\n", F_bPURPLE );
     ColourCouter ( "Although C++ language doesn't have any strict rules on structure and indention in source code, it is better for human understanding, that it be properly structured and indented.\n\n", F_YELLOW );
-
+    
     // comment is the important tool, which provides direct documentation within source code
     // a line comment
     /// a documentation comment
     /* block
-    comment*/
-
+     comment*/
+    
     // inserting an output
     std::cout << "Hello World! ";
     // std::cout is standard character output
     // << is insertion operator
-
+    
     // '/n' is the newline character.
     std::cout << "I'm the first C++ example of this tutorial.\n\n";
-
+    
     // semicolon (;): all statements in C++ must ends with semicolons.
     // preprocessor directives are not statements.
-
+    
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -78,13 +79,13 @@ void _03_01_VariablesTypesAndIdentifiers ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ variables, types and identifiers:
     // variables are portions of memory that have types and are defined to store values.
     ColourCouter ( "~~~~~ Variables, types and identifiers:\n", F_bPURPLE );
     ColourCouter ( "Portions of memory to store values of different types.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- declaration and initialization in different C++ revisions
     // declaration alone introduces variables with undetermined values,
@@ -102,9 +103,9 @@ void _03_01_VariablesTypesAndIdentifiers ()
     std::cout << "Initialized with C-Like initialization:\t\t" << "a1: " << a1 << "\n";
     std::cout << "Initialized in constructor (C++ language):\t" << "a2: " << a2 << "\n";
     int aa { 0 }, bb { 0 }, result { 0 }; // C++ standard initialization (2011 revision)
-
+    
     std::cout << "Initialized in C++ standard revision:\t\t" << "aa: " << aa << '\t' << "bb: " << bb << '\t' << "result: " << result << std::endl << std::endl;
-
+    
     //! - in addition:
     // after declaration, a variable can be assigned its first time value or a new value.
     // some simple processes on variables for the time being:
@@ -122,7 +123,7 @@ void _03_01_VariablesTypesAndIdentifiers ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -139,7 +140,7 @@ void _03_02_FundamentalTypesAndDeduction ()
     ColourCouter ( "~~~~~ Fundamental types and deduction:\n", F_bPURPLE );
     ColourCouter ( "Fundamental types are the basics types supported by most systems.\n", F_YELLOW );
     ColourCouter ( "Deduction introduce the ability of the compiler, with which the type of an unknown variable can be identified.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- fundamental types: characters
     // ----------------------------------------------------------------
@@ -155,23 +156,23 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ----------------------------------------------------------------
     ColourCouter ( "----- Fundamental types: Character types\n", F_bPURPLE );
     ColourCouter ( "Character types can represents a single character and are in different sizes.\n\n", F_YELLOW );
-
+    
     std::cout << "Size of char in byte:\t\t" << sizeof ( char ) << "\n";
     char ch1 { 'M' };
     std::cout << "char:\t\t\t\t" << ch1 << std::endl << std::endl;
-
+    
     std::cout << "Size of char16_t in byte:\t" << sizeof ( char16_t ) << "\n";
     char16_t ch2 { 'M' };
     std::cout << "char16_t:\t\t\t" << ch2 << std::endl << std::endl;
-
+    
     std::cout << "Size of char32_t in byte:\t" << sizeof ( char32_t ) << "\n";
     char32_t ch3 { 'M' };
     std::cout << "char32_t:\t\t\t" << ch3 << std::endl << std::endl;
-
+    
     std::cout << "Size of wchar_t in byte:\t" << sizeof ( wchar_t ) << "\n";
     wchar_t ch4 { 'M' };
     std::cout << "wchar_t:\t\t\t" << ch4 << std::endl << std::endl;
-
+    
     //! ####################################################################
     //! ----- fundamental types: integers
     // ------------------------------------------------------------------
@@ -199,37 +200,37 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ------------------------------------------------------------------
     ColourCouter ( "----- Fundamental types: integer types\n", F_bPURPLE );
     ColourCouter ( "Integer types can represent numerical values, are in variety of sizes and can be either signed or unsigned.\n\n", F_YELLOW );
-
+    
     signed char num1_1 { -128 }, num1_2 { 127 }; // hexadecimal: -0x80 to 0x7f
     unsigned char num1_3 { 0 }, num1_4 { 255 }; // hexadecimal: 0xff
     std::cout << "Size of char:\t\t\t" << sizeof ( char ) << "\n";
     std::cout << "Signed char range:\t\t" << static_cast<int>( num1_1 ) << "\t\t\tto\t" << static_cast<int>( num1_2 ) << "\n";
     std::cout << "Unsigned char range:\t\t" << static_cast<int>( num1_3 ) << "\t\t\tto\t" << static_cast<int>( num1_4 ) << "\n\n";
-
+    
     short num2_1 = { -32768 }, num2_2 = { 32767 }; // hexadecimal: -0x8000 to 0x7fff
     unsigned short num2_3 { 0 }, num2_4 { 65535 }; // hexadecimal: 0xffff
     std::cout << "Size of short:\t\t\t" << sizeof ( short ) << "\n";
     std::cout << "Signed short range:\t\t" << num2_1 << "\t\t\tto\t" << num2_2 << "\n";
     std::cout << "Unsigned short range:\t\t" << num2_3 << "\t\t\tto\t" << num2_4 << "\n\n";
-
+    
     int num3_1 { -2147483647 }, num3_2 { 2147483647 }; // hexadecimal: -0x7fffffff to 0x7fffffff
     unsigned int num3_3 { 0 }, num3_4 { 4294967295 }; // hexadecimal: 0xffffffff
     std::cout << "Size of int:\t\t\t" << sizeof ( int ) << "\n";
     std::cout << "Signed int range:\t\t" << num3_1 << "\t\tto\t" << num3_2 << "\n";
     std::cout << "Unsigned int:\t\t\t" << num3_3 << "\t\t\tto\t" << num3_4 << "\n\n";
-
+    
     long num4_1 { -2147483647 }, num4_2 { 2147483647 }; // hexadecimal: -0x7fffffff to 0x7fffffff
     unsigned int num4_3 { 0 }, num4_4 { 4294967295 }; // hexadecimal: 0xffffffff
     std::cout << "Size of long:\t\t\t" << sizeof ( long ) << "\n";
     std::cout << "Signed long range:\t\t" << num4_1 << "\t\tto\t" << num4_2 << "\n";
     std::cout << "Unsigned long:\t\t\t" << num4_3 << "\t\t\tto\t" << num4_4 << "\n\n";
-
+    
     long long num5_1 { -9223372036854775807 }, num5_2 { 9223372036854775807 }; // hexadecimal: -0x7fffffffffffffff to 0x7fffffffffffffff
     unsigned long long num5_3 { 0 }, num5_4 { 18446744073709551615 }; // // hexadecimal: -0xffffffffffffffff
     std::cout << "Size of long long:\t\t" << sizeof ( long long ) << "\n";
     std::cout << "Signed long long range:\t\t" << num5_1 << "\tto\t" << num5_2 << "\n";
     std::cout << "Unsigned long long:\t\t" << num5_3 << "\t\t\tto\t" << num5_4 << "\n\n";
-
+    
     //! ####################################################################
     //! ----- fundamental types: floats
     // ------------------------------------------------------------------
@@ -243,26 +244,26 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ------------------------------------------------------------------
     ColourCouter ( "----- Fundamental types: floats\n", F_bPURPLE );
     ColourCouter ( "Depending on the kind of the floating-point of these types, they can represent real values with different levels of precision.\n\n", F_YELLOW );
-
+    
     float num6_1 { 1.8e-38 }, num6_2 { 3.4e+38 };
     std::cout << "Size of float:\t\t" << sizeof ( float ) << "\n";
     std::cout << "Float range:\t\t" << num6_1 << "\t\tto\t" << num6_2 << "\n";
-
+    
     double num7_1 { 2.2e-308 }, num7_2 { 1.79e+308 };
     std::cout << "Size of double:\t\t" << sizeof ( double ) << "\n";
     std::cout << "Double rang:\t\t" << num7_1 << "\tto\t" << num7_2 << "\n";
-
+    
     long double num8_1 { 2.2e-308 }, num8_2 { 1.79e+308 };
     std::cout << "Size of long double:\t" << sizeof ( long double ) << "\n";
     std::cout << "Long double range:\t" << num8_1 << "\tto\t" << num8_2 << "\n\n";
     // check the link for more details on float: http://de.cppreference.com/w/cpp/language/types
-
+    
     //! - in addition:
     // since C++ has a lot different compilers, when it comes to types C++ can give these guaranties:
     // char size 1 byte [-128...127]
     // short is smaller than int, which is smaller than long and long long is the largest one.
     // long long, which is a GCC extension, has found his way into C++ standard.
-
+    
     //! ####################################################################
     //! ----- fundamental other types: bool, void and nullptr
     // ------------------------------------------------------------------
@@ -276,11 +277,11 @@ void _03_02_FundamentalTypesAndDeduction ()
     // ------------------------------------------------------------------
     ColourCouter ( "----- Fundamental other types: bool, void and nullptr\n", F_bPURPLE );
     ColourCouter ( "The in C++ known as bool Boolean type, is a logical type and represents 'true' or 'false' as values.\n\n", F_YELLOW );
-
+    
     bool bool_var_1 { true }, bool_var_2 { false };
     std::cout << "Size of bool:\t\t" << sizeof ( bool ) << "\n";
     std::cout << "Two bool variables:\t" << bool_var_1 << "\tand\t" << bool_var_2 << "\n\n";
-
+    
     //! - in addition:
     // additional reference: https://docs.microsoft.com/en-us/cpp/cpp/void-cpp?view=vs-2017
     // void identifies the lack of type.
@@ -305,14 +306,14 @@ void _03_02_FundamentalTypesAndDeduction ()
     std::cout << "Variable address -pointed to by a void pointer-:\t\t\t\t" << void_poi << "\n";
     int_poi = (int*) void_poi; // casting operation: optional in C, required in C++
     std::cout << "Variable address -pointed to by a int pointer- -cast from void pointer-:\t" << int_poi << "\n\n";
-
+    
     //! - in addition:
     // more infos on all fundamental types:
     // the properties of fundamental types in particular systems and compiler implementations:
     //! http://www.cplusplus.com/%3Climits%3E
     // types of specific sizes:
     //! http://www.cplusplus.com/%3Ccstdint%3E
-
+    
     //! ####################################################################
     //! ----- strings:
     // the class string is one of the compound types in C++.
@@ -321,10 +322,10 @@ void _03_02_FundamentalTypesAndDeduction ()
     ColourCouter ( "One of the compound types in C++ is the class string.\n\n", F_YELLOW );
     std::string str1 = { "This is the initial string." }; // initialization in C++ standard form.
     std::cout << "The string variable value is:\t" << str1 << "\n\n";
-
+    
     // more details on standard C++ strings:
     //! http://www.cplusplus.com/string
-
+    
     //! ####################################################################
     //! ----- deduction of type:
     // auto and decltype shall mainly be used when the type can't be determined or for improving the readability. the example below is non of them.
@@ -339,7 +340,7 @@ void _03_02_FundamentalTypesAndDeduction ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -350,7 +351,7 @@ void _04_01_ConstantNumerals ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ constants numerals:
     // first kind of the most obvious constants are numerals, which can be of types integer or floating-point.
@@ -358,7 +359,7 @@ void _04_01_ConstantNumerals ()
     // in the statement "i=5;" 5 is a numeral constant.
     ColourCouter ( "~~~~~ Constants numerals:\n", F_bPURPLE );
     ColourCouter ( "One of the most obvious kind of constants are numerals.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- integer constants:
     // C++ allows the use of numbers in octal or hexadecimal base
@@ -370,7 +371,7 @@ void _04_01_ConstantNumerals ()
     std::cout << "Integer constant (initialized in decimal base):\t\t" << con1 << "\n";
     std::cout << "Integer constant (initialized in octal base):\t\t" << con2 << "\n";
     std::cout << "Integer constant (initialized in hexadecimal base):\t" << con3 << "\n\n";
-
+    
     //! - in addition:
     // by default integer literals are "int" but they can be modified by appending certain suffixes.
     // modification of types: (these suffixes may be case-sensitiv when it comes to cross-platform development and different compilers.)
@@ -390,7 +391,7 @@ void _04_01_ConstantNumerals ()
     std::cout << "Modified to type unsigned long:\t\t" << con5 << "\n";
     std::cout << "Modified to type long long:\t\t" << con6 << "\n";
     std::cout << "Modified to type unsigned long long:\t" << con7 << "\n\n";
-
+    
     //! ####################################################################
     //! ----- floating point constants:
     // expressing real values which can include either decimal point or "e" character
@@ -415,7 +416,7 @@ void _04_01_ConstantNumerals ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -431,13 +432,13 @@ void _04_02_ConstantLiterals ()
     // ' for characters and "  for strings
     ColourCouter ( "~~~~~ Constant literals:\n", F_bPURPLE );
     ColourCouter ( "Literals are the second most obvious kind in the sphere of constants.\n\n", F_YELLOW );
-
+    
     ColourCouter ( "Some constant characters and strings:\n", F_GREEN );
     const char con12 { 'Z' };
     std::cout << "'Z' character:\t" << con12 << "\n";
     const std::string con13 = { "How do you do?" };
     std::cout << "A string:\t" << con13 << "\n\n";
-
+    
     //! - in addition:
     // character and string literals can be used to represent special characters,
     // which are in most cases difficult or impossible to be used in the source code.
@@ -481,7 +482,7 @@ void _04_02_ConstantLiterals ()
     // ------------------------------------------------------------
     // Reference: http://de.cppreference.com/w/cpp/language/escape
     // ------------------------------------------------------------
-
+    
     //! - in addition:
     // every character in computer is an ASCI code.
     // https://de.cppreference.com/w/cpp/language/ascii
@@ -490,7 +491,7 @@ void _04_02_ConstantLiterals ()
     const char con16 { '\202' };
     const char con17 { '\x2d' };
     std::cout << "Initialled constants with ASCI code of characters:\t" << con16 << '\t' << con17 << "\n\n";
-
+    
     //! - in addition:
     // simply by separating several literal strings by blank spaces they will be concatenated in one.
     // in C++ big literal strings within a twin of quotes can be written in more than one line by using "\" backslash character.
@@ -499,9 +500,9 @@ void _04_02_ConstantLiterals ()
     const std::string con18 { "\
 This strIng Is ""In ""the"   " soURce\
 c0de"           " paRTed"  " And "
-"wriTTen"           " In Four Line" }; // note: pay attention to the last two line!
+      "wriTTen"           " In Four Line" }; // note: pay attention to the last two line!
     std::cout << "Check the initialization expression in source code:\n" << con18 << "\n\n";
-
+    
     //! - in addition:
     // the type of the character and string literals can be modified by using specific prefixes
     // these prefixes are case-sensitive.
@@ -519,7 +520,7 @@ c0de"           " paRTed"  " And "
     std::cout << "Modification of type (to char16_t):\t" << con19 << "\n";
     std::cout << "Modification of type (to char32_t):\t" << con20 << "\n";
     std::cout << "Modification of type (to wchar_t):\t" << con21 << "\n\n";
-
+    
     //! - in addition:
     // two more prefixes are:
     // ----------------------------------
@@ -542,7 +543,7 @@ c0de"           " paRTed"  " And "
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -560,7 +561,7 @@ void _04_03_OtherConstantLiterals ()
     std::cout << "Boolean constant keyword literal 'false':\t" << con24 << "\n";
     const int* ptr { nullptr };
     std::cout << "Pointer constant keyword literal 'nullptr':\t" << ptr << "\n\n";
-
+    
     //! ####################################################################
     //! ----- typed constant expressions (programmer defined):
     // for convenience sake, since some literals may often be repeated in source code.
@@ -574,8 +575,8 @@ void _04_03_OtherConstantLiterals ()
     circle = radius * radius * pi;
     ColourCouter ( "Using typed constants:\n", F_GREEN );
     std::cout << "The circle area:" << tab << radius << " * " << radius << " * " << pi << " =  " << circle << nline << nline;
-
-
+    
+    
     //! ####################################################################
     //! ----- preprocessor definitions (#define):
     // another way to define constant values
@@ -600,7 +601,7 @@ void _04_03_OtherConstantLiterals ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -614,13 +615,13 @@ void _05_01_ArithmeticOperators ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ mathematical operators:
     // mathematical operators will be used to have mathematical operations on operands.
     ColourCouter ( "~~~~~ Mathematical operators:\n", F_bPURPLE );
     ColourCouter ( "Mathematical operators represent the most important and basic mathematical operations.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- assignment operator (=):
     // the assignment operations always takes place from right to left.
@@ -634,15 +635,15 @@ void _05_01_ArithmeticOperators ()
     std::cout << "The values after second assignment:" << tab << "x: " << x << tab << "y: " << y << nline;
     x = y = 3; // valid in C++
     std::cout << "The values after third assignment:" << tab << "x: " << x << tab << "y: " << y << nline << nline;
-
+    
     //! - in addition:
     // assignment operation can be evaluated, this means the assignment itself has a value,
     // which in fundamental types is the value that assigned in the operation.
     ColourCouter ( "The value of assignment operation:\n", F_GREEN );
     y = 6 + ( x = 10 ); // y is 6 + the value of another assignment operation
     std::cout << "y = 6 + ( x = 10 ):" << tab << "x: " << x << tab << "y: " << y << nline << nline;
-
-
+    
+    
     //! ####################################################################
     //! ----- arithmetic operators (+, -, *, /, %):
     // percentage sign represent modulo which is the remainder of a division.
@@ -651,7 +652,7 @@ void _05_01_ArithmeticOperators ()
     int q { 0 };
     q = 23 % 10;
     std::cout << "The result of modulo operator ( 23 % 10 ):" << tab << "q: " << q << nline << nline;
-
+    
     //! ####################################################################
     //! ----- compound assignments (+=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |=):
     // modification of the current value of the variable by performing an operation on it.
@@ -661,7 +662,7 @@ void _05_01_ArithmeticOperators ()
     std::cout << "Current values are:" << "\t\t\t" << "a: " << a << tab << "b: " << b << nline;
     b *= a + 1; // equivalent to b=b*(a+1)
     std::cout << "Result of expression ( b *= a + 1 ):" << tab << "a: " << a << tab << "b: " << b << nline << nline;
-
+    
     //! ####################################################################
     //! ----- increment and decrement (++, --):
     // these operators increase or decrease the value stored in a variable by one.
@@ -673,7 +674,7 @@ void _05_01_ArithmeticOperators ()
     --d;
     std::cout << "Result of expression ( c++ ):" << tab << "c: " << c << nline;
     std::cout << "Result of expression ( --d ):" << tab << "d: " << d << nline << nline;
-
+    
     //! - in addition:
     // these operators can be used both as prefix and as suffix.
     // although simple expressions like ++d and d++ have the same meaning,
@@ -693,7 +694,7 @@ void _05_01_ArithmeticOperators ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -707,7 +708,7 @@ void _05_02_LagicalOperators ()
     // boolean operators will be used to have logical operations on operands.
     ColourCouter ( "~~~~~ Boolean operators:\n", F_bPURPLE );
     ColourCouter ( "Boolean operators represent the logical operations.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- relational and comparison operators (==, !=, <, > ,<=, >=):
     // the results of comparison are going be boolean. any value can be compared.
@@ -724,7 +725,7 @@ void _05_02_LagicalOperators ()
         std::cout << "Result of expression (( z = 2 ) == x ):" << "\t\t" << ( ( z = 2 ) == x ) << tab << "z: " << z << nline << nline;
       }
     }
-
+    
     //! ####################################################################
     //! ----- logical operators (!, &&, ||):
     // the operator ! (logical NOT) inverts its one operand, which will be written to its right.
@@ -734,7 +735,7 @@ void _05_02_LagicalOperators ()
     std::cout << "Current values are:" << "\t\t\t" << "a: " << a << tab << "b: " << b << tab << "c: " << c << nline;
     std::cout << "Result of expression !( a <= b ): " << tab << !( a <= b ) << nline;
     std::cout << "Result of expression !( b >= c ): " << tab << !( b >= c ) << nline << nline;
-
+    
     //! - in addition:
     // short circuit evaluation: C++ only evaluates what is necessary to come up with the combined relational result.
     // this evaluation happens from left to right.
@@ -746,7 +747,7 @@ void _05_02_LagicalOperators ()
       std::cout << "Result of expression (( a == b ) && ( a <= b )):" << tab << ( ( a == b ) && ( a <= b ) ) << nline;
       std::cout << "Result of expression (( a == b ) || ( a >= b )):" << tab << ( ( a == b ) || ( a >= b ) ) << nline << nline;
     }
-
+    
     //! - in addition:
     // this is most important when it comes to statements that has side effects.
     // for example altering values in the right-hand expression.
@@ -755,7 +756,7 @@ void _05_02_LagicalOperators ()
     if ( ( a == 4 ) || ( ++b > a ) ) // if a==4 is true, then ++b will never be executed
       std::cout << "The increment in (( a == 4 ) || ( ++b > a )) is going to happen if a isn't 4:" << nline;
     std::cout << "Values after operation:" << tab << "a: " << a << tab << "b: " << b << tab << "c: " << c << nline << nline;
-
+    
     //! ####################################################################
     //! ----- conditional ternary operator (?):
     // if its condition is true, the operator will return result1 and otherwise result2.
@@ -771,7 +772,7 @@ void _05_02_LagicalOperators ()
     int_result = ( ( e == f ) && ( e > g ) ) ? e : g;
     std::cout << "Result of expression (( e == f ) && ( e > g )) ? \"True\" : \"False\";\tis:" << tab << str_result << nline;
     std::cout << "Result of expression (( e == f ) && ( e > g )) ? e : g;\t\t\tis:" << tab << int_result << nline << nline;
-
+    
     //! ####################################################################
     //! ----- comma operator (,):
     // this operator will be used to separate the expressions,
@@ -782,7 +783,7 @@ void _05_02_LagicalOperators ()
     std::cout << "Current values are:" << "\t\t\t\t" << "h: " << h << tab << "i: " << i << tab << "j: " << j << nline;
     h = ( i = 2, ++j * i );
     std::cout << "Result of expression (i = 2, ++j * i):" << "\t\t" << h << nline << nline;
-
+    
     //! - in addition:
     // in cases that the set of expressions need to be evaluated for a value to be reached,
     // only the most right expression is considered.
@@ -797,7 +798,7 @@ void _05_02_LagicalOperators ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -812,7 +813,7 @@ void _05_03_OtherOperators ()
     ColourCouter ( "~~~~~ Other operators:\n", F_bPURPLE );
     ColourCouter ( "The introduction of some other important operators.\n", F_YELLOW );
     ColourCouter ( "Additional to the below operators, as the tutorial goes on, some more will be introduced.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- bitwise operators (&, |, ^, ~, <<, >>):
     // modifying an operand in its stored bit patterns which represent their value in system.
@@ -840,7 +841,7 @@ void _05_03_OtherOperators ()
     std::cout << "Result of expression ( ~xx ):" << "\t\t" << ( ~xx ) << nline; // not -0001 = -1110
     std::cout << "Result of expression ( xx << 2 ):" << tab << ( xx << 2 ) << nline; // left shift -0001 = -0100
     std::cout << "Result of expression ( xx >> 2 ):" << tab << ( xx >> 2 ) << nline << nline; // right shift -0001 = -0000
-
+    
     //! ####################################################################
     //! ----- explicit type casting operator:
     // convert the value of a given type to another type
@@ -853,7 +854,7 @@ void _05_03_OtherOperators ()
     std::cout << "Converting the type (C-like explicit type casting):" << tab << yy << nline;
     yy = int ( f ); // C++ functional notation casting
     std::cout << "Converting the type (C++ functional notation casting):" << tab << yy << nline << nline;
-
+    
     //! ####################################################################
     //! ----- The 'sizeof' operator:
     // sizeof: take one parameter (type or variable) and return the size in bytes.
@@ -864,7 +865,7 @@ void _05_03_OtherOperators ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -881,7 +882,7 @@ void _05_04_PrecedenceOfOperators ()
     int x { 0 };
     x = 2 + 8 % 3; // the remainder operator will be evaluated first
     std::cout << "The result of expression ' 2 + 8 % 3 ':" << "\t\t" << x << nline << nline;
-
+    
     //! - in addition:
     // uses of parenthesis:
     // to explicitly clarify the intended effect
@@ -891,7 +892,7 @@ void _05_04_PrecedenceOfOperators ()
     std::cout << "The result of expression ' 2 + ( 8 % 3 ) ':" << tab << x << nline;
     x = ( 2 + 8 ) % 3; // overriding the precedence
     std::cout << "The result of expression ' ( 2 + 8 ) % 3 ':" << tab << x << nline << nline;
-
+    
     //! - in addition:
     // evaluation of C++ operator from greatest to smallest happen in the following order:
     // -------------------------------------------------------------------------------------------------------
@@ -928,17 +929,17 @@ void _05_04_PrecedenceOfOperators ()
     //                                  ? :                 conditional operator
     // 16       sequencing              ,                   comma separator                     left-to-right
     // -------------------------------------------------------------------------------------------------------
-
+    
     // an expression that has two the same precedence level operators, either left-to-right or right-to-left groupings determine which one is first to be evaluated. so every operator based on its defined precedence and grouping is independent.
     // therefore, the consideration is there, that enclosure in parenthesis is a good practice and can improve the code readability.
-
+    
     //! - in addition:
     // there are some other operators such as ones referring to pointers or
     // the specifics for object-oriented programming, which will be introduced later on.
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }
 
@@ -949,7 +950,7 @@ void _06_01_BasicInputOutput ()
   {
     ColourCouter ( " -------------------------------------------------", F_bRED );
     ColourCouter ( "--------------------------------------------------\n\n", F_bRED );
-
+    
     //! ####################################################################
     //! ~~~~~ basic input/output:
     // standard features to interact with users.
@@ -970,7 +971,7 @@ void _06_01_BasicInputOutput ()
     // although they can be individually redirected.
     ColourCouter ( "~~~~~ Basic input/output (cin, cout, cerr and clog):\n", F_bPURPLE );
     ColourCouter ( "The streams are the standard features, which C++ language uses to interact with users.\n\n", F_YELLOW );
-
+    
     //! ####################################################################
     //! ----- standard output (cout):
     // default output of this stream is screen and processes the operation with using the insertion operator (<<)
@@ -983,7 +984,7 @@ void _06_01_BasicInputOutput ()
     std::cout << nline; // a variable of type char (\n)
     ColourCouter ( "Chained insertion:\n", F_GREEN );
     std::cout << "Current year is: " << tab << 2018 << nline << "My birth year is: " << tab << 1989 << nline;
-
+    
     //! - in addition:
     // since cout dosen't automatically break the line, "\n" or endl manipulator will be used instead.
     // endl manipulator break the line and flushes the buffer which means to physically write the output in device.
@@ -992,7 +993,7 @@ void _06_01_BasicInputOutput ()
     // since it incurs a certain overhead and on some devices it may produce a delay.
     std::cout << nline << "Breaking the line:" << nline;
     std::cout << "\n ____This is the sentence between two break line characters____ \n" << std::endl;
-
+    
     //! ####################################################################
     //! ----- standard input (cin):
     // default input of this stream is keyboard, and processes the operation with the help of extraction operator (>>),
@@ -1005,7 +1006,7 @@ void _06_01_BasicInputOutput ()
     std::cout << "Please enter a character as input:" << tab;
     std::cin >> char_in;
     std::cout << "You have entered:" << "\t\t\t" << char_in << nline << nline;
-
+    
     //! - in addition:
     // taking input from cin stream is easy but it has a big drawback.
     // if the entered characters couldn't be interpreted to an integer type for example, when they need to,
@@ -1019,7 +1020,7 @@ void _06_01_BasicInputOutput ()
     std::cout << "Please enter a number as input:" << "\t\t";
     std::cin >> int_in; // unknown results caused from unwanted inputs
     std::cout << "The double of it is:" << "\t\t\t" << int_in * 2 << nline << nline;
-
+    
     //! - in addition:
     // chained extraction of more than one datum in one line.
     // user must separate inputs with blank spaces such as white space, tab or new line.
@@ -1029,7 +1030,7 @@ void _06_01_BasicInputOutput ()
     std::cout << "  - ";
     std::cin >> int_in >> int_in2; // chained extraction
     std::cout << "The entered values are:" << "\t\t" << int_in << tab << int_in2 << nline << nline;
-
+    
     //! - in addition:
     // the stream cin can extract strings just like other fundamental types. the only problem is that it consider any type of spaces as termination of the operation so it can only extract a single word by one extraction operator.
     // to get an entire line with the stream cin the function getline() from the standard library can be used.
@@ -1045,7 +1046,7 @@ void _06_01_BasicInputOutput ()
     // std::cin.ignore (100,'\n'); // clear unneeded buffered characters (another way but in most cases not a good idea)
     std::getline ( std::cin, str_in ); // getting a line with spaces
     std::cout << "The extracted line with getline function is:" << "\t\t" << str_in << nline << nline;
-
+    
     //! ####################################################################
     //! ----- the type stringstream:
     // this type which is defined in standard header <sstream> allows the strings to be treated like streams,
@@ -1059,7 +1060,7 @@ void _06_01_BasicInputOutput ()
     int int_var;
     std::stringstream ( str_var ) >> int_var; // extract the value from a stringstream constructed from the string variable
     std::cout << "The value converted from string to integer:" << tab << int_var << nline << nline;
-
+    
     //! - in addition:
     // acquiring numeric values indirectly from the standard input:
     // using getline and stringstream instead of cin
@@ -1080,6 +1081,6 @@ void _06_01_BasicInputOutput ()
   }
   catch ( const std::exception& )
   {
-
+    
   }
 }

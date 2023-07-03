@@ -1,13 +1,12 @@
-
-# *******************************************************************************************
-#/ <summary>
-#/ CMakeLists.txt
-#/ CplusPlus
-#/ created by Mehrdad Soleimanimajd on 18.04.2019
-#/ </summary>
-#/ <created>ʆϒʅ, 18.04.2019</created>
-#/ <changed>ʆϒʅ, 22.04.2023</changed>
-# *******************************************************************************************
+# ============================================================================
+# / <summary>
+# / CMakeLists.txt
+# / CplusPlus
+# / created by Mehrdad Soleimanimajd on 18.04.2019
+# / </summary>
+# / <created>ʆϒʅ, 18.04.2019</created>
+# / <changed>ʆϒʅ, 02.07.2023</changed>
+# ============================================================================
 
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
@@ -19,20 +18,45 @@ set(CMAKE_CXX_COMPILER GCC)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 set(CMAKE_CXX_STANDARD 17)
 
-project(${PROJECT_NAME}
-
-  VERSION 1.0.0.1
-  DESCRIPTION "CplusPlus Examples And Notes"
+project(${PROJECT_NAME}
+  VERSION 1.0.1.0
+  DESCRIPTION "CplusPlus Notes and Examples"
   HOMEPAGE_URL "https://github.com/s-mehrdad/CplusPlus"
   LANGUAGES CXX
-  )
+)
 
-if(MSVC)
-  list(APPEND RESOURCES
-    ${TARGET_NAME}.rc
-    resource.h
-    )
-endif(MSVC)
+set(VerCompanyName "BirdSofts")
+set(VerFileDescription "CplusPlus Notes and Examples")
+set(VerFileVersion "1,0,1,0")
+
+# set(VerFileVersion
+# ${CMAKE_PROJECT_VERSION_MAJOR},
+# ${CMAKE_PROJECT_VERSION_MINOR},
+# ${CMAKE_PROJECT_VERSION_PATCH},
+# ${CMAKE_PROJECT_VERSION_TWEAK}
+# )
+set(VerInternalName ${TARGET_NAME})
+set(VerLegalCopyright "Copyright (C) 2018-2023")
+set(VerLegalTrademarks1 "BS")
+set(VerLegalTrademarks2 "BSs")
+set(VerOriginalFilename ${TARGET_NAME})
+set(VerProductName ${TARGET_NAME})
+set(VerProductVersion ${CMAKE_PROJECT_VERSION})
+
+set(VerProjectType VFT_APP)
+
+configure_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/CplusPlus.rc.in
+  CplusPlus.rc
+  @ONLY
+  NEWLINE_STYLE
+  LF
+)
+
+list(APPEND RESOURCES
+  ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}.rc
+  resource.h
+)
 
 list(APPEND HEADER_FILES
   CplusPlus.h
@@ -45,7 +69,7 @@ list(APPEND HEADER_FILES
   _7_cPlusPlusStandardLibrary.h
   Console.h
   Terminal.h
-  )
+)
 
 list(APPEND SOURCE_FILES
   CplusPlus.cpp
@@ -58,7 +82,7 @@ list(APPEND SOURCE_FILES
   _7_cPlusPlusStandardLibrary.cpp
   Console.cpp
   Terminal.cpp
-  )
+)
 
 if(WIN32)
   list(APPEND SOURCE_FILES ${HEADER_FILES})
@@ -73,5 +97,5 @@ if(MINGW)
     ${CMAKE_PREFIX_PATH}/bin/libstdc++-6.dll
     ${CMAKE_PREFIX_PATH}/bin/libwinpthread-1.dll
     $<TARGET_FILE_DIR:${TARGET_NAME}>
-    )
+  )
 endif(MINGW)

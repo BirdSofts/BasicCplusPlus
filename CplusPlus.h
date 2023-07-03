@@ -1,13 +1,13 @@
 
-// --------------------------------------------------------------------------------
+// ===========================================================================
 /// <summary>
 /// CplusPlus.h
 /// CplusPlus
 /// created by Mehrdad Soleimanimajd on 16.04.2019
 /// </summary>
 /// <created>ʆϒʅ, 16.04.2019</created>
-/// <changed>ʆϒʅ, 22.04.2023</changed>
-// --------------------------------------------------------------------------------
+/// <changed>ʆϒʅ, 02.07.2023</changed>
+// ===========================================================================
 
 #ifndef CPLUSPLUS_H
 #define CPLUSPLUS_H
@@ -31,7 +31,7 @@
 #include <cwchar> // C++ standard library to work with C wide strings
 #ifdef _WIN32
 #include <Windows.h> // Windows standard API's
-//#else #elif #elifdef #elifndef
+//#else #elif #elif defined #elifndef
 #elif defined __APPLE__
 #include <termios.h>
 #endif
@@ -48,5 +48,10 @@
 
 #include <fstream> // C++ standard file streams
 
+typedef struct CoordinateType
+{
+    short x;
+    short y;
+} coordinateType;
 
 #endif //CPLUSPLUS_H

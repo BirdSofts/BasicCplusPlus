@@ -22,9 +22,11 @@ Source code is released and ready to be built.
 
 4.  API references
 Windows's console: screen, colour and font manipulations APIs.
+And platform independent ANSI escape characters and APIs.
 
 # Build and Test
 If you are a beginner, use Visual Studio or know what you are doing.
+
 Compile using CMake.
 
 <table>
@@ -67,4 +69,4 @@ Contributions are welcomed.
 </table>
 
 # Copyright Notice
-The literature and all the known and unknown ideas provided within the following learning resource is copyrighted. On the other hand, so far the source code is concerned, most of which is learned and inspired from online references and the addition to them can be used under the license terms provided with the software itself.
+Refer to license file provided within SOFTWARE itself.
